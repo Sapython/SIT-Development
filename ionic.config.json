@@ -1,0 +1,7 @@
+{
+  "name": "SIT",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sit-manager": {
+      "hosting": {
+        "app": [
+          "sit-manager"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sit-manager"
+  }
+}
