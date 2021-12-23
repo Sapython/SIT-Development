@@ -14,11 +14,23 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { HeaderComponent } from './base-components/header/header.component';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), provideStorage(() => getStorage())],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    provideFirebaseApp(() => initializeApp(environment.firebase)), 
+    provideAnalytics(() => getAnalytics()), 
+    provideAuth(() => getAuth()), 
+    provideFirestore(() => getFirestore()), 
+    provideFunctions(() => getFunctions()), 
+    provideMessaging(() => getMessaging()), 
+    provideStorage(() => getStorage()), MainModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService,UserTrackingService],
   bootstrap: [AppComponent],
 })
