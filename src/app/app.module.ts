@@ -22,9 +22,11 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HeaderComponent } from './base-components/header/header.component';
 import { MainModule } from './main/main.module';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

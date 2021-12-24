@@ -1,0 +1,38 @@
+
+.container{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500; 
+}
+.box{
+    position:absolute;
+    padding:50px;
+    padding-left: 80px;
+}
+.box h2{
+    display:block;
+    margin:auto;
+    font-weight: 900;
+}
+.box span{
+    color: #6865BF;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+.box img{
+    display:block;
+    margin:auto;
+    margin-top: 50px;
+    margin-left: -30px;
+}
+.box button{
+    color: #fff;
+    background-color: #6865BF;
+    display: block;
+    margin:auto;
+    padding:20px;
+    border-radius: 25px;
+    margin-top: 30px;
+}
