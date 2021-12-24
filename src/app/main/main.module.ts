@@ -1,4 +1,3 @@
-import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
@@ -10,7 +9,6 @@ import { BaseComponentsModule } from '../base-components/base-components.module'
 @NgModule({
   declarations: [
     MainComponent,
-    HomeComponent,
   ],
   imports: [
     BaseComponentsModule,

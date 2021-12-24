@@ -1,16 +1,21 @@
+import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 
+const comps = [
+  HeaderComponent,
+]
 @NgModule({
   declarations: [
-    HeaderComponent
+    comps
   ],
   imports: [
     CommonModule,
+    IonicModule,
   ],
   exports: [
-    HeaderComponent
+    comps
   ]
 })
 export class BaseComponentsModule { }
