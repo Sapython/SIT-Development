@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
 import { BaseComponentsModule } from '../base-components/base-components.module';
+import { WidgetsModule } from '../widgets/widgets.module';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { BaseComponentsModule } from '../base-components/base-components.module'
     IonicModule,
     CommonModule,
     FormsModule,
-    MainRoutingModule
+    MainRoutingModule,
+    WidgetsModule
   ]
 })
 export class MainModule { }
