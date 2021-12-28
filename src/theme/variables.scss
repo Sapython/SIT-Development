@@ -51,9 +51,10 @@
 	--ion-color-light-contrast-rgb: 0,0,0;
 	--ion-color-light-shade: #D5D5D5;
 	--ion-color-light-tint: #F3F3F3;
+	font-family: 'Poppins', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: none) {
   /*
    * Dark Colors
    * -------------------------------------------
