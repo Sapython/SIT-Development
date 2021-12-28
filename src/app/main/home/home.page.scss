@@ -1,0 +1,31 @@
+
+.container{
+    display: block;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+
+}
+.container button{
+    color: #fff;
+    background-color: var(--ion-color-warning);
+    padding:10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.container h2{
+    margin-left: 2px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.container h4{
+    margin-left: 2px;
+    margin-top: 20px;
+    color: var(--ion-color-primary);
+}
+.pending{
+    border: 1px solid var(--ion-color-secondary);
+    margin: 3px;
+    padding:10px;
+}
+
