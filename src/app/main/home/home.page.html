@@ -1,5 +1,33 @@
 <app-header title="Home"></app-header>
 
 <ion-content>
-    <app-sit-ledger-widget></app-sit-ledger-widget>
+    <div class="container">
+        <button>Add a Employee</button>
+        <p>Dashboard</p>
+        <p class="text-1">Recently Opened</p>
+    </div>
+    <div class="box">
+        <app-employee-data-widget></app-employee-data-widget>
+        <app-employee-data-widget></app-employee-data-widget>
+        <app-employee-data-widget></app-employee-data-widget>
+    </div>
+    <div class="pending">
+        <p style="color: red;margin-left: 10px;font-size:20px;font-weight: bold;">Pending</p>
+        <app-sit-ledger-widget></app-sit-ledger-widget>
+        <app-sit-ledger-widget></app-sit-ledger-widget>
+
+    </div>
+    <div class="pending">
+        <p style="color: var(--ion-color-warning);margin-left: 10px;font-size:20px;font-weight: bold;">Recieved</p>
+        <app-sit-ledger-widget></app-sit-ledger-widget>
+        <app-sit-ledger-widget></app-sit-ledger-widget>
+
+    </div>
+    <div class="pending">
+        <p style="color:#28BA62; margin-left: 10px;font-size:20px;font-weight: bold;">Unloaded</p>
+        <app-sit-ledger-widget></app-sit-ledger-widget>
+        <app-sit-ledger-widget></app-sit-ledger-widget>
+
+    </div>
+      
 </ion-content>
