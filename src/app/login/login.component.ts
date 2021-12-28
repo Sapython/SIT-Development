@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
   private startBackgroundAnimation(){
     let bubbleContainer = document.querySelector('.bubbleContainer');
-    for (let i = 0; i < this.getRandomInt(5,10); i++) {
+    for (let i = 0; i < this.getRandomInt(5,10); i++){
       bubbleContainer?.appendChild(this.createBubble());
     }
   }
