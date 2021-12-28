@@ -11,5 +11,5 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-
+  items = [1,2,3]
 }
