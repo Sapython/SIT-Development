@@ -8,6 +8,7 @@ import { LedgeroverviewPageRoutingModule } from './ledgeroverview-routing.module
 
 import { LedgeroverviewPage } from './ledgeroverview.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { BaseComponentsModule } from 'src/app/base-components/base-components.mo
     CommonModule,
     FormsModule,
     IonicModule,
-    LedgeroverviewPageRoutingModule
+    LedgeroverviewPageRoutingModule,
+    WidgetsModule
   ],
   declarations: [LedgeroverviewPage]
 })
