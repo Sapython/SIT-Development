@@ -1,22 +1,52 @@
 <ion-content>
+  <img src="assets/UI/Images/Template.png">
+  <div class="bubbleContainer"></div>
   <div class="container">
-    <img src="/assets/UI/Images/containers.jpg" alt="" srcset="" cover no-repeat>
-    <div class="box">
-      <h2>Log In</h2>
-      <input type="text" placeholder="Email">
-      <input type="text" placeholder="Password">
-      <h5>Forgot Password?</h5>
-      <h4 class="yellow">Don't have an account ?<span>Sign Up</span></h4>
-      <button type="button">Log In</button>
-      <p>or log in using</p>
-      <div class="box1">
-        <ion-icon name="logo-facebook" class="logo"></ion-icon>
-        <ion-icon name="logo-twitter" class="logo"></ion-icon>
-        <ion-icon name="logo-google" class="logo"></ion-icon>
+    <h1>Hello Again!</h1>
+    <p>Welcome back you've</p>
+    <p>been missed</p>
+    <form [formGroup]="signinForm" (ngSubmit)="login()">
+      <!-- <ion-item lines="none">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [formControl]="emailControl"></ion-input>
+      </ion-item> -->
+      <input type="email" [formControl]="emailControl" placeholder="Enter email">
+      <div class="text-danger"
+        *ngIf="emailControl && emailControl.errors && (emailControl.dirty || emailControl.touched)">
+        <div *ngIf="emailControl.errors?.['required']">
+          <small>Email is required</small>
+        </div>
+        <div *ngIf="emailControl.errors?.['email']">
+          <small>Please provide a correct email address</small>
+        </div>
       </div>
-
-      
-      
+      <!-- <ion-item lines="none">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input [formControl]="passwordControl"></ion-input>
+      </ion-item> -->
+      <input type="password" [formControl]="passwordControl" placeholder="Enter password">
+      <div class="text-danger"
+        *ngIf="passwordControl && passwordControl.errors && (passwordControl.dirty || passwordControl.touched)">
+        <div *ngIf="passwordControl.errors?.['required']">
+          <small>Password is required</small>
+        </div>
+        <div *ngIf="passwordControl.errors?.['minlength']">
+          <small>Minimum length for password is 8</small>
+        </div>
+        <div *ngIf="passwordControl.errors?.['maxlength']">
+          <small>Maximum length for password is 50</small>
+        </div>
+      </div>
+      <p>Recovery Password</p>
+      <button type="submit">Sign In</button>
+    </form>
+    <p class="liner">Or continue with</p>
+    <!-- <h5>Forgot Password?</h5>
+    <h4 class="yellow">Don't have an account ?<span>Sign Up</span></h4> -->
+    <div class="box1">
+      <ion-icon name="logo-facebook" class="logo"></ion-icon>
+      <ion-icon name="logo-twitter" class="logo"></ion-icon>
+      <ion-icon name="logo-google" class="logo"></ion-icon>
     </div>
   </div>
 </ion-content>

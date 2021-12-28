@@ -57,9 +57,10 @@
 	--ion-color-button2-contrast-rgb: 0,0,0;
 	--ion-color-button2-shade: #dfc72a;
 	--ion-color-button2-tint: #fde545;
+	font-family: 'Poppins', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: none) {
   /*
    * Dark Colors
    * -------------------------------------------

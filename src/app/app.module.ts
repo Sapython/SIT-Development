@@ -1,3 +1,4 @@
+import { DataProvider } from './providers/data.provider';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -24,11 +25,17 @@ import { MainModule } from './main/main.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyemailComponent } from './verifyemail/verifyemail.component';
+import { AlertsAndNotificationsService } from './services/uiService/alerts-and-notifications.service';
+import { DatabaseService } from './services/database.service';
+import { UserDataService } from './services/user-data.service';
+import { AuthencationService } from './services/authencation.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent],
   entryComponents: [],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -42,6 +49,11 @@ import { VerifyemailComponent } from './verifyemail/verifyemail.component';
     MainModule,
   ],
   providers: [
+    AlertsAndNotificationsService,
+    AuthencationService,
+    DataProvider,
+    DatabaseService,
+    UserDataService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ScreenTrackingService,
     UserTrackingService,
