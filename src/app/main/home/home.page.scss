@@ -3,22 +3,24 @@
     display: block;
     margin-left: 20px;
     margin-top: 20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    margin: 10px;
 
 }
 .container button{
     color: #fff;
-    background-color: var(--ion-color-warning);
+    background-color: #F1C36F;
     padding:10px 20px;
     border-radius: 10px;
     font-weight: bold;
 }
-.container h2{
+.container p{
     margin-left: 2px;
     margin-top: 20px;
     font-weight: bold;
+    font-size: 25px;
 }
-.container h4{
+.text-1{
     margin-left: 2px;
     margin-top: 20px;
     color: var(--ion-color-primary);
@@ -26,6 +28,12 @@
 .pending{
     border: 1px solid var(--ion-color-secondary);
     margin: 3px;
-    padding:10px;
+    padding:05px;
+    border-radius:10px;
 }
-
+.pending h2{
+    margin-top: 0px;
+}
+.box{
+    margin: 10px;
+}

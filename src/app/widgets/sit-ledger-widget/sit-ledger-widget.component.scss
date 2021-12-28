@@ -2,14 +2,21 @@
     background-color: #f3f3f3;
     font-family: 'Poppins', sans-serif;
     padding: 5px;
+    border: 2px solid var(--ion-color-primary);
+    box-shadow: 1px 2px 5px #82828b;
+    border-radius:10px;
+    margin: 5px;
 }
 .box{
     display: flex;
     justify-content: space-between;
-    margin-left: 20px;
+    margin-left: 05px;
 }
 .box img{
-    margin-top: 07px;
+    margin-top: 10px;
+    border-radius:50%;
+    height: 50px;
+    width: 50px;
 }
 .box p{
     font-size: 15px;
@@ -20,7 +27,7 @@
 .box1{
     display: flex;
     justify-content: space-between;
-    margin-left: 20px;
+    margin-left: 05px;
 }
 .box1 button{
     font-size: 10px;
@@ -32,7 +39,7 @@
     font-family: 'Raleway', sans-serif;
 }
 .text{
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 17px;
     color: #1864A8;
     font-weight: bold;
