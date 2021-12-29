@@ -9,10 +9,12 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     BaseComponentsModule,
+    ComponentModule,
     CommonModule,
     FormsModule,
     IonicModule,

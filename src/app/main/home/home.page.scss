@@ -1,50 +1,138 @@
+aside {
+position:fixed;
+  width: 100vw;
+  height: 45vh;
+  background-color: white;
+  padding: 20px;
+  #topNav {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    justify-content: space-between;
+    button {
+      border: 2px solid cornflowerblue;
+      background-color: transparent;
+      color: cornflowerblue;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 25px;
+      font-weight: bold;
+      box-shadow: 5px 5px 20px 10px rgba(55, 56, 58, 0.096);
+    }
+    .greetings {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-end;
+      .greet {
+        font-size: 25px;
+        font-weight: 600;
+        color: rgb(44, 44, 44);
+      }
+      .username {
+        font-size: 20px;
+        color: grey;
+      }
+      p {
+        margin: 0px;
+      }
+      app-user-image {
+        border-radius: 50%;
+        margin-top: 10px;
+        box-shadow: 0px 0px 10px -5px rgba(50, 50, 50, 0.4);
+      }
+    }
+  }
+  #card {
+    background-color: white;
+    width: 80vw;
+    border: 3px solid cornflowerblue;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5.3px 4.1px 3.8px -14px rgba(100, 148, 237, 0.045),
+      14.8px 11.4px 10.4px -14px rgba(100, 148, 237, 0.065),
+      35.6px 27.4px 25px -14px rgba(100, 148, 237, 0.085),
+      118px 91px 83px -14px rgba(100, 148, 237, 0.13);
+    .head {
+      margin: 0px;
+      padding: 0px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: rgb(44, 44, 44);
+    }
+    table > tr > td:nth-child(1) {
+      color: grey;
+      font-weight: 500;
+    }
+    table > tr > td:nth-child(2) {
+      margin: 10px;
+      color: grey;
+      font-weight: 500;
+      text-align: end;
+    }
+  }
+}
+main {
+    margin-top:45vh;
+  background-color: var(--ion-background-color);
+  border-radius: 15px;
+  width: 100vw;
+  height: auto;
+  position: sticky;
+  box-shadow: 0px -15px 10px 5px rgba(0, 0, 0, 0.1);
+}
 
-.container{
-    display: block;
-    margin-left: 20px;
-    margin-top: 20px;
-    font-family: 'Raleway', sans-serif;
-    margin: 10px;
+// .container{
+//     display: block;
+//     margin-left: 20px;
+//     margin-top: 20px;
+//     font-family: 'Raleway', sans-serif;
+//     margin: 10px;
 
-}
-.container button{
-    color: #fff;
-    background-color: #F1C36F;
-    padding:10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-.container p{
-    margin-left: 2px;
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 25px;
-}
-.text-1{
-    margin-left: 2px;
-    margin-top: 20px;
-    color: var(--ion-color-primary);
-}
-.pending{
-    border: 1px solid var(--ion-color-secondary);
-    margin: 3px;
-    padding:05px;
-    border-radius:10px;
-}
-.pending h2{
-    margin-top: 0px;   
-}
-.box{
-    margin: 10px;
-}
-.button-22{
-    display: block;
-    margin: auto;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    width: 100%;
-    color: #fff;
-    background-color: #264A6A;
-    padding:10px 20px;
-    font-family: 'Raleway', sans-serif;
-}
+// }
+// .container button{
+//     color: #fff;
+//     background-color: #F1C36F;
+//     padding:10px 20px;
+//     border-radius: 10px;
+//     font-weight: bold;
+// }
+// .container p{
+//     margin-left: 2px;
+//     margin-top: 20px;
+//     font-weight: bold;
+//     font-size: 25px;
+// }
+// .text-1{
+//     margin-left: 2px;
+//     margin-top: 20px;
+//     color: var(--ion-color-primary);
+// }
+// .pending{
+//     border: 1px solid var(--ion-color-secondary);
+//     margin: 3px;
+//     padding:05px;
+//     border-radius:10px;
+// }
+// .pending h2{
+//     margin-top: 0px;
+// }
+// .box{
+//     margin: 10px;
+// }
+// .button-22{
+//     display: block;
+//     margin: auto;
+//     border-bottom-left-radius: 10px;
+//     border-bottom-right-radius: 10px;
+//     width: 100%;
+//     color: #fff;
+//     background-color: #264A6A;
+//     padding:10px 20px;
+//     font-family: 'Raleway', sans-serif;
+// }

@@ -1,33 +1,63 @@
-<app-header title="Home"></app-header>
+<!-- <app-header title="Home"></app-header> -->
 
 <ion-content>
-   
-    <div class="container">
+    <aside>
+        <div id="topNav">
+            <button>
+                <ion-icon name="notifications-outline"></ion-icon>
+            </button>
+            <div class="greetings">
+                <p class="greet">Welcome</p>
+                <p class="username">
+                    {{displayName}}
+                </p>
+                <app-user-image></app-user-image>
+            </div>
+        </div>
+        <div id="card">
+            <p class="head">Summary</p>
+            <table>
+                <tr>
+                    <td>Pending</td>
+                    <td style="color:rgb(255, 107, 107)">&nbsp;&nbsp;&nbsp;&nbsp;12</td>
+                </tr>
+                <tr>
+                    <td>Recieved</td>
+                    <td style="color:rgb(107, 201, 255)">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
+                </tr>
+                <tr>
+                    <td>Unloaded</td>
+                    <td style="color:rgb(61, 194, 94)">&nbsp;&nbsp;&nbsp;&nbsp;45</td>
+                </tr>
+            </table>
+        </div>
+    </aside>
+    <main>
         <button>Add a Employee</button>
         <p>Dashboard</p>
         <p class="text-1">Recently Opened</p>
-    </div>
-    <div class="box">
-        <app-employee-data-widget></app-employee-data-widget>
-    </div>
-    <div class="pending">
-        <p style="color: #F57171;margin-left: 10px;font-size:20px;font-weight: bold;">Pending</p>
-        <app-product-ledger-widget></app-product-ledger-widget>
-        <button class="button-22">See All Pending Events</button>
-
-    </div>
-    <div class="pending">
-        <p style="color: var(--ion-color-warning);margin-left: 10px;font-size:20px;font-weight: bold;">Recieved</p>
-        <app-sit-ledger-widget></app-sit-ledger-widget>
-        <app-sit-ledger-widget></app-sit-ledger-widget>
-        <button class="button-22">See All Pending Events</button>
-
-    </div>
-    <div class="pending">
-        <p style="color:#23C258; margin-left: 10px;font-size:20px;font-weight: bold;">Unloaded</p>
-        <app-sit-ledger-widget></app-sit-ledger-widget>
-        <app-sit-ledger-widget></app-sit-ledger-widget>
-        <button class="button-22">See All Pending Events</button>
-
-    </div>     
+        <!-- <div class="box">
+            <app-employee-data-widget></app-employee-data-widget>
+        </div> -->
+        <!-- <div class="pending">
+            <p style="color: #F57171;margin-left: 10px;font-size:20px;font-weight: bold;">Pending</p>
+            <app-product-ledger-widget></app-product-ledger-widget>
+            <button class="button-22">See All Pending Events</button>
+    
+        </div>
+        <div class="pending">
+            <p style="color: var(--ion-color-warning);margin-left: 10px;font-size:20px;font-weight: bold;">Recieved</p>
+            <app-sit-ledger-widget></app-sit-ledger-widget>
+            <app-sit-ledger-widget></app-sit-ledger-widget>
+            <button class="button-22">See All Pending Events</button>
+    
+        </div>
+        <div class="pending">
+            <p style="color:#23C258; margin-left: 10px;font-size:20px;font-weight: bold;">Unloaded</p>
+            <app-sit-ledger-widget></app-sit-ledger-widget>
+            <app-sit-ledger-widget></app-sit-ledger-widget>
+            <button class="button-22">See All Pending Events</button>
+    
+        </div>      -->
+    </main>
 </ion-content>
