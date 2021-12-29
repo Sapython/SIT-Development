@@ -7,6 +7,10 @@
     margin-bottom: 15px;
     font-weight: 500;
 }
+.box{
+    display: flex;
+    justify-content: space-between;
+}
 .box img{
     margin-top: 10px;
     border-radius:50%;
@@ -14,20 +18,15 @@
     width: 50px;
     box-shadow: 1px 2px 5px rgb(155, 147, 147);
 }
-.box{
+.damage p{
+    font-size: 13px;
+    margin-right: -5px;
+}
+.code-and-price{
     display: flex;
     justify-content: space-between;
-}
-.data{
-    display: flex;
-    justify-content: space-between;
-}
-.data button{
-    background-color: #7EBFFF;
-    color: #fff;
-    border-bottom-right-radius: 10px;
-    padding: 0px 10px;
-    font-size: 15px;
-    font-weight: bold;
-    box-shadow: 1px 2px 5px rgb(155, 147, 147);
+    width: 135px;
+    font-size: 13px;
+    margin-top: -50px;
+    margin-left: 10px;
 }

@@ -4,7 +4,8 @@ import { SitLedgerWidgetComponent } from './sit-ledger-widget/sit-ledger-widget.
 import { EmployeeDataWidgetComponent } from './employee-data-widget/employee-data-widget.component';
 import { IonicModule } from '@ionic/angular';
 import { LabourLedgerWidgetComponent } from './labour-ledger-widget/labour-ledger-widget.component';
-const widgets = [SitLedgerWidgetComponent,EmployeeDataWidgetComponent,LabourLedgerWidgetComponent]
+import { ProductLedgerWidgetComponent } from './product-ledger-widget/product-ledger-widget.component';
+const widgets = [SitLedgerWidgetComponent,EmployeeDataWidgetComponent,LabourLedgerWidgetComponent,ProductLedgerWidgetComponent]
 
 
 
