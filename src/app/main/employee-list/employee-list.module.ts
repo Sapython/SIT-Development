@@ -8,6 +8,7 @@ import { EmployeeListPageRoutingModule } from './employee-list-routing.module';
 
 import { EmployeeListPage } from './employee-list.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { BaseComponentsModule } from 'src/app/base-components/base-components.mo
     CommonModule,
     FormsModule,
     IonicModule,
-    EmployeeListPageRoutingModule
+    EmployeeListPageRoutingModule,
+    WidgetsModule
   ],
   declarations: [EmployeeListPage]
 })

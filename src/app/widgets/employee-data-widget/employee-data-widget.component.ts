@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-employee-data-widget',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-data-widget.component.scss'],
 })
 export class EmployeeDataWidgetComponent implements OnInit {
-
+  @Input() name:string = 'Vishwanathan Sharma';
+  @Input() phoneNumber:string = '+91-9888888888';
   constructor() { }
 
   ngOnInit() {}

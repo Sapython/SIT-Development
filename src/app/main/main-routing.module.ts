@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
@@ -19,6 +20,26 @@ const routes: Routes = [
         path: 'ledgerOverview',
         loadChildren: () => import('./ledgeroverview/ledgeroverview.module').then( m => m.LedgeroverviewPageModule)
       },
+      {
+        path: 'sitdetail',
+        loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
+      },
+      {
+        path: 'recieved',
+        loadChildren: () => import('./recieved/recieved.module').then ( m => m.RecievedPageModule)
+      },
+      {
+        path: 'product-ledger',
+        loadChildren: () => import('./product-ledger/product-ledger.module').then( m => m.ProductLedgerPageModule)
+      },
+      {
+        path: 'labour-ledger',
+        loadChildren: () => import('./labour-ledger/labour-ledger.module').then( m => m.LabourLedgerPageModule)
+      },
+      {
+        path: 'employee-info',
+        loadChildren: () => import('./employee-info/employee-info.module').then( m => m.EmployeeInfoPageModule)
+      }
     ],
   },
   {
@@ -26,6 +47,31 @@ const routes: Routes = [
     redirectTo: '/app/home',
     pathMatch: 'full',
   },
+  {
+    path: 'sit-detail',
+    loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
+  },
+  {
+    path: 'recieved',
+    loadChildren: () => import('./recieved/recieved.module').then( m => m.RecievedPageModule)
+  },
+  {
+    path: 'product-ledger',
+    loadChildren: () => import('./product-ledger/product-ledger.module').then( m => m.ProductLedgerPageModule)
+  },
+  {
+    path: 'labour-ledger',
+    loadChildren: () => import('./labour-ledger/labour-ledger.module').then( m => m.LabourLedgerPageModule)
+  },
+  {
+    path: 'employee-info',
+    loadChildren: () => import('./employee-info/employee-info.module').then( m => m.EmployeeInfoPageModule)
+  },
+
+
+
+
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
