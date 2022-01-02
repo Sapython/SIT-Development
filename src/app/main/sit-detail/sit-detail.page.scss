@@ -20,13 +20,14 @@
 .box{
     border-radius: 20px;
     z-index: 1;
-    margin: 20px;
+    margin: 10px;
     margin-top: 60px;
     box-shadow: inset 10px 10px 10px rgba(0,0,0,0.05),
     15px 25px 10px rgba(0,0,0,0.05),
     15px 20px 20px rgba(0,0,0,0.05),
     inset -10px -10px 15px rgba(255,255,255,0.9);
     padding: 10px;
+    background-color: #f3f3f3;
 }
 .color-circle{
     height: 90px;
@@ -53,16 +54,29 @@
     margin-right: 80px;
     opacity: 0.6;
 }
+.heading:nth-child(2){
+    margin-top: -5px;
+}
 .details input{
     width: 150px;
     background-color: #f3f3f3;
-    margin-left: 10px;
-    border-radius: 15px;
+    border: none;
+    border-bottom: 1px solid #6260A6;
+    align-items:right;
 }
 .details{
     display: flex;
-    margin: 05px;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
-.details hr{
-    color: black;
+.details p{
+    font-size: 15px;
+}
+.heading1{
+    font-size: 20px;
+    margin-left: 10px;
+}
+.opacity{
+    opacity: 0.5;
 }
