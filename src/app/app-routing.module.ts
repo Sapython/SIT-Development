@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    // canActivate: [AuthGuard]
   },
   {
     path:'login',
@@ -20,7 +22,11 @@ const routes: Routes = [
   {
     path:'verifyemail',
     component:VerifyemailComponent
+  },  {
+    path: 'alpha',
+    loadChildren: () => import('./alpha/alpha.module').then( m => m.AlphaPageModule)
   }
+
 ];
 @NgModule({
   imports: [

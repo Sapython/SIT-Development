@@ -1,3 +1,9 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <div id="incompatible" [ngStyle]="{'display': useIncompatible ? 'flex' : 'none'}">
+    <p>
+      Application not supported for this resolution.
+    </p>
+    <button (click)="useIncompatible = true">I still want to use.</button>
+  </div>
 </ion-app>

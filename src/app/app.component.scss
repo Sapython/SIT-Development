@@ -1,0 +1,26 @@
+#incompatible{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    text-align:center;
+    background-color: rgb(217, 218, 251);
+    button{
+        padding:10px;
+        border:none;
+        background-color:#7595ff;
+        color:white;
+        border-radius:5px;
+    }
+}
+@media screen and (max-width:300px){
+    #incompatible{
+        display: flex;
+    }
+}

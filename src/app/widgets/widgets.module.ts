@@ -5,6 +5,7 @@ import { EmployeeDataWidgetComponent } from './employee-data-widget/employee-dat
 import { IonicModule } from '@ionic/angular';
 import { LabourLedgerWidgetComponent } from './labour-ledger-widget/labour-ledger-widget.component';
 import { ProductLedgerWidgetComponent } from './product-ledger-widget/product-ledger-widget.component';
+import { NgChartsModule } from 'ng2-charts';
 const widgets = [SitLedgerWidgetComponent,EmployeeDataWidgetComponent,LabourLedgerWidgetComponent,ProductLedgerWidgetComponent]
 
 
@@ -13,6 +14,7 @@ const widgets = [SitLedgerWidgetComponent,EmployeeDataWidgetComponent,LabourLedg
   declarations: [widgets],
   imports: [
     CommonModule,
+    NgChartsModule,
     IonicModule,
   ],
   exports: [widgets],

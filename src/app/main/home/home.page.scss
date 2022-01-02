@@ -1,5 +1,5 @@
 aside {
-position:fixed;
+  position: fixed;
   width: 100vw;
   height: 45vh;
   background-color: white;
@@ -45,6 +45,8 @@ position:fixed;
     }
   }
   #card {
+    display: flex;
+    justify-content: space-between;
     background-color: white;
     width: 80vw;
     border: 3px solid cornflowerblue;
@@ -57,34 +59,112 @@ position:fixed;
       14.8px 11.4px 10.4px -14px rgba(100, 148, 237, 0.065),
       35.6px 27.4px 25px -14px rgba(100, 148, 237, 0.085),
       118px 91px 83px -14px rgba(100, 148, 237, 0.13);
-    .head {
-      margin: 0px;
-      padding: 0px;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: 600;
-      color: rgb(44, 44, 44);
+    .chart{
+        height:100px;
+        width:100px;
     }
-    table > tr > td:nth-child(1) {
-      color: grey;
-      font-weight: 500;
-    }
-    table > tr > td:nth-child(2) {
-      margin: 10px;
-      color: grey;
-      font-weight: 500;
-      text-align: end;
+    div {
+        .head {
+            margin: 0px;
+            padding: 0px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            color: rgb(44, 44, 44);
+          }
+          table > tr > td:nth-child(1) {
+            color: grey;
+            font-weight: 500;
+          }
+          table > tr > td:nth-child(2) {
+            margin: 10px;
+            color: grey;
+            font-weight: 500;
+            text-align: end;
+          }
     }
   }
 }
 main {
-    margin-top:45vh;
+  margin-top: 350px;
   background-color: var(--ion-background-color);
   border-radius: 15px;
   width: 100vw;
-  height: auto;
+  height: 200vh;
+  padding:20px;
   position: sticky;
   box-shadow: 0px -15px 10px 5px rgba(0, 0, 0, 0.1);
+  .buttonLinks{
+    display: flex;
+    flex-direction: row;
+    width:auto;
+    overflow: scroll;
+    margin:-10px;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-bottom: 10px;
+    white-space: nowrap;
+    button{
+      display: inline-block;
+      min-width:50px;
+      min-height:50px;
+      font-size:20px;
+      margin-left: 20px;
+      padding:5px;
+      border-radius: 15px;
+      color:#7595ff;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0,0.2);
+    }
+    button:nth-child(1){
+      margin-left:5px;
+    }
+    button:nth-child(6){
+      margin-right:5px;
+    }
+  }
+  .title{
+      font-size: 25px;
+      font-weight:600;
+      color:rgb(50, 59, 85);
+  }
+  .quickLinks{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    row-gap: 10px;
+    .linkCard{
+        // margin:10px;
+        width:auto;
+        padding:20px;
+        height:250px;
+        border-radius:20px;
+        background-color:#86c7f36c;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        // align-items: center;
+        div{
+            p{
+                font-size:20px;
+                margin:0px;
+                font-weight:600;
+                color:rgb(50, 59, 85);
+            }
+        }
+        img{
+            width:auto;
+            height:auto;
+            // object-fit:contain;
+            position:relative;
+            bottom:0px;
+        }
+    }
+  }
+  .text-1{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(44, 44, 44);
+  }
 }
 
 // .container{

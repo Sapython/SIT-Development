@@ -30,34 +30,35 @@ import { DatabaseService } from './services/database.service';
 import { UserDataService } from './services/user-data.service';
 import { AuthencationService } from './services/authencation.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
+import { AlphaPipe } from './alpha.pipe';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent],
-  entryComponents: [],
-  imports: [
-    ReactiveFormsModule,
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
-    provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage()),
-    MainModule,
-  ],
-  providers: [
-    AlertsAndNotificationsService,
-    AuthencationService,
-    DataProvider,
-    DatabaseService,
-    UserDataService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ScreenTrackingService,
-    UserTrackingService,
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent, AlphaPipe],
+    imports: [
+        ReactiveFormsModule,
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAnalytics(() => getAnalytics()),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        provideFunctions(() => getFunctions()),
+        provideMessaging(() => getMessaging()),
+        provideStorage(() => getStorage()),
+    ],
+    providers: [
+        AlertsAndNotificationsService,
+        AuthencationService,
+        DataProvider,
+        DatabaseService,
+        UserDataService,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        ScreenTrackingService,
+        UserTrackingService,
+        AuthGuard,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

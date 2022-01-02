@@ -19,7 +19,7 @@ import { AlertsAndNotificationsService } from './uiService/alerts-and-notificati
 import { UserDataService } from './user-data.service';
 import { DataProvider } from '../providers/data.provider';
 import { Router } from '@angular/router';
-
+import { Storage } from '@capacitor/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -123,7 +123,10 @@ export class AuthencationService {
   // Sign in functions end
   // Sign out functions start
   public async logout() {
-    return await signOut(this.auth);
+    await Storage.remove({key:'auth'});
+    await Storage.remove({key:'userData'});
+    await signOut(this.auth);
+    this.router.navigate(['../login']);
   }
   // Sign out functions end
   async openNameDialog(){
@@ -140,24 +143,32 @@ export class AuthencationService {
       // TODO: register user as an anonymous based system 
     }
   }
-  private setDataObserver(user: Observable<User | null>) {
+  private async setDataObserver(user: Observable<User | null>) {
     // console.log('Starting data observer')
     if (user) {
       // console.log('Setting data observer')
-      user.subscribe(u => {
+      user.subscribe(async (u:User) => {
         if (u) {
           this.dataProvider.loggedIn = true;
           this.dataProvider.gettingUserData= true;
-          // console.log('User is logged in')
+          console.log('User is logged in')
           this.userDoc = doc(this.firestore,'users/'+u.uid);
-          // console.log("User data from auth",u);
+          await Storage.set({
+            key: 'auth',
+            value: JSON.stringify(u)
+          })
+          console.log("User data from auth",u);
           if (this.userServerSubscription!=undefined){
             this.userServerSubscription.unsubscribe();
           }
-          this.userServerSubscription = docData(this.userDoc).subscribe((data:any) => {
+          this.userServerSubscription = docData(this.userDoc).subscribe(async (data:any) => {
             console.log("Recieved new data",data)
             this.dataProvider.userData = data;
             this.dataProvider.gettingUserData= false;
+            await Storage.set({
+              key: 'userData',
+              value: JSON.stringify(data),
+            });
           })
         }
       });

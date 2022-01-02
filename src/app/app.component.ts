@@ -1,9 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthencationService } from './services/authencation.service';
+import { SplashScreen } from '@capacitor/splash-screen';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit{
+  constructor(private authService:AuthencationService,private router:Router) {}
+  useIncompatible:boolean = false;
+  async ngOnInit(){
+    this.authService.user.subscribe(user=>{
+      if (user){
+        SplashScreen.hide();
+        this.router.navigate(['/main/app/home'])
+      } else {
+        SplashScreen.hide();
+        this.router.navigate(['/login'])
+      }
+    })
+  }
 }
