@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-labour-ledger-widget',
@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./labour-ledger-widget.component.scss'],
 })
 export class LabourLedgerWidgetComponent implements OnInit {
-
+  @Input() Name:string = "RAMLOCHAN";
+  @Input() Lastname:string = "VISHWAKARMA";
+  @Input() Code:string = "123XYZ0";
+  @Input() Paid:number = 2324;
   constructor() { }
 
   ngOnInit() {}

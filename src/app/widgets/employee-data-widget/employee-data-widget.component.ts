@@ -9,6 +9,8 @@ import { ChartData, ChartOptions, ChartType } from 'chart.js';
 export class EmployeeDataWidgetComponent implements OnInit {
   @Input() presentDay:number=12;
   @Input() absent:number=5
+  @Input() name:string = 'Vishwanathan Sharma';
+  @Input() phoneNumber:string = '+91-9888888888';
   public doughnutChartLabels: string[] = [ 'Present', 'Absent'];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
