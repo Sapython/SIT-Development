@@ -43,6 +43,18 @@ const routes: Routes = [
       {
         path: 'sitlog',
         loadChildren: () => import('./sitlog/sitlog.module').then( m => m.SITlogPageModule)
+      },
+      {
+        path: 'add-employee',
+        loadChildren: () => import('./add-employee/add-employee.module').then( m => m.AddEmployeePageModule)
+      },
+      {
+        path: 'account-page',
+        loadChildren: () => import('./account-page/account-page.module').then( m => m.AccountPagePageModule)
+      },
+      {
+        path: 'unloaded',
+        loadChildren: () => import('./unloaded/unloaded.module').then( m => m.UnloadedPageModule)
       }
     ],
   },
@@ -75,6 +87,21 @@ const routes: Routes = [
     path: 'sitlog',
     loadChildren: () => import('./sitlog/sitlog.module').then( m => m.SITlogPageModule)
   },
+  {
+    path: 'add-employee',
+    loadChildren: () => import('./add-employee/add-employee.module').then( m => m.AddEmployeePageModule)
+  },
+  {
+    path: 'account-page',
+    loadChildren: () => import('./account-page/account-page.module').then( m => m.AccountPagePageModule)
+  },
+  {
+    path: 'unloaded',
+    loadChildren: () => import('./unloaded/unloaded.module').then( m => m.UnloadedPageModule)
+  },
+
+
+
 
 
 
