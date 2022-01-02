@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'employee-info',
         loadChildren: () => import('./employee-info/employee-info.module').then( m => m.EmployeeInfoPageModule)
+      },
+      {
+        path: 'sitlog',
+        loadChildren: () => import('./sitlog/sitlog.module').then( m => m.SITlogPageModule)
       }
     ],
   },
@@ -67,6 +71,11 @@ const routes: Routes = [
     path: 'employee-info',
     loadChildren: () => import('./employee-info/employee-info.module').then( m => m.EmployeeInfoPageModule)
   },
+  {
+    path: 'sitlog',
+    loadChildren: () => import('./sitlog/sitlog.module').then( m => m.SITlogPageModule)
+  },
+
 
 
 
