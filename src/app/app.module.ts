@@ -47,7 +47,7 @@ import { AlphaPipe } from './alpha.pipe';
         provideFunctions(() => getFunctions()),
         provideMessaging(() => getMessaging()),
         provideStorage(() => getStorage()),
-    ],
+     ],
     providers: [
         AlertsAndNotificationsService,
         AuthencationService,
