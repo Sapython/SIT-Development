@@ -46,7 +46,7 @@ import { AuthGuard } from './guards/auth.guard';
         provideFunctions(() => getFunctions()),
         provideMessaging(() => getMessaging()),
         provideStorage(() => getStorage()),
-    ],
+     ],
     providers: [
         AlertsAndNotificationsService,
         AuthencationService,
