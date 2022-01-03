@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="main">
+    <img [src]="driverImage" alt="Driver Image">
+    <div class="data">
+      <div class="details">
+        <h2>{{driverName}}</h2>
+        <div class="detail">
+          <p>Coordinator</p>
+          <span>{{coordinator}}</span>
+        </div>
+      </div>
+      <div class="details">
+        <div class="detail">
+          <p>Driver Id</p>
+          <ion-label color="danger">{{driverId}}</ion-label>
+        </div>
+        <div class="detail">
+          <p>Charge</p>
+          <ion-label color="primary">&#8377;{{charge}}</ion-label>
+        </div>
+        <div class="detail">
+          <p>Ledger No.</p>
+          <ion-label color="warning">{{ledgerNo}}</ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button>
+      <ion-icon name="document-text"></ion-icon>
+    </button>
+    <button>
+      <ion-icon name="call"></ion-icon>
+    </button>
+    <button>
+      <ion-icon name="information-circle"></ion-icon>
+    </button>
+  </div>
+</div>

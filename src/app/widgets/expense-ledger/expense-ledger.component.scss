@@ -1,0 +1,135 @@
+* {
+  animation: fadeIn 0.3s ease-in;
+}
+h3 {
+  font-size: 20px;
+}
+h6 {
+  font-size: 18px;
+}
+p {
+  margin: 0px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #181818;
+  text-align: start;
+}
+p > span {
+  font-size: 14px;
+  color: #575757;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.card {
+  width: 100%;
+  height: auto;
+  transition: height 0.3s ease-in;
+  background-color: #fff;
+  border-radius: 9px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.card .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card .head .title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+.card .head .date {
+  font-size: 14px;
+  color: cornflowerblue;
+  font-weight: bold;
+}
+.card .data {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-content: space-between;
+}
+table tr td:nth-child(1){
+  font-weight: 600;
+  color:grey;
+  font-size: 14px;
+}
+table tr td:nth-child(2){
+    font-weight: 500;
+    color:rgb(37, 37, 37);
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.Bad {
+  color: var(--ion-color-danger);
+}
+.Good {
+  color: var(--ion-color-success);
+}
+.Average {
+  color: var(--ion-color-primary);
+}
+.Poor {
+  color: orange;
+}
+.Bad {
+  color: tomato;
+}
+.Excellent {
+  color: green;
+}
+.Unrated {
+  color: grey;
+}
+.card .data .ledgerService {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 150px;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+.card .data .actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card .data .actions button {
+  width: 60px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 10px;
+  background: var(--ion-color-primary);
+}
+.card .divider {
+  display: flex;
+}
+.card .divider hr {
+  width: 100%;
+  border: 2px lightgrey solid;
+  border-radius: 5px;
+  height: 0px;
+}
+.card .divider button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #353535;
+}
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.details {
+  animation: fadeIn 0.3s ease-in;
+}

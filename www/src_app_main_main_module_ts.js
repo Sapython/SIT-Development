@@ -210,12 +210,60 @@ const routes = [
                 path: 'ledgerOverview',
                 loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_ledgeroverview_ledgeroverview_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./ledgeroverview/ledgeroverview.module */ 75550)).then(m => m.LedgeroverviewPageModule)
             },
+            {
+                path: 'sitdetail',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_sit-detail_sit-detail_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sit-detail/sit-detail.module */ 84779)).then(m => m.SITDetailPageModule)
+            },
+            {
+                path: 'recieved',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_recieved_recieved_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./recieved/recieved.module */ 59697)).then(m => m.RecievedPageModule)
+            },
+            {
+                path: 'product-ledger',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_product-ledger_product-ledger_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./product-ledger/product-ledger.module */ 5144)).then(m => m.ProductLedgerPageModule)
+            },
+            {
+                path: 'labour-ledger',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_labour-ledger_labour-ledger_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./labour-ledger/labour-ledger.module */ 44746)).then(m => m.LabourLedgerPageModule)
+            },
+            {
+                path: 'employee-info',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_employee-info_employee-info_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./employee-info/employee-info.module */ 75251)).then(m => m.EmployeeInfoPageModule)
+            },
+            {
+                path: 'sitlog',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_sitlog_sitlog_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sitlog/sitlog.module */ 87968)).then(m => m.SITlogPageModule)
+            }
         ],
     },
     {
         path: '',
         redirectTo: '/app/home',
         pathMatch: 'full',
+    },
+    {
+        path: 'sit-detail',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_sit-detail_sit-detail_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sit-detail/sit-detail.module */ 84779)).then(m => m.SITDetailPageModule)
+    },
+    {
+        path: 'recieved',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_recieved_recieved_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./recieved/recieved.module */ 59697)).then(m => m.RecievedPageModule)
+    },
+    {
+        path: 'product-ledger',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_product-ledger_product-ledger_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./product-ledger/product-ledger.module */ 5144)).then(m => m.ProductLedgerPageModule)
+    },
+    {
+        path: 'labour-ledger',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_labour-ledger_labour-ledger_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./labour-ledger/labour-ledger.module */ 44746)).then(m => m.LabourLedgerPageModule)
+    },
+    {
+        path: 'employee-info',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_employee-info_employee-info_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./employee-info/employee-info.module */ 75251)).then(m => m.EmployeeInfoPageModule)
+    },
+    {
+        path: 'sitlog',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_sitlog_sitlog_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sitlog/sitlog.module */ 87968)).then(m => m.SITlogPageModule)
     },
 ];
 let MainRoutingModule = class MainRoutingModule {
@@ -316,6 +364,50 @@ MainModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
 
 /***/ }),
 
+/***/ 31360:
+/*!**************************************************************!*\
+  !*** ./src/app/widgets/dala-widget/dala-widget.component.ts ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DalaWidgetComponent": () => (/* binding */ DalaWidgetComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _dala_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dala-widget.component.html?ngResource */ 2107);
+/* harmony import */ var _dala_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dala-widget.component.scss?ngResource */ 17635);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+
+
+let DalaWidgetComponent = class DalaWidgetComponent {
+    constructor() { }
+    ngOnInit() { }
+};
+DalaWidgetComponent.ctorParameters = () => [];
+DalaWidgetComponent.propDecorators = {
+    driverName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    driverImage: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    driverId: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    charge: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    ledgerNo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    coordinator: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    driverNumber: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+DalaWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+        selector: 'app-dala-widget',
+        template: _dala_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_dala_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], DalaWidgetComponent);
+
+
+
+/***/ }),
+
 /***/ 99579:
 /*!********************************************************************************!*\
   !*** ./src/app/widgets/employee-data-widget/employee-data-widget.component.ts ***!
@@ -338,6 +430,8 @@ let EmployeeDataWidgetComponent = class EmployeeDataWidgetComponent {
     constructor() {
         this.presentDay = 12;
         this.absent = 5;
+        this.name = 'Vishwanathan Sharma';
+        this.phoneNumber = '+91-9888888888';
         this.doughnutChartLabels = ['Present', 'Absent'];
         this.doughnutChartData = {
             labels: this.doughnutChartLabels,
@@ -361,7 +455,9 @@ let EmployeeDataWidgetComponent = class EmployeeDataWidgetComponent {
 EmployeeDataWidgetComponent.ctorParameters = () => [];
 EmployeeDataWidgetComponent.propDecorators = {
     presentDay: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    absent: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+    absent: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    name: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    phoneNumber: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
 };
 EmployeeDataWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
@@ -370,6 +466,59 @@ EmployeeDataWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)(
         styles: [_employee_data_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], EmployeeDataWidgetComponent);
+
+
+
+/***/ }),
+
+/***/ 82202:
+/*!********************************************************************!*\
+  !*** ./src/app/widgets/expense-ledger/expense-ledger.component.ts ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ExpenseLedgerComponent": () => (/* binding */ ExpenseLedgerComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _expense_ledger_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./expense-ledger.component.html?ngResource */ 31402);
+/* harmony import */ var _expense_ledger_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./expense-ledger.component.scss?ngResource */ 92651);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+
+
+let ExpenseLedgerComponent = class ExpenseLedgerComponent {
+    constructor() {
+        this.servicable = true;
+        this.starred = false;
+        this.expandDetails = false;
+    }
+    toggleStarred() {
+        this.starred = !this.starred;
+    }
+    ngOnInit() {
+    }
+};
+ExpenseLedgerComponent.ctorParameters = () => [];
+ExpenseLedgerComponent.propDecorators = {
+    expenseName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    ledgerNo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    charge: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    condition: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    servicable: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    reason: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    date: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    starred: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+ExpenseLedgerComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+        selector: 'app-expense-ledger',
+        template: _expense_ledger_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_expense_ledger_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], ExpenseLedgerComponent);
 
 
 
@@ -385,21 +534,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LabourLedgerWidgetComponent": () => (/* binding */ LabourLedgerWidgetComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _labour_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./labour-ledger-widget.component.html?ngResource */ 44782);
 /* harmony import */ var _labour_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labour-ledger-widget.component.scss?ngResource */ 10216);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
 
 
 
 
 let LabourLedgerWidgetComponent = class LabourLedgerWidgetComponent {
-    constructor() { }
+    constructor() {
+        this.Name = "RAMLOCHAN";
+        this.Lastname = "VISHWAKARMA";
+        this.Code = "123XYZ0";
+        this.Paid = 2324;
+    }
     ngOnInit() { }
 };
 LabourLedgerWidgetComponent.ctorParameters = () => [];
-LabourLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+LabourLedgerWidgetComponent.propDecorators = {
+    Name: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Lastname: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Code: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Paid: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+LabourLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
         selector: 'app-labour-ledger-widget',
         template: _labour_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_labour_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -420,21 +580,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ProductLedgerWidgetComponent": () => (/* binding */ ProductLedgerWidgetComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _product_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./product-ledger-widget.component.html?ngResource */ 47375);
 /* harmony import */ var _product_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product-ledger-widget.component.scss?ngResource */ 5369);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
 
 
 
 
 let ProductLedgerWidgetComponent = class ProductLedgerWidgetComponent {
-    constructor() { }
+    constructor() {
+        this.Bakery = "TIRUPATI BAKERS";
+        this.ItemName = "Biscuit";
+        this.Safequantity = "98Kg";
+        this.Damagequantity = "28Kg";
+        this.Suppcode = "123XYZ0";
+        this.Price = "23245";
+    }
     ngOnInit() { }
 };
 ProductLedgerWidgetComponent.ctorParameters = () => [];
-ProductLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+ProductLedgerWidgetComponent.propDecorators = {
+    Bakery: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    ItemName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Safequantity: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Damagequantity: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Suppcode: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Price: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+ProductLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
         selector: 'app-product-ledger-widget',
         template: _product_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_product_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -455,21 +630,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SitLedgerWidgetComponent": () => (/* binding */ SitLedgerWidgetComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _sit_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sit-ledger-widget.component.html?ngResource */ 84113);
 /* harmony import */ var _sit_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sit-ledger-widget.component.scss?ngResource */ 41512);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
 
 
 
 
 let SitLedgerWidgetComponent = class SitLedgerWidgetComponent {
-    constructor() { }
+    constructor() {
+        this.Bakery = "TIRUPATI BAKERS";
+        this.ItemName = "Biscuit";
+        this.Duedate = "12/12/2020";
+        this.Suppcode = "123XYZ0";
+        this.Moveto = "Recieved";
+    }
     ngOnInit() { }
 };
 SitLedgerWidgetComponent.ctorParameters = () => [];
-SitLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+SitLedgerWidgetComponent.propDecorators = {
+    Bakery: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    ItemName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Duedate: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Suppcode: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    Moveto: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+SitLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
         selector: 'app-sit-ledger-widget',
         template: _sit_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_sit_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -490,15 +678,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "WidgetsModule": () => (/* binding */ WidgetsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 36362);
 /* harmony import */ var _sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sit-ledger-widget/sit-ledger-widget.component */ 84604);
 /* harmony import */ var _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./employee-data-widget/employee-data-widget.component */ 99579);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./labour-ledger-widget/labour-ledger-widget.component */ 94080);
 /* harmony import */ var _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./product-ledger-widget/product-ledger-widget.component */ 85182);
-/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ng2-charts */ 44195);
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ng2-charts */ 44195);
+/* harmony import */ var _expense_ledger_expense_ledger_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./expense-ledger/expense-ledger.component */ 82202);
+/* harmony import */ var _dala_widget_dala_widget_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dala-widget/dala-widget.component */ 31360);
 
 
 
@@ -508,16 +698,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const widgets = [_sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_0__.SitLedgerWidgetComponent, _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_1__.EmployeeDataWidgetComponent, _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_2__.LabourLedgerWidgetComponent, _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__.ProductLedgerWidgetComponent];
+
+
+const widgets = [
+    _sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_0__.SitLedgerWidgetComponent,
+    _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_1__.EmployeeDataWidgetComponent,
+    _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_2__.LabourLedgerWidgetComponent,
+    _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__.ProductLedgerWidgetComponent,
+    _expense_ledger_expense_ledger_component__WEBPACK_IMPORTED_MODULE_4__.ExpenseLedgerComponent,
+    _dala_widget_dala_widget_component__WEBPACK_IMPORTED_MODULE_5__.DalaWidgetComponent,
+];
 let WidgetsModule = class WidgetsModule {
 };
-WidgetsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+WidgetsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.NgModule)({
         declarations: [widgets],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule,
-            ng2_charts__WEBPACK_IMPORTED_MODULE_7__.NgChartsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule,
+            ng2_charts__WEBPACK_IMPORTED_MODULE_9__.NgChartsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.IonicModule,
         ],
         exports: [widgets],
     })
@@ -13799,13 +13998,33 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
+/***/ 17635:
+/*!***************************************************************************!*\
+  !*** ./src/app/widgets/dala-widget/dala-widget.component.scss?ngResource ***!
+  \***************************************************************************/
+/***/ ((module) => {
+
+module.exports = ".card {\n  padding: 15px;\n  border-radius: 9px;\n  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.card .main {\n  display: flex;\n  flex-direction: row;\n}\n.card .main img {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n}\n.card .main .data {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n.card .main .data .details {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-left: 15px;\n  margin-top: 10px;\n}\n.card .main .data .details h2 {\n  font-size: 20px;\n  margin: 0;\n}\n.card .main .data .details .detail {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.card .main .data .details .detail p {\n  font-size: 14px;\n  font-weight: bold;\n  margin: 0;\n}\n.card .main .data .details .detail span, .card .main .data .details .detail ion-label {\n  font-size: 12px;\n}\n.card .actions {\n  position: relative;\n  right: 0px;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n}\n.card .actions button {\n  background-color: var(--ion-color-primary);\n  color: white;\n  width: 60px;\n  border-radius: 20px;\n  height: 30px;\n  font-size: 20px;\n  margin-top: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhbGEtd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksYUFBQTtFQUNBLGtCQUFBO0VBQ0EsK0NBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSw4QkFBQTtBQUFKO0FBQ0k7RUFDSSxhQUFBO0VBQ0EsbUJBQUE7QUFDUjtBQUFRO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtBQUVaO0FBQVE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxXQUFBO0FBRVo7QUFEWTtFQUNJLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDhCQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtBQUdoQjtBQUZnQjtFQUNJLGVBQUE7RUFDQSxTQUFBO0FBSXBCO0FBRmdCO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsOEJBQUE7QUFJcEI7QUFIb0I7RUFDSSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxTQUFBO0FBS3hCO0FBSG9CO0VBQ0ksZUFBQTtBQUt4QjtBQUNJO0VBQ0ksa0JBQUE7RUFDQSxVQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSw4QkFBQTtBQUNSO0FBQVE7RUFDSSwwQ0FBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0FBRVoiLCJmaWxlIjoiZGFsYS13aWRnZXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmNhcmR7XHJcbiAgICBwYWRkaW5nOjE1cHg7XHJcbiAgICBib3JkZXItcmFkaXVzOjlweDtcclxuICAgIGJveC1zaGFkb3c6IDBweCAwcHggMTBweCAwcHggcmdiYSgwLDAsMCwwLjIpO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICAubWFpbntcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgICAgICAgaW1ne1xyXG4gICAgICAgICAgICB3aWR0aDo1MHB4O1xyXG4gICAgICAgICAgICBoZWlnaHQ6NTBweDtcclxuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czo1MCU7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIC5kYXRhe1xyXG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgICAgICAgICB3aWR0aDoxMDAlO1xyXG4gICAgICAgICAgICAuZGV0YWlsc3tcclxuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgICAgICAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gICAgICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgICAgICAgICAgICAgbWFyZ2luLWxlZnQ6IDE1cHg7XHJcbiAgICAgICAgICAgICAgICBtYXJnaW4tdG9wOiAxMHB4O1xyXG4gICAgICAgICAgICAgICAgaDJ7XHJcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOjIwcHg7XHJcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luOjA7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICAuZGV0YWlse1xyXG4gICAgICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgICAgICAgICAgICAgZmxleC1kaXJlY3Rpb246Y29sdW1uO1xyXG4gICAgICAgICAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICAgICAgICAgICAgICAgICAgICBwe1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBmb250LXNpemU6MTRweDtcclxuICAgICAgICAgICAgICAgICAgICAgICAgZm9udC13ZWlnaHQ6Ym9sZDtcclxuICAgICAgICAgICAgICAgICAgICAgICAgbWFyZ2luOjA7XHJcbiAgICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICAgIHNwYW4saW9uLWxhYmVse1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBmb250LXNpemU6MTJweDtcclxuICAgICAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICB9XHJcbiAgICAuYWN0aW9uc3tcclxuICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICAgICAgcmlnaHQ6MHB4O1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICAgICAgICBidXR0b257XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6dmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG4gICAgICAgICAgICBjb2xvcjp3aGl0ZTtcclxuICAgICAgICAgICAgd2lkdGg6NjBweDtcclxuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czoyMHB4O1xyXG4gICAgICAgICAgICBoZWlnaHQ6MzBweDtcclxuICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4O1xyXG4gICAgICAgICAgICBtYXJnaW4tdG9wOjEwcHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59Il19 */";
+
+/***/ }),
+
 /***/ 13443:
 /*!*********************************************************************************************!*\
   !*** ./src/app/widgets/employee-data-widget/employee-data-widget.component.scss?ngResource ***!
   \*********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = ".container {\n  background-color: #ffffff;\n  display: flex;\n  padding: 5px;\n  border-radius: 15px;\n  box-shadow: 5px 2px 10px 5px rgba(61, 68, 70, 0.164);\n}\n\n.image img {\n  height: 50px;\n  width: 50px;\n  margin-top: 10px;\n  border-radius: 50%;\n}\n\n.data {\n  display: flex;\n  flex-direction: column;\n  margin-top: 10px;\n  margin-left: 15px;\n}\n\n.data h2 {\n  font-size: 15px;\n  color: #6260A6;\n  margin: 0;\n}\n\n.data p {\n  font-size: 12px;\n  color: #030303;\n  margin: 5px 5px 0px 0px;\n}\n\n.icons {\n  display: flex;\n  flex-direction: column;\n  color: #7EBFFF;\n  margin-left: 15px;\n  font-size: 25px;\n}\n\n.chart {\n  width: 50px;\n  margin: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtcGxveWVlLWRhdGEtd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kseUJBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0VBQ0Esb0RBQUE7QUFDSjs7QUFDQTtFQUNJLFlBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtBQUVKOztBQUFBO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtBQUdKOztBQURBO0VBQ0ksZUFBQTtFQUNBLGNBQUE7RUFDQSxTQUFBO0FBSUo7O0FBRkE7RUFDSSxlQUFBO0VBQ0EsY0FBQTtFQUNBLHVCQUFBO0FBS0o7O0FBSEE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0FBTUo7O0FBSkE7RUFDSSxXQUFBO0VBQ0EsV0FBQTtBQU9KIiwiZmlsZSI6ImVtcGxveWVlLWRhdGEtd2lkZ2V0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czoxNXB4O1xyXG4gICAgYm94LXNoYWRvdzo1cHggMnB4IDEwcHggNXB4IHJnYmEoNjEsIDY4LCA3MCwgMC4xNjQpO1xyXG59XHJcbi5pbWFnZSBpbWd7XHJcbiAgICBoZWlnaHQ6IDUwcHg7XHJcbiAgICB3aWR0aDogNTBweDtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbn1cclxuLmRhdGF7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbiAgICBtYXJnaW4tbGVmdDogMTVweDtcclxufVxyXG4uZGF0YSBoMntcclxuICAgIGZvbnQtc2l6ZTogMTVweDtcclxuICAgIGNvbG9yOiAjNjI2MEE2O1xyXG4gICAgbWFyZ2luOjA7XHJcbn1cclxuLmRhdGEgcHtcclxuICAgIGZvbnQtc2l6ZTogMTJweDtcclxuICAgIGNvbG9yOiAjMDMwMzAzO1xyXG4gICAgbWFyZ2luOjVweCA1cHggMHB4IDBweDtcclxufVxyXG4uaWNvbnN7XHJcbiAgICBkaXNwbGF5OmZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgY29sb3I6ICM3RUJGRkY7XHJcbiAgICBtYXJnaW4tbGVmdDogMTVweDtcclxuICAgIGZvbnQtc2l6ZTogMjVweDtcclxufVxyXG4uY2hhcnR7XHJcbiAgICB3aWR0aDo1MHB4O1xyXG4gICAgbWFyZ2luOjVweDtcclxufSJdfQ== */";
+module.exports = ".container {\n  background-color: #ffffff;\n  display: flex;\n  padding: 5px;\n  border-radius: 15px;\n  box-shadow: 5px 2px 10px 5px rgba(61, 68, 70, 0.164);\n}\n\n.image img {\n  min-height: 50px;\n  min-width: 50px;\n  max-width: 50px;\n  max-height: 50px;\n  margin-top: 10px;\n  border-radius: 50%;\n}\n\n.data {\n  display: flex;\n  flex-direction: column;\n  margin-top: 10px;\n  margin-left: 15px;\n}\n\n.data h2 {\n  font-size: 15px;\n  color: #6260A6;\n  margin: 0;\n}\n\n.data p {\n  font-size: 12px;\n  color: #030303;\n  margin: 5px 5px 0px 0px;\n}\n\n.icons {\n  display: flex;\n  flex-direction: column;\n  color: #7EBFFF;\n  margin-left: 15px;\n  font-size: 25px;\n}\n\n.chart {\n  width: 50px;\n  margin: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtcGxveWVlLWRhdGEtd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kseUJBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0VBQ0Esb0RBQUE7QUFDSjs7QUFDQTtFQUNJLGdCQUFBO0VBQ0EsZUFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0Esa0JBQUE7QUFFSjs7QUFBQTtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7QUFHSjs7QUFEQTtFQUNJLGVBQUE7RUFDQSxjQUFBO0VBQ0EsU0FBQTtBQUlKOztBQUZBO0VBQ0ksZUFBQTtFQUNBLGNBQUE7RUFDQSx1QkFBQTtBQUtKOztBQUhBO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0VBQ0EsZUFBQTtBQU1KOztBQUpBO0VBQ0ksV0FBQTtFQUNBLFdBQUE7QUFPSiIsImZpbGUiOiJlbXBsb3llZS1kYXRhLXdpZGdldC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXJ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHBhZGRpbmc6IDVweDtcclxuICAgIGJvcmRlci1yYWRpdXM6MTVweDtcclxuICAgIGJveC1zaGFkb3c6NXB4IDJweCAxMHB4IDVweCByZ2JhKDYxLCA2OCwgNzAsIDAuMTY0KTtcclxufVxyXG4uaW1hZ2UgaW1ne1xyXG4gICAgbWluLWhlaWdodDogNTBweDtcclxuICAgIG1pbi13aWR0aDogNTBweDtcclxuICAgIG1heC13aWR0aDo1MHB4O1xyXG4gICAgbWF4LWhlaWdodDo1MHB4O1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxufVxyXG4uZGF0YXtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIG1hcmdpbi1sZWZ0OiAxNXB4O1xyXG59XHJcbi5kYXRhIGgye1xyXG4gICAgZm9udC1zaXplOiAxNXB4O1xyXG4gICAgY29sb3I6ICM2MjYwQTY7XHJcbiAgICBtYXJnaW46MDtcclxufVxyXG4uZGF0YSBwe1xyXG4gICAgZm9udC1zaXplOiAxMnB4O1xyXG4gICAgY29sb3I6ICMwMzAzMDM7XHJcbiAgICBtYXJnaW46NXB4IDVweCAwcHggMHB4O1xyXG59XHJcbi5pY29uc3tcclxuICAgIGRpc3BsYXk6ZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBjb2xvcjogIzdFQkZGRjtcclxuICAgIG1hcmdpbi1sZWZ0OiAxNXB4O1xyXG4gICAgZm9udC1zaXplOiAyNXB4O1xyXG59XHJcbi5jaGFydHtcclxuICAgIHdpZHRoOjUwcHg7XHJcbiAgICBtYXJnaW46NXB4O1xyXG59Il19 */";
+
+/***/ }),
+
+/***/ 92651:
+/*!*********************************************************************************!*\
+  !*** ./src/app/widgets/expense-ledger/expense-ledger.component.scss?ngResource ***!
+  \*********************************************************************************/
+/***/ ((module) => {
+
+module.exports = "* {\n  animation: fadeIn 0.3s ease-in;\n}\n\nh3 {\n  font-size: 20px;\n}\n\nh6 {\n  font-size: 18px;\n}\n\np {\n  margin: 0px;\n  margin-bottom: 5px;\n  font-size: 13px;\n  color: #181818;\n  text-align: start;\n}\n\np > span {\n  font-size: 14px;\n  color: #575757;\n  font-weight: bold;\n  margin-right: 10px;\n}\n\n.card {\n  width: 100%;\n  height: auto;\n  transition: height 0.3s ease-in;\n  background-color: #fff;\n  border-radius: 9px;\n  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);\n  padding: 20px;\n}\n\n.card .head {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.card .head .title {\n  font-size: 20px;\n  font-weight: bold;\n  color: #000;\n}\n\n.card .head .date {\n  font-size: 14px;\n  color: cornflowerblue;\n  font-weight: bold;\n}\n\n.card .data {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  justify-content: space-between;\n}\n\ntable tr td:nth-child(1) {\n  font-weight: 600;\n  color: grey;\n  font-size: 14px;\n}\n\ntable tr td:nth-child(2) {\n  font-weight: 500;\n  color: #252525;\n  font-size: 12px;\n  padding-left: 10px;\n}\n\n.Bad {\n  color: var(--ion-color-danger);\n}\n\n.Good {\n  color: var(--ion-color-success);\n}\n\n.Average {\n  color: var(--ion-color-primary);\n}\n\n.Poor {\n  color: orange;\n}\n\n.Bad {\n  color: tomato;\n}\n\n.Excellent {\n  color: green;\n}\n\n.Unrated {\n  color: grey;\n}\n\n.card .data .ledgerService {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  width: 150px;\n  justify-content: space-between;\n  margin-left: 10px;\n}\n\n.card .data .actions {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.card .data .actions button {\n  width: 60px;\n  height: 30px;\n  font-size: 20px;\n  border-radius: 20px;\n  color: white;\n  margin-bottom: 10px;\n  background: var(--ion-color-primary);\n}\n\n.card .divider {\n  display: flex;\n}\n\n.card .divider hr {\n  width: 100%;\n  border: 2px lightgrey solid;\n  border-radius: 5px;\n  height: 0px;\n}\n\n.card .divider button {\n  background: transparent;\n  border: none;\n  font-size: 20px;\n  color: #353535;\n}\n\n@keyframes fadeIn {\n  from {\n    transform: scale(0.9);\n    opacity: 0;\n  }\n  to {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n.details {\n  animation: fadeIn 0.3s ease-in;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImV4cGVuc2UtbGVkZ2VyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsOEJBQUE7QUFDRjs7QUFDQTtFQUNFLGVBQUE7QUFFRjs7QUFBQTtFQUNFLGVBQUE7QUFHRjs7QUFEQTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7QUFJRjs7QUFGQTtFQUNFLGVBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtBQUtGOztBQUhBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSwrQkFBQTtFQUNBLHNCQUFBO0VBQ0Esa0JBQUE7RUFDQSwrQ0FBQTtFQUNBLGFBQUE7QUFNRjs7QUFKQTtFQUNFLGFBQUE7RUFDQSw4QkFBQTtFQUNBLG1CQUFBO0FBT0Y7O0FBTEE7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FBUUY7O0FBTkE7RUFDRSxlQUFBO0VBQ0EscUJBQUE7RUFDQSxpQkFBQTtBQVNGOztBQVBBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsMkJBQUE7RUFDQSw4QkFBQTtBQVVGOztBQVJBO0VBQ0UsZ0JBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtBQVdGOztBQVRBO0VBQ0ksZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0FBWUo7O0FBVEE7RUFDRSw4QkFBQTtBQVlGOztBQVZBO0VBQ0UsK0JBQUE7QUFhRjs7QUFYQTtFQUNFLCtCQUFBO0FBY0Y7O0FBWkE7RUFDRSxhQUFBO0FBZUY7O0FBYkE7RUFDRSxhQUFBO0FBZ0JGOztBQWRBO0VBQ0UsWUFBQTtBQWlCRjs7QUFmQTtFQUNFLFdBQUE7QUFrQkY7O0FBaEJBO0VBQ0UsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsdUJBQUE7RUFDQSxZQUFBO0VBQ0EsOEJBQUE7RUFDQSxpQkFBQTtBQW1CRjs7QUFqQkE7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSw4QkFBQTtBQW9CRjs7QUFsQkE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGVBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLG9DQUFBO0FBcUJGOztBQW5CQTtFQUNFLGFBQUE7QUFzQkY7O0FBcEJBO0VBQ0UsV0FBQTtFQUNBLDJCQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0FBdUJGOztBQXJCQTtFQUNFLHVCQUFBO0VBQ0EsWUFBQTtFQUNBLGVBQUE7RUFDQSxjQUFBO0FBd0JGOztBQXRCQTtFQUNFO0lBQ0UscUJBQUE7SUFDQSxVQUFBO0VBeUJGO0VBdkJBO0lBQ0UsbUJBQUE7SUFDQSxVQUFBO0VBeUJGO0FBQ0Y7O0FBdkJBO0VBQ0UsOEJBQUE7QUF5QkYiLCJmaWxlIjoiZXhwZW5zZS1sZWRnZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIqIHtcclxuICBhbmltYXRpb246IGZhZGVJbiAwLjNzIGVhc2UtaW47XHJcbn1cclxuaDMge1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG5oNiB7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG59XHJcbnAge1xyXG4gIG1hcmdpbjogMHB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDVweDtcclxuICBmb250LXNpemU6IDEzcHg7XHJcbiAgY29sb3I6ICMxODE4MTg7XHJcbiAgdGV4dC1hbGlnbjogc3RhcnQ7XHJcbn1cclxucCA+IHNwYW4ge1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxuICBjb2xvcjogIzU3NTc1NztcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XHJcbn1cclxuLmNhcmQge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogYXV0bztcclxuICB0cmFuc2l0aW9uOiBoZWlnaHQgMC4zcyBlYXNlLWluO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgYm9yZGVyLXJhZGl1czogOXB4O1xyXG4gIGJveC1zaGFkb3c6IDBweCAwcHggMTBweCAwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xyXG4gIHBhZGRpbmc6IDIwcHg7XHJcbn1cclxuLmNhcmQgLmhlYWQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuLmNhcmQgLmhlYWQgLnRpdGxlIHtcclxuICBmb250LXNpemU6IDIwcHg7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgY29sb3I6ICMwMDA7XHJcbn1cclxuLmNhcmQgLmhlYWQgLmRhdGUge1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxuICBjb2xvcjogY29ybmZsb3dlcmJsdWU7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuLmNhcmQgLmRhdGEge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcbnRhYmxlIHRyIHRkOm50aC1jaGlsZCgxKXtcclxuICBmb250LXdlaWdodDogNjAwO1xyXG4gIGNvbG9yOmdyZXk7XHJcbiAgZm9udC1zaXplOiAxNHB4O1xyXG59XHJcbnRhYmxlIHRyIHRkOm50aC1jaGlsZCgyKXtcclxuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbiAgICBjb2xvcjpyZ2IoMzcsIDM3LCAzNyk7XHJcbiAgICBmb250LXNpemU6IDEycHg7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDEwcHg7XHJcbn1cclxuXHJcbi5CYWQge1xyXG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItZGFuZ2VyKTtcclxufVxyXG4uR29vZCB7XHJcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1zdWNjZXNzKTtcclxufVxyXG4uQXZlcmFnZSB7XHJcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxufVxyXG4uUG9vciB7XHJcbiAgY29sb3I6IG9yYW5nZTtcclxufVxyXG4uQmFkIHtcclxuICBjb2xvcjogdG9tYXRvO1xyXG59XHJcbi5FeGNlbGxlbnQge1xyXG4gIGNvbG9yOiBncmVlbjtcclxufVxyXG4uVW5yYXRlZCB7XHJcbiAgY29sb3I6IGdyZXk7XHJcbn1cclxuLmNhcmQgLmRhdGEgLmxlZGdlclNlcnZpY2Uge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogZmxleC1zdGFydDtcclxuICB3aWR0aDogMTUwcHg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIG1hcmdpbi1sZWZ0OiAxMHB4O1xyXG59XHJcbi5jYXJkIC5kYXRhIC5hY3Rpb25zIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcbi5jYXJkIC5kYXRhIC5hY3Rpb25zIGJ1dHRvbiB7XHJcbiAgd2lkdGg6IDYwcHg7XHJcbiAgaGVpZ2h0OiAzMHB4O1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBib3JkZXItcmFkaXVzOiAyMHB4O1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBtYXJnaW4tYm90dG9tOiAxMHB4O1xyXG4gIGJhY2tncm91bmQ6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxufVxyXG4uY2FyZCAuZGl2aWRlciB7XHJcbiAgZGlzcGxheTogZmxleDtcclxufVxyXG4uY2FyZCAuZGl2aWRlciBociB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgYm9yZGVyOiAycHggbGlnaHRncmV5IHNvbGlkO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBoZWlnaHQ6IDBweDtcclxufVxyXG4uY2FyZCAuZGl2aWRlciBidXR0b24ge1xyXG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBmb250LXNpemU6IDIwcHg7XHJcbiAgY29sb3I6ICMzNTM1MzU7XHJcbn1cclxuQGtleWZyYW1lcyBmYWRlSW4ge1xyXG4gIGZyb20ge1xyXG4gICAgdHJhbnNmb3JtOiBzY2FsZSgwLjkpO1xyXG4gICAgb3BhY2l0eTogMDtcclxuICB9XHJcbiAgdG8ge1xyXG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxKTtcclxuICAgIG9wYWNpdHk6IDE7XHJcbiAgfVxyXG59XHJcbi5kZXRhaWxzIHtcclxuICBhbmltYXRpb246IGZhZGVJbiAwLjNzIGVhc2UtaW47XHJcbn1cclxuIl19 */";
 
 /***/ }),
 
@@ -13815,7 +14034,7 @@ module.exports = ".container {\n  background-color: #ffffff;\n  display: flex;\n
   \*********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = ".container {\n  font-family: \"Raleway\", sans-serif;\n  background-color: #f3f3f3;\n  display: flex;\n  justify-content: space-between;\n  padding: 10px;\n}\n\n.container img {\n  margin-top: 10px;\n  border-radius: 50%;\n  height: 50px;\n  width: 50px;\n}\n\n.heading {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 10px;\n  color: #264A6A;\n  font-weight: bold;\n}\n\n.box {\n  display: flex;\n  justify-content: space-between;\n  margin-left: -100px;\n}\n\n.button-22 {\n  display: block;\n  height: 100%;\n  padding: 25px 5px;\n  color: #fff;\n  background-color: #264A6A;\n  border-radius: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYm91ci1sZWRnZXItd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0NBQUE7RUFDQSx5QkFBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtFQUNBLGFBQUE7QUFDSjs7QUFDQTtFQUNJLGdCQUFBO0VBQ0Esa0JBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtBQUVKOztBQUFBO0VBQ0ksZUFBQTtFQUNBLGlCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7QUFHSjs7QUFEQTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtFQUNBLG1CQUFBO0FBSUo7O0FBRkE7RUFDSSxjQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0VBQ0EsV0FBQTtFQUNBLHlCQUFBO0VBQ0EsbUJBQUE7QUFLSiIsImZpbGUiOiJsYWJvdXItbGVkZ2VyLXdpZGdldC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXJ7XHJcbiAgICBmb250LWZhbWlseTogJ1JhbGV3YXknLCBzYW5zLXNlcmlmO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2YzZjNmMztcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICBwYWRkaW5nOjEwcHg7XHJcbn1cclxuLmNvbnRhaW5lciAgaW1ne1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6NTAlO1xyXG4gICAgaGVpZ2h0OiA1MHB4O1xyXG4gICAgd2lkdGg6IDUwcHg7XHJcbn1cclxuLmhlYWRpbmd7XHJcbiAgICBmb250LXNpemU6IDEzcHg7XHJcbiAgICBsaW5lLWhlaWdodDogMjBweDtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbiAgICBjb2xvcjogIzI2NEE2QTtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbi5ib3h7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgbWFyZ2luLWxlZnQ6IC0xMDBweDtcclxufVxyXG4uYnV0dG9uLTIye1xyXG4gICAgZGlzcGxheTpibG9jaztcclxuICAgIGhlaWdodDoxMDAlO1xyXG4gICAgcGFkZGluZzogMjVweCA1cHg7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyNjRBNkE7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG59XHJcbiAgICJdfQ== */";
+module.exports = ".container {\n  font-family: \"Raleway\", sans-serif;\n  background-color: #f3f3f3;\n  display: flex;\n  justify-content: space-between;\n  padding: 10px;\n  border-radius: 20px;\n  margin-top: 10px;\n}\n\n.container img {\n  margin-top: 10px;\n  border-radius: 50%;\n  height: 50px;\n  width: 50px;\n}\n\n.heading {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 10px;\n  color: #264A6A;\n  font-weight: bold;\n}\n\n.box {\n  display: flex;\n  justify-content: space-between;\n  margin-left: -100px;\n}\n\n.button-22 {\n  display: block;\n  height: 83px;\n  padding: 25px 5px;\n  color: #fff;\n  background-color: #6260A6;\n  border-radius: 10px;\n  margin-right: -10px;\n  margin-top: -10px;\n  margin-bottom: -10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYm91ci1sZWRnZXItd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0NBQUE7RUFDQSx5QkFBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0FBQ0o7O0FBQ0E7RUFDSSxnQkFBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7QUFFSjs7QUFBQTtFQUNJLGVBQUE7RUFDQSxpQkFBQTtFQUNBLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0FBR0o7O0FBREE7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQUlKOztBQUZBO0VBQ0ksY0FBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtFQUNBLFdBQUE7RUFDQSx5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLG9CQUFBO0FBS0oiLCJmaWxlIjoibGFib3VyLWxlZGdlci13aWRnZXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVye1xyXG4gICAgZm9udC1mYW1pbHk6ICdSYWxld2F5Jywgc2Fucy1zZXJpZjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmM2YzZjM7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgcGFkZGluZzoxMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMjBweDtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbn1cclxuLmNvbnRhaW5lciAgaW1ne1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6NTAlO1xyXG4gICAgaGVpZ2h0OiA1MHB4O1xyXG4gICAgd2lkdGg6IDUwcHg7XHJcbn1cclxuLmhlYWRpbmd7XHJcbiAgICBmb250LXNpemU6IDEzcHg7XHJcbiAgICBsaW5lLWhlaWdodDogMjBweDtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbiAgICBjb2xvcjogIzI2NEE2QTtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbi5ib3h7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgbWFyZ2luLWxlZnQ6IC0xMDBweDtcclxufVxyXG4uYnV0dG9uLTIye1xyXG4gICAgZGlzcGxheTpibG9jaztcclxuICAgIGhlaWdodDo4M3B4O1xyXG4gICAgcGFkZGluZzogMjVweCA1cHg7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM2MjYwQTY7XHJcbiAgICBib3JkZXItcmFkaXVzOjEwcHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IC0xMHB4O1xyXG4gICAgbWFyZ2luLXRvcDogLTEwcHg7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAtMTBweDtcclxufVxyXG4gICAiXX0= */";
 
 /***/ }),
 
@@ -13855,7 +14074,7 @@ module.exports = "<nav>\r\n  <ion-title>{{title}}</ion-title>\r\n  <app-user-ima
   \***************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-avatar (click)=\"authService.logout()\">\n  <img src=\"https://i.pravatar.cc/700\" />\n</ion-avatar>\n";
+module.exports = "<ion-avatar (click)=\"authService.logout()\">\n  <img [src]=\"dataProvider.userData.photoURL\" />\n</ion-avatar>\n";
 
 /***/ }),
 
@@ -13869,13 +14088,33 @@ module.exports = "<ion-tabs>\r\n  <ion-tab-bar slot=\"bottom\">\r\n    <ion-tab-
 
 /***/ }),
 
+/***/ 2107:
+/*!***************************************************************************!*\
+  !*** ./src/app/widgets/dala-widget/dala-widget.component.html?ngResource ***!
+  \***************************************************************************/
+/***/ ((module) => {
+
+module.exports = "<div class=\"card\">\n  <div class=\"main\">\n    <img [src]=\"driverImage\" alt=\"Driver Image\">\n    <div class=\"data\">\n      <div class=\"details\">\n        <h2>{{driverName}}</h2>\n        <div class=\"detail\">\n          <p>Coordinator</p>\n          <span>{{coordinator}}</span>\n        </div>\n      </div>\n      <div class=\"details\">\n        <div class=\"detail\">\n          <p>Driver Id</p>\n          <ion-label color=\"danger\">{{driverId}}</ion-label>\n        </div>\n        <div class=\"detail\">\n          <p>Charge</p>\n          <ion-label color=\"primary\">&#8377;{{charge}}</ion-label>\n        </div>\n        <div class=\"detail\">\n          <p>Ledger No.</p>\n          <ion-label color=\"warning\">{{ledgerNo}}</ion-label>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"actions\">\n    <button>\n      <ion-icon name=\"document-text\"></ion-icon>\n    </button>\n    <button>\n      <ion-icon name=\"call\"></ion-icon>\n    </button>\n    <button>\n      <ion-icon name=\"information-circle\"></ion-icon>\n    </button>\n  </div>\n</div>";
+
+/***/ }),
+
 /***/ 65482:
 /*!*********************************************************************************************!*\
   !*** ./src/app/widgets/employee-data-widget/employee-data-widget.component.html?ngResource ***!
   \*********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"image\">\r\n    <img src=\"assets/UI/Images/profile.jpg\" alt=\"error loading image\" srcset=\"\">\r\n  </div>\r\n  <div class=\"data\">\r\n    <h2>Vishwanathan Sharma</h2>\r\n    <p>9989321456</p>\r\n  </div>\r\n  <div class=\"icons\">\r\n    <ion-icon name=\"call\" style=\"margin-bottom: 10px;\"></ion-icon>\r\n    <ion-icon name=\"trash\" style=\"margin-bottom: -10px;\"></ion-icon>\r\n  </div>\r\n  <div style=\"display: block\" class=\"chart\">\r\n    <canvas baseChart [data]=\"doughnutChartData\" [legend]=\"false\" [type]=\"doughnutChartType\">\r\n    </canvas>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"container\">\r\n  <div class=\"image\">\r\n    <img src=\"assets/UI/Images/profile.jpg\" alt=\"error loading image\" srcset=\"\">\r\n  </div>\r\n  <div class=\"data\">\r\n    <h2>{{name}}</h2>\r\n    <p>{{phoneNumber}}</p>\r\n  </div>\r\n  <div class=\"icons\">\r\n    <ion-icon name=\"call\" style=\"margin-bottom: 10px;\"></ion-icon>\r\n    <ion-icon name=\"trash\" style=\"margin-bottom: -10px;\"></ion-icon>\r\n  </div>\r\n  <div style=\"display: block\" class=\"chart\">\r\n    <canvas baseChart [data]=\"doughnutChartData\" [legend]=\"false\" [type]=\"doughnutChartType\">\r\n    </canvas>\r\n  </div>\r\n</div>";
+
+/***/ }),
+
+/***/ 31402:
+/*!*********************************************************************************!*\
+  !*** ./src/app/widgets/expense-ledger/expense-ledger.component.html?ngResource ***!
+  \*********************************************************************************/
+/***/ ((module) => {
+
+module.exports = "<div class=\"card\">\n  <div class=\"head\">\n    <h3 class=\"title\">{{expenseName}}</h3>\n    <p class=\"date\">{{date}}</p>\n  </div>\n  <div class=\"data\">\n    <table>\n      <tr>\n        <td><span>Ledger No.</span></td>\n        <td>{{ledgerNo}}</td>\n      </tr>\n      <tr>\n        <td><span>Charge:</span></td>\n        <td><span class=\"Good\">&#8377;{{charge}}</span></td>\n      </tr>\n      <tr>\n        <td><span>Condition:</span></td>\n        <td>\n          <ion-chip [color]=\"condition\" outline=\"true\">\n            <ion-label *ngIf=\"condition ==='danger'\">Bad</ion-label>\n            <ion-label *ngIf=\"condition ==='success'\">Good</ion-label>\n            <ion-label *ngIf=\"condition ==='warning'\">Warning</ion-label>\n            <ion-label *ngIf=\"condition ==='primary'\">General</ion-label>\n          </ion-chip>\n        </td>\n      </tr>\n    </table>\n    <div class=\"actions\">\n      <button routerLink=\"ledger\">\n        <ion-icon name=\"document-text\"></ion-icon>\n      </button>\n      <button (click)=\"toggleStarred()\">\n        <ion-icon [name]=\"starred ? 'star' : 'star-outline'\"></ion-icon>\n      </button>\n    </div>\n  </div>\n  <div class=\"divider\">\n    <hr>\n    <button (click)=\"expandDetails=!expandDetails\">\n      <ion-icon name=\"caret-down\" *ngIf=\"!expandDetails\"></ion-icon>\n      <ion-icon name=\"caret-up\" *ngIf=\"expandDetails\"></ion-icon>\n    </button>\n  </div>\n  <div *ngIf=\"expandDetails\" class=\"details\">\n    <h6>Reason</h6>\n    <p>{{reason}}</p>\n  </div>\n</div>";
 
 /***/ }),
 
@@ -13885,7 +14124,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"image\">\r\n    <i
   \*********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"container\">\r\n  <img src=\"assets/UI/Images/profile.jpg\" alt=\"error loading image\" srcset=\"\">\r\n  <p class=\"heading\">RAMLOCHAN<BR>VISHWAKARMA</p>\r\n    <p style=\"font-size: 13px;\">CODE<br>123456</p>\r\n    <p style=\"font-size: 13px;\">PAID<br>2324</p>\r\n    <button type=\"button\" class=\"button-22\">See Due</button>\r\n</div>\r\n";
+module.exports = "<div class=\"container\">\r\n  <img src=\"assets/UI/Images/profile.jpg\" alt=\"error loading image\" srcset=\"\">\r\n  <p class=\"heading\">{{Name}}<BR>{{Lastname}}</p>\r\n    <p style=\"font-size: 13px;\">CODE<br>{{Code}}</p>\r\n    <p style=\"font-size: 13px;\">PAID<br>{{Paid}}</p>\r\n    <button type=\"button\" class=\"button-22\">See Due</button>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -13895,7 +14134,7 @@ module.exports = "<div class=\"container\">\r\n  <img src=\"assets/UI/Images/pro
   \***********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"box\">\r\n    <img src=\"assets/UI/Images/profile.jpg\" alt=\"\">\r\n    <p style=\"font-size:15px;margin-left:-5px;\">TIRUPATI BAKERS<br><span style=\"opacity: 0.5\">biscuit</span></p>\r\n    <div class=\"damage\">\r\n      <p><span style=\"opacity: 0.5\">Safe<br></span>98Kg</p>\r\n      <p><span style=\"opacity: 0.5\">Damage<br></span>28Kg</p>\r\n    </div>\r\n    <img src=\"assets/UI/Images/circle.png\" alt=\"\" style=\"border-radius:50%;height: 50px;width: 50px;box-shadow: 1px 2px 5px rgb(155, 147, 147);margin-top: 10px;\">\r\n  </div>\r\n  <div class=\"code-and-price\">\r\n    <p><span style=\"opacity: 0.5\">Code<br></span>1234XYZ</p>\r\n    <p><span style=\"opacity: 0.5\">Price<br></span>24000</p>\r\n  </div>\r\n</div>\r\n";
+module.exports = "<div class=\"container\">\r\n  <div class=\"box\">\r\n    <img src=\"assets/UI/Images/profile.jpg\" alt=\"\">\r\n    <p style=\"font-size:15px;margin-left:-5px;\">{{Bakery}}<br><span style=\"opacity: 0.5\">{{ItemName}}</span></p>\r\n    <div class=\"damage\">\r\n      <p><span style=\"opacity: 0.5\">Safe<br></span>{{Safequantity}}</p>\r\n      <p><span style=\"opacity: 0.5\">Damage<br></span>{{Damagequantity}}</p>\r\n    </div>\r\n    <img src=\"assets/UI/Images/circle.png\" alt=\"\" style=\"border-radius:50%;height: 50px;width: 50px;box-shadow: 1px 2px 5px rgb(155, 147, 147);margin-top: 10px;\">\r\n  </div>\r\n  <div class=\"code-and-price\">\r\n    <p><span style=\"opacity: 0.5\">Code<br></span>{{Suppcode}}</p>\r\n    <p><span style=\"opacity: 0.5\">Price<br></span>{{Price}}</p>\r\n  </div>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -13905,7 +14144,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"box\">\r\n    <img
   \***************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"box\">\r\n    <img src=\"/assets/UI/Images/profile.jpg\" alt=\"\">\r\n    <p style=\"font-size:15px;margin-left: -75px;\">TIRUPATI BAKERS<br><span style=\"opacity: 0.5\">biscuit</span></p>\r\n    <p style=\"font-size: 13px;color: #23C258;\">+98%<br><span style=\"color: #F57171;\">2%<br>Pending</span></p> \r\n  </div>\r\n  <div class=\"data\">\r\n    <p style=\"font-size:12px\"><span style=\"opacity: 0.5\">DUE DATE:<br></span>12-09-2021</p>\r\n    <p style=\"font-size:12px\"><span style=\"opacity: 0.5\">Supp Code:<br></span>CO16XYZ</p>\r\n    <button style=\"margin-right: -10px;margin-bottom: -10px;\">Move To Recieved-></button>\r\n\r\n  </div>\r\n</div>\r\n";
+module.exports = "<div class=\"container\">\r\n  <div class=\"box\">\r\n    <img src=\"/assets/UI/Images/profile.jpg\" alt=\"\">\r\n    <p style=\"font-size:15px;margin-left: -75px;\">{{Bakery}}<br><span style=\"opacity: 0.5\">{{ItemName}}</span></p>\r\n    <p style=\"font-size: 13px;color: #23C258;\">+98%<br><span style=\"color: #F57171;\">2%<br>Pending</span></p> \r\n  </div>\r\n  <div class=\"data\">\r\n    <p style=\"font-size:12px\"><span style=\"opacity: 0.5\">DUE DATE:<br></span>{{Duedate}}</p>\r\n    <p style=\"font-size:12px\"><span style=\"opacity: 0.5\">Supp Code:<br></span>{{Suppcode}}</p>\r\n    <button style=\"margin-right: -10px;margin-bottom: -10px;\">Move To {{Moveto}}-></button>\r\n\r\n  </div>\r\n</div>\r\n";
 
 /***/ }),
 

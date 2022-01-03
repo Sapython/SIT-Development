@@ -1,0 +1,64 @@
+
+.card{
+    padding:15px;
+    border-radius:9px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .main{
+        display: flex;
+        flex-direction: row;
+        img{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+        }
+        .data{
+            display: flex;
+            flex-direction: column;
+            width:100%;
+            .details{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-left: 15px;
+                margin-top: 10px;
+                h2{
+                    font-size:20px;
+                    margin:0;
+                }
+                .detail{
+                    display: flex;
+                    flex-direction:column;
+                    justify-content: space-between;
+                    p{
+                        font-size:14px;
+                        font-weight:bold;
+                        margin:0;
+                    }
+                    span,ion-label{
+                        font-size:12px;
+                    }
+                }
+            }
+        }
+    }
+    .actions{
+        position: relative;
+        right:0px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        button{
+            background-color:var(--ion-color-primary);
+            color:white;
+            width:60px;
+            border-radius:20px;
+            height:30px;
+            font-size: 20px;
+            margin-top:10px;
+        }
+    }
+}

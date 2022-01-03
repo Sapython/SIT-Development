@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="head">
+    <h3 class="title">{{expenseName}}</h3>
+    <p class="date">{{date}}</p>
+  </div>
+  <div class="data">
+    <table>
+      <tr>
+        <td><span>Ledger No.</span></td>
+        <td>{{ledgerNo}}</td>
+      </tr>
+      <tr>
+        <td><span>Charge:</span></td>
+        <td><span class="Good">&#8377;{{charge}}</span></td>
+      </tr>
+      <tr>
+        <td><span>Condition:</span></td>
+        <td>
+          <ion-chip [color]="condition" outline="true">
+            <ion-label *ngIf="condition ==='danger'">Bad</ion-label>
+            <ion-label *ngIf="condition ==='success'">Good</ion-label>
+            <ion-label *ngIf="condition ==='warning'">Warning</ion-label>
+            <ion-label *ngIf="condition ==='primary'">General</ion-label>
+          </ion-chip>
+        </td>
+      </tr>
+    </table>
+    <div class="actions">
+      <button routerLink="ledger">
+        <ion-icon name="document-text"></ion-icon>
+      </button>
+      <button (click)="toggleStarred()">
+        <ion-icon [name]="starred ? 'star' : 'star-outline'"></ion-icon>
+      </button>
+    </div>
+  </div>
+  <div class="divider">
+    <hr>
+    <button (click)="expandDetails=!expandDetails">
+      <ion-icon name="caret-down" *ngIf="!expandDetails"></ion-icon>
+      <ion-icon name="caret-up" *ngIf="expandDetails"></ion-icon>
+    </button>
+  </div>
+  <div *ngIf="expandDetails" class="details">
+    <h6>Reason</h6>
+    <p>{{reason}}</p>
+  </div>
+</div>

@@ -6,7 +6,16 @@ import { IonicModule } from '@ionic/angular';
 import { LabourLedgerWidgetComponent } from './labour-ledger-widget/labour-ledger-widget.component';
 import { ProductLedgerWidgetComponent } from './product-ledger-widget/product-ledger-widget.component';
 import { NgChartsModule } from 'ng2-charts';
-const widgets = [SitLedgerWidgetComponent,EmployeeDataWidgetComponent,LabourLedgerWidgetComponent,ProductLedgerWidgetComponent]
+import { ExpenseLedgerComponent } from './expense-ledger/expense-ledger.component';
+import { DalaWidgetComponent } from './dala-widget/dala-widget.component';
+const widgets = [
+  SitLedgerWidgetComponent,
+  EmployeeDataWidgetComponent,
+  LabourLedgerWidgetComponent,
+  ProductLedgerWidgetComponent,
+  ExpenseLedgerComponent,
+  DalaWidgetComponent,
+]
 
 
 

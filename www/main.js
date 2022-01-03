@@ -40,7 +40,7 @@ const routes = [
     {
         path: 'verifyemail',
         component: _verifyemail_verifyemail_component__WEBPACK_IMPORTED_MODULE_2__.VerifyemailComponent
-    }
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -86,6 +86,7 @@ let AppComponent = class AppComponent {
     constructor(authService, router) {
         this.authService = authService;
         this.router = router;
+        this.useIncompatible = false;
     }
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
@@ -1312,7 +1313,7 @@ module.exports = webpackAsyncContext;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MifQ== */";
+module.exports = "#incompatible {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n  text-align: center;\n  background-color: #d9dafb;\n}\n#incompatible button {\n  padding: 10px;\n  border: none;\n  background-color: #7595ff;\n  color: white;\n  border-radius: 5px;\n}\n@media screen and (max-width: 300px) {\n  #incompatible {\n    display: flex;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQUE7RUFDQSxlQUFBO0VBQ0EsTUFBQTtFQUNBLE9BQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGFBQUE7RUFDQSxrQkFBQTtFQUNBLHlCQUFBO0FBQ0o7QUFBSTtFQUNJLGFBQUE7RUFDQSxZQUFBO0VBQ0EseUJBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUFFUjtBQUNBO0VBQ0k7SUFDSSxhQUFBO0VBRU47QUFDRiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjaW5jb21wYXRpYmxle1xyXG4gICAgZGlzcGxheTogbm9uZTtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogMDtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIHBhZGRpbmc6MjBweDtcclxuICAgIHRleHQtYWxpZ246Y2VudGVyO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIxNywgMjE4LCAyNTEpO1xyXG4gICAgYnV0dG9ue1xyXG4gICAgICAgIHBhZGRpbmc6MTBweDtcclxuICAgICAgICBib3JkZXI6bm9uZTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiM3NTk1ZmY7XHJcbiAgICAgICAgY29sb3I6d2hpdGU7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czo1cHg7XHJcbiAgICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDozMDBweCl7XHJcbiAgICAjaW5jb21wYXRpYmxle1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICB9XHJcbn0iXX0= */";
 
 /***/ }),
 
@@ -1356,7 +1357,7 @@ module.exports = ".container {\n  margin-top: 100px;\n  display: flex;\n  flex-d
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n";
+module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n  <div id=\"incompatible\" [ngStyle]=\"{'display': useIncompatible ? 'flex' : 'none'}\">\n    <p>\n      Application not supported for this resolution.\n    </p>\n    <button (click)=\"useIncompatible = true\">I still want to use.</button>\n  </div>\n</ion-app>\n";
 
 /***/ }),
 

@@ -23,11 +23,6 @@ const routes: Routes = [
     path:'verifyemail',
     component:VerifyemailComponent
   },
-  {
-    path: 'alpha',
-    loadChildren: () => import('./alpha/alpha.module').then( m => m.AlphaPageModule)
-  }
-
 ];
 @NgModule({
   imports: [

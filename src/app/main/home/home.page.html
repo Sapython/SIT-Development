@@ -97,6 +97,24 @@
         <div class="groupCard">
             <app-employee-data-widget></app-employee-data-widget>
         </div>
+        <app-expense-ledger
+            expenseName="Gate broken"
+            ledgerNo="LEDGER1234"
+            [charge]="20400"
+            condition="danger"
+            [servicable]="false"
+            date="2020-05-05"
+            reason="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur cursus tincidunt commodo. Nunc justo nisi, vestibulum facilisis porta vestibulum, ultrices volutpat arcu. Quisque nec dui mattis, fringilla magna in, vulputate enim. Fusce ut euismod ligula, id laoreet ex."
+        ></app-expense-ledger>
+        <app-dala-widget
+            driverName="John doe"
+            driverImage="https://i.pravatar.cc/300?img=1"
+            driverNumber="+91-1234567890"
+            driverId="DRIVER123"
+            [charge]="20000"
+            ledgerNo="L1234354"
+            coordinator="Test Big Name"
+        ></app-dala-widget>
         <!-- <div class="box">
             <app-employee-data-widget></app-employee-data-widget>
         </div> -->

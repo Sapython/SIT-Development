@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AlphaPage } from './alpha.page';
+import { ExpenseLedgerComponent } from './expense-ledger.component';
 
-describe('AlphaPage', () => {
-  let component: AlphaPage;
-  let fixture: ComponentFixture<AlphaPage>;
+describe('ExpenseLedgerComponent', () => {
+  let component: ExpenseLedgerComponent;
+  let fixture: ComponentFixture<ExpenseLedgerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlphaPage ],
+      declarations: [ ExpenseLedgerComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AlphaPage);
+    fixture = TestBed.createComponent(ExpenseLedgerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
