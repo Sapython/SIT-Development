@@ -23,5 +23,13 @@ export type feature = {
     name:string;
     icon: string;
 }
-
+export type dalaLedgerData = {
+    driverName:string;
+    driverImage: string;
+    driverNumber: string;
+    driverId: string;
+    charge:number;
+    ledgerNo:string;
+    coordinator:string;
+}
 
