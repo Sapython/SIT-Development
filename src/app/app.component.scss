@@ -1,3 +1,75 @@
+#container {
+    --background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#photo-container {
+    padding: 1em;
+    flex-grow: 1;
+    background: var(--ion-color-primary);
+}
+
+#photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#options-container {
+    background-color: #fff;
+    padding: 1em;
+    flex-grow: 3;
+}
+
+#options {
+    list-style: none;
+}
+
+.option {
+    padding: .5em 0;
+    color: #333;
+    border-bottom: 1px solid #333;
+}
+
+.option:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+#footer {
+    color: #fff;
+    padding: 1em;
+    flex-grow: 1;
+    background: var(--ion-color-primary);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#developed-by {
+    color: #fff;
+    margin: 0;
+}
+
+#swayambhu-innovations {
+    color: #fff;
+    margin: .5em 0;
+}
+
+#more-info {
+    background-color: #fff;
+    color: var(--ion-color-primary);
+    padding: .5em 1em;
+    margin-left: -1.5em;
+    font-family: inherit;
+    width: 200px;
+    border-radius: 0 25px 25px 0;
+    font-size: 18px;
+}
+
 #incompatible{
     display: none;
     position: fixed;
