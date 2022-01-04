@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collectionData,DocumentReference, CollectionReference , collection , setDoc, doc, updateDoc, deleteDoc, docSnapshots, docData, getDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collectionData,DocumentReference, collectionSnapshots, CollectionReference , collection , setDoc, doc, updateDoc, deleteDoc, docSnapshots, docData, getDoc } from '@angular/fire/firestore';
 import { ContactRequest } from '../structures/user.structure';
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,10 @@ export class DatabaseService {
     })
     
   }
+  // SIt services starts
+  getSitLedgers(){
+    return collectionSnapshots(collection(this.fs,'SIT_COL'))
+  }
+  // SIT services ends
   
 }
