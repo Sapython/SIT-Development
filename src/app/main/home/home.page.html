@@ -116,6 +116,40 @@
             [ledgerNo]="item.ledgerNo"
             [coordinator]="item.coordinator"
         ></app-dala-widget>
+
+        <!-- Filters -->
+        <div id="sit-ledger-filters">
+            <h3 id="filters-heading">Filters</h3>
+            <div id="filters-dropdown">
+                <button id="filters-button" #filtersButton (click)="showFiltersList=!showFiltersList">Date <ion-icon name="chevron-down"></ion-icon></button>
+                <ul id="filters-list" #filtersList *ngIf="showFiltersList">
+                    <li class="filter-list-item">Date</li>
+                    <li class="filter-list-item">Name</li>
+                    <li class="filter-list-item">xyz</li>
+                </ul>
+              </div>
+        </div>
+
+        <app-sit-ledger-widget 
+        *ngFor="let item of sitLedgers"
+            [dispatchDate]="item.dispatchDate"
+            [delivery]="item.delivery"
+            [expectedDelivery]="item.expectedDelivery"
+            [gateEntryDate]="item.gateEntryDate"
+            [gateEntryNo]="item.gateEntryNo"
+            [mfgLocation]="item.mfgLocation"
+            [productCode]="item.productCode"
+            [productName]="item.productName"
+            [quantity]="item.quantity"
+            [recPlantDesc]="item.recPlantDesc"
+            [remarks]="item.remarks"
+            [suppPlant]="item.suppPlant"
+            [suppPlantDesc]="item.suppPlantDesc"
+            [storageLocation]="item.storageLocation"
+            [transName]="item.transName"
+            [vehicleNo]="item.vehicleNo"
+        ></app-sit-ledger-widget>
+
         <!-- <app-product-ledger-widget></app-product-ledger-widget> -->
 
         <!-- <div class="box">

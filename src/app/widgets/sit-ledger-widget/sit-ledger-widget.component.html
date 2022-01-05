@@ -1,13 +1,48 @@
-<div class="container">
-  <div class="box">
-    <img src="/assets/UI/Images/profile.jpg" alt="">
-    <p style="font-size:15px;margin-left: -75px;">{{Bakery}}<br><span style="opacity: 0.5">{{ItemName}}</span></p>
-    <p style="font-size: 13px;color: #23C258;">+98%<br><span style="color: #F57171;">2%<br>Pending</span></p> 
+<div id="card">
+  <div id="card-photo-and-details">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8XFqF5rPgYotiGkYSpe7wji541p38z7OCRw&usqp=CAU" alt="NAME" id="card-photo">
+      <div id="card-details">
+          <h3 id="card-heading">{{ this.bakery }}</h3>
+          <p class="card-paragraph card-paragraph-highlight">{{ this.itemName }}</p>
+          <p class="card-paragraph"><span class="card-paragraph-highlight">Supplier Code:</span> {{ this.suppCode }}</p>
+      </div>
   </div>
-  <div class="data">
-    <p style="font-size:12px"><span style="opacity: 0.5">DUE DATE:<br></span>{{Duedate}}</p>
-    <p style="font-size:12px"><span style="opacity: 0.5">Supp Code:<br></span>{{Suppcode}}</p>
-    <button style="margin-right: -10px;margin-bottom: -10px;">Move To {{Moveto}}-></button>
-
+  <div id="card-stepper-wrapper">
+      <div class="card-stepper-item completed">
+          <div class="card-step-counter"></div>
+          <div class="card-step-name">1st Jan</div>
+      </div>
+      <div class="card-stepper-item completed">
+          <div class="card-step-counter"></div>
+          <div class="card-step-name">Chennai Depo</div>
+      </div>
+      <div class="card-stepper-item completed">
+          <div class="card-step-counter"></div>
+          <div class="card-step-name">Unloaded</div>
+      </div>
+      <div class="card-stepper-item">
+          <div class="card-step-counter"></div>
+          <div class="card-step-name">{{ this.dueDate }}</div>
+          <div class="card-step-name">expected delivery</div>
+      </div>
   </div>
+  <div id="card-more-details" *ngIf="this.displayMoreDetails">
+      <p class="card-more-detail">Dispatch Date: {{ this.dispatchDate }}</p>
+      <p class="card-more-detail">Delivery: {{ this.delivery }}</p>
+      <p class="card-more-detail">Expt_Delivery: {{ this.expectedDelivery }}</p>
+      <p class="card-more-detail">Gate_Entry_Date: {{ this.gateEntryDate }}</p>
+      <p class="card-more-detail">Gate_Entry_No: {{ this.gateEntryNo }}</p>
+      <p class="card-more-detail">MFG_Location: {{ this.mfgLocation }}</p>
+      <p class="card-more-detail">Product_Code: {{ this.productCode }}</p>
+      <p class="card-more-detail">Product_Name: {{ this.productName }}</p>
+      <p class="card-more-detail">Quantity: {{ this.quantity }}</p>
+      <p class="card-more-detail">REC_Plant_DESC: {{ this.recPlantDesc }}</p>
+      <p class="card-more-detail">Remarks: {{ this.remarks }}</p>
+      <p class="card-more-detail">Supp_Plant: {{ this.suppPlant }}</p>
+      <p class="card-more-detail">Supp_Plant_Desc: {{ this.suppPlantDesc }}</p>
+      <p class="card-more-detail">Storage_Location: {{ this.storageLocation }}</p>
+      <p class="card-more-detail">Trans_Name: {{ this.transName }}</p>
+      <p class="card-more-detail">Vehicle_No: {{ this.vehicleNo }}</p>
+  </div>
+  <button id="card-more-details-button" (click)="this.displayMoreDetails = !this.displayMoreDetails"><ion-icon name="{{ this.displayMoreDetails ? 'caret-up' : 'caret-down' }}"></ion-icon></button>
 </div>
