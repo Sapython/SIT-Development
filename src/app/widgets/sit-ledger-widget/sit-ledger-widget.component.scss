@@ -29,13 +29,13 @@
 #card-heading {
   margin: 0;
   margin-bottom: .25em;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .card-paragraph {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -114,8 +114,9 @@
 .card-stepper-item .card-step-name  {
   color: #3EA1FD;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
+  margin: 0 .5em;
 }
 
 .card-stepper-item:not(.completed) .card-step-name  {
@@ -127,7 +128,7 @@
   display: flex;
   justify-content: space-between;
   color: rgba(0,0,0,0.6);
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .more-detail-key {
@@ -136,11 +137,13 @@
 
 .more-detail-value {
   font-style: italic;
+  margin-left: .5em;
+  text-align: right;
 }
 
 #card-more-details-button {
   background: none;
   display: block;
-  font-size: 25px;
-  margin: 10px auto 0 auto;
+  font-size: 20px;
+  margin: 5px auto 0 auto;
 }
