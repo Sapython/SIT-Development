@@ -1,32 +1,115 @@
+* {
+    animation: fadeIn 0.3s ease-in;
+  }
 .container{
     font-family: 'Poppins', sans-serif;
-    background-color: #f3f3f3;
+    background-color: #fff;
     padding:10px;
     border-radius: 10px;
-    box-shadow: 1px 2px 5px rgb(155, 147, 147);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
-    font-weight: 500;
+}
+.img-and-name{
+    width: 70%;
+    display:flex;
+    justify-content: space-between;
+}
+.chart{
+    height:60px;
+    width:60px;
 }
 .box{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 .box img{
     margin-top: 10px;
     border-radius:50%;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     box-shadow: 1px 2px 5px rgb(155, 147, 147);
+    margin-left: 5px;
 }
-.damage p{
-    font-size: 13px;
-    margin-right: -5px;
+.box span{
+    color: #115ca3;
 }
 .code-and-price{
     display: flex;
-    justify-content: space-between;
-    width: 135px;
     font-size: 13px;
-    margin-top: -50px;
-    margin-left: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+.details{
+    line-height: 05px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+.details span{
+    color: #115ca3;
+}
+.buttons{
+    margin-top: 40px;
+    margin-left: 50px;
+    font-size: 13px;
+}
+.buttons p{
+    margin-bottom: 0px;
+    color: #5ED6B2;
+}
+.buttons span{
+    color:#F56C6C;
+}
+.buttons button{
+    padding:5px;
+}
+.button1{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-Color:#5ED6B2;
+    color: #fff;
+    margin-left: -2px;
+}
+.button2{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-Color:#F56C6C;
+    color: #fff;
+    margin-left: 2px;
+}
+@keyframes fadeIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+@media only screen and (min-width: 700px){
+    .box img{
+        height: 100px;
+        width: 100px;
+        margin-left: 10px;
+    }
+    .box p{
+        font-size: 25px;
+    }
+    .code-and-price{
+        font-size: 20px;
+    }
+    .buttons{
+        font-size: 20px;
+    }
+    .img-and-name{
+        width: 50%;
+    }
+    .buttons button{
+        font-size: 20px;
+        width: 70px;
+    }
+    .details{
+        margin-left: 10px;
+    }
 }

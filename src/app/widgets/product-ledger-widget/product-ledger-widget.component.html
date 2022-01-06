@@ -1,15 +1,26 @@
 <div class="container">
   <div class="box">
-    <img src="assets/UI/Images/profile.jpg" alt="">
-    <p style="font-size:15px;margin-left:-5px;">{{Bakery}}<br><span style="opacity: 0.5">{{ItemName}}</span></p>
-    <div class="damage">
-      <p><span style="opacity: 0.5">Safe<br></span>{{Safequantity}}</p>
-      <p><span style="opacity: 0.5">Damage<br></span>{{Damagequantity}}</p>
+    <div class="img-and-name">
+      <img src="assets/UI/Images/profile.jpg" alt="">
+      <p>{{Bakery}}<br><span>{{ItemName}}</span></p>
     </div>
-    <img src="assets/UI/Images/circle.png" alt="" style="border-radius:50%;height: 50px;width: 50px;box-shadow: 1px 2px 5px rgb(155, 147, 147);margin-top: 10px;">
+    <div class="chart">
+      <canvas baseChart
+        [data]="doughnutChartData"
+        [legend]="false"
+        [type]="doughnutChartType">
+      </canvas>
+  </div>
   </div>
   <div class="code-and-price">
-    <p><span style="opacity: 0.5">Code<br></span>{{Suppcode}}</p>
-    <p><span style="opacity: 0.5">Price<br></span>{{Price}}</p>
+    <div class="details">
+      <p><span>Ledger number: </span>{{Ledgerno}}</p>
+      <p><span>Price: </span>{{Price}}</p>
+    </div>
+    <div class="buttons">
+      <p>Safe    <span>Damage</span></p>
+      <button class="button1">{{Safe}}Kg</button>
+      <button class="button2">{{Damage}}Kg</button>
+    </div>
   </div>
 </div>
