@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SitLedgerWidgetComponent implements OnInit {
   @Input() bakery: string = "TIRUPATI BAKERS";
   @Input() itemName: string = "Biscuit";
-  @Input() dueDate: string = "12/12/2020";
+  @Input() dueDate: string = "12 Dec";
   @Input() suppCode: string = "123XYZ0";
   @Input() moveTo: string = "Recieved";
 

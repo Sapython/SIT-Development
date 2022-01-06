@@ -1,6 +1,6 @@
 <div id="card">
   <div id="card-photo-and-details">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8XFqF5rPgYotiGkYSpe7wji541p38z7OCRw&usqp=CAU" alt="NAME" id="card-photo">
+      <img src="https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="NAME" id="card-photo">
       <div id="card-details">
           <h3 id="card-heading">{{ this.bakery }}</h3>
           <p class="card-paragraph card-paragraph-highlight">{{ this.itemName }}</p>
@@ -23,26 +23,26 @@
       <div class="card-stepper-item">
           <div class="card-step-counter"></div>
           <div class="card-step-name">{{ this.dueDate }}</div>
-          <div class="card-step-name">expected delivery</div>
+          <div class="card-step-name">Expected Delivery</div>
       </div>
   </div>
   <div id="card-more-details" *ngIf="this.displayMoreDetails">
-      <p class="card-more-detail">Dispatch Date: {{ this.dispatchDate }}</p>
-      <p class="card-more-detail">Delivery: {{ this.delivery }}</p>
-      <p class="card-more-detail">Expt_Delivery: {{ this.expectedDelivery }}</p>
-      <p class="card-more-detail">Gate_Entry_Date: {{ this.gateEntryDate }}</p>
-      <p class="card-more-detail">Gate_Entry_No: {{ this.gateEntryNo }}</p>
-      <p class="card-more-detail">MFG_Location: {{ this.mfgLocation }}</p>
-      <p class="card-more-detail">Product_Code: {{ this.productCode }}</p>
-      <p class="card-more-detail">Product_Name: {{ this.productName }}</p>
-      <p class="card-more-detail">Quantity: {{ this.quantity }}</p>
-      <p class="card-more-detail">REC_Plant_DESC: {{ this.recPlantDesc }}</p>
-      <p class="card-more-detail">Remarks: {{ this.remarks }}</p>
-      <p class="card-more-detail">Supp_Plant: {{ this.suppPlant }}</p>
-      <p class="card-more-detail">Supp_Plant_Desc: {{ this.suppPlantDesc }}</p>
-      <p class="card-more-detail">Storage_Location: {{ this.storageLocation }}</p>
-      <p class="card-more-detail">Trans_Name: {{ this.transName }}</p>
-      <p class="card-more-detail">Vehicle_No: {{ this.vehicleNo }}</p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="calendar"></ion-icon> Dispatch Date: </span><span class="more-detail-value">{{ this.dispatchDate }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="cart"></ion-icon> Delivery: </span><span class="more-detail-value">{{ this.delivery }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="time"></ion-icon> Expected Delivery: </span><span class="more-detail-value">{{ this.expectedDelivery }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="calendar-number"></ion-icon> Gate Entry Date: </span><span class="more-detail-value">{{ this.gateEntryDate }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="trail-sign"></ion-icon> Gate Entry No.: </span><span class="more-detail-value">{{ this.gateEntryNo }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="location"></ion-icon> MFG Location: </span><span class="more-detail-value">{{ this.mfgLocation }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="qr-code"></ion-icon> Product Code: </span><span class="more-detail-value">{{ this.productCode }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bag"></ion-icon> Product Name: </span><span class="more-detail-value">{{ this.productName }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="cube"></ion-icon> Quantity: </span><span class="more-detail-value">{{ this.quantity }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="business"></ion-icon> REC Plant DESC: </span><span class="more-detail-value">{{ this.recPlantDesc }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bag-check"></ion-icon> Remarks: </span><span class="more-detail-value">"{{ this.remarks }}"</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="business"></ion-icon> Supp Plant: </span><span class="more-detail-value">{{ this.suppPlant }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="business"></ion-icon> Supp Plant Desc: </span><span class="more-detail-value">{{ this.suppPlantDesc }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="location"></ion-icon> Storage Location: </span><span class="more-detail-value">{{ this.storageLocation }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bus"></ion-icon> Trans Name: </span><span class="more-detail-value">{{ this.transName }}</span></p>
+      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bus"></ion-icon> Vehicle No.: </span><span class="more-detail-value">{{ this.vehicleNo }}</span></p>
   </div>
   <button id="card-more-details-button" (click)="this.displayMoreDetails = !this.displayMoreDetails"><ion-icon name="{{ this.displayMoreDetails ? 'caret-up' : 'caret-down' }}"></ion-icon></button>
 </div>

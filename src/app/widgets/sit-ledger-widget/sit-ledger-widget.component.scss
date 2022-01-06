@@ -1,18 +1,25 @@
+* {
+  animation: fadeIn 0.3s ease-in;
+  font-family: 'Poppins', sans-serif;
+}
+
 #card {
   background-color: #ECF6FF;
   padding: 2em;
   border-radius: 30px;
+  margin: .5em 0;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #card-photo-and-details {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 #card-photo {
-  width: 20%;
+  width: 22.5%;
   border-radius: 50%;
-  border: 3px solid #3D95E6;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #card-details {
@@ -22,13 +29,14 @@
 #card-heading {
   margin: 0;
   margin-bottom: .25em;
-  font-size: 1.25rem;
-  text-transform: uppercase;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .card-paragraph {
   margin: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .card-paragraph-highlight {
@@ -36,7 +44,7 @@
 }
 
 #card-stepper-wrapper {
-  margin: 1.5em 0;
+  margin: 2em 0;
   display: flex;
   justify-content: space-between;
 }
@@ -106,6 +114,8 @@
 .card-stepper-item .card-step-name  {
   color: #3EA1FD;
   text-align: center;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .card-stepper-item:not(.completed) .card-step-name  {
@@ -114,12 +124,23 @@
 
 .card-more-detail {
   margin: 0;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(0,0,0,0.6);
+  font-size: 14px;
+}
+
+.more-detail-key {
+  font-weight: 700;
+}
+
+.more-detail-value {
+  font-style: italic;
 }
 
 #card-more-details-button {
   background: none;
-  color: #3EA1FD;
-  font-size: 1.1rem;
   display: block;
-  margin: .5em auto 0 auto;
+  font-size: 25px;
+  margin: 10px auto 0 auto;
 }
