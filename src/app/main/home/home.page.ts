@@ -35,11 +35,11 @@ export class HomePage implements OnInit {
 
   constructor(private renderer: Renderer2) {
     //  This event gets called by all clicks on the page
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if(!(this.filtersButton.nativeElement.contains(e.target) || this.filtersList.nativeElement.contains(e.target))) {
-        this.showFiltersList = false; 
-      }
-    });
+    // this.renderer.listen('window', 'click', (e: Event) => {
+    //   if(!(this.filtersButton.nativeElement.contains(e.target) || this.filtersList.nativeElement.contains(e.target))) {
+    //     this.showFiltersList = false; 
+    //   }
+    // });
   }
 
   ngOnInit() { }

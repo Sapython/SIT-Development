@@ -8,17 +8,32 @@ const routes: Routes = [
     path: 'app',
     component: MainComponent,
     children: [
-      {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+      { 
+        path:'home',
+        children:[ 
+          {
+            path: '',
+            loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+          },
+        ]
       },
       {
         path: 'employeeList',
-        loadChildren: () => import('./employee-list/employee-list.module').then( m => m.EmployeeListPageModule)
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./employee-list/employee-list.module').then( m => m.EmployeeListPageModule)
+          },
+        ]
       },
       {
-        path: 'ledgerOverview',
-        loadChildren: () => import('./ledgeroverview/ledgeroverview.module').then( m => m.LedgeroverviewPageModule)
+        path:'ledgerOverview',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./ledgeroverview/ledgeroverview.module').then( m => m.LedgeroverviewPageModule)
+          },
+        ]
       },
       {
         path: 'sitdetail',
@@ -63,51 +78,6 @@ const routes: Routes = [
     redirectTo: '/app/home',
     pathMatch: 'full',
   },
-  {
-    path: 'sit-detail',
-    loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
-  },
-  {
-    path: 'recieved',
-    loadChildren: () => import('./recieved/recieved.module').then( m => m.RecievedPageModule)
-  },
-  {
-    path: 'product-ledger',
-    loadChildren: () => import('./product-ledger/product-ledger.module').then( m => m.ProductLedgerPageModule)
-  },
-  {
-    path: 'labour-ledger',
-    loadChildren: () => import('./labour-ledger/labour-ledger.module').then( m => m.LabourLedgerPageModule)
-  },
-  {
-    path: 'employee-info',
-    loadChildren: () => import('./employee-info/employee-info.module').then( m => m.EmployeeInfoPageModule)
-  },
-  {
-    path: 'sitlog',
-    loadChildren: () => import('./sitlog/sitlog.module').then( m => m.SITlogPageModule)
-  },
-  {
-    path: 'add-employee',
-    loadChildren: () => import('./add-employee/add-employee.module').then( m => m.AddEmployeePageModule)
-  },
-  {
-    path: 'account-page',
-    loadChildren: () => import('./account-page/account-page.module').then( m => m.AccountPagePageModule)
-  },
-  {
-    path: 'unloaded',
-    loadChildren: () => import('./unloaded/unloaded.module').then( m => m.UnloadedPageModule)
-  },
-
-
-
-
-
-
-
-
-
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

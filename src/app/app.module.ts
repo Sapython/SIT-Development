@@ -31,10 +31,12 @@ import { UserDataService } from './services/user-data.service';
 import { AuthencationService } from './services/authencation.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent],
     imports: [
+        // MainModule,
         ReactiveFormsModule,
         BrowserModule,
         IonicModule.forRoot(),
