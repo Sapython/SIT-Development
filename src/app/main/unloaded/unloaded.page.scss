@@ -1,7 +1,8 @@
 .container{
     font-family: 'Poppins', sans-serif;
-    padding:10px;
     margin: 5px;
+    text-align: center;
+    margin-top: 20px;
 }
 .box{
     box-shadow:inset 10px 10px 10px rgba(0,0,0,0.05),
@@ -11,6 +12,7 @@
     border: 2px solid #6260A6;
     border-radius:  20px;
     padding: 10px;
+    margin: 5px;
 }
 .circle{
     display: block;
@@ -24,7 +26,6 @@
 }
 .box input{
     padding: 10px;
-    margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #6260A6;
     width: 280px;
@@ -46,6 +47,5 @@
 }
 .box p{
     margin-top:25px;
-    margin-left: 10px;
     font-size: 20px;
 }

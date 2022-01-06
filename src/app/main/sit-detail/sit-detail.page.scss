@@ -36,7 +36,7 @@
     background-color: rgb(255, 134, 118);
     position: absolute;
     z-index: 2;
-    margin-left: 60%;
+    margin-left: 70%;
     margin-top: -45px;
     box-shadow: inset 10px 10px 10px rgba(0,0,0,0.05),
     15px 25px 10px rgba(0,0,0,0.05),
@@ -44,11 +44,13 @@
     inset -10px -10px 15px rgba(251,60,60,0.9)
 }
 .img-1{
-    margin-top: 10px;
+    margin-top: -05px;
     margin-left: 15px; 
 }
 .box1{
     display: flex;
+    margin-bottom: 10px;
+    align-items: center;
 }
 .heading{
     margin-right: 80px;
@@ -69,6 +71,12 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    border: 2px solid #6260A6;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    background-Color:#FFF;
 }
 .details p{
     font-size: 15px;
@@ -76,6 +84,7 @@
 .heading1{
     font-size: 20px;
     margin-left: 10px;
+    margin-top: 10px;
 }
 .opacity{
     opacity: 0.5;
