@@ -1,6 +1,12 @@
 <div class="card">
   <div class="main">
-    <img [src]="driverImage" alt="Driver Image">
+    <div class="one">
+      <img [src]="driverImage" alt="Driver Image">
+      <div class="detail">
+        <p>Driver Id</p>
+        <ion-label color="danger">{{driverId}}</ion-label>
+      </div>
+    </div>
     <div class="data">
       <div class="details">
         <h2>{{driverName}}</h2>
@@ -10,10 +16,6 @@
         </div>
       </div>
       <div class="details">
-        <div class="detail">
-          <p>Driver Id</p>
-          <ion-label color="danger">{{driverId}}</ion-label>
-        </div>
         <div class="detail">
           <p>Charge</p>
           <ion-label color="primary">&#8377;{{charge}}</ion-label>
