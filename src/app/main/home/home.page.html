@@ -64,13 +64,13 @@
         </div>
         <p class="title">Dashboard</p>
         <div class="quickLinks">
-            <div class="linkCard">
+            <button class="linkCard" routerLink="../sitDetail">
                 <div>
                     <p>Employee</p>
                     <p>List</p>
                 </div>
                 <img src="assets/UI/QuickLinks/employeeList.svg" alt="Employee working">
-            </div>
+            </button>
             <div class="linkCard">
                 <div>
                     <p>Pending</p>
@@ -93,11 +93,11 @@
                 <img src="assets/UI/QuickLinks/driver.svg" alt="">
             </div>
         </div>
-        <!-- <p class="text-1">Recently Opened</p>
-        <div class="groupCard">
+        <p class="text-1">Recently Opened</p>
+        <!-- <div class="groupCard">
             <app-employee-data-widget></app-employee-data-widget>
-        </div> -->
-        <!-- <app-expense-ledger
+        </div>
+        <app-expense-ledger
             expenseName="Gate broken"
             ledgerNo="LEDGER1234"
             [charge]="20400"
@@ -105,7 +105,7 @@
             [servicable]="false"
             date="2020-05-05"
             reason="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur cursus tincidunt commodo. Nunc justo nisi, vestibulum facilisis porta vestibulum, ultrices volutpat arcu. Quisque nec dui mattis, fringilla magna in, vulputate enim. Fusce ut euismod ligula, id laoreet ex."
-        ></app-expense-ledger> -->
+        ></app-expense-ledger>
         <app-dala-widget 
         *ngFor="let item of dalaLedgers"
             [driverName]="item.driverName"
@@ -117,7 +117,6 @@
             [coordinator]="item.coordinator"
         ></app-dala-widget>
 
-        <!-- Filters -->
         <div id="sit-ledger-filters">
             <h3 id="filters-heading">Filters</h3>
             <div id="filters-dropdown">
@@ -155,10 +154,10 @@
         [Damage]="65"></app-product-ledger-widget>
         <app-dala-widget></app-dala-widget>
 
-        <!-- <div class="box">
+        <div class="box">
             <app-employee-data-widget></app-employee-data-widget>
-        </div> -->
-        <!-- <div class="pending">
+        </div> 
+        <div class="pending">
             <p style="color: #F57171;margin-left: 10px;font-size:20px;font-weight: bold;">Pending</p>
             <app-product-ledger-widget></app-product-ledger-widget>
             <button class="button-22">See All Pending Events</button>

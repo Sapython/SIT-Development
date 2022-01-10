@@ -36,8 +36,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'sitdetail',
-        loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
+        path:'sitDetail',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
+          },
+        ]
       },
       {
         path: 'recieved',
