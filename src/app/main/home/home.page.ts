@@ -93,7 +93,8 @@ export class HomePage implements OnInit {
       suppPlantDesc: "Tirupati Bakers",
       storageLocation: "Prayagraj",
       transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314"
+      vehicleNo: "HR51AB1314",
+      status: "uploaded",
     },
     {
       dispatchDate: "23 July 2021",
@@ -111,7 +112,8 @@ export class HomePage implements OnInit {
       suppPlantDesc: "Tirupati Bakers",
       storageLocation: "Prayagraj",
       transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314"
+      vehicleNo: "HR51AB1314",
+      status: "recieved",
     }
   ];
 }

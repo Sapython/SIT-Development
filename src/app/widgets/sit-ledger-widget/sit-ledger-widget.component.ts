@@ -28,6 +28,7 @@ export class SitLedgerWidgetComponent implements OnInit {
   @Input() storageLocation: string;
   @Input() transName: string;
   @Input() vehicleNo: string;
+  @Input() status:"uploaded"|"pending"|"recieved"|"unloaded";
 
   displayMoreDetails: boolean = false;
 

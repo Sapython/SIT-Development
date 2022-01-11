@@ -49,4 +49,5 @@ export type sitLedgerData = {
     storageLocation: string;
     transName: string;
     vehicleNo: string;
+    status:"uploaded"|"pending"|"recieved"|"unloaded";
 }

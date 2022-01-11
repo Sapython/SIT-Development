@@ -36,12 +36,57 @@ const routes: Routes = [
         ]
       },
       {
+        path:'add-employee',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./add-employee/add-employee.module').then( m => m.AddEmployeePageModule)
+          }
+        ]
+      },
+      {
+        path:'dala-ledger',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./dala-ledger/dala-ledger.module').then( m => m.DalaLedgerPageModule)
+          }
+        ]
+      },
+      {
         path:'sitDetail',
         children:[
           {
             path: '',
             loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
           },
+        ]
+      },
+      {
+        path:'unloaded',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./unloaded/unloaded.module').then( m => m.UnloadedPageModule)
+          },
+        ]
+      },
+      {
+        path:'recieved-sit',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./recieved-sit/recieved-sit.module').then( m => m.RecievedSitPageModule)
+          }
+        ]
+      },
+      {
+        path:'pending-sit',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./pending-sit/pending-sit.module').then( m => m.PendingSitPageModule)
+          }
         ]
       },
       {
@@ -75,7 +120,11 @@ const routes: Routes = [
       {
         path: 'unloaded',
         loadChildren: () => import('./unloaded/unloaded.module').then( m => m.UnloadedPageModule)
-      }
+      },
+      {
+        path: 'dala-ledger',
+        loadChildren: () => import('./dala-ledger/dala-ledger.module').then( m => m.DalaLedgerPageModule)
+      },
     ],
   },
   {
@@ -83,6 +132,9 @@ const routes: Routes = [
     redirectTo: '/app/home',
     pathMatch: 'full',
   },
+
+  
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

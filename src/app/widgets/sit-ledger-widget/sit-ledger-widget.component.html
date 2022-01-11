@@ -8,24 +8,27 @@
       </div>
   </div>
   <div id="card-stepper-wrapper">
-      <div class="card-stepper-item completed">
+      <div [class]="status === 'uploaded' ? 'card-stepper-item completed':'card-stepper-item'">
           <div class="card-step-counter"></div>
-          <div class="card-step-name">1st Jan</div>
+          <div class="card-step-name">Uploaded</div>
       </div>
-      <div class="card-stepper-item completed">
+      <div [class]="status === 'pending' ? 'card-stepper-item completed':'card-stepper-item'">
           <div class="card-step-counter"></div>
-          <div class="card-step-name">Chennai Depo</div>
+          <div class="card-step-name">Pending</div>
       </div>
-      <div class="card-stepper-item completed">
+      <div [class]="status === 'recieved' ? 'card-stepper-item completed':'card-stepper-item'">
           <div class="card-step-counter"></div>
-          <div class="card-step-name">Unloaded</div>
+          <div class="card-step-name">Recieved</div>
       </div>
-      <div class="card-stepper-item">
+      <div [class]="status === 'unloaded' ? 'card-stepper-item completed':'card-stepper-item'">
           <div class="card-step-counter"></div>
           <div class="card-step-name">{{ this.dueDate }}</div>
-          <div class="card-step-name">Expected Delivery</div>
+          <div class="card-step-name">Unloaded</div>
       </div>
   </div>
+  <ion-button expand="block" color ="primary" routerLink ="../unloaded" *ngIf = "status !== 'uploaded' && status !== 'unloaded'" >{{status === 'pending' ? 'Move To Recieved': 'Move to Unloaded'}}</ion-button>
+    <ion-button *ngif="status === 'recieved'">See Recieved Log</ion-button>
+    <ion-button *ngif="status === 'unloaded'">See Unloaded Log</ion-button>
   <hr *ngIf="this.displayMoreDetails">
   <div id="card-more-details" *ngIf="this.displayMoreDetails">
       <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="calendar"></ion-icon> Dispatch Date: </span><span class="more-detail-value">{{ this.dispatchDate }}</span></p>
