@@ -8,6 +8,7 @@ import { LabourLedgerPageRoutingModule } from './labour-ledger-routing.module';
 
 import { LabourLedgerPage } from './labour-ledger.page';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     FormsModule,
     IonicModule,
     LabourLedgerPageRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    BaseComponentsModule
   ],
   declarations: [LabourLedgerPage]
 })

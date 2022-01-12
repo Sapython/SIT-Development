@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SITDetailPageRoutingModule } from './sit-detail-routing.module';
 
 import { SITDetailPage } from './sit-detail.page';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SITDetailPageRoutingModule
+    SITDetailPageRoutingModule,
+    BaseComponentsModule
   ],
   declarations: [SITDetailPage]
 })

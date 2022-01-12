@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AddEmployeePageRoutingModule } from './add-employee-routing.module';
 
 import { AddEmployeePage } from './add-employee.page';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddEmployeePageRoutingModule
+    AddEmployeePageRoutingModule,
+    BaseComponentsModule
   ],
   declarations: [AddEmployeePage]
 })

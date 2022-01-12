@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RecievedSitPageRoutingModule } from './recieved-sit-routing.module';
 
 import { RecievedSitPage } from './recieved-sit.page';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecievedSitPageRoutingModule
+    RecievedSitPageRoutingModule,
+    BaseComponentsModule
   ],
   declarations: [RecievedSitPage]
 })

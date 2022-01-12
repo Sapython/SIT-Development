@@ -8,6 +8,7 @@ import { SITlogPageRoutingModule } from './sitlog-routing.module';
 
 import { SITlogPage } from './sitlog.page';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     FormsModule,
     IonicModule,
     SITlogPageRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    BaseComponentsModule
   ],
   declarations: [SITlogPage]
 })

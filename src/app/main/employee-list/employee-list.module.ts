@@ -17,7 +17,8 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     FormsModule,
     IonicModule,
     EmployeeListPageRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    BaseComponentsModule
   ],
   declarations: [EmployeeListPage]
 })

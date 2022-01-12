@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PendingSitPageRoutingModule } from './pending-sit-routing.module';
 
 import { PendingSitPage } from './pending-sit.page';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PendingSitPageRoutingModule
+    PendingSitPageRoutingModule,
+    BaseComponentsModule
   ],
   declarations: [PendingSitPage]
 })

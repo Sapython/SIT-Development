@@ -1,3 +1,4 @@
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { EmployeeInfoPage } from './employee-info.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EmployeeInfoPageRoutingModule
+    EmployeeInfoPageRoutingModule,
+    BaseComponentsModule
   ],
   declarations: [EmployeeInfoPage]
 })

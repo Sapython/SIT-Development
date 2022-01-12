@@ -17,7 +17,8 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     FormsModule,
     IonicModule,
     LedgeroverviewPageRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    BaseComponentsModule
   ],
   declarations: [LedgeroverviewPage]
 })
