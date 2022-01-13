@@ -6,32 +6,44 @@
     <div class="box">
         <p>Labour Ledger</p>
         <div class="inner-box">
-            <app-labour-ledger-widget></app-labour-ledger-widget>
-            <app-labour-ledger-widget></app-labour-ledger-widget>
-            <app-labour-ledger-widget></app-labour-ledger-widget>
-            <app-labour-ledger-widget></app-labour-ledger-widget>
+            <app-labour-ledger-widget
+            *ngFor="let item of labourledger"
+            [Name]="item.Name"
+            [Lastname]="item.Lastname"
+            [Code]="item.Code"
+            [Paid]="item.Paid"></app-labour-ledger-widget>
              
         </div>
     </div>
     <div class="box">
         <p>Dala Ledger</p>
         <div class="inner-box">
-            <app-dala-widget></app-dala-widget>
-            <app-dala-widget></app-dala-widget>
-            <app-dala-widget></app-dala-widget>
-            <app-dala-widget></app-dala-widget>
-            <app-dala-widget></app-dala-widget>
-             
+            <app-dala-widget
+            *ngFor="let item of dalaledgers"
+            [driverName]="item.driverName"
+            [driverNumber]="item.driverNumber"
+            [driverImage]="item.driverImage"
+            [driverId]="item.driverId"
+            [charge]="item.charge"
+            [ledgerNo]="item.ledgerNo"
+            [coordinator]="item.coordinator">
+        </app-dala-widget>
         </div>
     </div>
-    <div class="box">
+    <div class="box1">
         <p>Expense Ledger</p>
         <div class="inner-box">
-            <app-expense-ledger></app-expense-ledger>
-            <app-expense-ledger></app-expense-ledger>
-            <app-expense-ledger></app-expense-ledger>
-            <app-expense-ledger></app-expense-ledger>
-            <app-expense-ledger></app-expense-ledger>
+            <app-expense-ledger
+            *ngFor="let item of expenseledger"
+            [ledgerNo]="item.ledgerNo"
+            [charge]="item.charge"
+            [expenseName]="item.expenseName"
+            [condition]="item.condition"
+            [servicable]="item.servicable"
+            [reason]="item.reason"
+            [date]="item.date"
+            [starred]="item.starred">
+        </app-expense-ledger>
              
         </div>
     </div>
