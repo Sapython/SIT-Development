@@ -90,6 +90,15 @@ const routes: Routes = [
         ]
       },
       {
+        path:'driver-list',
+        children:[
+          {
+            path: 'driver-list',
+            loadChildren: () => import('./driver-list/driver-list.module').then( m => m.DriverListPageModule)
+          }
+        ]
+      },
+      {
         path: 'recieved',
         loadChildren: () => import('./recieved/recieved.module').then ( m => m.RecievedPageModule)
       },
@@ -132,6 +141,11 @@ const routes: Routes = [
     redirectTo: '/app/home',
     pathMatch: 'full',
   },
+  {
+    path: 'driver-list',
+    loadChildren: () => import('./driver-list/driver-list.module').then( m => m.DriverListPageModule)
+  },
+
 
   
 

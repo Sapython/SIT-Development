@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<ion-content>
+  <p>Driver List</p>
+  <app-dala-widget
+        *ngFor="let item of dalaLedgers" 
+        [driverName]="item.driverName"
+        [driverImage]="item.driverImage"
+        [driverNumber]="item.driverNumber"
+        [driverId]="item.driverId"
+        [charge]="item.charge"
+        [ledgerNo]="item.ledgerNo"
+        [coordinator]="item.coordinator">
+  </app-dala-widget>
+</ion-content>

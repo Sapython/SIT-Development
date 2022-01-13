@@ -10,13 +10,13 @@
 .box{
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: #6260A6;
+    color: var(--ion-color-secondary);
     margin: 10px;
-    border: 2px solid #6260A6;
+    border: 2px solid var(--ion-color-secondary);
     border-radius:20px;
 }
 .inner-box{
-    border: 2px solid #6260A6;
+    border: 2px solid var(--ion-color-secondary);
     border-radius: 20px;
     padding:05px;
 }
@@ -27,7 +27,7 @@
 .container button{
     display: block;
     margin-top: 20px;
-    background-color: var(--ion-color-primary);
+    background-color: var(--ion-color-secondary);
     color: #fff;
     padding: 10px 50px;
     border-radius: 10px;

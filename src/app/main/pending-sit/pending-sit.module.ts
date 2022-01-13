@@ -8,6 +8,7 @@ import { PendingSitPageRoutingModule } from './pending-sit-routing.module';
 
 import { PendingSitPage } from './pending-sit.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { BaseComponentsModule } from 'src/app/base-components/base-components.mo
     FormsModule,
     IonicModule,
     PendingSitPageRoutingModule,
-    BaseComponentsModule
+    BaseComponentsModule,
+    WidgetsModule
   ],
   declarations: [PendingSitPage]
 })
