@@ -1,52 +1,94 @@
 <div id="card">
-  <div id="card-photo-and-details">
-      <img src="https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="NAME" id="card-photo">
-      <div id="card-details">
-          <h3 id="card-heading">{{ this.bakery }}</h3>
-          <p class="card-paragraph card-paragraph-highlight">{{ this.itemName }}</p>
-          <p class="card-paragraph"><span class="card-paragraph-highlight">Supplier Code:</span> {{ this.suppCode }}</p>
-      </div>
-  </div>
-  <div id="card-stepper-wrapper">
-      <div [class]="status === 'uploaded' ? 'card-stepper-item completed':'card-stepper-item'">
-          <div class="card-step-counter"></div>
-          <div class="card-step-name">Uploaded</div>
-      </div>
-      <div [class]="status === 'pending' ? 'card-stepper-item completed':'card-stepper-item'">
-          <div class="card-step-counter"></div>
-          <div class="card-step-name">Pending</div>
-      </div>
-      <div [class]="status === 'recieved' ? 'card-stepper-item completed':'card-stepper-item'">
-          <div class="card-step-counter"></div>
-          <div class="card-step-name">Recieved</div>
-      </div>
-      <div [class]="status === 'unloaded' ? 'card-stepper-item completed':'card-stepper-item'">
-          <div class="card-step-counter"></div>
-          <div class="card-step-name">{{ this.dueDate }}</div>
-          <div class="card-step-name">Unloaded</div>
-      </div>
-  </div>
-  <ion-button expand="block" color ="primary" routerLink ="../unloaded" *ngIf = "status !== 'uploaded' && status !== 'unloaded'" >{{status === 'pending' ? 'Move To Recieved': 'Move to Unloaded'}}</ion-button>
-    <ion-button expand="block" *ngIf="status === 'recieved'|| 'unloaded'" routerLink="recieved">See Recieved Log</ion-button>
+    <div id="card-photo-and-details">
+        <img src="https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            alt="NAME" id="card-photo">
+        <div id="card-details">
+            <h3 id="card-heading">{{ this.bakery }}</h3>
+            <p class="card-paragraph card-paragraph-highlight">{{ this.itemName }}</p>
+            <p class="card-paragraph"><span class="card-paragraph-highlight">Supplier Code:</span> {{ this.suppCode }}
+            </p>
+        </div>
+    </div>
+    <div id="card-stepper-wrapper">
+        <div [class]="status === 'uploaded' ? 'card-stepper-item completed':'card-stepper-item'">
+            <div class="card-step-counter"></div>
+            <div class="card-step-name">Uploaded</div>
+        </div>
+        <div [class]="status === 'pending' ? 'card-stepper-item completed':'card-stepper-item'">
+            <div class="card-step-counter"></div>
+            <div class="card-step-name">Pending</div>
+        </div>
+        <div [class]="status === 'recieved' ? 'card-stepper-item completed':'card-stepper-item'">
+            <div class="card-step-counter"></div>
+            <div class="card-step-name">Recieved</div>
+        </div>
+        <div [class]="status === 'unloaded' ? 'card-stepper-item completed':'card-stepper-item'">
+            <div class="card-step-counter"></div>
+            <div class="card-step-name">{{ this.dueDate }}</div>
+            <div class="card-step-name">Unloaded</div>
+        </div>
+    </div>
+    <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status === 'pending'">
+        Move To Recieved
+    </ion-button>
+    <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='recieved'">
+        Move To Unloaded
+    </ion-button>
+    <ion-button expand="block" *ngIf="status === 'recieved' || status === 'unloaded'" routerLink="recieved">See Recieved Log
+    </ion-button>
     <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded">See Unloaded Log</ion-button>
-  <hr *ngIf="this.displayMoreDetails">
-  <div id="card-more-details" *ngIf="this.displayMoreDetails">
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="calendar"></ion-icon> Dispatch Date: </span><span class="more-detail-value">{{ this.dispatchDate }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="cart"></ion-icon> Delivery: </span><span class="more-detail-value">{{ this.delivery }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="time"></ion-icon> Expected Delivery: </span><span class="more-detail-value">{{ this.expectedDelivery }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="calendar-number"></ion-icon> Gate Entry Date: </span><span class="more-detail-value">{{ this.gateEntryDate }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="trail-sign"></ion-icon> Gate Entry No.: </span><span class="more-detail-value">{{ this.gateEntryNo }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="location"></ion-icon> MFG Location: </span><span class="more-detail-value">{{ this.mfgLocation }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="qr-code"></ion-icon> Product Code: </span><span class="more-detail-value">{{ this.productCode }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bag"></ion-icon> Product Name: </span><span class="more-detail-value">{{ this.productName }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="cube"></ion-icon> Quantity: </span><span class="more-detail-value">{{ this.quantity }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="business"></ion-icon> REC Plant DESC: </span><span class="more-detail-value">{{ this.recPlantDesc }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bag-check"></ion-icon> Remarks: </span><span class="more-detail-value">"{{ this.remarks }}"</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="business"></ion-icon> Supp Plant: </span><span class="more-detail-value">{{ this.suppPlant }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="business"></ion-icon> Supp Plant Desc: </span><span class="more-detail-value">{{ this.suppPlantDesc }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="location"></ion-icon> Storage Location: </span><span class="more-detail-value">{{ this.storageLocation }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bus"></ion-icon> Trans Name: </span><span class="more-detail-value">{{ this.transName }}</span></p>
-      <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="bus"></ion-icon> Vehicle No.: </span><span class="more-detail-value">{{ this.vehicleNo }}</span></p>
-  </div>
-  <button id="card-more-details-button" (click)="this.displayMoreDetails = !this.displayMoreDetails"><ion-icon name="{{ this.displayMoreDetails ? 'caret-up' : 'caret-down' }}"></ion-icon></button>
+    <hr *ngIf="this.displayMoreDetails">
+    <div id="card-more-details" *ngIf="this.displayMoreDetails">
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="calendar"></ion-icon> Dispatch Date:
+            </span><span class="more-detail-value">{{ this.dispatchDate }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="cart"></ion-icon> Delivery:
+            </span><span class="more-detail-value">{{ this.delivery }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="time"></ion-icon> Expected Delivery:
+            </span><span class="more-detail-value">{{ this.expectedDelivery }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="calendar-number"></ion-icon> Gate Entry Date:
+            </span><span class="more-detail-value">{{ this.gateEntryDate }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="trail-sign"></ion-icon> Gate Entry No.:
+            </span><span class="more-detail-value">{{ this.gateEntryNo }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="location"></ion-icon> MFG Location:
+            </span><span class="more-detail-value">{{ this.mfgLocation }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="qr-code"></ion-icon> Product Code:
+            </span><span class="more-detail-value">{{ this.productCode }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="bag"></ion-icon> Product Name:
+            </span><span class="more-detail-value">{{ this.productName }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="cube"></ion-icon> Quantity:
+            </span><span class="more-detail-value">{{ this.quantity }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="business"></ion-icon> REC Plant DESC:
+            </span><span class="more-detail-value">{{ this.recPlantDesc }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="bag-check"></ion-icon> Remarks:
+            </span><span class="more-detail-value">"{{ this.remarks }}"</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="business"></ion-icon> Supp Plant:
+            </span><span class="more-detail-value">{{ this.suppPlant }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="business"></ion-icon> Supp Plant Desc:
+            </span><span class="more-detail-value">{{ this.suppPlantDesc }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="location"></ion-icon> Storage Location:
+            </span><span class="more-detail-value">{{ this.storageLocation }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="bus"></ion-icon> Trans Name:
+            </span><span class="more-detail-value">{{ this.transName }}</span></p>
+        <p class="card-more-detail"><span class="more-detail-key">
+                <ion-icon name="bus"></ion-icon> Vehicle No.:
+            </span><span class="more-detail-value">{{ this.vehicleNo }}</span></p>
+    </div>
+    <button id="card-more-details-button" (click)="this.displayMoreDetails = !this.displayMoreDetails">
+        <ion-icon name="{{ this.displayMoreDetails ? 'caret-up' : 'caret-down' }}"></ion-icon>
+    </button>
 </div>

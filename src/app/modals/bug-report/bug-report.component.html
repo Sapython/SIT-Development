@@ -1,0 +1,14 @@
+<ion-content>
+  <img src="assets/UI/Images/Template.png">
+  <div class="bubbleContainer"></div>
+  <div class="container">
+    <h1>Found A bug!</h1>
+    <p>Please report it</p>
+    <p>we will fix it.</p>
+    <form [formGroup]="bugReportForm" (ngSubmit)="reportBug()">
+      <textarea type="text" [formControl]="description" placeholder="Enter Description"></textarea>
+      <button type="submit">Report</button>
+    </form>
+    <!-- <!-- <h5>Forgot Password?</h5> -->
+  </div>
+</ion-content>

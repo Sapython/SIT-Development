@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ChartData, ChartOptions, ChartType } from 'chart.js';
 import { dalaLedgerData, sitLedgerData } from 'src/app/structures/method.structure';
-
+import { ModalController } from '@ionic/angular';
+import { BugReportComponent } from 'src/app/modals/bug-report/bug-report.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -33,15 +34,15 @@ export class HomePage implements OnInit {
   @ViewChild('filtersList') filtersList: ElementRef;
   showFiltersList: boolean = false;
 
-  constructor(private renderer: Renderer2) {
-    //  This event gets called by all clicks on the page
-    // this.renderer.listen('window', 'click', (e: Event) => {
-    //   if(!(this.filtersButton.nativeElement.contains(e.target) || this.filtersList.nativeElement.contains(e.target))) {
-    //     this.showFiltersList = false; 
-    //   }
-    // });
+  constructor(public modalController: ModalController) {
+   
   }
-
+  async reportBug() {
+    const modal = await this.modalController.create({
+      component: BugReportComponent,
+    });
+    return await modal.present();
+  }
   ngOnInit() { }
 
   items = [1, 2, 3];

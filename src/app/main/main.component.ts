@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-main',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-
-  constructor() { }
-
+  // getUrl:any = window.location.hash;
+  selected:'home' | 'overview' | 'log' = 'home';
+  constructor(private router: Router) { }
+  get getUrl(){
+    return this.router.url;
+  }
   ngOnInit() {}
 
 }

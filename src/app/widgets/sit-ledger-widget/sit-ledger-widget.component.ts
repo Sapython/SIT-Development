@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sit-ledger-widget',
@@ -32,8 +33,11 @@ export class SitLedgerWidgetComponent implements OnInit {
 
   displayMoreDetails: boolean = false;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() { }
+  navigate(path:string){
+    this.router.navigateByUrl('/main/app/'+path);
+  }
 
 }

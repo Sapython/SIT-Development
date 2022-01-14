@@ -32,11 +32,13 @@ import { AuthencationService } from './services/authencation.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { MainComponent } from './main/main.component';
+import { ComponentModule } from './component/component.module';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent],
     imports: [
         // MainModule,
+        ComponentModule,
         ReactiveFormsModule,
         BrowserModule,
         IonicModule.forRoot(),
