@@ -8,6 +8,7 @@ import { DalaLedgerPageRoutingModule } from './dala-ledger-routing.module';
 
 import { DalaLedgerPage } from './dala-ledger.page';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     IonicModule,
     DalaLedgerPageRoutingModule,
     WidgetsModule,
+    BaseComponentsModule
   ],
   declarations: [DalaLedgerPage]
 })

@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="container">
+    <div class="pending-sit">
+      <p>Pending SIT</p>
+      <app-sit-ledger-widget 
+        *ngFor="let item of sitLedgers"
+            [dispatchDate]="item.dispatchDate"
+            [delivery]="item.delivery"
+            [expectedDelivery]="item.expectedDelivery"
+            [gateEntryDate]="item.gateEntryDate"
+            [gateEntryNo]="item.gateEntryNo"
+            [mfgLocation]="item.mfgLocation"
+            [productCode]="item.productCode"
+            [productName]="item.productName"
+            [quantity]="item.quantity"
+            [recPlantDesc]="item.recPlantDesc"
+            [remarks]="item.remarks"
+            [suppPlant]="item.suppPlant"
+            [suppPlantDesc]="item.suppPlantDesc"
+            [storageLocation]="item.storageLocation"
+            [transName]="item.transName"
+            [vehicleNo]="item.vehicleNo"
+            [status]="item.status"
+        ></app-sit-ledger-widget>
+    </div>
+    <div class="recieved-sit">
+      <p>Recieved SIT</p>
+      <app-sit-ledger-widget 
+        *ngFor="let item of recievedLedgers"
+            [dispatchDate]="item.dispatchDate"
+            [delivery]="item.delivery"
+            [expectedDelivery]="item.expectedDelivery"
+            [gateEntryDate]="item.gateEntryDate"
+            [gateEntryNo]="item.gateEntryNo"
+            [mfgLocation]="item.mfgLocation"
+            [productCode]="item.productCode"
+            [productName]="item.productName"
+            [quantity]="item.quantity"
+            [recPlantDesc]="item.recPlantDesc"
+            [remarks]="item.remarks"
+            [suppPlant]="item.suppPlant"
+            [suppPlantDesc]="item.suppPlantDesc"
+            [storageLocation]="item.storageLocation"
+            [transName]="item.transName"
+            [vehicleNo]="item.vehicleNo"
+            [status]="item.status"
+        ></app-sit-ledger-widget>
+    </div>
+    <div class="unloaded-sit">
+      <p>Unloaded SIT</p>
+      <app-sit-ledger-widget 
+        *ngFor="let item of unloadedLedgers"
+            [dispatchDate]="item.dispatchDate"
+            [delivery]="item.delivery"
+            [expectedDelivery]="item.expectedDelivery"
+            [gateEntryDate]="item.gateEntryDate"
+            [gateEntryNo]="item.gateEntryNo"
+            [mfgLocation]="item.mfgLocation"
+            [productCode]="item.productCode"
+            [productName]="item.productName"
+            [quantity]="item.quantity"
+            [recPlantDesc]="item.recPlantDesc"
+            [remarks]="item.remarks"
+            [suppPlant]="item.suppPlant"
+            [suppPlantDesc]="item.suppPlantDesc"
+            [storageLocation]="item.storageLocation"
+            [transName]="item.transName"
+            [vehicleNo]="item.vehicleNo"
+            [status]="item.status"
+        ></app-sit-ledger-widget>
+    </div>
+  </div>
+</ion-content>

@@ -1,6 +1,9 @@
 .container p{
-    font-size: 20px;
-    color: var(--ion-color-primary);
+    font-size: 30px;
+    color: grey;
+    margin-left: 65px;
+    margin-top: 25px;
+    margin-bottom: 48px;
 }
 .container{
     font-family: 'Poppins', sans-serif;
@@ -10,27 +13,43 @@
 .box{
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: #6260A6;
+    color: var(--ion-color-secondary);
     margin: 10px;
-    border: 2px solid #6260A6;
     border-radius:20px;
 }
 .inner-box{
-    border: 2px solid #6260A6;
-    border-radius: 20px;
     padding:05px;
 }
 .box p{
-    margin-left: 15px;
+    font-size: 20px;
     margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: -5px;
+    font-weight: 600;
+}
+.box1 p{
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: -5px;
+    font-weight: 600;
+    color: var(--ion-color-secondary);
+    font-family: 'Poppins', sans-serif;
 }
 .container button{
     display: block;
     margin-top: 20px;
-    background-color: var(--ion-color-primary);
+    background-color: var(--ion-color-secondary);
     color: #fff;
     padding: 10px 50px;
     border-radius: 10px;
     margin-bottom: 20px;
     font-size: 15px;
+}
+.box1{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 15px;
+
 }

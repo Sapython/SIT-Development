@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RecievedSitPageRoutingModule } from './recieved-sit-routing.module';
+import { DriverListPageRoutingModule } from './driver-list-routing.module';
 
-import { RecievedSitPage } from './recieved-sit.page';
+import { DriverListPage } from './driver-list.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
@@ -15,10 +15,10 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    RecievedSitPageRoutingModule,
+    DriverListPageRoutingModule,
     BaseComponentsModule,
     WidgetsModule
   ],
-  declarations: [RecievedSitPage]
+  declarations: [DriverListPage]
 })
-export class RecievedSitPageModule {}
+export class DriverListPageModule {}

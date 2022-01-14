@@ -8,6 +8,7 @@ import { ExpenseledgerPageRoutingModule } from './expenseledger-routing.module';
 
 import { ExpenseledgerPage } from './expenseledger.page';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     FormsModule,
     IonicModule,
     ExpenseledgerPageRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    BaseComponentsModule
   ],
   declarations: [ExpenseledgerPage]
 })

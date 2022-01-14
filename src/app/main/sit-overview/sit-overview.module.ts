@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProductLedgerPageRoutingModule } from './product-ledger-routing.module';
+import { SitOverviewPageRoutingModule } from './sit-overview-routing.module';
 
-import { ProductLedgerPage } from './product-ledger.page';
+import { SitOverviewPage } from './sit-overview.page';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 
@@ -15,10 +15,10 @@ import { BaseComponentsModule } from 'src/app/base-components/base-components.mo
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductLedgerPageRoutingModule,
+    SitOverviewPageRoutingModule,
     WidgetsModule,
     BaseComponentsModule
   ],
-  declarations: [ProductLedgerPage]
+  declarations: [SitOverviewPage]
 })
-export class ProductLedgerPageModule {}
+export class SitOverviewPageModule {}

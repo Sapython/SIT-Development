@@ -1,9 +1,27 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>pending-sit</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
-
+    <p>All Pending SIT</p>
+    <div class="container">
+        <app-sit-ledger-widget
+            *ngFor="let item of sitledger"
+            [dispatchDate]="item.dispatchDate"
+            [delivery] = "item.delivery"
+            [expectedDelivery]="item.expectedDelivery"
+            [gateEntryDate]="item.gateEntryDate"
+            [gateEntryNo]="item.gateEntryNo"
+            [mfgLocation]="item.mfgLocation"
+            [productCode]="item.productCode"
+            [productName]="item.productName"
+            [quantity]="item.quantity"
+            [recPlantDesc]="item.recPlantDesc"
+            [remarks]="item.remarks"
+            [suppPlant]="item.suppPlant"
+            [suppPlantDesc]="item.suppPlantDesc"
+            [storageLocation]="item.storageLocation"
+            [transName]="item.transName"
+            [vehicleNo]="item.vehicleNo"
+            [status]="item.status">
+        </app-sit-ledger-widget>
+    </div>
 </ion-content>

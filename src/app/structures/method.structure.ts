@@ -1,3 +1,5 @@
+import { type } from "os"
+
 export type PageSetting = {
     blur: boolean;
     lastRedirect: string;
@@ -50,4 +52,21 @@ export type sitLedgerData = {
     transName: string;
     vehicleNo: string;
     status:"uploaded"|"pending"|"recieved"|"unloaded";
+}
+export type LabourLedgerData = {
+        Name: string;
+        Lastname: string;
+        Code: string;
+        Paid: number;
+
+}
+export type expenseledgerData = {
+    expenseName:string;
+    ledgerNo:string;
+    charge:number;
+    condition:'danger'|'success'|'warning'|'primary';
+    servicable:boolean; 
+    reason:string;
+    date:string;
+    starred:boolean;
 }

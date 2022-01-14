@@ -27,8 +27,8 @@
       </div>
   </div>
   <ion-button expand="block" color ="primary" routerLink ="../unloaded" *ngIf = "status !== 'uploaded' && status !== 'unloaded'" >{{status === 'pending' ? 'Move To Recieved': 'Move to Unloaded'}}</ion-button>
-    <ion-button *ngif="status === 'recieved'">See Recieved Log</ion-button>
-    <ion-button *ngif="status === 'unloaded'">See Unloaded Log</ion-button>
+    <ion-button expand="block" *ngIf="status === 'recieved'|| 'unloaded'" routerLink="recieved">See Recieved Log</ion-button>
+    <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded">See Unloaded Log</ion-button>
   <hr *ngIf="this.displayMoreDetails">
   <div id="card-more-details" *ngIf="this.displayMoreDetails">
       <p class="card-more-detail"><span class="more-detail-key"><ion-icon name="calendar"></ion-icon> Dispatch Date: </span><span class="more-detail-value">{{ this.dispatchDate }}</span></p>

@@ -18,7 +18,8 @@ import { WidgetsModule } from '../widgets/widgets.module';
     CommonModule,
     FormsModule,
     MainRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    BaseComponentsModule,
   ]
 })
 export class MainModule { }
