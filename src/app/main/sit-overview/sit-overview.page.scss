@@ -1,0 +1,18 @@
+.container{
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+.container p{
+    color: grey;
+    font-size: 25px;
+    font-weight: 600;
+}
+.recieved-sit p{
+    margin-top: 10px;
+}
+.unloaded-sit p{
+    margin-top: 10px;
+}

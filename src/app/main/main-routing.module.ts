@@ -81,6 +81,15 @@ const routes: Routes = [
         ]
       },
       {
+        path:'sit-overview',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./sit-overview/sit-overview.module').then( m => m.SitOverviewPageModule)
+          }
+        ]
+      },
+      {
         path:'pending-sit',
         children:[
           {
@@ -90,10 +99,19 @@ const routes: Routes = [
         ]
       },
       {
+        path:'recieved',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./recieved/recieved.module').then ( m => m.RecievedPageModule)
+          }
+        ]
+      },
+      {
         path:'driver-list',
         children:[
           {
-            path: 'driver-list',
+            path: '',
             loadChildren: () => import('./driver-list/driver-list.module').then( m => m.DriverListPageModule)
           }
         ]
@@ -145,6 +163,8 @@ const routes: Routes = [
     path: 'driver-list',
     loadChildren: () => import('./driver-list/driver-list.module').then( m => m.DriverListPageModule)
   },
+  ,
+
 
 
   

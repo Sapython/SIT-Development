@@ -94,7 +94,7 @@ export class HomePage implements OnInit {
       storageLocation: "Prayagraj",
       transName: "Jain Roadways",
       vehicleNo: "HR51AB1314",
-      status: "uploaded",
+      status: "unloaded",
     },
     {
       dispatchDate: "23 July 2021",
