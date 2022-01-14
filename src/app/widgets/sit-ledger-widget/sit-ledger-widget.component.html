@@ -28,7 +28,7 @@
             <div class="card-step-name">Unloaded</div>
         </div>
     </div>
-    <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status === 'pending'">
+    <ion-button expand="block" color="primary" (click)="navigate('recieved')" *ngIf="status === 'pending'">
         Move To Recieved
     </ion-button>
     <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='recieved'">

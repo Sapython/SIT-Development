@@ -8,6 +8,7 @@ import { ProductLedgerWidgetComponent } from './product-ledger-widget/product-le
 import { NgChartsModule } from 'ng2-charts';
 import { ExpenseLedgerComponent } from './expense-ledger/expense-ledger.component';
 import { DalaWidgetComponent } from './dala-widget/dala-widget.component';
+import { RecievedLogComponent } from '../modals/recieved-log/recieved-log.component';
 const widgets = [
   SitLedgerWidgetComponent,
   EmployeeDataWidgetComponent,
@@ -20,7 +21,7 @@ const widgets = [
 
 
 @NgModule({
-  declarations: [widgets],
+  declarations: [widgets,RecievedLogComponent],
   imports: [
     CommonModule,
     NgChartsModule,

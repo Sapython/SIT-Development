@@ -1,9 +1,9 @@
 .container p{
     font-size: 30px;
     color: grey;
-    margin-left: 65px;
+    margin-left: 30px;
     margin-top: 25px;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
 }
 .container{
     font-family: 'Poppins', sans-serif;
@@ -14,8 +14,16 @@
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     color: var(--ion-color-secondary);
-    margin: 10px;
+    margin: 05px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius:20px;
+    box-shadow:inset 10px 10px 10px rgba(0,0,0,0.05),
+    15px 25px 10px rgba(0,0,0,0.05),
+    15px 20px 20px rgba(0,0,0,0.05),
+    inset -10px -10px 15px rgba(0,0,0,0.05);
+    padding: 10px;
+    border: 2px solid var(--ion-color-secondary);
 }
 .inner-box{
     padding:05px;
