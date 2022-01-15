@@ -1,10 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" (click)="closeModal()" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recieved Log Data</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
     <ion-list>
-        <ion-item-sliding>
-           <ion-item>
-             <ion-label slot="start"><strong>Name</strong></ion-label>
-             <ion-label slot="end">{{bakery}}</ion-label>
-           </ion-item>
-        </ion-item-sliding>
+       <ion-item>
+         <ion-label>Name</ion-label>
+         <ion-label slot="end" color="primary">{{name}}</ion-label>
+       </ion-item>
+       <ion-item>
+        <ion-label>Product Name</ion-label>
+        <ion-text slot="end" color="primary">{{productName}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Product Code</ion-label>
+        <ion-label slot="end" color="primary">{{productCode}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Coordinator</ion-label>
+        <ion-label slot="end" color="primary">{{coordinator}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Co. Phone</ion-label>
+        <ion-label slot="end" color="primary">{{coordinatorPhone}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Dispatch Date</ion-label>
+        <ion-label slot="end" color="primary">{{dispatchDate}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expected Delivery</ion-label>
+        <ion-label slot="end" color="primary">{{expectedDelivery}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Delivery Code</ion-label>
+        <ion-label slot="end" color="primary">{{Deliverycode}}</ion-label>
+      </ion-item>
     </ion-list>
+    <hr>
 </ion-content>
