@@ -21,4 +21,8 @@ export class AppComponent implements OnInit{
       }
     })
   }
+  navigate(path:string){
+    console.log(path);
+    this.router.navigateByUrl('/main/app/'+path);
+  }
 }

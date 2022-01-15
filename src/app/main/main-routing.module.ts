@@ -117,6 +117,24 @@ const routes: Routes = [
         ]
       },
       {
+        path:'labour-ledger',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./labour-ledger/labour-ledger.module').then( m => m.LabourLedgerPageModule)
+          }
+        ]
+      },
+      {
+        path:'account-page',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./account-page/account-page.module').then( m => m.AccountPagePageModule)
+          }
+        ]
+      },
+      {
         path: 'recieved',
         loadChildren: () => import('./recieved/recieved.module').then ( m => m.RecievedPageModule)
       },

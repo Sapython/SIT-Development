@@ -1,58 +1,45 @@
-
-  <div class="container">
-    <div class="const1">
-      <p>Unloaded Log</p>
-    </div>
-    <div class="details">
-      <p>Bakery</p>
-      <p class="opacity">{{bakery}}</p>
-    </div>
-    <div class="details">
-      <p>Supply Name</p>
-      <p class="opacity">{{suppplyname}}</p>
-    </div>
-    <div class="details">
-      <p>Supply Code</p>
-      <p class="opacity">{{suppplycode}}</p>
-    </div>
-    <div class="details">
-      <p>Coordinator</p>
-      <p class="opacity">{{coordinator}}</p>
-    </div>
-    <div class="details">
-      <p>Coordinator Number</p>
-      <p class="opacity">{{coordinatorphone}}</p>
-    </div>
-    <div class="details">
-      <p>dispatchdate</p>
-      <p class="opacity">{{dispatchDate}}</p>
-    </div>
-    <div class="details">
-      <p>expectedDelivery</p>
-      <p class="opacity">{{expectedDelivery}}</p>
-    </div>
-    <div class="details">
-      <p>Product Code</p>
-      <p class="opacity">{{productcode}}</p>
-    </div>
-    <div class="details">
-      <p>Product Name</p>
-      <p class="opacity">{{productname}}</p>
-    </div>
-    <div class="details">
-      <p>Delivery Code</p>
-      <p class="opacity">{{Deliverycode}}</p>
-    </div>
-    <div class="details">
-      <p>Gate Number</p>
-      <p class="opacity">{{Gatenumber}}</p>
-    </div>
-    <div class="details">
-      <p>Recieved Code</p>
-      <p class="opacity">{{Recievedata}}</p>
-    </div>
-    <div class="details">
-      <p>Submit By</p>
-      <p class="opacity">{{submitby}}</p>
-    </div>
-  </div>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recieved Log Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+       <ion-item>
+         <ion-label>Name</ion-label>
+         <ion-label slot="end" color="primary">{{name}}</ion-label>
+       </ion-item>
+       <ion-item>
+        <ion-label>Product Name</ion-label>
+        <ion-text slot="end" color="primary">{{productName}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Product Code</ion-label>
+        <ion-label slot="end" color="primary">{{productCode}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Coordinator</ion-label>
+        <ion-label slot="end" color="primary">{{coordinator}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Co. Phone</ion-label>
+        <ion-label slot="end" color="primary">{{coordinatorPhone}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Dispatch Date</ion-label>
+        <ion-label slot="end" color="primary">{{dispatchDate}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expected Delivery</ion-label>
+        <ion-label slot="end" color="primary">{{expectedDelivery}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Delivery Code</ion-label>
+        <ion-label slot="end" color="primary">{{Deliverycode}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <hr>
+</ion-content>

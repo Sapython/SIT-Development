@@ -8,16 +8,16 @@
         <div id="options-container">
           <ion-list id="options">
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root" [routerLink]="" detail="false">Labour Ledger</ion-item>
+              <ion-item routerDirection="root"  (click)="navigate('labour-ledger')" detail="false">Labour Ledger</ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root" [routerLink]="" detail="false">SIT Log</ion-item>
+              <ion-item routerDirection="root"  (click)="navigate('sit-overview')" detail="false">SIT Log</ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root" [routerLink]="" detail="false">Employee List</ion-item>
+              <ion-item routerDirection="root" (click)="navigate('employeeList')" detail="false">Employee List</ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root" [routerLink]="" detail="false">Account</ion-item>
+              <ion-item routerDirection="root"  (click)="navigate('account-page')" detail="false">Account</ion-item>
             </ion-menu-toggle>
           </ion-list>
           <ion-button color="primary" id="logout-button">Logout <ion-icon slot="end" name="person"></ion-icon>
