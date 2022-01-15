@@ -34,9 +34,9 @@
     <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='recieved'">
         Move To Unloaded
     </ion-button>
-    <ion-button expand="block" *ngIf="status === 'recieved' || status === 'unloaded'" routerLink="recieved">See Recieved Log
+    <ion-button expand="block" *ngIf="status === 'recieved' || status === 'unloaded'" routerLink="recieved" (click)="recievedlog()">See Recieved Log
     </ion-button>
-    <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded">See Unloaded Log</ion-button>
+    <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded" (click)="unloadedlog()">See Unloaded Log</ion-button>
     <hr *ngIf="this.displayMoreDetails">
     <div id="card-more-details" *ngIf="this.displayMoreDetails">
         <p class="card-more-detail"><span class="more-detail-key">

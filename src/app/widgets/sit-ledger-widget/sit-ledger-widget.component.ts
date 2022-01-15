@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
+import { UnloadedLogComponent } from 'src/app/modals/unloaded-log/unloaded-log.component';
 
 @Component({
   selector: 'app-sit-ledger-widget',
@@ -33,8 +36,19 @@ export class SitLedgerWidgetComponent implements OnInit {
 
   displayMoreDetails: boolean = false;
 
-  constructor(private router:Router) { }
-
+  constructor(private router:Router, public modalController: ModalController) { }
+  async recievedlog() {
+    const modal = await this.modalController.create({
+      component: RecievedLogComponent,
+    });
+    return await modal.present();
+  }
+  async unloadedlog() {
+    const modal = await this.modalController.create({
+      component: UnloadedLogComponent,
+    });
+    return await modal.present();
+  }
   ngOnInit() { }
   navigate(path:string){
     this.router.navigateByUrl('/main/app/'+path);

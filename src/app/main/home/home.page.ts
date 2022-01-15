@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { ChartData, ChartOptions, ChartType } from 'chart.js';
 import { dalaLedgerData, sitLedgerData } from 'src/app/structures/method.structure';
 import { ModalController } from '@ionic/angular';
-import { BugReportComponent } from 'src/app/modals/bug-report/bug-report.component';
+import { BugReportComponent} from 'src/app/modals/bug-report/bug-report.component';
+import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -40,6 +41,12 @@ export class HomePage implements OnInit {
   async reportBug() {
     const modal = await this.modalController.create({
       component: BugReportComponent,
+    });
+    return await modal.present();
+  }
+  async recievedlog() {
+    const modal = await this.modalController.create({
+      component: RecievedLogComponent,
     });
     return await modal.present();
   }
