@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dala-widget',
@@ -13,8 +14,10 @@ export class DalaWidgetComponent implements OnInit {
   @Input() ledgerNo:string;
   @Input() coordinator:string;
   @Input() driverNumber:string;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {}
-
+  navigate(path:string){
+    this.router.navigateByUrl('/main/app/'+path);
+  }
 }

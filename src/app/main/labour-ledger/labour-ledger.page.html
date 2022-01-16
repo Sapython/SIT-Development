@@ -3,10 +3,12 @@
   <div class="container">
     <p>Labour Ledger</p>
     <div class="box">
-      <app-labour-ledger-widget></app-labour-ledger-widget>
-      <app-labour-ledger-widget></app-labour-ledger-widget>
-      <app-labour-ledger-widget></app-labour-ledger-widget>
-      <app-labour-ledger-widget></app-labour-ledger-widget>
+      <app-labour-ledger-widget
+      *ngFor="let item of labourledger"
+      [Name]="item.Name"
+      [Lastname]="item.Lastname"
+      [Code]="item.Code"
+      [Paid]="item.Paid"></app-labour-ledger-widget>
     </div>
   </div>
 </ion-content>

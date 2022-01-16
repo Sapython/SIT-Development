@@ -54,15 +54,6 @@ const routes: Routes = [
         ]
       },
       {
-        path:'sitDetail',
-        children:[
-          {
-            path: '',
-            loadChildren: () => import('./sit-detail/sit-detail.module').then( m => m.SITDetailPageModule)
-          },
-        ]
-      },
-      {
         path:'unloaded',
         children:[
           {
@@ -133,6 +124,22 @@ const routes: Routes = [
             loadChildren: () => import('./account-page/account-page.module').then( m => m.AccountPagePageModule)
           }
         ]
+      },{
+        path:'employee-info',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./employee-info/employee-info.module').then( m => m.EmployeeInfoPageModule)
+          }
+        ]
+      },{
+        path:'driver-info',
+        children:[
+          {
+            path: '',
+            loadChildren: () => import('./driver-info/driver-info.module').then( m => m.DriverInfoPageModule)
+          }
+        ]
       },
       {
         path: 'recieved',
@@ -182,6 +189,7 @@ const routes: Routes = [
     loadChildren: () => import('./driver-list/driver-list.module').then( m => m.DriverListPageModule)
   },
   ,
+
 
 
 

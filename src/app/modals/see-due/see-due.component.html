@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app/home" (click)="closeModal()" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>See Due</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+       <ion-item>
+         <ion-label>Due</ion-label>
+         <ion-label slot="end" color="primary">{{Due}}</ion-label>
+       </ion-item>
+       <ion-item>
+        <ion-label>Currently Working In</ion-label>
+        <ion-text slot="end" color="primary">{{WorkingIn}}</ion-text>
+      </ion-item>
+    </ion-list>
+    <hr>
+</ion-content>

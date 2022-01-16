@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LabourLedgerData } from 'src/app/structures/method.structure';
 
 @Component({
   selector: 'app-labour-ledger',
@@ -11,5 +12,62 @@ export class LabourLedgerPage implements OnInit {
 
   ngOnInit() {
   }
+  labourledger: LabourLedgerData[] = [
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
 
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    },
+    {
+      Name: "Ramlochan",
+      Lastname: "Vishwakarma",
+      Code: "123XYZ0",
+      Paid: 2324,
+
+    }
+  ]
 }

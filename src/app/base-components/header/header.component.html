@@ -1,7 +1,7 @@
 <nav>
   <ion-back-button defaultHref="/main/app/home">Back</ion-back-button>
   <div class="container">
-    <div class="photo">
+    <div class="photo" (click)="navigate('employee-info')">
       <img src="assets/UI/images/profile.jpg" alt="">
     </div>
     <p>{{username}}</p>
