@@ -15,5 +15,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/main/app/account-page');
   }
   ngOnInit() {}
-
+  navigate(path:string){
+    this.router.navigateByUrl('/main/app/'+path);
+  }
 }

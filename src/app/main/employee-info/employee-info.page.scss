@@ -8,8 +8,7 @@
     inset -10px -10px 15px rgba(255,255,255,0.9);
     border-radius: 20px;
     font-family: 'Poppins', sans-serif;
-    border: 2px solid #6260A6;
-    margin-top: 100px;
+    border: 2px solid Var(--ion-color-primary);
 }
 .container img{
     border-radius: 50%;
@@ -21,7 +20,7 @@
 }
 .heading{
     margin-left: 55px;
-    color: #6260A6;
+    color: Var(--ion-color-primary);
     font-size: 20px;
 }
 .details input{

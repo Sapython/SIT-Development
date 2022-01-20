@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SITDetailPage } from './sit-detail.page';
+import { SeeDueComponent } from './see-due.component';
 
-describe('SITDetailPage', () => {
-  let component: SITDetailPage;
-  let fixture: ComponentFixture<SITDetailPage>;
+describe('SeeDueComponent', () => {
+  let component: SeeDueComponent;
+  let fixture: ComponentFixture<SeeDueComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SITDetailPage ],
+      declarations: [ SeeDueComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SITDetailPage);
+    fixture = TestBed.createComponent(SeeDueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
