@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Persistant Data</ion-label>
+      <ion-toggle checked="true" slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Enable New Accounts</ion-label>
+      <ion-toggle checked="true" slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item button (click)="showTrackingModal()">
+      <ion-label>Tracking</ion-label>
+      <ion-icon name="arrow-forward-outline" slot="end" color="primary"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label button (click)="showSecurityModal()">Security</ion-label>
+      <ion-icon name="arrow-forward-outline" slot="end" color="primary"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>Summary Card</ion-label>
+      <ion-select value="weekly" multiple="false" placeholder="Type" slot="end">
+        <ion-select-option value="weekly">Weekly</ion-select-option>
+        <ion-select-option value="monthly">Monthly</ion-select-option>
+        <ion-select-option value="yearly">Yearly</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Enable Guest Access</ion-label>
+      <ion-toggle checked="true" slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -14,7 +14,8 @@ export class AppComponent implements OnInit{
     this.authService.user.subscribe(user=>{
       if (user){
         SplashScreen.hide();
-        this.router.navigate(['/main/app/home']);
+        // this.router.navigate(['/main/app/home']);
+        this.router.navigate(['/admin']);
       } else {
         SplashScreen.hide();
         this.router.navigate(['/login'])
@@ -24,5 +25,9 @@ export class AppComponent implements OnInit{
   navigate(path:string){
     console.log(path);
     this.router.navigateByUrl('/main/app/'+path);
+  }
+  navigateToAdmin(path:string){
+    console.log(path);
+    this.router.navigateByUrl('/main/admin/'+path);
   }
 }

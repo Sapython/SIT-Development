@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Security</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/configuration" (click)="modalController.dismiss()"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Allow admins to change users</ion-label>
+      <ion-toggle checked="false" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Allow supervisor to manage employee</ion-label>
+      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Allow guest to see data</ion-label>
+      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Allow anyone to signout.</ion-label>
+      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Default access level</ion-label>
+      <ion-select value="guest" multiple="false" placeholder="Type" slot="end">
+        <ion-select-option value="guest" color="primary">Guest</ion-select-option>
+        <ion-select-option value="employee" color="success">Employee</ion-select-option>
+        <ion-select-option value="supervisor" color="warning">Supervisor</ion-select-option>
+        <ion-select-option value="admin" color="danger">Admin</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

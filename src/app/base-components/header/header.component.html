@@ -1,9 +1,9 @@
-<nav>
-  <ion-back-button defaultHref="/main/app/home">Back</ion-back-button>
-  <div class="container">
-    <div class="photo">
-      <img src="assets/UI/images/profile.jpg" alt="">
-    </div>
-    <p>{{username}}</p>
-  </div>
-</nav>
+<ion-toolbar>
+  <ion-back-button defaultHref="/main/app/home" slot="start">Back</ion-back-button>
+  <ion-chip slot="end" (click)="navigateToAccount()">
+    <ion-avatar>
+      <img [src]="dataProvider?.userData?.photoURL">
+    </ion-avatar>
+    <ion-label color="primary">{{dataProvider?.userData?.displayName}}</ion-label>
+  </ion-chip>
+</ion-toolbar>

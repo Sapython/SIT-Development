@@ -1,0 +1,18 @@
+<app-header></app-header>
+<ion-content>
+<ion-segment value="pizza" (ionChange)="segmentChanged($event)" value="options">
+  <ion-segment-button value="options">
+    <ion-icon name="options"></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button value="upload">
+    <ion-icon name="cloud-upload"></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button value="dashboard">
+    <ion-icon name="shield-half"></ion-icon>
+  </ion-segment-button>
+</ion-segment>
+<ion-content class="ion-padding">
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>
+
+</ion-content>

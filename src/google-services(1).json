@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "690627613189",
+    "project_id": "sit-manager",
+    "storage_bucket": "sit-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690627613189:android:d399af00f86d85d441826c",
+        "android_client_info": {
+          "package_name": "com.swayambhu.stockintransit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690627613189-128a38pionq7ll9q5706qrmj7lepsi27.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.swayambhu.stockintransit",
+            "certificate_hash": "cd4a91ed27f363359b4276c611ed71000cbef2fd"
+          }
+        },
+        {
+          "client_id": "690627613189-fglnifb9ggsg8qgrb1s17otedqhfm08h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp9T4Q2ovo4y8LU1rdkt3qpGAOnsIl_VU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690627613189-fglnifb9ggsg8qgrb1s17otedqhfm08h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

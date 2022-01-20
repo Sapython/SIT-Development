@@ -19,6 +19,9 @@
             <ion-menu-toggle auto-hide="false" class="option">
               <ion-item routerDirection="root"  (click)="navigate('account-page')" detail="false">Account</ion-item>
             </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" class="option">
+              <ion-item routerDirection="root"  routerLink="dashboard" detail="false">Admin Panel</ion-item>
+            </ion-menu-toggle>
           </ion-list>
           <ion-button color="primary" id="logout-button">Logout <ion-icon slot="end" name="person"></ion-icon>
           </ion-button>

@@ -70,3 +70,40 @@ export type expenseledgerData = {
     date:string;
     starred:boolean;
 }
+export type messageAlert = {
+    title:string;
+    status:'danger'|'success'|'warning'|'primary';
+    description:string;
+    date:string;
+    type:'messageAlert';
+}
+export type confirmationAlert = {
+    title:string;
+    description:string;
+    handler:any;
+    type:'confirmationAlert';
+}
+export type dialogAlert = {
+    title:string;
+    description:string;
+    handler:any;
+    type:'dialogAlert';
+}
+export type actionsAlert = {
+    title: string;
+    actions:actionButtonData[];
+    type:'actionsAlert';
+}
+export type actionButtonData = {
+    title?:string;
+    icon?: string;
+    handler:any;
+}
+export type BasicUser = {
+    name: string;
+    email: string;
+    image: string;
+    access: string;
+    firstLogin: string;
+    uid:string;
+}

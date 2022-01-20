@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tracking</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/configuration" (click)="modalController.dismiss()"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Vehicle Tracking</ion-label>
+      <ion-toggle checked="false" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Employee Tracking</ion-label>
+      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Form Tracking</ion-label>
+      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Attendance tracking</ion-label>
+      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>App Usage Tracking</ion-label>
+      <ion-toggle checked="false" slot="end" color="secondary"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

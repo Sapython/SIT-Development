@@ -4,13 +4,14 @@ import { dalaLedgerData, sitLedgerData } from 'src/app/structures/method.structu
 import { ModalController } from '@ionic/angular';
 import { BugReportComponent} from 'src/app/modals/bug-report/bug-report.component';
 import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
+import { DataProvider } from 'src/app/providers/data.provider';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  displayName: string = "John Doe"
+  
   pending: number = 12;
   recieved: number = 5;
   unloaded: number = 20;
@@ -35,7 +36,7 @@ export class HomePage implements OnInit {
   @ViewChild('filtersList') filtersList: ElementRef;
   showFiltersList: boolean = false;
 
-  constructor(public modalController: ModalController) {
+  constructor(public modalController: ModalController,public dataProvider: DataProvider) {
    
   }
   async reportBug() {

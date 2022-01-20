@@ -23,6 +23,10 @@ const routes: Routes = [
     path:'verifyemail',
     component:VerifyemailComponent
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./adminPanel/admin/admin.module').then( m => m.AdminPageModule)
+  },
 ];
 @NgModule({
   imports: [
