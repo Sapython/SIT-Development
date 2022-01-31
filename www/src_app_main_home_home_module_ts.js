@@ -105,14 +105,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HomePage": () => (/* binding */ HomePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page.html?ngResource */ 93444);
 /* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.scss?ngResource */ 96405);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var src_app_modals_bug_report_bug_report_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/modals/bug-report/bug-report.component */ 80181);
 /* harmony import */ var src_app_modals_recieved_log_recieved_log_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/modals/recieved-log/recieved-log.component */ 74961);
 /* harmony import */ var src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/data.provider */ 47991);
+/* harmony import */ var src_app_services_database_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/database.service */ 54382);
+
 
 
 
@@ -122,9 +124,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-    constructor(modalController, dataProvider) {
+    constructor(modalController, dataProvider, databaseService) {
         this.modalController = modalController;
         this.dataProvider = dataProvider;
+        this.databaseService = databaseService;
         this.pending = 12;
         this.recieved = 5;
         this.unloaded = 20;
@@ -167,46 +170,7 @@ let HomePage = class HomePage {
                 coordinator: "John Doe"
             }
         ];
-        this.sitLedgers = [
-            {
-                dispatchDate: "23 July 2021",
-                delivery: "2333441",
-                expectedDelivery: "30 July 2021",
-                gateEntryDate: "25 July 2021",
-                gateEntryNo: "666",
-                mfgLocation: "D69",
-                productCode: "112233",
-                productName: "Biscoot",
-                quantity: 360,
-                recPlantDesc: "145",
-                remarks: "Received",
-                suppPlant: "D69",
-                suppPlantDesc: "Tirupati Bakers",
-                storageLocation: "Prayagraj",
-                transName: "Jain Roadways",
-                vehicleNo: "HR51AB1314",
-                status: "unloaded",
-            },
-            {
-                dispatchDate: "23 July 2021",
-                delivery: "2333441",
-                expectedDelivery: "30 July 2021",
-                gateEntryDate: "25 July 2021",
-                gateEntryNo: "666",
-                mfgLocation: "D69",
-                productCode: "112233",
-                productName: "Biscoot",
-                quantity: 360,
-                recPlantDesc: "145",
-                remarks: "Received",
-                suppPlant: "D69",
-                suppPlantDesc: "Tirupati Bakers",
-                storageLocation: "Prayagraj",
-                transName: "Jain Roadways",
-                vehicleNo: "HR51AB1314",
-                status: "recieved",
-            }
-        ];
+        this.sitLedgers = [];
     }
     // events
     chartClicked({ event, active }) {
@@ -216,7 +180,7 @@ let HomePage = class HomePage {
         console.log(event, active);
     }
     reportBug() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             const modal = yield this.modalController.create({
                 component: src_app_modals_bug_report_bug_report_component__WEBPACK_IMPORTED_MODULE_2__.BugReportComponent,
             });
@@ -224,25 +188,40 @@ let HomePage = class HomePage {
         });
     }
     recievedlog() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             const modal = yield this.modalController.create({
                 component: src_app_modals_recieved_log_recieved_log_component__WEBPACK_IMPORTED_MODULE_3__.RecievedLogComponent,
             });
             return yield modal.present();
         });
     }
-    ngOnInit() { }
+    ngOnInit() {
+        let sits = [];
+        this.databaseService.getSitLedgers().subscribe((data) => {
+            data.forEach((element) => {
+                console.log(element.data(), element.id);
+                sits.push(element.data());
+            });
+            console.log('data', sits);
+            sits.sort((element, elementTwo) => {
+                return new Date(element.uploadTime.seconds + element.uploadTime.nanoseconds).getTime() - new Date(elementTwo.uploadTime.seconds + elementTwo.uploadTime.nanoseconds).getTime();
+            });
+            console.log('sits', sits);
+            this.sitLedgers = [sits[0], sits[1], sits[2]];
+        });
+    }
 };
 HomePage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
-    { type: src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_4__.DataProvider }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController },
+    { type: src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_4__.DataProvider },
+    { type: src_app_services_database_service__WEBPACK_IMPORTED_MODULE_5__.DatabaseService }
 ];
 HomePage.propDecorators = {
-    filtersButton: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ViewChild, args: ['filtersButton',] }],
-    filtersList: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ViewChild, args: ['filtersList',] }]
+    filtersButton: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChild, args: ['filtersButton',] }],
+    filtersList: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChild, args: ['filtersList',] }]
 };
-HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-home',
         template: _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -339,7 +318,7 @@ module.exports = "small {\n  color: rgba(255, 116, 103, 0.972);\n  font-size: 15
   \*****************************************************/
 /***/ ((module) => {
 
-module.exports = "<!-- <app-header title=\"Home\"></app-header> -->\r\n<ion-content>\r\n    <aside>\r\n        <div id=\"topNav\">\r\n            <button>\r\n                <ion-menu-button></ion-menu-button>\r\n            </button>\r\n            <div class=\"greetings\">\r\n                <p class=\"greet\">Welcome</p>\r\n                <p class=\"username\">\r\n                    {{dataProvider?.userData?.displayName}}\r\n                </p>\r\n                <app-user-image></app-user-image>\r\n            </div>\r\n        </div>\r\n        <div id=\"card\">\r\n            <div>\r\n                <p class=\"head\">Summary</p>\r\n                <table>\r\n                    <tr>\r\n                        <td>Pending</td>\r\n                        <td style=\"color:rgb(255, 107, 107)\">&nbsp;&nbsp;&nbsp;&nbsp;{{pending}}</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Recieved</td>\r\n                        <td style=\"color:rgb(107, 201, 255)\">&nbsp;&nbsp;&nbsp;&nbsp;{{recieved}}</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Unloaded</td>\r\n                        <td style=\"color:rgb(61, 194, 94)\">&nbsp;&nbsp;&nbsp;&nbsp;{{unloaded}}</td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div style=\"display: block\" class=\"chart\">\r\n                <canvas baseChart\r\n                  [data]=\"doughnutChartData\"\r\n                  [legend]=\"false\"\r\n                  [type]=\"doughnutChartType\">\r\n                </canvas>\r\n            </div>\r\n        </div>\r\n    </aside>\r\n    <main>\r\n        <div class=\"buttonLinks\">\r\n            <button routerLink=\"../add-employee\">\r\n                <ion-icon name=\"person-add\"></ion-icon>\r\n            </button>\r\n            <button (click)=\"reportBug()\">\r\n                <ion-icon name=\"bug\"></ion-icon>\r\n            </button>\r\n            <button>\r\n                <ion-icon name=\"people\" routerLink=\"../employeeList\"></ion-icon>\r\n            </button>\r\n            <button>\r\n                <ion-icon name=\"document-text\" routerLink=\"../ledgerOverview\"></ion-icon>\r\n            </button>\r\n            <button>\r\n                <ion-icon name=\"sync-circle\"></ion-icon>\r\n            </button>\r\n        </div>\r\n        <p class=\"title\">Dashboard</p>\r\n        <div class=\"quickLinks\">\r\n            <button class=\"linkCard\" routerLink=\"../employeeList\">\r\n                <div>\r\n                    <p>Employee</p>\r\n                    <p>List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/employeeList.svg\" alt=\"Employee working\">\r\n            </button>\r\n            <div class=\"linkCard\" routerLink=\"../pending-sit\">\r\n                <div>\r\n                    <p>Pending</p>\r\n                    <p>SIT List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/pendingLedger.svg\" alt=\"\">\r\n            </div>\r\n            <div class=\"linkCard\" routerLink=\"../recieved-sit\">\r\n                <div>\r\n                    <p>Recieved</p>\r\n                    <p>SIT List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/recievedLedger.svg\" alt=\"\">\r\n            </div>\r\n            <div class=\"linkCard\" routerLink=\"../driver-list\">\r\n                <div>\r\n                    <p>Driver</p>\r\n                    <p>List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/driver.svg\" alt=\"\">\r\n            </div>\r\n        </div>\r\n        <p class=\"text-1\">Recently Opened</p>\r\n        <app-sit-ledger-widget \r\n        *ngFor=\"let item of sitLedgers\"\r\n            [dispatchDate]=\"item.dispatchDate\"\r\n            [delivery]=\"item.delivery\"\r\n            [expectedDelivery]=\"item.expectedDelivery\"\r\n            [gateEntryDate]=\"item.gateEntryDate\"\r\n            [gateEntryNo]=\"item.gateEntryNo\"\r\n            [mfgLocation]=\"item.mfgLocation\"\r\n            [productCode]=\"item.productCode\"\r\n            [productName]=\"item.productName\"\r\n            [quantity]=\"item.quantity\"\r\n            [recPlantDesc]=\"item.recPlantDesc\"\r\n            [remarks]=\"item.remarks\"\r\n            [suppPlant]=\"item.suppPlant\"\r\n            [suppPlantDesc]=\"item.suppPlantDesc\"\r\n            [storageLocation]=\"item.storageLocation\"\r\n            [transName]=\"item.transName\"\r\n            [vehicleNo]=\"item.vehicleNo\"\r\n            [status]=\"item.status\"\r\n        ></app-sit-ledger-widget>\r\n    </main>\r\n</ion-content>";
+module.exports = "<!-- <app-header title=\"Home\"></app-header> -->\r\n<ion-content>\r\n    <aside>\r\n        <div id=\"topNav\">\r\n            <button>\r\n                <ion-menu-button></ion-menu-button>\r\n            </button>\r\n            <div class=\"greetings\">\r\n                <p class=\"greet\">Welcome</p>\r\n                <p class=\"username\">\r\n                    {{dataProvider?.userData?.displayName}}\r\n                </p>\r\n                <app-user-image></app-user-image>\r\n            </div>\r\n        </div>\r\n        <div id=\"card\">\r\n            <div>\r\n                <p class=\"head\">Summary</p>\r\n                <table>\r\n                    <tr>\r\n                        <td>Pending</td>\r\n                        <td style=\"color:rgb(255, 107, 107)\">&nbsp;&nbsp;&nbsp;&nbsp;{{pending}}</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Recieved</td>\r\n                        <td style=\"color:rgb(107, 201, 255)\">&nbsp;&nbsp;&nbsp;&nbsp;{{recieved}}</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Unloaded</td>\r\n                        <td style=\"color:rgb(61, 194, 94)\">&nbsp;&nbsp;&nbsp;&nbsp;{{unloaded}}</td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div style=\"display: block\" class=\"chart\">\r\n                <canvas baseChart\r\n                  [data]=\"doughnutChartData\"\r\n                  [legend]=\"false\"\r\n                  [type]=\"doughnutChartType\">\r\n                </canvas>\r\n            </div>\r\n        </div>\r\n    </aside>\r\n    <main>\r\n        <div class=\"buttonLinks\">\r\n            <button routerLink=\"../add-employee\">\r\n                <ion-icon name=\"person-add\"></ion-icon>\r\n            </button>\r\n            <button (click)=\"reportBug()\">\r\n                <ion-icon name=\"bug\"></ion-icon>\r\n            </button>\r\n            <button>\r\n                <ion-icon name=\"people\" routerLink=\"../employeeList\"></ion-icon>\r\n            </button>\r\n            <button>\r\n                <ion-icon name=\"document-text\" routerLink=\"../ledgerOverview\"></ion-icon>\r\n            </button>\r\n            <button>\r\n                <ion-icon name=\"sync-circle\"></ion-icon>\r\n            </button>\r\n        </div>\r\n        <p class=\"title\">Dashboard</p>\r\n        <div class=\"quickLinks\">\r\n            <button class=\"linkCard\" routerLink=\"../employeeList\">\r\n                <div>\r\n                    <p>Employee</p>\r\n                    <p>List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/employeeList.svg\" alt=\"Employee working\">\r\n            </button>\r\n            <div class=\"linkCard\" routerLink=\"../pending-sit\">\r\n                <div>\r\n                    <p>Pending</p>\r\n                    <p>SIT List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/pendingLedger.svg\" alt=\"\">\r\n            </div>\r\n            <div class=\"linkCard\" routerLink=\"../recieved-sit\">\r\n                <div>\r\n                    <p>Recieved</p>\r\n                    <p>SIT List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/recievedLedger.svg\" alt=\"\">\r\n            </div>\r\n            <div class=\"linkCard\" routerLink=\"../driver-list\">\r\n                <div>\r\n                    <p>Driver</p>\r\n                    <p>List</p>\r\n                </div>\r\n                <img src=\"assets/UI/QuickLinks/driver.svg\" alt=\"\">\r\n            </div>\r\n        </div>\r\n        <p class=\"text-1\">Recently Opened</p>\r\n        <app-sit-ledger-widget \r\n        *ngFor=\"let item of sitLedgers\"\r\n            [bakery]=\"item.supplierName\"\r\n            [suppCode]=\"item.supplierCode\"\r\n            [dueDate]=\"item.sit[0].expectedDelivery\"\r\n            [dispatchDate]=\"item.sit[0].dispatchDate\"\r\n            [deliveryCode]=\"item.sit[0].deliveryCode\"\r\n            [expectedDelivery]=\"item.sit[0].expectedDelivery\"\r\n            [gateEntryDate]=\"item.sit[0].gateEntryDate\"\r\n            [gateEntryNo]=\"item.sit[0].gateEntryNumber\"\r\n            [mfgLocation]=\"item.sit[0].mfgLocation\"\r\n            [productCode]=\"item.sit[0].productCode\"\r\n            [productName]=\"item.sit[0].productName\"\r\n            [quantity]=\"item.sit[0].quantity\"\r\n            [recPlantDesc]=\"item.sit[0].recievePlantName\"\r\n            [remarks]=\"item.status\"\r\n            [suppPlant]=\"item.sit[0].supplyPlantCode\"\r\n            [suppPlantDesc]=\"item.sit[0].supplyPlantName\"\r\n            [storageLocation]=\"item.sit[0].storageLocation\"\r\n            [transName]=\"item.sit[0].transporterName\"\r\n            [vehicleNo]=\"item.sit[0].vehicleNo\"\r\n            [status]=\"item.status\"\r\n            [allData]=\"item\"\r\n        ></app-sit-ledger-widget>\r\n    </main>\r\n</ion-content>";
 
 /***/ }),
 

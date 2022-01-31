@@ -53,6 +53,31 @@ export type sitLedgerData = {
     vehicleNo: string;
     status:"uploaded"|"pending"|"recieved"|"unloaded";
 }
+export type SIT = {
+    id:string;
+    status:'uploaded'|'pending'|'recieved'|'unloaded';
+    supplierCode:string;
+    supplierName: string;
+    sit:Stock[];
+    uploadTime:any;
+}
+export type Stock = {
+    deliveryCode: string;
+    dispatchDate: string;
+    expectedDelivery: string;
+    gateEntryDate: string;
+    gateEntryNumber: string;
+    mfgLocation: string;
+    productCode: string;
+    productName: string;
+    quantity: number;
+    recievePlantName: string;
+    storageLocation: string;
+    supplyPlantCode: string;
+    supplyPlantName: string;
+    transporterName: string;
+    vehicleNo: string;
+}
 export type LabourLedgerData = {
         Name: string;
         Lastname: string;

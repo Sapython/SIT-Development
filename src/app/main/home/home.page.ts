@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ChartData, ChartOptions, ChartType } from 'chart.js';
-import { dalaLedgerData, sitLedgerData } from 'src/app/structures/method.structure';
+import { dalaLedgerData, SIT, sitLedgerData } from 'src/app/structures/method.structure';
 import { ModalController } from '@ionic/angular';
 import { BugReportComponent} from 'src/app/modals/bug-report/bug-report.component';
 import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { DatabaseService } from 'src/app/services/database.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -36,7 +37,11 @@ export class HomePage implements OnInit {
   @ViewChild('filtersList') filtersList: ElementRef;
   showFiltersList: boolean = false;
 
-  constructor(public modalController: ModalController,public dataProvider: DataProvider) {
+  constructor(
+    public modalController: ModalController,
+    public dataProvider: DataProvider,
+    private databaseService:DatabaseService,
+    ) {
    
   }
   async reportBug() {
@@ -51,7 +56,21 @@ export class HomePage implements OnInit {
     });
     return await modal.present();
   }
-  ngOnInit() { }
+  ngOnInit() { 
+    let sits= []
+    this.databaseService.getSitLedgers().subscribe((data:any)=>{
+      data.forEach((element:any) => {
+        console.log(element.data(),element.id);
+        sits.push(element.data());
+      });
+      console.log('data',sits);
+      sits.sort((element:SIT,elementTwo:SIT) => {
+        return new Date(element.uploadTime.seconds+element.uploadTime.nanoseconds).getTime() - new Date(elementTwo.uploadTime.seconds+elementTwo.uploadTime.nanoseconds).getTime();
+      })
+      console.log('sits',sits);
+      this.sitLedgers = [sits[0],sits[1],sits[2]];
+    })
+  }
 
   items = [1, 2, 3];
 
@@ -84,45 +103,5 @@ export class HomePage implements OnInit {
       coordinator: "John Doe"
     }
   ];
-
-  sitLedgers: sitLedgerData[] = [
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "unloaded",
-    },
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "recieved",
-    }
-  ];
+  sitLedgers: SIT[] = [];
 }

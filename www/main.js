@@ -26,7 +26,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: 'main',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_main_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./main/main.module */ 65705)).then(m => m.MainModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_main_main_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./main/main.module */ 65705)).then(m => m.MainModule),
     },
     {
         path: 'login',
@@ -39,6 +39,10 @@ const routes = [
     {
         path: 'verifyemail',
         component: _verifyemail_verifyemail_component__WEBPACK_IMPORTED_MODULE_2__.VerifyemailComponent
+    },
+    {
+        path: 'admin',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_adminPanel_admin_admin_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./adminPanel/admin/admin.module */ 92330)).then(m => m.AdminPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -93,6 +97,7 @@ let AppComponent = class AppComponent {
                 if (user) {
                     _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
                     this.router.navigate(['/main/app/home']);
+                    // this.router.navigate(['/admin']);
                 }
                 else {
                     _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
@@ -104,6 +109,10 @@ let AppComponent = class AppComponent {
     navigate(path) {
         console.log(path);
         this.router.navigateByUrl('/main/app/' + path);
+    }
+    navigateToAdmin(path) {
+        console.log(path);
+        this.router.navigateByUrl('/main/admin/' + path);
     }
 };
 AppComponent.ctorParameters = () => [
@@ -749,11 +758,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DatabaseService": () => (/* binding */ DatabaseService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ 56466);
-/* harmony import */ var _providers_data_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../providers/data.provider */ 47991);
-/* harmony import */ var _authencation_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authencation.service */ 11815);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ 56466);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/firestore */ 31866);
+/* harmony import */ var _providers_data_provider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../providers/data.provider */ 47991);
+/* harmony import */ var _authencation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./authencation.service */ 11815);
+
 
 
 
@@ -764,7 +775,7 @@ let DatabaseService = class DatabaseService {
         this.fs = fs;
         this.dataProvider = dataProvider;
         this.authService = authService;
-        this.contactDoc = (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.collection)(this.fs, 'contactRequests');
+        this.contactDoc = (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(this.fs, 'contactRequests');
     }
     addContactRequest(name, email, phoneNumber, message) {
         let data = {
@@ -774,7 +785,7 @@ let DatabaseService = class DatabaseService {
             message: message,
             date: new Date(),
         };
-        (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.addDoc)(this.contactDoc, data).then((doc) => {
+        (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.addDoc)(this.contactDoc, data).then((doc) => {
             console.log(doc);
             console.log(doc.id);
         });
@@ -809,20 +820,29 @@ let DatabaseService = class DatabaseService {
             doNotTrack: navigator.doNotTrack || '',
             solved: false,
         };
-        return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.addDoc)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.collection)(this.fs, 'logs'), data);
+        return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.addDoc)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(this.fs, 'logs'), data);
     }
     // SIt services starts
     getSitLedgers() {
-        return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.collectionSnapshots)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.collection)(this.fs, 'SIT_COL'));
+        return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.collectionSnapshots)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(this.fs, 'stocks'));
+    }
+    getWorkers() {
+        return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.getDocs)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.query)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(this.fs, 'users'), (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.where)('access.access', '==', 'Worker')));
+    }
+    unloadSit(sitId, data) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            yield (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(this.fs, 'stocks'), { status: 'unloaded' });
+            return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.addDoc)((0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(this.fs, 'stocks/' + sitId + '/unloaded'), data);
+        });
     }
 };
 DatabaseService.ctorParameters = () => [
-    { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__.Firestore },
-    { type: _providers_data_provider__WEBPACK_IMPORTED_MODULE_0__.DataProvider },
-    { type: _authencation_service__WEBPACK_IMPORTED_MODULE_1__.AuthencationService }
+    { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__.Firestore },
+    { type: _providers_data_provider__WEBPACK_IMPORTED_MODULE_1__.DataProvider },
+    { type: _authencation_service__WEBPACK_IMPORTED_MODULE_2__.AuthencationService }
 ];
-DatabaseService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+DatabaseService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
         providedIn: 'root',
     })
 ], DatabaseService);
@@ -1209,19 +1229,22 @@ const environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ 68150);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ 68150);
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/app.module */ 36747);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ 92340);
+/* harmony import */ var _ionic_pwa_elements_loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/pwa-elements/loader */ 38763);
+
 
 
 
 
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.production) {
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.enableProdMode)();
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.enableProdMode)();
 }
-(0,_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__.platformBrowserDynamic)().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_0__.AppModule)
+(0,_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_4__.platformBrowserDynamic)().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_0__.AppModule)
     .catch(err => console.log(err));
+(0,_ionic_pwa_elements_loader__WEBPACK_IMPORTED_MODULE_2__.defineCustomElements)(window);
 
 
 /***/ }),
@@ -1446,6 +1469,54 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
+/***/ 55899:
+/*!**************************************************************************************************************************************************!*\
+  !*** ./node_modules/@ionic/pwa-elements/dist/esm/ lazy ^\.\/.*\.entry\.js$ include: \.entry\.js$ exclude: \.system\.entry\.js$ namespace object ***!
+  \**************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./pwa-action-sheet.entry.js": [
+		45464,
+		"node_modules_ionic_pwa-elements_dist_esm_pwa-action-sheet_entry_js"
+	],
+	"./pwa-camera-modal-instance.entry.js": [
+		68724,
+		"node_modules_ionic_pwa-elements_dist_esm_pwa-camera-modal-instance_entry_js"
+	],
+	"./pwa-camera-modal.entry.js": [
+		8145,
+		"node_modules_ionic_pwa-elements_dist_esm_pwa-camera-modal_entry_js"
+	],
+	"./pwa-camera.entry.js": [
+		30527,
+		"node_modules_ionic_pwa-elements_dist_esm_pwa-camera_entry_js"
+	],
+	"./pwa-toast.entry.js": [
+		44389,
+		"node_modules_ionic_pwa-elements_dist_esm_pwa-toast_entry_js"
+	]
+};
+function webpackAsyncContext(req) {
+	if(!__webpack_require__.o(map, req)) {
+		return Promise.resolve().then(() => {
+			var e = new Error("Cannot find module '" + req + "'");
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+
+	var ids = map[req], id = ids[0];
+	return __webpack_require__.e(ids[1]).then(() => {
+		return __webpack_require__(id);
+	});
+}
+webpackAsyncContext.keys = () => (Object.keys(map));
+webpackAsyncContext.id = 55899;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
 /***/ 79259:
 /*!***********************************************!*\
   !*** ./src/app/app.component.scss?ngResource ***!
@@ -1453,7 +1524,7 @@ module.exports = webpackAsyncContext;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "#container {\n  --background: #fff;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n}\n\n#photo-container {\n  padding: 1em;\n  flex-grow: 1;\n  background: var(--ion-color-primary);\n}\n\n#photo {\n  width: 100px;\n  height: 100px;\n  object-fit: cover;\n  border-radius: 50%;\n}\n\n#options-container {\n  background-color: #fff;\n  padding: 1em;\n  flex-grow: 3;\n}\n\n#options {\n  list-style: none;\n}\n\n.option {\n  padding: 0.5em 0;\n  color: #333;\n  border-bottom: 1px solid #333;\n}\n\n.option:hover {\n  opacity: 0.8;\n  cursor: pointer;\n}\n\n#footer {\n  color: #fff;\n  padding: 1em;\n  flex-grow: 1;\n  background: var(--ion-color-primary);\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}\n\n#developed-by {\n  color: #fff;\n  margin: 0;\n}\n\n#swayambhu-innovations {\n  color: #fff;\n  margin: 0.5em 0;\n}\n\n#more-info {\n  background-color: #fff;\n  color: var(--ion-color-primary);\n  padding: 0.5em 1em;\n  margin-left: -1.5em;\n  font-family: inherit;\n  width: 200px;\n  border-radius: 0 25px 25px 0;\n  font-size: 18px;\n}\n\n#incompatible {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n  text-align: center;\n  background-color: #d9dafb;\n}\n\n#incompatible button {\n  padding: 10px;\n  border: none;\n  background-color: #7595ff;\n  color: white;\n  border-radius: 5px;\n}\n\n@media screen and (max-width: 300px) {\n  #incompatible {\n    display: flex;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsWUFBQTtBQUNKOztBQUVBO0VBQ0ksWUFBQTtFQUNBLFlBQUE7RUFDQSxvQ0FBQTtBQUNKOztBQUVBO0VBQ0ksWUFBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FBQ0o7O0FBRUE7RUFDSSxzQkFBQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0FBQ0o7O0FBRUE7RUFDSSxnQkFBQTtBQUNKOztBQUVBO0VBQ0ksZ0JBQUE7RUFDQSxXQUFBO0VBQ0EsNkJBQUE7QUFDSjs7QUFFQTtFQUNJLFlBQUE7RUFDQSxlQUFBO0FBQ0o7O0FBRUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxvQ0FBQTtFQUNBLGVBQUE7RUFDQSxTQUFBO0VBQ0EsV0FBQTtBQUNKOztBQUVBO0VBQ0ksV0FBQTtFQUNBLFNBQUE7QUFDSjs7QUFFQTtFQUNJLFdBQUE7RUFDQSxlQUFBO0FBQ0o7O0FBRUE7RUFDSSxzQkFBQTtFQUNBLCtCQUFBO0VBQ0Esa0JBQUE7RUFDQSxtQkFBQTtFQUNBLG9CQUFBO0VBQ0EsWUFBQTtFQUNBLDRCQUFBO0VBQ0EsZUFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLGVBQUE7RUFDQSxNQUFBO0VBQ0EsT0FBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0EseUJBQUE7QUFDSjs7QUFBSTtFQUNJLGFBQUE7RUFDQSxZQUFBO0VBQ0EseUJBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUFFUjs7QUFDQTtFQUNJO0lBQ0ksYUFBQTtFQUVOO0FBQ0YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2NvbnRhaW5lciB7XHJcbiAgICAtLWJhY2tncm91bmQ6ICNmZmY7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGhlaWdodDogMTAwJTtcclxufVxyXG5cclxuI3Bob3RvLWNvbnRhaW5lciB7XHJcbiAgICBwYWRkaW5nOiAxZW07XHJcbiAgICBmbGV4LWdyb3c6IDE7XHJcbiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuXHJcbiNwaG90byB7XHJcbiAgICB3aWR0aDogMTAwcHg7XHJcbiAgICBoZWlnaHQ6IDEwMHB4O1xyXG4gICAgb2JqZWN0LWZpdDogY292ZXI7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbn1cclxuXHJcbiNvcHRpb25zLWNvbnRhaW5lciB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gICAgcGFkZGluZzogMWVtO1xyXG4gICAgZmxleC1ncm93OiAzO1xyXG59XHJcblxyXG4jb3B0aW9ucyB7XHJcbiAgICBsaXN0LXN0eWxlOiBub25lO1xyXG59XHJcblxyXG4ub3B0aW9uIHtcclxuICAgIHBhZGRpbmc6IC41ZW0gMDtcclxuICAgIGNvbG9yOiAjMzMzO1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICMzMzM7XHJcbn1cclxuXHJcbi5vcHRpb246aG92ZXIge1xyXG4gICAgb3BhY2l0eTogLjg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbiNmb290ZXIge1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbiAgICBwYWRkaW5nOiAxZW07XHJcbiAgICBmbGV4LWdyb3c6IDE7XHJcbiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbiAgICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuI2RldmVsb3BlZC1ieSB7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICAgIG1hcmdpbjogMDtcclxufVxyXG5cclxuI3N3YXlhbWJodS1pbm5vdmF0aW9ucyB7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICAgIG1hcmdpbjogLjVlbSAwO1xyXG59XHJcblxyXG4jbW9yZS1pbmZvIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG4gICAgcGFkZGluZzogLjVlbSAxZW07XHJcbiAgICBtYXJnaW4tbGVmdDogLTEuNWVtO1xyXG4gICAgZm9udC1mYW1pbHk6IGluaGVyaXQ7XHJcbiAgICB3aWR0aDogMjAwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwIDI1cHggMjVweCAwO1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG59XHJcblxyXG4jaW5jb21wYXRpYmxle1xyXG4gICAgZGlzcGxheTogbm9uZTtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogMDtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIHBhZGRpbmc6MjBweDtcclxuICAgIHRleHQtYWxpZ246Y2VudGVyO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIxNywgMjE4LCAyNTEpO1xyXG4gICAgYnV0dG9ue1xyXG4gICAgICAgIHBhZGRpbmc6MTBweDtcclxuICAgICAgICBib3JkZXI6bm9uZTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiM3NTk1ZmY7XHJcbiAgICAgICAgY29sb3I6d2hpdGU7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czo1cHg7XHJcbiAgICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDozMDBweCl7XHJcbiAgICAjaW5jb21wYXRpYmxle1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICB9XHJcbn0iXX0= */";
+module.exports = "* {\n  font-family: \"Poppins\", sans-serif;\n}\n\n#container {\n  --background: #fff;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n}\n\n#photo-container {\n  padding: 1em;\n  flex-grow: 1;\n  background: var(--ion-color-primary);\n}\n\n#photo {\n  width: 100px;\n  height: 100px;\n  object-fit: cover;\n  border-radius: 50%;\n}\n\n#options-container {\n  background-color: #fff;\n  padding: 1em;\n  flex-grow: 3;\n}\n\n#options {\n  list-style: none;\n}\n\n.option {\n  padding: 0.5em 0;\n  color: #333;\n  border-bottom: 1px solid #333;\n}\n\n.option:hover {\n  opacity: 0.8;\n  cursor: pointer;\n}\n\n#footer {\n  color: #fff;\n  padding: 1em;\n  flex-grow: 1;\n  background: var(--ion-color-primary);\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}\n\n#developed-by {\n  color: #fff;\n  margin: 0;\n}\n\n#swayambhu-innovations {\n  color: #fff;\n  margin: 0.5em 0;\n}\n\n#more-info {\n  background-color: #fff;\n  color: var(--ion-color-primary);\n  padding: 0.5em 1em;\n  margin-left: -1.5em;\n  font-family: inherit;\n  width: 200px;\n  border-radius: 0 25px 25px 0;\n  font-size: 18px;\n}\n\n#incompatible {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n  text-align: center;\n  background-color: #d9dafb;\n}\n\n#incompatible button {\n  padding: 10px;\n  border: none;\n  background-color: #7595ff;\n  color: white;\n  border-radius: 5px;\n}\n\n@media screen and (max-width: 300px) {\n  #incompatible {\n    display: flex;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtDQUFBO0FBQ0o7O0FBQ0E7RUFDSSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLFlBQUE7QUFFSjs7QUFDQTtFQUNJLFlBQUE7RUFDQSxZQUFBO0VBQ0Esb0NBQUE7QUFFSjs7QUFDQTtFQUNJLFlBQUE7RUFDQSxhQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtBQUVKOztBQUNBO0VBQ0ksc0JBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtBQUVKOztBQUNBO0VBQ0ksZ0JBQUE7QUFFSjs7QUFDQTtFQUNJLGdCQUFBO0VBQ0EsV0FBQTtFQUNBLDZCQUFBO0FBRUo7O0FBQ0E7RUFDSSxZQUFBO0VBQ0EsZUFBQTtBQUVKOztBQUNBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0VBQ0Esb0NBQUE7RUFDQSxlQUFBO0VBQ0EsU0FBQTtFQUNBLFdBQUE7QUFFSjs7QUFDQTtFQUNJLFdBQUE7RUFDQSxTQUFBO0FBRUo7O0FBQ0E7RUFDSSxXQUFBO0VBQ0EsZUFBQTtBQUVKOztBQUNBO0VBQ0ksc0JBQUE7RUFDQSwrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxvQkFBQTtFQUNBLFlBQUE7RUFDQSw0QkFBQTtFQUNBLGVBQUE7QUFFSjs7QUFDQTtFQUNJLGFBQUE7RUFDQSxlQUFBO0VBQ0EsTUFBQTtFQUNBLE9BQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGFBQUE7RUFDQSxrQkFBQTtFQUNBLHlCQUFBO0FBRUo7O0FBREk7RUFDSSxhQUFBO0VBQ0EsWUFBQTtFQUNBLHlCQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0FBR1I7O0FBQUE7RUFDSTtJQUNJLGFBQUE7RUFHTjtBQUNGIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIip7XHJcbiAgICBmb250LWZhbWlseTogJ1BvcHBpbnMnLCBzYW5zLXNlcmlmO1xyXG59XHJcbiNjb250YWluZXIge1xyXG4gICAgLS1iYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbn1cclxuXHJcbiNwaG90by1jb250YWluZXIge1xyXG4gICAgcGFkZGluZzogMWVtO1xyXG4gICAgZmxleC1ncm93OiAxO1xyXG4gICAgYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG59XHJcblxyXG4jcGhvdG8ge1xyXG4gICAgd2lkdGg6IDEwMHB4O1xyXG4gICAgaGVpZ2h0OiAxMDBweDtcclxuICAgIG9iamVjdC1maXQ6IGNvdmVyO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG59XHJcblxyXG4jb3B0aW9ucy1jb250YWluZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuICAgIGZsZXgtZ3JvdzogMztcclxufVxyXG5cclxuI29wdGlvbnMge1xyXG4gICAgbGlzdC1zdHlsZTogbm9uZTtcclxufVxyXG5cclxuLm9wdGlvbiB7XHJcbiAgICBwYWRkaW5nOiAuNWVtIDA7XHJcbiAgICBjb2xvcjogIzMzMztcclxuICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjMzMzO1xyXG59XHJcblxyXG4ub3B0aW9uOmhvdmVyIHtcclxuICAgIG9wYWNpdHk6IC44O1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG4jZm9vdGVyIHtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgcGFkZGluZzogMWVtO1xyXG4gICAgZmxleC1ncm93OiAxO1xyXG4gICAgYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbiNkZXZlbG9wZWQtYnkge1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbiAgICBtYXJnaW46IDA7XHJcbn1cclxuXHJcbiNzd2F5YW1iaHUtaW5ub3ZhdGlvbnMge1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbiAgICBtYXJnaW46IC41ZW0gMDtcclxufVxyXG5cclxuI21vcmUtaW5mbyB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxuICAgIHBhZGRpbmc6IC41ZW0gMWVtO1xyXG4gICAgbWFyZ2luLWxlZnQ6IC0xLjVlbTtcclxuICAgIGZvbnQtZmFtaWx5OiBpbmhlcml0O1xyXG4gICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMCAyNXB4IDI1cHggMDtcclxuICAgIGZvbnQtc2l6ZTogMThweDtcclxufVxyXG5cclxuI2luY29tcGF0aWJsZXtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbiAgICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgICB0b3A6IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBwYWRkaW5nOjIwcHg7XHJcbiAgICB0ZXh0LWFsaWduOmNlbnRlcjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYigyMTcsIDIxOCwgMjUxKTtcclxuICAgIGJ1dHRvbntcclxuICAgICAgICBwYWRkaW5nOjEwcHg7XHJcbiAgICAgICAgYm9yZGVyOm5vbmU7XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjojNzU5NWZmO1xyXG4gICAgICAgIGNvbG9yOndoaXRlO1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6NXB4O1xyXG4gICAgfVxyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6MzAwcHgpe1xyXG4gICAgI2luY29tcGF0aWJsZXtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgfVxyXG59Il19 */";
 
 /***/ }),
 
@@ -1508,7 +1579,7 @@ module.exports = ".container {\n  margin-top: 100px;\n  display: flex;\n  flex-d
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content id=\"container\">\r\n        <div id=\"photo-container\">\r\n          <app-user-image></app-user-image>\r\n        </div>\r\n        <div id=\"options-container\">\r\n          <ion-list id=\"options\">\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  (click)=\"navigate('labour-ledger')\" detail=\"false\">Labour Ledger</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  (click)=\"navigate('sit-overview')\" detail=\"false\">SIT Log</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\" (click)=\"navigate('employeeList')\" detail=\"false\">Employee List</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  (click)=\"navigate('account-page')\" detail=\"false\">Account</ion-item>\r\n            </ion-menu-toggle>\r\n          </ion-list>\r\n          <ion-button color=\"primary\" id=\"logout-button\">Logout <ion-icon slot=\"end\" name=\"person\"></ion-icon>\r\n          </ion-button>\r\n        </div>\r\n        <div id=\"footer\">\r\n          <ion-text>\r\n            <h3 id=\"developed-by\">Developed by</h3>\r\n            <p id=\"swayambhu-innovations\">Shreeva Softech Pvt. Ltd.</p>\r\n          </ion-text>\r\n          <button id=\"more-info\">More Info <ion-icon slot=\"end\" name=\"arrow-forward\"></ion-icon>\r\n          </button>\r\n        </div>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n  <div id=\"incompatible\" [ngStyle]=\"{'display': useIncompatible ? 'flex' : 'none'}\">\r\n    <p>\r\n      Application not supported for this resolution.\r\n    </p>\r\n    <button (click)=\"useIncompatible = true\">I still want to use.</button>\r\n  </div>\r\n</ion-app>";
+module.exports = "<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content id=\"container\">\r\n        <div id=\"photo-container\">\r\n          <app-user-image></app-user-image>\r\n        </div>\r\n        <div id=\"options-container\">\r\n          <ion-list id=\"options\">\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  (click)=\"navigate('labour-ledger')\" detail=\"false\">Labour Ledger</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  (click)=\"navigate('sit-overview')\" detail=\"false\">SIT Log</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\" (click)=\"navigate('employeeList')\" detail=\"false\">Employee List</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  (click)=\"navigate('account-page')\" detail=\"false\">Account</ion-item>\r\n            </ion-menu-toggle>\r\n            <ion-menu-toggle auto-hide=\"false\" class=\"option\">\r\n              <ion-item routerDirection=\"root\"  routerLink=\"admin\" detail=\"false\">Admin Panel</ion-item>\r\n            </ion-menu-toggle>\r\n          </ion-list>\r\n          <ion-button color=\"primary\" id=\"logout-button\">Logout <ion-icon slot=\"end\" name=\"person\"></ion-icon>\r\n          </ion-button>\r\n        </div>\r\n        <div id=\"footer\">\r\n          <ion-text>\r\n            <h3 id=\"developed-by\">Developed by</h3>\r\n            <p id=\"swayambhu-innovations\">Shreeva Softech Pvt. Ltd.</p>\r\n          </ion-text>\r\n          <button id=\"more-info\">More Info <ion-icon slot=\"end\" name=\"arrow-forward\"></ion-icon>\r\n          </button>\r\n        </div>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n  <div id=\"incompatible\" [ngStyle]=\"{'display': useIncompatible ? 'flex' : 'none'}\">\r\n    <p>\r\n      Application not supported for this resolution.\r\n    </p>\r\n    <button (click)=\"useIncompatible = true\">I still want to use.</button>\r\n  </div>\r\n</ion-app>";
 
 /***/ }),
 

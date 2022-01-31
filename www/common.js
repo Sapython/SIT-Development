@@ -1,6 +1,110 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
+/***/ 47306:
+/*!***********************************************************!*\
+  !*** ./src/app/base-components/base-components.module.ts ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BaseComponentsModule": () => (/* binding */ BaseComponentsModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header/header.component */ 23205);
+/* harmony import */ var _component_component_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component/component.module */ 55051);
+
+
+
+
+
+
+const comps = [
+    _header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent,
+];
+let BaseComponentsModule = class BaseComponentsModule {
+};
+BaseComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
+        declarations: [
+            comps
+        ],
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule,
+            _component_component_module__WEBPACK_IMPORTED_MODULE_1__.ComponentModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule,
+        ],
+        exports: [
+            comps
+        ]
+    })
+], BaseComponentsModule);
+
+
+
+/***/ }),
+
+/***/ 23205:
+/*!************************************************************!*\
+  !*** ./src/app/base-components/header/header.component.ts ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HeaderComponent": () => (/* binding */ HeaderComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header.component.html?ngResource */ 70015);
+/* harmony import */ var _header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss?ngResource */ 97927);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/data.provider */ 47991);
+
+
+
+
+
+
+let HeaderComponent = class HeaderComponent {
+    constructor(dataProvider, router) {
+        this.dataProvider = dataProvider;
+        this.router = router;
+        this.title = "";
+        this.username = "Sajan Pandey";
+    }
+    navigateToAccount() {
+        this.router.navigateByUrl('/main/app/account-page');
+    }
+    ngOnInit() { }
+    navigate(path) {
+        this.router.navigateByUrl('/main/app/' + path);
+    }
+};
+HeaderComponent.ctorParameters = () => [
+    { type: src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_2__.DataProvider },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router }
+];
+HeaderComponent.propDecorators = {
+    title: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input }],
+    username: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input }]
+};
+HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+        selector: 'app-header',
+        template: _header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], HeaderComponent);
+
+
+
+/***/ }),
+
 /***/ 71550:
 /*!*********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/focus-visible-02bf7a99.js ***!
@@ -265,6 +369,26 @@ const SPINNERS = spinners;
 
 
 
+
+/***/ }),
+
+/***/ 97927:
+/*!*************************************************************************!*\
+  !*** ./src/app/base-components/header/header.component.scss?ngResource ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+module.exports = "ion-toolbar {\n  position: relative;\n  display: flex;\n  align-items: center;\n  color: white;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 60px;\n  --background:var(--ion-color-primary);\n  border-radius: 0px 0px 15px 15px;\n  box-shadow: 0px 5px 10px rgba(20, 20, 20, 0.2);\n}\nion-toolbar ion-chip {\n  --background:var(--ion-color-primary-contrast);\n}\n.container {\n  height: 40px;\n  border-radius: 20px;\n  background-color: #fff;\n  padding: 10px;\n  padding-right: 10px;\n  padding-left: 10px;\n  display: flex;\n  flex-direction: row;\n  margin-left: 10px;\n}\n.photo {\n  height: 30px;\n  width: 30px;\n  border-radius: 50%;\n  background-color: var(--ion-color-primary);\n  margin-top: -5px;\n  cursor: pointer;\n}\n.container p {\n  margin-top: -1px;\n  margin-left: 10px;\n  color: var(--ion-color-primary);\n}\nion-back-button {\n  color: #fff;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFFBQUE7RUFDQSxTQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxxQ0FBQTtFQUNBLGdDQUFBO0VBQ0EsOENBQUE7QUFDSjtBQUFJO0VBQ0ksOENBQUE7QUFFUjtBQUNBO0VBQ0ksWUFBQTtFQUNBLG1CQUFBO0VBQ0Esc0JBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0FBRUo7QUFBQTtFQUNJLFlBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQ0FBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtBQUdKO0FBQUE7RUFDSSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsK0JBQUE7QUFHSjtBQURBO0VBQ0ksV0FBQTtBQUlKIiwiZmlsZSI6ImhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi10b29sYmFye1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBjb2xvcjp3aGl0ZTtcclxuICAgIHRvcDowcHg7XHJcbiAgICBsZWZ0OjBweDtcclxuICAgIHdpZHRoOjEwMCU7XHJcbiAgICBoZWlnaHQ6NjBweDtcclxuICAgIC0tYmFja2dyb3VuZDp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwcHggMHB4IDE1cHggMTVweDtcclxuICAgIGJveC1zaGFkb3c6IDBweCA1cHggMTBweCByZ2JhKDIwLDIwLDIwLDAuMik7XHJcbiAgICBpb24tY2hpcHtcclxuICAgICAgICAtLWJhY2tncm91bmQ6dmFyKC0taW9uLWNvbG9yLXByaW1hcnktY29udHJhc3QpO1xyXG4gICAgfVxyXG59XHJcbi5jb250YWluZXJ7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAyMHB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjojZmZmO1xyXG4gICAgcGFkZGluZzogMTBweDtcclxuICAgIHBhZGRpbmctcmlnaHQ6IDEwcHg7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDEwcHg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xyXG59XHJcbi5waG90b3tcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIHdpZHRoOiAzMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG4gICAgbWFyZ2luLXRvcDogLTVweDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIFxyXG59XHJcbi5jb250YWluZXIgcHtcclxuICAgIG1hcmdpbi10b3A6IC0xcHg7XHJcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcclxuICAgIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuaW9uLWJhY2stYnV0dG9ue1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbn0iXX0= */";
+
+/***/ }),
+
+/***/ 70015:
+/*!*************************************************************************!*\
+  !*** ./src/app/base-components/header/header.component.html?ngResource ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+module.exports = "<ion-toolbar>\r\n  <ion-back-button defaultHref=\"/main/app/home\" slot=\"start\">Back</ion-back-button>\r\n  <ion-chip slot=\"end\" (click)=\"navigateToAccount()\">\r\n    <ion-avatar>\r\n      <img [src]=\"dataProvider?.userData?.photoURL\">\r\n    </ion-avatar>\r\n    <ion-label color=\"primary\">{{dataProvider?.userData?.displayName}}</ion-label>\r\n  </ion-chip>\r\n</ion-toolbar>\r\n";
 
 /***/ })
 

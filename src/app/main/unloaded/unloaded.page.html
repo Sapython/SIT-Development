@@ -1,28 +1,84 @@
 <app-header></app-header>
 
-<ion-content>
-  <div class="container">
-    <p class="heading">Move to Unloaded</p>
-    <div class="box">
-      <div class="circle">
-        <a href=""><ion-icon name="images"></ion-icon></a> 
-      </div>
-      <input type="text" placeholder="Vechile Number">
-      <input type="text" placeholder="Gate Number">
-      <input type="text" placeholder="Vechile Type">
-      <p>Quantity Details</p>
-      <input type="text" placeholder="Safe Quantity">
-      <input type="text" placeholder="Unsafe Quantity">
-      <p>Labour Details</p>
-      <input type="text" placeholder="Labour Name">
-      <input type="text" placeholder="Labour Code">
-      <p>Miscellaneous Expenses</p>
-      <input type="text" placeholder="Dala charge">
-      <input type="text" placeholder="Kept By">
-      <input type="text" placeholder="Due To">
-      <input type="text" placeholder="Reason">
-      <input type="text" placeholder="Amount">
-      <button>Submit -></button>
-    </div>
-  </div>
+<ion-content class="ion-padding">
+  <ion-text color="tertiary">
+    <h1>Move To Unloaded</h1>
+  </ion-text>
+  <button (click)="takePicture()">
+    <ion-icon name="aperture-outline"></ion-icon>
+  </button>
+  <form [formGroup]="unloadedForm" (onSubmit)="setAsUnloaded()" >
+    <ion-list>
+      <ion-row>
+        <ion-item>
+          <ion-label position="floating">Vehicle Number</ion-label>
+          <ion-input type="text" formControlName="vehicleNumber"></ion-input>
+        </ion-item>
+        <button fill="clear">
+          <ion-icon name="checkmark-done"></ion-icon>
+        </button>
+      </ion-row>
+      <ion-item>
+        <ion-label position="floating">Gate Number</ion-label>
+        <ion-input type="text" formControlName="gateNumber"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-top" lines="none">
+        <ion-text>
+          <h2>Quantity Details</h2>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Safe Quantity</ion-label>
+        <ion-input type="number" formControlName="safeQuantity"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Unsafe Quantity</ion-label>
+        <ion-input type="number" formControlName="unsafeQuantity"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-text>
+          <h2>Select Labours</h2>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Select Workers</ion-label>
+        <ion-select multiple="true" cancelText="Cancel" okText="Done">
+          <ion-select-option formControlName="workingWorkers" [value]="worker.userId" *ngFor="let worker of workers">
+            <ion-label>
+              <img [src]="worker.photoURL" style="width:20px;height:20px;border-radius: 50%;" />
+              {{worker.displayName}}
+            </ion-label>
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="ion-margin-top" lines="none">
+        <ion-text>
+          <h2>Miscellaneous Expenses</h2>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Vehicle Damage</ion-label>
+        <ion-input type="text" formControlName="vehicleDamage"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Personel Damage</ion-label>
+        <ion-input type="text" formControlName="personelDamage"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Legal Tax/Charge</ion-label>
+        <ion-input type="text" formControlName="legalCharges"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Other</ion-label>
+        <ion-input type="text" formControlName="otherDamage"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" formControlName="explainDamage">Explain</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" expand="block" fill="solid" mode="ios">
+      Submit
+    </ion-button>
+  </form>
 </ion-content>

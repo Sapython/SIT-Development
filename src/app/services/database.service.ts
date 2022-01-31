@@ -14,7 +14,10 @@ import {
   docSnapshots,
   docData,
   getDoc,
+  getDocs,
+  where,
 } from '@angular/fire/firestore';
+import { query } from 'firebase/firestore';
 import { DataProvider } from '../providers/data.provider';
 import { ContactRequest } from '../structures/user.structure';
 import { AuthencationService } from './authencation.service';
@@ -79,7 +82,14 @@ export class DatabaseService {
   
   // SIt services starts
   getSitLedgers() {
-    return collectionSnapshots(collection(this.fs, 'SIT_COL'));
+    return collectionSnapshots(collection(this.fs, 'stocks'));
+  }
+  getWorkers() {
+    return getDocs(query(collection(this.fs, 'users'),where('access.access', '==', 'Worker')));
+  }
+  async unloadSit(sitId,data) {
+    await updateDoc(doc(this.fs, 'stocks'),{status:'unloaded'})
+    return addDoc(collection(this.fs, 'stocks/'+sitId+'/unloaded'), data);
   }
   // SIT services ends
 }

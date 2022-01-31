@@ -46,7 +46,7 @@ export type Discount={
 }
 
 export type UserAccess={
-    access:'Admin'|'User'|'Guest';
+    access:'Admin'|'User'|'Guest'|'Worker'|'Supervisor';
 }
 export type Order={
     orderId:string;

@@ -1,12 +1,12 @@
 {
-	"appId": "com.swayambhu.stockintransit",
+	"appId": "com.sng.sngsons",
 	"appName": "SNG Sons",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
 			"launchShowDuration": 3000,
-			"launchAutoHide": true,
+			"launchAutoHide": false,
 			"backgroundColor": "#ffffffff",
 			"androidSplashResourceName": "splash",
 			"androidScaleType": "CENTER_CROP",

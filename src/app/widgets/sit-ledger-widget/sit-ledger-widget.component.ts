@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
 import { UnloadedLogComponent } from 'src/app/modals/unloaded-log/unloaded-log.component';
+import { SIT, Stock } from 'src/app/structures/method.structure';
 
 @Component({
   selector: 'app-sit-ledger-widget',
@@ -11,13 +12,11 @@ import { UnloadedLogComponent } from 'src/app/modals/unloaded-log/unloaded-log.c
 })
 export class SitLedgerWidgetComponent implements OnInit {
   @Input() bakery: string = "TIRUPATI BAKERS";
-  @Input() itemName: string = "Biscuit";
   @Input() dueDate: string = "12 Dec";
   @Input() suppCode: string = "123XYZ0";
-  @Input() moveTo: string = "Recieved";
 
   @Input() dispatchDate: string;
-  @Input() delivery: string;
+  @Input() deliveryCode: string;
   @Input() expectedDelivery: string;
   @Input() gateEntryDate: string;
   @Input() gateEntryNo: string;
@@ -33,7 +32,7 @@ export class SitLedgerWidgetComponent implements OnInit {
   @Input() transName: string;
   @Input() vehicleNo: string;
   @Input() status:"uploaded"|"pending"|"recieved"|"unloaded";
-
+  @Input() allData:SIT;
   displayMoreDetails: boolean = false;
 
   constructor(private router:Router, public modalController: ModalController) { }

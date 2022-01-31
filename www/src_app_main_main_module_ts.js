@@ -1,100 +1,6 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_main_main_module_ts"],{
 
-/***/ 47306:
-/*!***********************************************************!*\
-  !*** ./src/app/base-components/base-components.module.ts ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BaseComponentsModule": () => (/* binding */ BaseComponentsModule)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header/header.component */ 23205);
-/* harmony import */ var _component_component_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component/component.module */ 55051);
-
-
-
-
-
-
-const comps = [
-    _header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent,
-];
-let BaseComponentsModule = class BaseComponentsModule {
-};
-BaseComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-        declarations: [
-            comps
-        ],
-        imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule,
-            _component_component_module__WEBPACK_IMPORTED_MODULE_1__.ComponentModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule,
-        ],
-        exports: [
-            comps
-        ]
-    })
-], BaseComponentsModule);
-
-
-
-/***/ }),
-
-/***/ 23205:
-/*!************************************************************!*\
-  !*** ./src/app/base-components/header/header.component.ts ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HeaderComponent": () => (/* binding */ HeaderComponent)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header.component.html?ngResource */ 70015);
-/* harmony import */ var _header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss?ngResource */ 97927);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/data.provider */ 47991);
-
-
-
-
-
-let HeaderComponent = class HeaderComponent {
-    constructor(dataProvider) {
-        this.dataProvider = dataProvider;
-        this.title = "";
-        this.username = "Sajan Pandey";
-    }
-    ngOnInit() { }
-};
-HeaderComponent.ctorParameters = () => [
-    { type: src_app_providers_data_provider__WEBPACK_IMPORTED_MODULE_2__.DataProvider }
-];
-HeaderComponent.propDecorators = {
-    title: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
-    username: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }]
-};
-HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
-        selector: 'app-header',
-        template: _header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-        styles: [_header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
-    })
-], HeaderComponent);
-
-
-
-/***/ }),
-
 /***/ 19853:
 /*!*********************************************!*\
   !*** ./src/app/main/main-routing.module.ts ***!
@@ -161,15 +67,6 @@ const routes = [
                         path: '',
                         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_dala-ledger_dala-ledger_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dala-ledger/dala-ledger.module */ 86227)).then(m => m.DalaLedgerPageModule)
                     }
-                ]
-            },
-            {
-                path: 'sitDetail',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_sit-detail_sit-detail_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sit-detail/sit-detail.module */ 84779)).then(m => m.SITDetailPageModule)
-                    },
                 ]
             },
             {
@@ -241,6 +138,22 @@ const routes = [
                     {
                         path: '',
                         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_account-page_account-page_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./account-page/account-page.module */ 51905)).then(m => m.AccountPagePageModule)
+                    }
+                ]
+            }, {
+                path: 'employee-info',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_employee-info_employee-info_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./employee-info/employee-info.module */ 75251)).then(m => m.EmployeeInfoPageModule)
+                    }
+                ]
+            }, {
+                path: 'driver-info',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_main_driver-info_driver-info_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./driver-info/driver-info.module */ 11370)).then(m => m.DriverInfoPageModule)
                     }
                 ]
             },
@@ -465,6 +378,56 @@ RecievedLogComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
 
 /***/ }),
 
+/***/ 73058:
+/*!*****************************************************!*\
+  !*** ./src/app/modals/see-due/see-due.component.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SeeDueComponent": () => (/* binding */ SeeDueComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _see_due_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./see-due.component.html?ngResource */ 87288);
+/* harmony import */ var _see_due_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./see-due.component.scss?ngResource */ 10877);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 93819);
+
+
+
+
+
+let SeeDueComponent = class SeeDueComponent {
+    constructor(modalController) {
+        this.modalController = modalController;
+        this.Due = 2324;
+        this.WorkingIn = "tirupati SIT";
+    }
+    ngOnInit() { }
+    closeModal() {
+        this.modalController.dismiss();
+    }
+};
+SeeDueComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ModalController }
+];
+SeeDueComponent.propDecorators = {
+    Due: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    WorkingIn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }]
+};
+SeeDueComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+        selector: 'app-see-due',
+        template: _see_due_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_see_due_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], SeeDueComponent);
+
+
+
+/***/ }),
+
 /***/ 50543:
 /*!***************************************************************!*\
   !*** ./src/app/modals/unloaded-log/unloaded-log.component.ts ***!
@@ -529,30 +492,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DalaWidgetComponent": () => (/* binding */ DalaWidgetComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _dala_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dala-widget.component.html?ngResource */ 2107);
 /* harmony import */ var _dala_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dala-widget.component.scss?ngResource */ 17635);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 52816);
+
 
 
 
 
 let DalaWidgetComponent = class DalaWidgetComponent {
-    constructor() { }
+    constructor(router) {
+        this.router = router;
+    }
     ngOnInit() { }
+    navigate(path) {
+        this.router.navigateByUrl('/main/app/' + path);
+    }
 };
-DalaWidgetComponent.ctorParameters = () => [];
+DalaWidgetComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router }
+];
 DalaWidgetComponent.propDecorators = {
-    driverName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    driverImage: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    driverId: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    charge: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    ledgerNo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    coordinator: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    driverNumber: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+    driverName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    driverImage: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    driverId: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    charge: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    ledgerNo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    coordinator: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }],
+    driverNumber: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input }]
 };
-DalaWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+DalaWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-dala-widget',
         template: _dala_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_dala_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -692,29 +664,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _labour_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./labour-ledger-widget.component.html?ngResource */ 44782);
 /* harmony import */ var _labour_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labour-ledger-widget.component.scss?ngResource */ 10216);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var src_app_modals_see_due_see_due_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/modals/see-due/see-due.component */ 73058);
+
+
 
 
 
 
 let LabourLedgerWidgetComponent = class LabourLedgerWidgetComponent {
-    constructor() {
+    constructor(modalController) {
+        this.modalController = modalController;
         this.Name = "RAMLOCHAN";
         this.Lastname = "VISHWAKARMA";
         this.Code = "123XYZ0";
         this.Paid = 2324;
     }
     ngOnInit() { }
+    seedue() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            const modal = yield this.modalController.create({
+                component: src_app_modals_see_due_see_due_component__WEBPACK_IMPORTED_MODULE_2__.SeeDueComponent,
+            });
+            return yield modal.present();
+        });
+    }
 };
-LabourLedgerWidgetComponent.ctorParameters = () => [];
+LabourLedgerWidgetComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ModalController }
+];
 LabourLedgerWidgetComponent.propDecorators = {
-    Name: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    Lastname: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    Code: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
-    Paid: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+    Name: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }],
+    Lastname: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }],
+    Code: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }],
+    Paid: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input }]
 };
 LabourLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-labour-ledger-widget',
         template: _labour_ledger_widget_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_labour_ledger_widget_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -821,10 +808,8 @@ let SitLedgerWidgetComponent = class SitLedgerWidgetComponent {
         this.router = router;
         this.modalController = modalController;
         this.bakery = "TIRUPATI BAKERS";
-        this.itemName = "Biscuit";
         this.dueDate = "12 Dec";
         this.suppCode = "123XYZ0";
-        this.moveTo = "Recieved";
         this.displayMoreDetails = false;
     }
     recievedlog() {
@@ -854,12 +839,10 @@ SitLedgerWidgetComponent.ctorParameters = () => [
 ];
 SitLedgerWidgetComponent.propDecorators = {
     bakery: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
-    itemName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     dueDate: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     suppCode: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
-    moveTo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     dispatchDate: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
-    delivery: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
+    deliveryCode: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     expectedDelivery: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     gateEntryDate: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     gateEntryNo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
@@ -874,7 +857,8 @@ SitLedgerWidgetComponent.propDecorators = {
     storageLocation: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     transName: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
     vehicleNo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
-    status: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }]
+    status: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
+    allData: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }]
 };
 SitLedgerWidgetComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
@@ -898,19 +882,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "WidgetsModule": () => (/* binding */ WidgetsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sit-ledger-widget/sit-ledger-widget.component */ 84604);
-/* harmony import */ var _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./employee-data-widget/employee-data-widget.component */ 99579);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./labour-ledger-widget/labour-ledger-widget.component */ 94080);
-/* harmony import */ var _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./product-ledger-widget/product-ledger-widget.component */ 85182);
-/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ng2-charts */ 44195);
-/* harmony import */ var _expense_ledger_expense_ledger_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./expense-ledger/expense-ledger.component */ 82202);
-/* harmony import */ var _dala_widget_dala_widget_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dala-widget/dala-widget.component */ 31360);
-/* harmony import */ var _modals_recieved_log_recieved_log_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../modals/recieved-log/recieved-log.component */ 74961);
-/* harmony import */ var _modals_unloaded_log_unloaded_log_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../modals/unloaded-log/unloaded-log.component */ 50543);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _modals_see_due_see_due_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../modals/see-due/see-due.component */ 73058);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sit-ledger-widget/sit-ledger-widget.component */ 84604);
+/* harmony import */ var _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./employee-data-widget/employee-data-widget.component */ 99579);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./labour-ledger-widget/labour-ledger-widget.component */ 94080);
+/* harmony import */ var _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./product-ledger-widget/product-ledger-widget.component */ 85182);
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ng2-charts */ 44195);
+/* harmony import */ var _expense_ledger_expense_ledger_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./expense-ledger/expense-ledger.component */ 82202);
+/* harmony import */ var _dala_widget_dala_widget_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dala-widget/dala-widget.component */ 31360);
+/* harmony import */ var _modals_recieved_log_recieved_log_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../modals/recieved-log/recieved-log.component */ 74961);
+/* harmony import */ var _modals_unloaded_log_unloaded_log_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../modals/unloaded-log/unloaded-log.component */ 50543);
+
 
 
 
@@ -925,22 +911,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const widgets = [
-    _sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_0__.SitLedgerWidgetComponent,
-    _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_1__.EmployeeDataWidgetComponent,
-    _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_2__.LabourLedgerWidgetComponent,
-    _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__.ProductLedgerWidgetComponent,
-    _expense_ledger_expense_ledger_component__WEBPACK_IMPORTED_MODULE_4__.ExpenseLedgerComponent,
-    _dala_widget_dala_widget_component__WEBPACK_IMPORTED_MODULE_5__.DalaWidgetComponent,
+    _sit_ledger_widget_sit_ledger_widget_component__WEBPACK_IMPORTED_MODULE_1__.SitLedgerWidgetComponent,
+    _employee_data_widget_employee_data_widget_component__WEBPACK_IMPORTED_MODULE_2__.EmployeeDataWidgetComponent,
+    _labour_ledger_widget_labour_ledger_widget_component__WEBPACK_IMPORTED_MODULE_3__.LabourLedgerWidgetComponent,
+    _product_ledger_widget_product_ledger_widget_component__WEBPACK_IMPORTED_MODULE_4__.ProductLedgerWidgetComponent,
+    _expense_ledger_expense_ledger_component__WEBPACK_IMPORTED_MODULE_5__.ExpenseLedgerComponent,
+    _dala_widget_dala_widget_component__WEBPACK_IMPORTED_MODULE_6__.DalaWidgetComponent,
 ];
 let WidgetsModule = class WidgetsModule {
 };
-WidgetsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.NgModule)({
-        declarations: [widgets, _modals_recieved_log_recieved_log_component__WEBPACK_IMPORTED_MODULE_6__.RecievedLogComponent, _modals_unloaded_log_unloaded_log_component__WEBPACK_IMPORTED_MODULE_7__.UnloadedLogComponent],
+WidgetsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.NgModule)({
+        declarations: [widgets, _modals_recieved_log_recieved_log_component__WEBPACK_IMPORTED_MODULE_7__.RecievedLogComponent, _modals_unloaded_log_unloaded_log_component__WEBPACK_IMPORTED_MODULE_8__.UnloadedLogComponent, _modals_see_due_see_due_component__WEBPACK_IMPORTED_MODULE_0__.SeeDueComponent],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_10__.CommonModule,
-            ng2_charts__WEBPACK_IMPORTED_MODULE_11__.NgChartsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_11__.CommonModule,
+            ng2_charts__WEBPACK_IMPORTED_MODULE_12__.NgChartsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_13__.IonicModule,
         ],
         exports: [widgets],
     })
@@ -14192,16 +14178,6 @@ function styleChanged(style, prevStyle) {
 
 /***/ }),
 
-/***/ 97927:
-/*!*************************************************************************!*\
-  !*** ./src/app/base-components/header/header.component.scss?ngResource ***!
-  \*************************************************************************/
-/***/ ((module) => {
-
-module.exports = "nav {\n  position: relative;\n  display: flex;\n  align-items: center;\n  color: white;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 60px;\n  background-color: var(--ion-color-primary);\n  border-radius: 0px 0px 15px 15px;\n}\n\n.container {\n  height: 40px;\n  border-radius: 20px;\n  background-color: #fff;\n  padding: 10px;\n  padding-right: 10px;\n  padding-left: 10px;\n  display: flex;\n  flex-direction: row;\n  margin-left: 10px;\n}\n\n.photo {\n  height: 30px;\n  width: 30px;\n  border-radius: 50%;\n  background-color: var(--ion-color-primary);\n  margin-top: -5px;\n}\n\n.container p {\n  margin-top: -1px;\n  margin-left: 10px;\n  color: var(--ion-color-primary);\n}\n\nion-back-button {\n  color: #fff;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFFBQUE7RUFDQSxTQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSwwQ0FBQTtFQUNBLGdDQUFBO0FBQ0o7O0FBQ0E7RUFDSSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsaUJBQUE7QUFFSjs7QUFBQTtFQUNJLFlBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQ0FBQTtFQUNBLGdCQUFBO0FBR0o7O0FBQUE7RUFDSSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsK0JBQUE7QUFHSjs7QUFEQTtFQUNJLFdBQUE7QUFJSiIsImZpbGUiOiJoZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJuYXZ7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGNvbG9yOndoaXRlO1xyXG4gICAgdG9wOjBweDtcclxuICAgIGxlZnQ6MHB4O1xyXG4gICAgd2lkdGg6MTAwJTtcclxuICAgIGhlaWdodDo2MHB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjp2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwcHggMHB4IDE1cHggMTVweDtcclxufVxyXG4uY29udGFpbmVye1xyXG4gICAgaGVpZ2h0OiA0MHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMjBweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6I2ZmZjtcclxuICAgIHBhZGRpbmc6IDEwcHg7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiAxMHB4O1xyXG4gICAgcGFkZGluZy1sZWZ0OiAxMHB4O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcclxufVxyXG4ucGhvdG97XHJcbiAgICBoZWlnaHQ6IDMwcHg7XHJcbiAgICB3aWR0aDogMzBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxuICAgIG1hcmdpbi10b3A6IC01cHg7XHJcbiAgICBcclxufVxyXG4uY29udGFpbmVyIHB7XHJcbiAgICBtYXJnaW4tdG9wOiAtMXB4O1xyXG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XHJcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG59XHJcbmlvbi1iYWNrLWJ1dHRvbntcclxuICAgIGNvbG9yOiAjZmZmO1xyXG59Il19 */";
-
-/***/ }),
-
 /***/ 86327:
 /*!*****************************************************!*\
   !*** ./src/app/main/main.component.scss?ngResource ***!
@@ -14219,6 +14195,16 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /***/ ((module) => {
 
 module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJyZWNpZXZlZC1sb2cuY29tcG9uZW50LnNjc3MifQ== */";
+
+/***/ }),
+
+/***/ 10877:
+/*!******************************************************************!*\
+  !*** ./src/app/modals/see-due/see-due.component.scss?ngResource ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzZWUtZHVlLmNvbXBvbmVudC5zY3NzIn0= */";
 
 /***/ }),
 
@@ -14288,17 +14274,7 @@ module.exports = "* {\n  animation: fadeIn 0.3s ease-in;\n}\n\n.container {\n  f
   \***************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "* {\n  animation: fadeIn 0.3s ease-in;\n  font-family: \"Poppins\", sans-serif;\n}\n\n#card {\n  background-color: #ffffff;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 0.5em 0;\n  box-shadow: rgba(99, 99, 99, 0.39) 0px 2px 10px 0px;\n}\n\n#card-photo-and-details {\n  display: flex;\n  align-items: center;\n}\n\n#card-photo {\n  width: 22.5%;\n  border-radius: 50%;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n\n#card-details {\n  margin-left: 1em;\n}\n\n#card-heading {\n  margin: 0;\n  margin-bottom: 0.25em;\n  font-size: 16px;\n  font-weight: 700;\n}\n\n.card-paragraph {\n  margin: 0;\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.card-paragraph-highlight {\n  color: var(--ion-color-primary);\n}\n\n#card-stepper-wrapper {\n  margin-top: 20px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.card-stepper-item {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  flex: 1;\n}\n\n.card-stepper-item::before {\n  position: absolute;\n  content: \"\";\n  border-bottom: 2px solid #E5E5E5;\n  width: 100%;\n  top: 10px;\n  left: -50%;\n  z-index: 2;\n}\n\n.card-stepper-item::after {\n  position: absolute;\n  content: \"\";\n  border-bottom: 2px solid #E5E5E5;\n  width: 100%;\n  top: 10px;\n  left: 50%;\n  z-index: 2;\n}\n\n.card-stepper-item .card-step-counter {\n  position: relative;\n  z-index: 5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  background: #E5E5E5;\n  margin-bottom: 6px;\n}\n\n.card-stepper-item.completed .card-step-counter {\n  background-color: var(--ion-color-primary);\n}\n\n.card-stepper-item.completed::after {\n  position: absolute;\n  content: \"\";\n  border-bottom: 2px solid var(--ion-color-primary);\n  width: 100%;\n  top: 10px;\n  left: 50%;\n  z-index: 3;\n}\n\n.card-stepper-item:first-child::before {\n  content: none;\n}\n\n.card-stepper-item:last-child::after {\n  content: none;\n}\n\n.card-stepper-item .card-step-name {\n  color: var(--ion-color-primary);\n  text-align: center;\n  font-size: 12px;\n  font-weight: 500;\n  margin: 0 0.5em;\n}\n\n.card-stepper-item:not(.completed) .card-step-name {\n  color: #47D8B1;\n}\n\n.card-more-detail {\n  margin: 0;\n  display: flex;\n  justify-content: space-between;\n  color: rgba(54, 54, 54, 0.6);\n  font-size: 14px;\n}\n\n.more-detail-key {\n  font-weight: 600;\n}\n\n.more-detail-value {\n  font-style: italic;\n  margin-left: 0.5em;\n  text-align: right;\n}\n\n#card-more-details-button {\n  background: none;\n  display: block;\n  font-size: 20px;\n  margin: 5px auto 0 auto;\n}\n\nhr {\n  border: 2px solid #ddd;\n  height: 0;\n  border-radius: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdC1sZWRnZXItd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsOEJBQUE7RUFDQSxrQ0FBQTtBQUNGOztBQUVBO0VBQ0UseUJBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0VBQ0EsbURBQUE7QUFDRjs7QUFFQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtBQUNGOztBQUVBO0VBQ0UsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsaURBQUE7QUFDRjs7QUFFQTtFQUNFLGdCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxTQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFDRjs7QUFFQTtFQUNFLFNBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFDRjs7QUFFQTtFQUNFLCtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxnQkFBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtBQUNGOztBQUVBO0VBQ0Usa0JBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLE9BQUE7QUFDRjs7QUFFQTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGdDQUFBO0VBQ0EsV0FBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsVUFBQTtBQUNGOztBQUVBO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsZ0NBQUE7RUFDQSxXQUFBO0VBQ0EsU0FBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0FBQ0Y7O0FBRUE7RUFDRSxrQkFBQTtFQUNBLFVBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxtQkFBQTtFQUNBLGtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSwwQ0FBQTtBQUNGOztBQUVBO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsaURBQUE7RUFDQSxXQUFBO0VBQ0EsU0FBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0FBQ0Y7O0FBRUE7RUFDRSxhQUFBO0FBQ0Y7O0FBQ0E7RUFDRSxhQUFBO0FBRUY7O0FBQ0E7RUFDRSwrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtBQUVGOztBQUNBO0VBQ0UsY0FBQTtBQUVGOztBQUNBO0VBQ0UsU0FBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtFQUNBLDRCQUFBO0VBQ0EsZUFBQTtBQUVGOztBQUNBO0VBQ0UsZ0JBQUE7QUFFRjs7QUFDQTtFQUNFLGtCQUFBO0VBQ0Esa0JBQUE7RUFDQSxpQkFBQTtBQUVGOztBQUNBO0VBQ0UsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLHVCQUFBO0FBRUY7O0FBQUE7RUFDRSxzQkFBQTtFQUNBLFNBQUE7RUFDQSxtQkFBQTtBQUdGIiwiZmlsZSI6InNpdC1sZWRnZXItd2lkZ2V0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiKiB7XHJcbiAgYW5pbWF0aW9uOiBmYWRlSW4gMC4zcyBlYXNlLWluO1xyXG4gIGZvbnQtZmFtaWx5OiAnUG9wcGlucycsIHNhbnMtc2VyaWY7XHJcbn1cclxuXHJcbiNjYXJkIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gIHBhZGRpbmc6IDEwcHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICBtYXJnaW46IC41ZW0gMDtcclxuICBib3gtc2hhZG93OiByZ2JhKDk5LCA5OSwgOTksIDAuMzkpIDBweCAycHggMTBweCAwcHg7XHJcbn1cclxuXHJcbiNjYXJkLXBob3RvLWFuZC1kZXRhaWxzIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbiNjYXJkLXBob3RvIHtcclxuICB3aWR0aDogMjIuNSU7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJveC1zaGFkb3c6IHJnYmEoOTksIDk5LCA5OSwgMC4yKSAwcHggMnB4IDhweCAwcHg7XHJcbn1cclxuXHJcbiNjYXJkLWRldGFpbHMge1xyXG4gIG1hcmdpbi1sZWZ0OiAxZW07XHJcbn1cclxuXHJcbiNjYXJkLWhlYWRpbmcge1xyXG4gIG1hcmdpbjogMDtcclxuICBtYXJnaW4tYm90dG9tOiAuMjVlbTtcclxuICBmb250LXNpemU6IDE2cHg7XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxufVxyXG5cclxuLmNhcmQtcGFyYWdyYXBoIHtcclxuICBtYXJnaW46IDA7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuXHJcbi5jYXJkLXBhcmFncmFwaC1oaWdobGlnaHQge1xyXG4gIGNvbG9yOiAgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG59XHJcblxyXG4jY2FyZC1zdGVwcGVyLXdyYXBwZXIge1xyXG4gIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbSB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsZXg6IDE7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbTo6YmVmb3JlIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0U1RTVFNTtcclxuICB3aWR0aDogMTAwJTtcclxuICB0b3A6IDEwcHg7XHJcbiAgbGVmdDogLTUwJTtcclxuICB6LWluZGV4OiAyO1xyXG59XHJcblxyXG4uY2FyZC1zdGVwcGVyLWl0ZW06OmFmdGVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0U1RTVFNTtcclxuICB3aWR0aDogMTAwJTtcclxuICB0b3A6IDEwcHg7XHJcbiAgbGVmdDogNTAlOyAgXHJcbiAgei1pbmRleDogMjtcclxufVxyXG5cclxuLmNhcmQtc3RlcHBlci1pdGVtIC5jYXJkLXN0ZXAtY291bnRlciB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHotaW5kZXg6IDU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAyMHB4O1xyXG4gIGhlaWdodDogMjBweDtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZDogI0U1RTVFNTtcclxuICBtYXJnaW4tYm90dG9tOiA2cHg7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbS5jb21wbGV0ZWQgLmNhcmQtc3RlcC1jb3VudGVyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbS5jb21wbGV0ZWQ6OmFmdGVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBib3JkZXItYm90dG9tOiAycHggc29saWQgIHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxuICB3aWR0aDogMTAwJTtcclxuICB0b3A6IDEwcHg7XHJcbiAgbGVmdDogNTAlO1xyXG4gIHotaW5kZXg6IDM7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbTpmaXJzdC1jaGlsZDo6YmVmb3JlIHtcclxuICBjb250ZW50OiBub25lO1xyXG59XHJcbi5jYXJkLXN0ZXBwZXItaXRlbTpsYXN0LWNoaWxkOjphZnRlciB7XHJcbiAgY29udGVudDogbm9uZTtcclxufVxyXG5cclxuLmNhcmQtc3RlcHBlci1pdGVtIC5jYXJkLXN0ZXAtbmFtZSAge1xyXG4gIGNvbG9yOiAgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBmb250LXNpemU6IDEycHg7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBtYXJnaW46IDAgLjVlbTtcclxufVxyXG5cclxuLmNhcmQtc3RlcHBlci1pdGVtOm5vdCguY29tcGxldGVkKSAuY2FyZC1zdGVwLW5hbWUgIHtcclxuICBjb2xvcjogIzQ3RDhCMTtcclxufVxyXG5cclxuLmNhcmQtbW9yZS1kZXRhaWwge1xyXG4gIG1hcmdpbjogMDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBjb2xvcjogcmdiYSg1NCwgNTQsIDU0LCAwLjYpO1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxufVxyXG5cclxuLm1vcmUtZGV0YWlsLWtleSB7XHJcbiAgZm9udC13ZWlnaHQ6IDYwMDtcclxufVxyXG5cclxuLm1vcmUtZGV0YWlsLXZhbHVlIHtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbiAgbWFyZ2luLWxlZnQ6IC41ZW07XHJcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XHJcbn1cclxuXHJcbiNjYXJkLW1vcmUtZGV0YWlscy1idXR0b24ge1xyXG4gIGJhY2tncm91bmQ6IG5vbmU7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIG1hcmdpbjogNXB4IGF1dG8gMCBhdXRvO1xyXG59XHJcbmhye1xyXG4gIGJvcmRlcjogMnB4IHNvbGlkICNkZGQ7XHJcbiAgaGVpZ2h0OiAwO1xyXG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XHJcbn0iXX0= */";
-
-/***/ }),
-
-/***/ 70015:
-/*!*************************************************************************!*\
-  !*** ./src/app/base-components/header/header.component.html?ngResource ***!
-  \*************************************************************************/
-/***/ ((module) => {
-
-module.exports = "<nav>\r\n  <ion-back-button defaultHref=\"/main/app/home\">Back</ion-back-button>\r\n  <ion-chip color=\"secondary\">\r\n    <ion-avatar>\r\n      <img [src]=\"dataProvider?.userData?.photoURL\">\r\n    </ion-avatar>\r\n    <ion-label color=\"light\">{{dataProvider?.userData?.displayName}}</ion-label>\r\n  </ion-chip>\r\n</nav>";
+module.exports = "@keyframes fadeIn {\n  from {\n    transform: scale(0.9);\n    opacity: 0;\n  }\n  to {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n* {\n  animation: fadeIn 0.3s ease-in;\n  font-family: \"Poppins\", sans-serif;\n}\n#card {\n  background-color: #ffffff;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 0.5em 0;\n  box-shadow: rgba(99, 99, 99, 0.39) 0px 2px 10px 0px;\n  transition: all 1s ease-in-out;\n}\n#card-photo-and-details {\n  display: flex;\n  align-items: center;\n}\n#card-photo {\n  width: 22.5%;\n  border-radius: 50%;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n#card-details {\n  margin-left: 1em;\n}\n#card-heading {\n  margin: 0;\n  margin-bottom: 0.25em;\n  font-size: 16px;\n  font-weight: 700;\n}\n.card-paragraph {\n  margin: 0;\n  font-size: 12px;\n  font-weight: 500;\n}\n.card-paragraph-highlight {\n  color: var(--ion-color-primary);\n}\n#card-stepper-wrapper {\n  margin-top: 20px;\n  display: flex;\n  justify-content: space-between;\n}\n.card-stepper-item {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  flex: 1;\n}\n.card-stepper-item::before {\n  position: absolute;\n  content: \"\";\n  border-bottom: 2px solid #E5E5E5;\n  width: 100%;\n  top: 10px;\n  left: -50%;\n  z-index: 2;\n}\n.card-stepper-item::after {\n  position: absolute;\n  content: \"\";\n  border-bottom: 2px solid #E5E5E5;\n  width: 100%;\n  top: 10px;\n  left: 50%;\n  z-index: 2;\n}\n.card-stepper-item .card-step-counter {\n  position: relative;\n  z-index: 5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  background: #E5E5E5;\n  margin-bottom: 6px;\n}\n.card-stepper-item.completed .card-step-counter {\n  background-color: var(--ion-color-primary);\n}\n.card-stepper-item.completed::after {\n  position: absolute;\n  content: \"\";\n  border-bottom: 2px solid var(--ion-color-primary);\n  width: 100%;\n  top: 10px;\n  left: 50%;\n  z-index: 3;\n}\n.card-stepper-item:first-child::before {\n  content: none;\n}\n.card-stepper-item:last-child::after {\n  content: none;\n}\n.card-stepper-item .card-step-name {\n  color: var(--ion-color-primary);\n  text-align: center;\n  font-size: 12px;\n  font-weight: 500;\n  margin: 0 0.5em;\n}\n.card-stepper-item:not(.completed) .card-step-name {\n  color: #47D8B1;\n}\n.card-more-detail {\n  margin: 0;\n  display: flex;\n  justify-content: space-between;\n  color: rgba(54, 54, 54, 0.6);\n  font-size: 14px;\n}\n.more-detail-key {\n  font-weight: 600;\n}\n.more-detail-value {\n  font-style: italic;\n  margin-left: 0.5em;\n  text-align: right;\n}\n#card-more-details-button {\n  background: none;\n  display: block;\n  font-size: 20px;\n  margin: 5px auto 0 auto;\n}\nhr {\n  border: 2px solid #ddd;\n  height: 0;\n  border-radius: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdC1sZWRnZXItd2lkZ2V0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7SUFDRSxxQkFBQTtJQUNBLFVBQUE7RUFDRjtFQUNBO0lBQ0UsbUJBQUE7SUFDQSxVQUFBO0VBQ0Y7QUFDRjtBQUVBO0VBQ0UsOEJBQUE7RUFDQSxrQ0FBQTtBQUFGO0FBR0E7RUFDRSx5QkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7RUFDQSxtREFBQTtFQUNBLDhCQUFBO0FBQUY7QUFHQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtBQUFGO0FBR0E7RUFDRSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxpREFBQTtBQUFGO0FBR0E7RUFDRSxnQkFBQTtBQUFGO0FBR0E7RUFDRSxTQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFBRjtBQUdBO0VBQ0UsU0FBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQUFGO0FBR0E7RUFDRSwrQkFBQTtBQUFGO0FBR0E7RUFDRSxnQkFBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtBQUFGO0FBR0E7RUFDRSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0VBQ0EsT0FBQTtBQUFGO0FBR0E7RUFDRSxrQkFBQTtFQUNBLFdBQUE7RUFDQSxnQ0FBQTtFQUNBLFdBQUE7RUFDQSxTQUFBO0VBQ0EsVUFBQTtFQUNBLFVBQUE7QUFBRjtBQUdBO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsZ0NBQUE7RUFDQSxXQUFBO0VBQ0EsU0FBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0FBQUY7QUFHQTtFQUNFLGtCQUFBO0VBQ0EsVUFBQTtFQUNBLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLG1CQUFBO0VBQ0Esa0JBQUE7QUFBRjtBQUdBO0VBQ0UsMENBQUE7QUFBRjtBQUdBO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsaURBQUE7RUFDQSxXQUFBO0VBQ0EsU0FBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0FBQUY7QUFHQTtFQUNFLGFBQUE7QUFBRjtBQUVBO0VBQ0UsYUFBQTtBQUNGO0FBRUE7RUFDRSwrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtBQUNGO0FBRUE7RUFDRSxjQUFBO0FBQ0Y7QUFFQTtFQUNFLFNBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSw0QkFBQTtFQUNBLGVBQUE7QUFDRjtBQUVBO0VBQ0UsZ0JBQUE7QUFDRjtBQUVBO0VBQ0Usa0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0FBQ0Y7QUFFQTtFQUNFLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGVBQUE7RUFDQSx1QkFBQTtBQUNGO0FBQ0E7RUFDRSxzQkFBQTtFQUNBLFNBQUE7RUFDQSxtQkFBQTtBQUVGIiwiZmlsZSI6InNpdC1sZWRnZXItd2lkZ2V0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGtleWZyYW1lcyBmYWRlSW4ge1xyXG4gIGZyb20ge1xyXG4gICAgdHJhbnNmb3JtOiBzY2FsZSgwLjkpO1xyXG4gICAgb3BhY2l0eTogMDtcclxuICB9XHJcbiAgdG8ge1xyXG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxKTtcclxuICAgIG9wYWNpdHk6IDE7XHJcbiAgfVxyXG59XHJcblxyXG4qIHtcclxuICBhbmltYXRpb246IGZhZGVJbiAwLjNzIGVhc2UtaW47XHJcbiAgZm9udC1mYW1pbHk6ICdQb3BwaW5zJywgc2Fucy1zZXJpZjtcclxufVxyXG5cclxuI2NhcmQge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XHJcbiAgcGFkZGluZzogMTBweDtcclxuICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gIG1hcmdpbjogLjVlbSAwO1xyXG4gIGJveC1zaGFkb3c6IHJnYmEoOTksIDk5LCA5OSwgMC4zOSkgMHB4IDJweCAxMHB4IDBweDtcclxuICB0cmFuc2l0aW9uOiBhbGwgMXMgZWFzZS1pbi1vdXQ7XHJcbn1cclxuXHJcbiNjYXJkLXBob3RvLWFuZC1kZXRhaWxzIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbiNjYXJkLXBob3RvIHtcclxuICB3aWR0aDogMjIuNSU7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJveC1zaGFkb3c6IHJnYmEoOTksIDk5LCA5OSwgMC4yKSAwcHggMnB4IDhweCAwcHg7XHJcbn1cclxuXHJcbiNjYXJkLWRldGFpbHMge1xyXG4gIG1hcmdpbi1sZWZ0OiAxZW07XHJcbn1cclxuXHJcbiNjYXJkLWhlYWRpbmcge1xyXG4gIG1hcmdpbjogMDtcclxuICBtYXJnaW4tYm90dG9tOiAuMjVlbTtcclxuICBmb250LXNpemU6IDE2cHg7XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxufVxyXG5cclxuLmNhcmQtcGFyYWdyYXBoIHtcclxuICBtYXJnaW46IDA7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuXHJcbi5jYXJkLXBhcmFncmFwaC1oaWdobGlnaHQge1xyXG4gIGNvbG9yOiAgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG59XHJcblxyXG4jY2FyZC1zdGVwcGVyLXdyYXBwZXIge1xyXG4gIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbSB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsZXg6IDE7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbTo6YmVmb3JlIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0U1RTVFNTtcclxuICB3aWR0aDogMTAwJTtcclxuICB0b3A6IDEwcHg7XHJcbiAgbGVmdDogLTUwJTtcclxuICB6LWluZGV4OiAyO1xyXG59XHJcblxyXG4uY2FyZC1zdGVwcGVyLWl0ZW06OmFmdGVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0U1RTVFNTtcclxuICB3aWR0aDogMTAwJTtcclxuICB0b3A6IDEwcHg7XHJcbiAgbGVmdDogNTAlOyAgXHJcbiAgei1pbmRleDogMjtcclxufVxyXG5cclxuLmNhcmQtc3RlcHBlci1pdGVtIC5jYXJkLXN0ZXAtY291bnRlciB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHotaW5kZXg6IDU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAyMHB4O1xyXG4gIGhlaWdodDogMjBweDtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZDogI0U1RTVFNTtcclxuICBtYXJnaW4tYm90dG9tOiA2cHg7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbS5jb21wbGV0ZWQgLmNhcmQtc3RlcC1jb3VudGVyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbS5jb21wbGV0ZWQ6OmFmdGVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBib3JkZXItYm90dG9tOiAycHggc29saWQgIHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxuICB3aWR0aDogMTAwJTtcclxuICB0b3A6IDEwcHg7XHJcbiAgbGVmdDogNTAlO1xyXG4gIHotaW5kZXg6IDM7XHJcbn1cclxuXHJcbi5jYXJkLXN0ZXBwZXItaXRlbTpmaXJzdC1jaGlsZDo6YmVmb3JlIHtcclxuICBjb250ZW50OiBub25lO1xyXG59XHJcbi5jYXJkLXN0ZXBwZXItaXRlbTpsYXN0LWNoaWxkOjphZnRlciB7XHJcbiAgY29udGVudDogbm9uZTtcclxufVxyXG5cclxuLmNhcmQtc3RlcHBlci1pdGVtIC5jYXJkLXN0ZXAtbmFtZSAge1xyXG4gIGNvbG9yOiAgdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBmb250LXNpemU6IDEycHg7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBtYXJnaW46IDAgLjVlbTtcclxufVxyXG5cclxuLmNhcmQtc3RlcHBlci1pdGVtOm5vdCguY29tcGxldGVkKSAuY2FyZC1zdGVwLW5hbWUgIHtcclxuICBjb2xvcjogIzQ3RDhCMTtcclxufVxyXG5cclxuLmNhcmQtbW9yZS1kZXRhaWwge1xyXG4gIG1hcmdpbjogMDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBjb2xvcjogcmdiYSg1NCwgNTQsIDU0LCAwLjYpO1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxufVxyXG5cclxuLm1vcmUtZGV0YWlsLWtleSB7XHJcbiAgZm9udC13ZWlnaHQ6IDYwMDtcclxufVxyXG5cclxuLm1vcmUtZGV0YWlsLXZhbHVlIHtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbiAgbWFyZ2luLWxlZnQ6IC41ZW07XHJcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XHJcbn1cclxuXHJcbiNjYXJkLW1vcmUtZGV0YWlscy1idXR0b24ge1xyXG4gIGJhY2tncm91bmQ6IG5vbmU7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIG1hcmdpbjogNXB4IGF1dG8gMCBhdXRvO1xyXG59XHJcbmhye1xyXG4gIGJvcmRlcjogMnB4IHNvbGlkICNkZGQ7XHJcbiAgaGVpZ2h0OiAwO1xyXG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XHJcbn0iXX0= */";
 
 /***/ }),
 
@@ -14322,6 +14298,16 @@ module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"sta
 
 /***/ }),
 
+/***/ 87288:
+/*!******************************************************************!*\
+  !*** ./src/app/modals/see-due/see-due.component.html?ngResource ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"/app/home\" (click)=\"closeModal()\" color=\"primary\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title>See Due</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content>\r\n    <ion-list>\r\n       <ion-item>\r\n         <ion-label>Due</ion-label>\r\n         <ion-label slot=\"end\" color=\"primary\">{{Due}}</ion-label>\r\n       </ion-item>\r\n       <ion-item>\r\n        <ion-label>Currently Working In</ion-label>\r\n        <ion-text slot=\"end\" color=\"primary\">{{WorkingIn}}</ion-text>\r\n      </ion-item>\r\n    </ion-list>\r\n    <hr>\r\n</ion-content>\r\n";
+
+/***/ }),
+
 /***/ 90057:
 /*!****************************************************************************!*\
   !*** ./src/app/modals/unloaded-log/unloaded-log.component.html?ngResource ***!
@@ -14338,7 +14324,7 @@ module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"sta
   \***************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"main\">\r\n    <div class=\"one\">\r\n      <img [src]=\"driverImage\" alt=\"Driver Image\">\r\n      <div class=\"detail\">\r\n        <p>ID</p>\r\n        <ion-label color=\"danger\">{{driverId}}</ion-label>\r\n      </div>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"details\">\r\n        <h2>{{driverName}}</h2>\r\n        <div class=\"detail chargetwo\">\r\n          <p>Coordinator</p>\r\n          <span>{{coordinator}}</span>\r\n        </div>\r\n      </div>\r\n      <div class=\"details\">\r\n        <div class=\"detail chargeone\">\r\n          <p style=\"margin-left: -45px;\">Charge</p>\r\n          <ion-label color=\"primary\" style=\"margin-left: -38px;\">&#8377;{{charge}}</ion-label>\r\n        </div>\r\n        <div class=\"detail\">\r\n          <p>Ledger No.</p>\r\n          <ion-label color=\"warning\" style=\"margin-left: 10px;\">{{ledgerNo}}</ion-label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"actions\">\r\n    <button title=\"driver-info\">\r\n      <ion-icon name=\"document-text\"></ion-icon>\r\n    </button>\r\n    <button title=\"call\">\r\n      <ion-icon name=\"call\"></ion-icon>\r\n    </button>\r\n    <button>\r\n      <ion-icon name=\"information-circle\"></ion-icon>\r\n    </button>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card\">\r\n  <div class=\"main\">\r\n    <div class=\"one\">\r\n      <img [src]=\"driverImage\" alt=\"Driver Image\">\r\n      <div class=\"detail\">\r\n        <p>ID</p>\r\n        <ion-label color=\"danger\">{{driverId}}</ion-label>\r\n      </div>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"details\">\r\n        <h2>{{driverName}}</h2>\r\n        <div class=\"detail chargetwo\">\r\n          <p>Coordinator</p>\r\n          <span>{{coordinator}}</span>\r\n        </div>\r\n      </div>\r\n      <div class=\"details\">\r\n        <div class=\"detail chargeone\">\r\n          <p style=\"margin-left: -45px;\">Charge</p>\r\n          <ion-label color=\"primary\" style=\"margin-left: -38px;\">&#8377;{{charge}}</ion-label>\r\n        </div>\r\n        <div class=\"detail\">\r\n          <p>Ledger No.</p>\r\n          <ion-label color=\"warning\" style=\"margin-left: 10px;\">{{ledgerNo}}</ion-label>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"actions\">\r\n    <button title=\"driver-info\" (click)=\"navigate('driver-info')\">\r\n      <ion-icon name=\"document-text\"></ion-icon>\r\n    </button>\r\n    <button title=\"call\">\r\n      <ion-icon name=\"call\"></ion-icon>\r\n    </button>\r\n    <button>\r\n      <ion-icon name=\"information-circle\"></ion-icon>\r\n    </button>\r\n  </div>\r\n</div>";
 
 /***/ }),
 
@@ -14368,7 +14354,7 @@ module.exports = "<div class=\"card\">\n  <div class=\"head\">\n    <h3 class=\"
   \*********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"container\">\r\n  <img src=\"assets/UI/Images/profile.jpg\" alt=\"error loading image\" srcset=\"\">\r\n  <p class=\"heading\">{{Name}}<BR>{{Lastname}}</p>\r\n    <p style=\"font-size: 12px;margin-top: 10px;\">CODE<br>{{Code}}</p>\r\n    <p style=\"font-size: 12px;margin-top: 10px;\">PAID<br>{{Paid}}</p>\r\n    <button type=\"button\" class=\"button-22\">See Due</button>\r\n</div>\r\n";
+module.exports = "<div class=\"container\">\r\n  <img src=\"assets/UI/Images/profile.jpg\" alt=\"error loading image\" srcset=\"\">\r\n  <p class=\"heading\">{{Name}}<BR>{{Lastname}}</p>\r\n    <p style=\"font-size: 12px;margin-top: 10px;\">CODE<br>{{Code}}</p>\r\n    <p style=\"font-size: 12px;margin-top: 10px;\">PAID<br>{{Paid}}</p>\r\n    <button type=\"button\" class=\"button-22\" (click)=\"seedue()\">See Due</button>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -14388,7 +14374,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"box\">\r\n    <div
   \***************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div id=\"card\">\r\n    <div id=\"card-photo-and-details\">\r\n        <img src=\"https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940\"\r\n            alt=\"NAME\" id=\"card-photo\">\r\n        <div id=\"card-details\">\r\n            <h3 id=\"card-heading\">{{ this.bakery }}</h3>\r\n            <p class=\"card-paragraph card-paragraph-highlight\">{{ this.itemName }}</p>\r\n            <p class=\"card-paragraph\"><span class=\"card-paragraph-highlight\">Supplier Code:</span> {{ this.suppCode }}\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div id=\"card-stepper-wrapper\">\r\n        <div [class]=\"status === 'uploaded' ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">Uploaded</div>\r\n        </div>\r\n        <div [class]=\"status === 'pending' ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">Pending</div>\r\n        </div>\r\n        <div [class]=\"status === 'recieved' ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">Recieved</div>\r\n        </div>\r\n        <div [class]=\"status === 'unloaded' ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">{{ this.dueDate }}</div>\r\n            <div class=\"card-step-name\">Unloaded</div>\r\n        </div>\r\n    </div>\r\n    <ion-button expand=\"block\" color=\"primary\" (click)=\"navigate('recieved')\" *ngIf=\"status === 'pending'\">\r\n        Move To Recieved\r\n    </ion-button>\r\n    <ion-button expand=\"block\" color=\"primary\" (click)=\"navigate('unloaded')\" *ngIf=\"status==='recieved'\">\r\n        Move To Unloaded\r\n    </ion-button>\r\n    <ion-button expand=\"block\" *ngIf=\"status === 'recieved' || status === 'unloaded'\" routerLink=\"recieved\" (click)=\"recievedlog()\">See Recieved Log\r\n    </ion-button>\r\n    <ion-button expand=\"block\" *ngIf=\"status === 'unloaded'\" routerLink=\"../unloaded\" (click)=\"unloadedlog()\">See Unloaded Log</ion-button>\r\n    <hr *ngIf=\"this.displayMoreDetails\">\r\n    <div id=\"card-more-details\" *ngIf=\"this.displayMoreDetails\">\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"calendar\"></ion-icon> Dispatch Date:\r\n            </span><span class=\"more-detail-value\">{{ this.dispatchDate }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"cart\"></ion-icon> Delivery:\r\n            </span><span class=\"more-detail-value\">{{ this.delivery }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"time\"></ion-icon> Expected Delivery:\r\n            </span><span class=\"more-detail-value\">{{ this.expectedDelivery }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"calendar-number\"></ion-icon> Gate Entry Date:\r\n            </span><span class=\"more-detail-value\">{{ this.gateEntryDate }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"trail-sign\"></ion-icon> Gate Entry No.:\r\n            </span><span class=\"more-detail-value\">{{ this.gateEntryNo }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"location\"></ion-icon> MFG Location:\r\n            </span><span class=\"more-detail-value\">{{ this.mfgLocation }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"qr-code\"></ion-icon> Product Code:\r\n            </span><span class=\"more-detail-value\">{{ this.productCode }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bag\"></ion-icon> Product Name:\r\n            </span><span class=\"more-detail-value\">{{ this.productName }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"cube\"></ion-icon> Quantity:\r\n            </span><span class=\"more-detail-value\">{{ this.quantity }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"business\"></ion-icon> REC Plant DESC:\r\n            </span><span class=\"more-detail-value\">{{ this.recPlantDesc }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bag-check\"></ion-icon> Remarks:\r\n            </span><span class=\"more-detail-value\">\"{{ this.remarks }}\"</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"business\"></ion-icon> Supp Plant:\r\n            </span><span class=\"more-detail-value\">{{ this.suppPlant }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"business\"></ion-icon> Supp Plant Desc:\r\n            </span><span class=\"more-detail-value\">{{ this.suppPlantDesc }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"location\"></ion-icon> Storage Location:\r\n            </span><span class=\"more-detail-value\">{{ this.storageLocation }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bus\"></ion-icon> Trans Name:\r\n            </span><span class=\"more-detail-value\">{{ this.transName }}</span></p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bus\"></ion-icon> Vehicle No.:\r\n            </span><span class=\"more-detail-value\">{{ this.vehicleNo }}</span></p>\r\n    </div>\r\n    <button id=\"card-more-details-button\" (click)=\"this.displayMoreDetails = !this.displayMoreDetails\">\r\n        <ion-icon name=\"{{ this.displayMoreDetails ? 'caret-up' : 'caret-down' }}\"></ion-icon>\r\n    </button>\r\n</div>";
+module.exports = "<div id=\"card\">\r\n    <div id=\"card-photo-and-details\">\r\n        <img src=\"https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940\"\r\n            alt=\"NAME\" id=\"card-photo\">\r\n        <div id=\"card-details\">\r\n            <h3 id=\"card-heading\">{{ this.bakery }}</h3>\r\n            <p class=\"card-paragraph\"><span class=\"card-paragraph-highlight\">Supplier Code:</span> {{ this.suppCode }}\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div id=\"card-stepper-wrapper\">\r\n        <div\r\n            [class]=\"(status === 'uploaded'||status === 'unloaded' || status === 'recieved' ||status === 'pending' )? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">Uploaded</div>\r\n        </div>\r\n        <div\r\n            [class]=\"(status === 'pending'||status === 'unloaded' || status === 'recieved') ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">Pending</div>\r\n        </div>\r\n        <div\r\n            [class]=\"(status === 'recieved'||status === 'unloaded') ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">Recieved</div>\r\n        </div>\r\n        <div [class]=\"status === 'unloaded' ? 'card-stepper-item completed':'card-stepper-item'\">\r\n            <div class=\"card-step-counter\"></div>\r\n            <div class=\"card-step-name\">{{ this.dueDate }}</div>\r\n            <div class=\"card-step-name\">Unloaded</div>\r\n        </div>\r\n    </div>\r\n    <ion-button expand=\"block\" color=\"primary\" (click)=\"navigate('recieved')\" *ngIf=\"status === 'pending'\">\r\n        Move To Recieved\r\n    </ion-button>\r\n    <ion-button expand=\"block\" color=\"primary\" (click)=\"navigate('unloaded')\" *ngIf=\"status==='recieved'\">\r\n        Move To Unloaded\r\n    </ion-button>\r\n    <ion-button expand=\"block\" *ngIf=\"status === 'recieved' || status === 'unloaded'\" routerLink=\"recieved\"\r\n        (click)=\"recievedlog()\">See Recieved Log\r\n    </ion-button>\r\n    <ion-button expand=\"block\" *ngIf=\"status === 'unloaded'\" routerLink=\"../unloaded\" (click)=\"unloadedlog()\">See\r\n        Unloaded Log</ion-button>\r\n    <hr *ngIf=\"this.displayMoreDetails\">\r\n    <div id=\"card-more-details\" *ngIf=\"this.displayMoreDetails\">\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"calendar\"></ion-icon> Dispatch Date:\r\n            </span><span class=\"more-detail-value\">{{ this.dispatchDate }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"cart\"></ion-icon> Delivery:\r\n            </span><span class=\"more-detail-value\">{{ this.deliveryCode }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"time\"></ion-icon> Expected Delivery:\r\n            </span><span class=\"more-detail-value\">{{ this.expectedDelivery }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"calendar-number\"></ion-icon> Gate Entry Date:\r\n            </span><span class=\"more-detail-value\">{{ this.gateEntryDate }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"trail-sign\"></ion-icon> Gate Entry No.:\r\n            </span><span class=\"more-detail-value\">{{ this.gateEntryNo }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"location\"></ion-icon> MFG Location:\r\n            </span><span class=\"more-detail-value\">{{ this.mfgLocation }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"qr-code\"></ion-icon> Product Code:\r\n            </span><span class=\"more-detail-value\">{{ this.productCode }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bag\"></ion-icon> Product Name:\r\n            </span><span class=\"more-detail-value\">{{ this.productName }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"cube\"></ion-icon> Quantity:\r\n            </span><span class=\"more-detail-value\">{{ this.quantity }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"business\"></ion-icon> REC Plant DESC:\r\n            </span><span class=\"more-detail-value\">{{ this.recPlantDesc }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bag-check\"></ion-icon> Remarks:\r\n            </span><span class=\"more-detail-value\">\"{{ this.remarks }}\"</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"business\"></ion-icon> Supp Plant:\r\n            </span><span class=\"more-detail-value\">{{ this.suppPlant }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"business\"></ion-icon> Supp Plant Desc:\r\n            </span><span class=\"more-detail-value\">{{ this.suppPlantDesc }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"location\"></ion-icon> Storage Location:\r\n            </span><span class=\"more-detail-value\">{{ this.storageLocation }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bus\"></ion-icon> Trans Name:\r\n            </span><span class=\"more-detail-value\">{{ this.transName }}</span>\r\n        </p>\r\n        <p class=\"card-more-detail\"><span class=\"more-detail-key\">\r\n                <ion-icon name=\"bus\"></ion-icon> Vehicle No.:\r\n            </span><span class=\"more-detail-value\">{{ this.vehicleNo }}</span>\r\n        </p>\r\n    </div>\r\n    <button id=\"card-more-details-button\" (click)=\"this.displayMoreDetails = !this.displayMoreDetails\">\r\n        <ion-icon name=\"{{ this.displayMoreDetails ? 'caret-up' : 'caret-down' }}\"></ion-icon>\r\n    </button>\r\n</div>";
 
 /***/ }),
 
