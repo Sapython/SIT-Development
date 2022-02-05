@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { DatabaseService } from 'src/app/services/database.service';
+import { UserData } from 'src/app/structures/user.structure';
 
 
 @Component({
@@ -9,17 +11,47 @@ import { ModalController } from '@ionic/angular';
 })
 export class RecievedLogComponent implements OnInit {
 
-  constructor(private modalController: ModalController) { }
-  @Input() name: string = "TIRUPATI BAKERS";
-  @Input() productName: string = "Biscuit";
-  @Input() productCode: string = "123XYZ0";
-  @Input() coordinator: string = "Ramlal Vishwakarma";
-  @Input() coordinatorPhone: string = "9876543210";
-  @Input() dispatchDate: string = "12/12/2019";
-  @Input() expectedDelivery: string = "12/12/2019";
-  @Input() Deliverycode: string = "123XYZ0";
-  ngOnInit() {}
+  constructor(
+    private modalController: ModalController,
+    private databaseService:DatabaseService,
+    ) { }
+  @Input() sitId
+  dispatchDate: string;
+  name:string;
+  expectedDelivery: string;
+  Deliverycode: string;
+  coordinator:UserData;
+  recviedVehicleNumber:string;
+  vehicleNumber: string;
+  gateNumber: string;
+  vehicleType: string;
+  sitID: string;
+  timestamp: any;
+  products: any;
+  ngOnInit() {
+    this.databaseService.getRecievedSit(this.sitId).then((sit:any) => {
+      sit = sit.data()
+      this.recviedVehicleNumber = sit.recVehicleNumber;
+      this.vehicleNumber = sit.vehicleNumber;
+      this.gateNumber = sit.gateNumber;
+      this.vehicleType = sit.vehicleType;
+      this.sitID = sit.sitID;
+      this.dispatchDate = sit.dispatchDate;
+      this.databaseService.getUser(sit.coordinatorId).then((coordinator:any) => {
+        this.coordinator = coordinator.data();
+      })
+      this.databaseService.getSit(this.sitID).then((sit:any) => {
+        this.name = sit.data().name;
+        this.expectedDelivery = sit.data().expectedDelivery;
+        this.Deliverycode = sit.data().Deliverycode;
+        this.products = sit.data().sit;
+      })
+    });
+  }
   closeModal() {
     this.modalController.dismiss();
+  }
+  toNumber(input:string){
+    return Number(input);
   }
 }

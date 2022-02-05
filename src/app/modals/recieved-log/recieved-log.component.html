@@ -12,22 +12,6 @@
          <ion-label>Name</ion-label>
          <ion-label slot="end" color="primary">{{name}}</ion-label>
        </ion-item>
-       <ion-item>
-        <ion-label>Product Name</ion-label>
-        <ion-text slot="end" color="primary">{{productName}}</ion-text>
-      </ion-item>
-      <ion-item>
-        <ion-label>Product Code</ion-label>
-        <ion-label slot="end" color="primary">{{productCode}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Coordinator</ion-label>
-        <ion-label slot="end" color="primary">{{coordinator}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Co. Phone</ion-label>
-        <ion-label slot="end" color="primary">{{coordinatorPhone}}</ion-label>
-      </ion-item>
       <ion-item>
         <ion-label>Dispatch Date</ion-label>
         <ion-label slot="end" color="primary">{{dispatchDate}}</ion-label>
@@ -41,5 +25,48 @@
         <ion-label slot="end" color="primary">{{Deliverycode}}</ion-label>
       </ion-item>
     </ion-list>
+    <ion-text color="primary">
+      <h3>Coordinator</h3>
+    </ion-text>
+    <ion-item *ngIf="coordinator">
+      <ion-avatar slot="start">
+        <img [src]="coordinator.photoURL">
+      </ion-avatar>
+      <ion-label>{{coordinator.displayName}}</ion-label>
+    </ion-item>
+    <ion-spinner name="crescent" *ngIf="!coordinator"></ion-spinner>
     <hr>
+    <ion-text color="primary">
+      <h3>Products</h3>
+    </ion-text>
+    <app-product-ledger-widget 
+      *ngFor="let product of products"
+      [sellerName]="product.supplyPlantName"
+      [itemName]="product.productName"
+      [safe]="toNumber(product.quantity)"
+      [ledgerNo]="sitId"
+      [productCode]="product.productCode"
+    ></app-product-ledger-widget>
+    <hr>
+    <ion-text color="primary">
+      <h3>Vehicle Detail</h3>
+    </ion-text>
+    <ion-list>
+      <ion-item>
+        <ion-label>Vehicle No:</ion-label>
+        <ion-label color="primary">{{products[0].vehicleNo}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expected Delivery:</ion-label>
+        <ion-label color="primary">{{products[0].expectedDelivery}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Storage Location:</ion-label>
+        <ion-label color="primary">{{products[0].storageLocation}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vehicle No:</ion-label>
+        <ion-label color="primary">{{products[0].vehicleNo}}</ion-label>
+      </ion-item>
+    </ion-list>
 </ion-content>

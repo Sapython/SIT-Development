@@ -3,14 +3,34 @@
 <ion-content>
   <div class="container">
     <p class="heading">Move to Recieved</p>
-    <div class="box">
-      <div class="circle">
-        <a href=""><ion-icon name="images"></ion-icon></a>
+    <form class="box" [formGroup]="recievedForm" (ngSubmit)="recievedSit()">
+      <button (click)="takePicture()" class="camera">
+        <ion-icon name="aperture-outline"></ion-icon>
+      </button>
+      <div>
+        <input type="text" placeholder="Vehicle Number" formControlName="vehicleNumber">
+        <ion-button (click)="verifyLicensePlate()" fill="clear" type="button">
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+        </ion-button>
       </div>
-      <input type="text" placeholder="Vechile Number">
-      <input type="text" placeholder="Gate Number">
-      <button>Submit -></button>
+      <input type="text" placeholder="Gate Number" formControlName="gateNumber">
+      <div class="recognition" *ngIf="recVehicleNumber!='' && recVehicleType!=''">
+        <table>
+          <tr>
+            <td>Vehicle Number: &nbsp; &nbsp; &nbsp;</td>
+            <td>{{recVehicleNumber}}</td>
+          </tr>
+          <tr>
+            <td>Vehicle Type: &nbsp; &nbsp; &nbsp;</td>
+            <td>{{recVehicleType}}</td>
+          </tr>
+        </table>
+      </div>
+      <ion-button expand="block" shape="round" class="ion-margin-top" type="submit">
+        Submit
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
       <img src="assets/UI/Images/recieved1.png" alt="">
-    </div>
+    </form>
   </div>
 </ion-content>

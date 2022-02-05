@@ -10,23 +10,23 @@
   <ion-list>
     <ion-item>
       <ion-label>Vehicle Tracking</ion-label>
-      <ion-toggle checked="false" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="false" slot="end" color="secondary" (ionChange)="db.vehicleTracking(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Employee Tracking</ion-label>
-      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="true" slot="end" color="secondary" (ionChange)="db.employeeTracking(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Form Tracking</ion-label>
-      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="true" slot="end" color="secondary" (ionChange)="db.formTracking(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Attendance tracking</ion-label>
-      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="true" slot="end" color="secondary" (ionChange)="db.attendanceTracking(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>App Usage Tracking</ion-label>
-      <ion-toggle checked="false" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="false" slot="end" color="secondary" (ionChange)="db.appUsageTracking(toggleVal($event))"></ion-toggle>
     </ion-item>
   </ion-list>
 </ion-content>

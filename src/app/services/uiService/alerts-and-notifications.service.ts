@@ -19,6 +19,9 @@ export class AlertsAndNotificationsService {
     }
   }
   async presentToast(message: string,type?: 'info'|'error', duration?: number,action?:any,sound?:boolean,icon?:string) {
+    if (!duration){
+      duration = 3000;
+    }
     const toast = await this.toastController.create({
       message: message,
       duration: duration,

@@ -66,7 +66,7 @@ export class AuthencationService {
     this.dataProvider.pageSetting.blur = true;
     this.dataProvider.pageSetting.lastRedirect = '';
     let data = signInWithPopup(this.auth, new GoogleAuthProvider()).then(async (credentials:UserCredential)=>{
-      console.log(credentials);
+      // console.log(credentials);
       if (!(await getDoc(doc(this.firestore,'users/'+credentials.user.uid))).exists()){
         if (credentials.user.phoneNumber == null){
           await this.userData.setGoogleUserData(credentials.user,{phoneNumber:''});
@@ -151,18 +151,18 @@ export class AuthencationService {
         if (u) {
           this.dataProvider.loggedIn = true;
           this.dataProvider.gettingUserData= true;
-          console.log('User is logged in')
+          // console.log('User is logged in')
           this.userDoc = doc(this.firestore,'users/'+u.uid);
           await Storage.set({
             key: 'auth',
             value: JSON.stringify(u)
           })
-          console.log("User data from auth",u);
+          // console.log("User data from auth",u);
           if (this.userServerSubscription!=undefined){
             this.userServerSubscription.unsubscribe();
           }
           this.userServerSubscription = docData(this.userDoc).subscribe(async (data:any) => {
-            console.log("Recieved new data",data)
+            // console.log("Recieved new data",data)
             this.dataProvider.userData = data;
             this.dataProvider.gettingUserData= false;
             await Storage.set({

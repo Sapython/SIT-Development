@@ -7,18 +7,18 @@ import { ChartData, ChartOptions, ChartType } from 'chart.js';
   styleUrls: ['./product-ledger-widget.component.scss'],
 })
 export class ProductLedgerWidgetComponent implements OnInit {
-  @Input() Bakery: string = "TIRUPATI BAKERS";
-  @Input() ItemName: string = "Biscuit";
-  @Input() Safe:number = 0;
-  @Input() Damage:number = 0;
-  @Input() Ledgerno:string = "123XYZ0";
-  @Input() Price:string = "23245";
+  @Input() sellerName: string = "TIRUPATI BAKERS";
+  @Input() itemName: string = "Biscuit";
+  @Input() safe:number = 0;
+  @Input() damage:number = 0;
+  @Input() ledgerNo:string = "123XYZ0";
+  @Input() productCode:string = "23245";
 
   public doughnutChartLabels: string[] = ['Safe', 'Damaged'];
   public doughnutChartData: ChartData<'doughnut'> = {
       labels: this.doughnutChartLabels,
       datasets: [
-      { data: [this.Safe, this.Damage] },
+      { data: [this.safe, this.damage] },
     ]
   };
   public doughnutChartType: ChartType = 'doughnut';

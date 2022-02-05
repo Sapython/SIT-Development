@@ -18,6 +18,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { query } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { DataProvider } from '../providers/data.provider';
 import { ContactRequest } from '../structures/user.structure';
 import { AuthencationService } from './authencation.service';
@@ -29,6 +30,7 @@ export class DatabaseService {
   constructor(private fs: Firestore, private dataProvider: DataProvider,private authService:AuthencationService) {
     this.contactDoc = collection(this.fs, 'contactRequests');
   }
+  storage = getStorage();
   addContactRequest(
     name: string,
     email: string,
@@ -79,7 +81,9 @@ export class DatabaseService {
     };
     return addDoc(collection(this.fs, 'logs'), data);
   }
-  
+  addLog(data:any){
+    return addDoc(collection(this.fs, 'logs'), data);
+  }
   // SIt services starts
   getSitLedgers() {
     return collectionSnapshots(collection(this.fs, 'stocks'));
@@ -88,8 +92,47 @@ export class DatabaseService {
     return getDocs(query(collection(this.fs, 'users'),where('access.access', '==', 'Worker')));
   }
   async unloadSit(sitId,data) {
-    await updateDoc(doc(this.fs, 'stocks'),{status:'unloaded'})
+    await updateDoc(doc(this.fs, 'stocks/'+sitId),{status:'unloaded'})
     return addDoc(collection(this.fs, 'stocks/'+sitId+'/unloaded'), data);
   }
+  async recieveSit(sitId,data) {
+    await updateDoc(doc(this.fs, 'stocks/'+sitId),{status:'recieved'})
+    return setDoc(doc(this.fs, 'stocks/'+sitId+'/recieved/recieved'), data);
+  }
+  getSit(id:string){
+    return getDoc(doc(this.fs, 'stocks/'+id));
+  }
+  getRecievedSit(id: string){
+    return getDoc(doc(this.fs, 'stocks/'+id+'/recieved/recieved'));
+  }
   // SIT services ends
+  // User services starts
+  getUser(id: string) {
+    return getDoc(doc(this.fs, 'users/' + id));
+  }
+  // User services ends
+  // Files services starts
+  async upload(path: string, file: File | null): Promise<any> {
+    const ext = file!.name.split('.').pop();
+    if (file) {
+      try {
+        const storageRef = ref(this.storage, path);
+        const task = uploadBytesResumable(storageRef, file);
+        await task;
+        const url = await getDownloadURL(storageRef);
+        return url;
+      } catch (e: any) {
+        console.error(e);
+        return false;
+      }
+    } else {
+      // handle invalid file
+      return false;
+    }
+  }
+  // Files services ends
+  // Testing services starts
+  uploadVehicle(data) {
+    return addDoc(collection(this.fs, 'plateData'), data);
+  }
 }

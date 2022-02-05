@@ -23,6 +23,7 @@ export class UnloadedPage implements OnInit {
   legalCharges:FormControl = new FormControl('',[Validators.required]);
   otherDamage:FormControl = new FormControl('');
   explainDamage:FormControl = new FormControl('');
+  validImage:boolean = false;
   constructor(private databaseService: DatabaseService,private alertify:AlertsAndNotificationsService,private dataProvider:DataProvider) { }
   workers:UserData[] = [];
   ngOnInit() {
@@ -39,13 +40,14 @@ export class UnloadedPage implements OnInit {
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Uri,
-      source:CameraSource.Camera
+      source:CameraSource.Camera,
+      
     });
-    var imageUrl = image.webPath;
+    var imageUrl = image.format;
     console.log(imageUrl);
   };
   setAsUnloaded(){
-    if(this.unloadedForm.valid){
+    if(this.unloadedForm.valid && this.validImage){
       this.dataProvider.pageSetting.blur = true;
       let data = {
         vehicleNumber:this.vehicleNumber.value,

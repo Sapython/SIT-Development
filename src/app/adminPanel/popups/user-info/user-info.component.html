@@ -1,9 +1,9 @@
 <ion-content class="ion-padding">
   <ion-item lines="none">
     <ion-avatar slot="start">
-      <img [src]="user.image" />
+      <img [src]="user.photoURL" />
     </ion-avatar>
-    <ion-label>{{user.name}}</ion-label>
+    <ion-label>{{user.displayName}}</ion-label>
   </ion-item>
   <hr>
   <ion-row class="ion-justify-content-evenly">
@@ -17,4 +17,7 @@
       Reset
     </ion-chip>
   </ion-row>
+  <ion-button (click)="popoverController.dismiss()" expand="block" fill="border" shape="round" color="danger">
+    <ion-label color="danger">Cancel</ion-label>
+  </ion-button>
 </ion-content>

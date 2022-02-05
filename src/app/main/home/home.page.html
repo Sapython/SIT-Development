@@ -90,6 +90,7 @@
             </div>
         </div>
         <p class="text-1">Recently Opened</p>
+        <ion-spinner name="crescent" color="primary" *ngIf="!sitLedgers" class="ion-text-center"></ion-spinner>
         <app-sit-ledger-widget 
         *ngFor="let item of sitLedgers"
             [bakery]="item.supplierName"

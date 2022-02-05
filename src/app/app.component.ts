@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthencationService } from './services/authencation.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Router } from '@angular/router';
+import { DataProvider } from './providers/data.provider';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  constructor(private authService:AuthencationService,private router:Router) {}
+  constructor(private authService:AuthencationService,private router:Router,public dataProvider:DataProvider) {}
   useIncompatible:boolean = false;
   async ngOnInit(){
     this.authService.user.subscribe(user=>{

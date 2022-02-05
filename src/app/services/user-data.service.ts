@@ -29,7 +29,7 @@ export class UserDataService {
       emailVerified:true,
       firstLogin:false,
       access: {
-        access: 'User',
+        access: 'user',
       },
       orders:[],
       totalOrders:0,
@@ -57,7 +57,7 @@ export class UserDataService {
       emailVerified:true,
       firstLogin:false,
       access: {
-        access: 'User',
+        access: 'user',
       },
       orders:[],
       totalOrders:0,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AdminDatabaseService } from 'src/app/services/admin-database.service';
 import { actionsAlert, confirmationAlert, dialogAlert, messageAlert } from 'src/app/structures/method.structure';
 import { SecurityComponent } from '../../models/security/security.component';
 import { TrackingComponent } from '../../models/tracking/tracking.component';
@@ -11,8 +12,11 @@ import { TrackingComponent } from '../../models/tracking/tracking.component';
 })
 export class ConfigurationPage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,public db:AdminDatabaseService) { }
   ngOnInit() {
+  }
+  logData(data:any){
+    console.log(data);
   }
   async showTrackingModal(){
     const modal = await this.modalController.create({
@@ -30,5 +34,10 @@ export class ConfigurationPage implements OnInit {
     })
     return await modal.present();
   }
-
+  toggleVal(event:any){
+    return event.detail.checked;
+  }
+  selectVal(event:any){
+    return event.detail.value;
+  }
 }

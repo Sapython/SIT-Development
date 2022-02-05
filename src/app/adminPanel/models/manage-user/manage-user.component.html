@@ -10,14 +10,14 @@
   <ion-list>
     <ion-item *ngFor="let item of users" button (click)="manageUser(item)">
       <ion-avatar slot="start">
-        <img [src]="item.image" />
+        <img [src]="item.photoURL" />
       </ion-avatar>
-      <ion-label>{{item.name}}</ion-label>
+      <ion-label>{{item.displayName}}</ion-label>
       <ion-label>{{item.email}}</ion-label>
-      <ion-badge *ngIf="item.access==='employee'" color="primary" >Employee</ion-badge>
-      <ion-badge *ngIf="item.access==='admin'" color="success" >Admin</ion-badge>
-      <ion-badge *ngIf="item.access==='supervisor'" color="warning" >Supervisor</ion-badge>
-      <ion-badge *ngIf="item.access==='guest'" color="guest" >Guest</ion-badge>
+      <ion-badge *ngIf="item.access.access==='worker'" color="primary" >Employee</ion-badge>
+      <ion-badge *ngIf="item.access.access==='admin'" color="success" >Admin</ion-badge>
+      <ion-badge *ngIf="item.access.access==='supervisor'" color="warning" >Supervisor</ion-badge>
+      <ion-badge *ngIf="item.access.access==='guest'" color="guest" >Guest</ion-badge>
     </ion-item>
   </ion-list>
 </ion-content>

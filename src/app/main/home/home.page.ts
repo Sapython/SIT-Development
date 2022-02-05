@@ -26,11 +26,11 @@ export class HomePage implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   @ViewChild('filtersButton') filtersButton: ElementRef;
@@ -60,14 +60,16 @@ export class HomePage implements OnInit {
     let sits= []
     this.databaseService.getSitLedgers().subscribe((data:any)=>{
       data.forEach((element:any) => {
-        console.log(element.data(),element.id);
-        sits.push(element.data());
+        // console.log(element.data(),element.id);
+        let filteredData = element.data();
+        filteredData.id = element.id;
+        sits.push(filteredData);
       });
-      console.log('data',sits);
+      // console.log('data',sits);
       sits.sort((element:SIT,elementTwo:SIT) => {
         return new Date(element.uploadTime.seconds+element.uploadTime.nanoseconds).getTime() - new Date(elementTwo.uploadTime.seconds+elementTwo.uploadTime.nanoseconds).getTime();
       })
-      console.log('sits',sits);
+      // console.log('sits',sits);
       this.sitLedgers = [sits[0],sits[1],sits[2]];
     })
   }

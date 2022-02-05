@@ -2,11 +2,11 @@
   <ion-list>
     <ion-item>
       <ion-label>Persistant Data</ion-label>
-      <ion-toggle checked="true" slot="end"></ion-toggle>
+      <ion-toggle checked="true" slot="end" (ionChange)="db.persistantData(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Enable New Accounts</ion-label>
-      <ion-toggle checked="true" slot="end"></ion-toggle>
+      <ion-toggle checked="true" slot="end" (ionChange)="db.enableNewAccounts(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item button (click)="showTrackingModal()">
       <ion-label>Tracking</ion-label>
@@ -18,7 +18,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Summary Card</ion-label>
-      <ion-select value="weekly" multiple="false" placeholder="Type" slot="end">
+      <ion-select value="weekly" multiple="false" placeholder="Type" slot="end" (ionChange)="db.summaryCardType(selectVal($event))">
         <ion-select-option value="weekly">Weekly</ion-select-option>
         <ion-select-option value="monthly">Monthly</ion-select-option>
         <ion-select-option value="yearly">Yearly</ion-select-option>
@@ -26,7 +26,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Enable Guest Access</ion-label>
-      <ion-toggle checked="true" slot="end"></ion-toggle>
+      <ion-toggle checked="true" slot="end" (ionChange)="db.enableGuestAccess(toggleVal($event))"></ion-toggle>
     </ion-item>
   </ion-list>
 </ion-content>

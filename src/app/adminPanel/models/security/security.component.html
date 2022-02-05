@@ -10,23 +10,23 @@
   <ion-list>
     <ion-item>
       <ion-label>Allow admins to change users</ion-label>
-      <ion-toggle checked="false" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="false" slot="end" color="secondary" (ionChange)="db.canAdminsChangeUsers(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Allow supervisor to manage employee</ion-label>
-      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="true" slot="end" color="secondary" (ionChange)="db.canSupervisorManageUsers(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Allow guest to see data</ion-label>
-      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="true" slot="end" color="secondary" (ionChange)="db.canGuestSeeData(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Allow anyone to signout.</ion-label>
-      <ion-toggle checked="true" slot="end" color="secondary"></ion-toggle>
+      <ion-toggle checked="true" slot="end" color="secondary" (ionChange)="db.allowSignout(toggleVal($event))"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Default access level</ion-label>
-      <ion-select value="guest" multiple="false" placeholder="Type" slot="end">
+      <ion-select value="guest" multiple="false" placeholder="Type" slot="end" (ionChange)="db.defaultAccessLevel(selectVal($event))">
         <ion-select-option value="guest" color="primary">Guest</ion-select-option>
         <ion-select-option value="employee" color="success">Employee</ion-select-option>
         <ion-select-option value="supervisor" color="warning">Supervisor</ion-select-option>

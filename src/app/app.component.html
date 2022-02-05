@@ -44,4 +44,7 @@
     </p>
     <button (click)="useIncompatible = true">I still want to use.</button>
   </div>
+  <div class="overlay" *ngIf="dataProvider?.pageSetting.blur">
+    <ion-spinner name="crescent" color="primary" ></ion-spinner>
+  </div>
 </ion-app>
