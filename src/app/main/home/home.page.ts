@@ -6,13 +6,13 @@ import { BugReportComponent} from 'src/app/modals/bug-report/bug-report.componen
 import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  
   pending: number = 12;
   recieved: number = 5;
   unloaded: number = 20;
@@ -24,15 +24,8 @@ export class HomePage implements OnInit {
     ]
   };
   public doughnutChartType: ChartType = 'doughnut';
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    // console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    // console.log(event, active);
-  }
-
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {}
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {}
   @ViewChild('filtersButton') filtersButton: ElementRef;
   @ViewChild('filtersList') filtersList: ElementRef;
   showFiltersList: boolean = false;
@@ -41,8 +34,8 @@ export class HomePage implements OnInit {
     public modalController: ModalController,
     public dataProvider: DataProvider,
     private databaseService:DatabaseService,
+    private router:Router,
     ) {
-   
   }
   async reportBug() {
     const modal = await this.modalController.create({
@@ -67,43 +60,16 @@ export class HomePage implements OnInit {
       });
       // console.log('data',sits);
       sits.sort((element:SIT,elementTwo:SIT) => {
-        return new Date(element.uploadTime.seconds+element.uploadTime.nanoseconds).getTime() - new Date(elementTwo.uploadTime.seconds+elementTwo.uploadTime.nanoseconds).getTime();
+        return elementTwo.views - element.views;
       })
       // console.log('sits',sits);
       this.sitLedgers = [sits[0],sits[1],sits[2]];
     })
   }
-
+  navigate(path:string){
+    console.log(path);
+    this.router.navigateByUrl('/main/app/'+path);
+  }
   items = [1, 2, 3];
-
-  dalaLedgers: dalaLedgerData[] = [
-    {
-      charge: 30,
-      driverName: "John Doe",
-      driverImage: "https://www.w3schools.com/howto/img_avatar.png",
-      driverNumber: "+254712345678",
-      driverId: "123456789",
-      ledgerNo: "123456789",
-      coordinator: "John Doe"
-    },
-    {
-      charge: 30,
-      driverName: "John Doe",
-      driverImage: "https://www.w3schools.com/howto/img_avatar.png",
-      driverNumber: "+254712345678",
-      driverId: "123456789",
-      ledgerNo: "123456789",
-      coordinator: "John Doe"
-    },
-    {
-      charge: 30,
-      driverName: "John Doe",
-      driverImage: "https://www.w3schools.com/howto/img_avatar.png",
-      driverNumber: "+254712345678",
-      driverId: "123456789",
-      ledgerNo: "123456789",
-      coordinator: "John Doe"
-    }
-  ];
   sitLedgers: SIT[] = [];
 }

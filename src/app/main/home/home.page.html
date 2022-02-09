@@ -115,5 +115,9 @@
             [status]="item.status"
             [allData]="item"
         ></app-sit-ledger-widget>
+        <ion-button (click)="navigate('sit-overview')" expand="block" fill="outline">
+            Show All
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
     </main>
 </ion-content>

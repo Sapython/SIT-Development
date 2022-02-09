@@ -17,7 +17,7 @@ import {
   getDocs,
   where,
 } from '@angular/fire/firestore';
-import { query } from 'firebase/firestore';
+import { FieldValue, increment, query } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { DataProvider } from '../providers/data.provider';
 import { ContactRequest } from '../structures/user.structure';
@@ -29,6 +29,14 @@ export class DatabaseService {
   contactDoc: CollectionReference;
   constructor(private fs: Firestore, private dataProvider: DataProvider,private authService:AuthencationService) {
     this.contactDoc = collection(this.fs, 'contactRequests');
+    getDocs(collection(this.fs, 'stocks')).then((data:any) => {
+      data.forEach((stock:any) => {
+        if (stock.data().views==undefined || stock.data().views == null){
+          setDoc(doc(this.fs, 'stocks/' + stock.id), {views:0},{merge:true});
+          // alert('Called set document')
+        }
+      })
+    })
   }
   storage = getStorage();
   addContactRequest(
@@ -96,13 +104,14 @@ export class DatabaseService {
     return addDoc(collection(this.fs, 'stocks/'+sitId+'/unloaded'), data);
   }
   async recieveSit(sitId,data) {
-    await updateDoc(doc(this.fs, 'stocks/'+sitId),{status:'recieved'})
+    await updateDoc(doc(this.fs, 'stocks/'+sitId),{status:'recieved',views:increment(2)})
     return setDoc(doc(this.fs, 'stocks/'+sitId+'/recieved/recieved'), data);
   }
   getSit(id:string){
     return getDoc(doc(this.fs, 'stocks/'+id));
   }
   getRecievedSit(id: string){
+    updateDoc(doc(this.fs, 'stocks/'+id),{views:increment(1)})
     return getDoc(doc(this.fs, 'stocks/'+id+'/recieved/recieved'));
   }
   // SIT services ends
@@ -112,8 +121,8 @@ export class DatabaseService {
   }
   // User services ends
   // Files services starts
-  async upload(path: string, file: File | null): Promise<any> {
-    const ext = file!.name.split('.').pop();
+  async upload(path: string, file: File | ArrayBuffer | Blob | Uint8Array): Promise<any> {
+    // const ext = file!.name.split('.').pop();
     if (file) {
       try {
         const storageRef = ref(this.storage, path);
@@ -123,7 +132,7 @@ export class DatabaseService {
         return url;
       } catch (e: any) {
         console.error(e);
-        return false;
+        return e;
       }
     } else {
       // handle invalid file

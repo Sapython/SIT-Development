@@ -60,6 +60,7 @@ export type SIT = {
     supplierName: string;
     sit:Stock[];
     uploadTime:any;
+    views:number;
 }
 export type Stock = {
     deliveryCode: string;

@@ -58,7 +58,7 @@ export class SitLedgerWidgetComponent implements OnInit {
   navigate(path:string){
     console.log(this.allData);
     this.dataProvider.dataOne = this.allData.id;
-    alert(this.dataProvider.dataOne);
+    // alert(this.dataProvider.dataOne);
     this.router.navigateByUrl('/main/app/'+path+'?id='+this.allData.id);
   }
 

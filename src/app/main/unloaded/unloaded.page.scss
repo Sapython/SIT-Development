@@ -36,5 +36,10 @@ ion-list > ion-row > button > ion-icon {
 form{
     margin-bottom: 60px;
 }
-
-
+.damageRange{
+    --bar-background:var(--ion-color-success);
+    --bar-background-active:var(--ion-color-danger);
+}
+.workerForm{
+    margin:0px;
+}

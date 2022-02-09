@@ -10,7 +10,7 @@
     margin-bottom: 15px;
 }
 .img-and-name{
-    width: 70%;
+    width: 100%;
     display:flex;
     justify-content: space-between;
 }
@@ -21,9 +21,9 @@
 .box{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
-.box img{
+.box > .img-and-name > img{
     margin-top: 10px;
     border-radius:50%;
     height: 60px;
@@ -31,52 +31,87 @@
     box-shadow: 1px 2px 5px rgb(155, 147, 147);
     margin-left: 5px;
 }
-.box span{
-    color: #115ca3;
-}
-.code-and-price{
+.box > .img-and-name > div{
     display: flex;
-    font-size: 13px;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.box > .img-and-name > div > p {
+    margin:0px;
+}
+.box > .img-and-name > div > p:nth-child(1){
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+}
+.box > .img-and-name > div > p:nth-child(2){
+    font-size: 12px;
+    color: #000;
+}
+.box span{
+    color: var(--ion-color-primary);
+}
+.code-and-price {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 }
-.details{
-    line-height: 05px;
-    margin-top: 20px;
-    margin-left: 5px;
+.code-and-price > .details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
-.details span{
-    color: #115ca3;
+.code-and-price > .details > p > strong{
+    color:var(--ion-color-primary);
 }
-.buttons{
-    margin-top: 40px;
-    margin-left: 50px;
+.code-and-price > .details > p{
+    margin:0px;
     font-size: 13px;
 }
-.buttons p{
-    margin-bottom: 0px;
-    color: #5ED6B2;
+.code-and-price > .buttons{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
-.buttons span{
-    color:#F56C6C;
+.code-and-price > .buttons > .safe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-.buttons button{
-    padding:5px;
+.code-and-price > .buttons > .safe > p{
+    margin:0px;
+    font-size: 13px;
+    color:var(--ion-color-success);
 }
-.button1{
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    background-Color:#5ED6B2;
-    color: #fff;
-    margin-left: -2px;
+.code-and-price > .buttons > .safe > div {
+    width:50px;
+    height:30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color:white;
+    padding:3px;
+    background:var(--ion-color-success);
+    text-align: center;
 }
-.button2{
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-Color:#F56C6C;
-    color: #fff;
-    margin-left: 2px;
+.code-and-price > .buttons > .damaged > p{
+    margin:0px;
+    font-size: 13px;
+    color:var(--ion-color-danger);
 }
+.code-and-price > .buttons > .damaged > div {
+    width:50px;
+    height:30px;
+    color:white;
+    padding:3px;
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background:var(--ion-color-danger);
+}
+
 @keyframes fadeIn {
     from {
       transform: scale(0.9);
@@ -85,31 +120,5 @@
     to {
       transform: scale(1);
       opacity: 1;
-    }
-}
-@media only screen and (min-width: 700px){
-    .box img{
-        height: 100px;
-        width: 100px;
-        margin-left: 10px;
-    }
-    .box p{
-        font-size: 25px;
-    }
-    .code-and-price{
-        font-size: 20px;
-    }
-    .buttons{
-        font-size: 20px;
-    }
-    .img-and-name{
-        width: 50%;
-    }
-    .buttons button{
-        font-size: 20px;
-        width: 70px;
-    }
-    .details{
-        margin-left: 10px;
     }
 }

@@ -2,74 +2,113 @@
 
 <ion-content>
   <div class="container">
-    <div class="pending-sit">
-      <p>Pending SIT</p>
-      <app-sit-ledger-widget 
-        *ngFor="let item of sitLedgers"
-            [dispatchDate]="item.dispatchDate"
-            [delivery]="item.delivery"
-            [expectedDelivery]="item.expectedDelivery"
-            [gateEntryDate]="item.gateEntryDate"
-            [gateEntryNo]="item.gateEntryNo"
-            [mfgLocation]="item.mfgLocation"
-            [productCode]="item.productCode"
-            [productName]="item.productName"
-            [quantity]="item.quantity"
-            [recPlantDesc]="item.recPlantDesc"
-            [remarks]="item.remarks"
-            [suppPlant]="item.suppPlant"
-            [suppPlantDesc]="item.suppPlantDesc"
-            [storageLocation]="item.storageLocation"
-            [transName]="item.transName"
-            [vehicleNo]="item.vehicleNo"
-            [status]="item.status"
-        ></app-sit-ledger-widget>
+    <div class="pending-sit" *ngIf="pendingCount > 0">
+      <ion-row class="ion-justify-content-between">
+        <p>Pending SIT</p>
+        <ion-button expand="block" fill="clear" (click)="openPending = !openPending">
+          <ion-icon [name]="openPending ? 'arrow-up-outline' : 'arrow-down-outline'"></ion-icon>
+        </ion-button>
+      </ion-row>
+      <div [ngStyle]="{'display': openPending ? 'block' : 'none'}">
+        <div *ngFor="let item of sitLedgers">
+          <app-sit-ledger-widget *ngIf="item.status==='pending'"
+              [bakery]="item.supplierName"
+              [suppCode]="item.supplierCode"
+              [dueDate]="item.sit[0].expectedDelivery"
+              [dispatchDate]="item.sit[0].dispatchDate"
+              [deliveryCode]="item.sit[0].deliveryCode"
+              [expectedDelivery]="item.sit[0].expectedDelivery"
+              [gateEntryDate]="item.sit[0].gateEntryDate"
+              [gateEntryNo]="item.sit[0].gateEntryNumber"
+              [mfgLocation]="item.sit[0].mfgLocation"
+              [productCode]="item.sit[0].productCode"
+              [productName]="item.sit[0].productName"
+              [quantity]="item.sit[0].quantity"
+              [recPlantDesc]="item.sit[0].recievePlantName"
+              [remarks]="item.status"
+              [suppPlant]="item.sit[0].supplyPlantCode"
+              [suppPlantDesc]="item.sit[0].supplyPlantName"
+              [storageLocation]="item.sit[0].storageLocation"
+              [transName]="item.sit[0].transporterName"
+              [vehicleNo]="item.sit[0].vehicleNo"
+              [status]="item.status"
+              [allData]="item"
+          ></app-sit-ledger-widget>
+        </div>
+      </div>
+      <hr>
     </div>
-    <div class="recieved-sit">
-      <p>Recieved SIT</p>
-      <app-sit-ledger-widget 
-        *ngFor="let item of recievedLedgers"
-            [dispatchDate]="item.dispatchDate"
-            [delivery]="item.delivery"
-            [expectedDelivery]="item.expectedDelivery"
-            [gateEntryDate]="item.gateEntryDate"
-            [gateEntryNo]="item.gateEntryNo"
-            [mfgLocation]="item.mfgLocation"
-            [productCode]="item.productCode"
-            [productName]="item.productName"
-            [quantity]="item.quantity"
-            [recPlantDesc]="item.recPlantDesc"
-            [remarks]="item.remarks"
-            [suppPlant]="item.suppPlant"
-            [suppPlantDesc]="item.suppPlantDesc"
-            [storageLocation]="item.storageLocation"
-            [transName]="item.transName"
-            [vehicleNo]="item.vehicleNo"
-            [status]="item.status"
-        ></app-sit-ledger-widget>
+    <div class="pending-sit" *ngIf="recievdCount > 0">
+      <ion-row class="ion-justify-content-between">
+        <p>Recieved SIT</p>
+        <ion-button expand="block" fill="clear" (click)="openRecieved = !openRecieved">
+          <ion-icon [name]="openRecieved ? 'arrow-up-outline' : 'arrow-down-outline'"></ion-icon>
+        </ion-button>
+      </ion-row>
+      <div [ngStyle]="{'display': openRecieved ? 'block' : 'none'}">
+        <div *ngFor="let item of sitLedgers">
+          <app-sit-ledger-widget *ngIf="item.status==='recieved'"
+              [bakery]="item.supplierName"
+              [suppCode]="item.supplierCode"
+              [dueDate]="item.sit[0].expectedDelivery"
+              [dispatchDate]="item.sit[0].dispatchDate"
+              [deliveryCode]="item.sit[0].deliveryCode"
+              [expectedDelivery]="item.sit[0].expectedDelivery"
+              [gateEntryDate]="item.sit[0].gateEntryDate"
+              [gateEntryNo]="item.sit[0].gateEntryNumber"
+              [mfgLocation]="item.sit[0].mfgLocation"
+              [productCode]="item.sit[0].productCode"
+              [productName]="item.sit[0].productName"
+              [quantity]="item.sit[0].quantity"
+              [recPlantDesc]="item.sit[0].recievePlantName"
+              [remarks]="item.status"
+              [suppPlant]="item.sit[0].supplyPlantCode"
+              [suppPlantDesc]="item.sit[0].supplyPlantName"
+              [storageLocation]="item.sit[0].storageLocation"
+              [transName]="item.sit[0].transporterName"
+              [vehicleNo]="item.sit[0].vehicleNo"
+              [status]="item.status"
+              [allData]="item"
+          ></app-sit-ledger-widget>
+        </div>
+      </div>
+      <hr>
     </div>
-    <div class="unloaded-sit">
-      <p>Unloaded SIT</p>
-      <app-sit-ledger-widget 
-        *ngFor="let item of unloadedLedgers"
-            [dispatchDate]="item.dispatchDate"
-            [delivery]="item.delivery"
-            [expectedDelivery]="item.expectedDelivery"
-            [gateEntryDate]="item.gateEntryDate"
-            [gateEntryNo]="item.gateEntryNo"
-            [mfgLocation]="item.mfgLocation"
-            [productCode]="item.productCode"
-            [productName]="item.productName"
-            [quantity]="item.quantity"
-            [recPlantDesc]="item.recPlantDesc"
-            [remarks]="item.remarks"
-            [suppPlant]="item.suppPlant"
-            [suppPlantDesc]="item.suppPlantDesc"
-            [storageLocation]="item.storageLocation"
-            [transName]="item.transName"
-            [vehicleNo]="item.vehicleNo"
-            [status]="item.status"
-        ></app-sit-ledger-widget>
+    <div class="pending-sit" *ngIf="unloadedCount > 0">
+      <ion-row class="ion-justify-content-between">
+        <p>Unloaded SIT</p>
+        <ion-button expand="block" fill="clear" (click)="openUnloaded = !openUnloaded">
+          <ion-icon [name]="openUnloaded ? 'arrow-up-outline' : 'arrow-down-outline'"></ion-icon>
+        </ion-button>
+      </ion-row>
+      <div [ngStyle]="{'display': openUnloaded ? 'block' : 'none'}">
+        <div *ngFor="let item of sitLedgers">
+          <app-sit-ledger-widget *ngIf="item.status==='unloaded'"
+              [bakery]="item.supplierName"
+              [suppCode]="item.supplierCode"
+              [dueDate]="item.sit[0].expectedDelivery"
+              [dispatchDate]="item.sit[0].dispatchDate"
+              [deliveryCode]="item.sit[0].deliveryCode"
+              [expectedDelivery]="item.sit[0].expectedDelivery"
+              [gateEntryDate]="item.sit[0].gateEntryDate"
+              [gateEntryNo]="item.sit[0].gateEntryNumber"
+              [mfgLocation]="item.sit[0].mfgLocation"
+              [productCode]="item.sit[0].productCode"
+              [productName]="item.sit[0].productName"
+              [quantity]="item.sit[0].quantity"
+              [recPlantDesc]="item.sit[0].recievePlantName"
+              [remarks]="item.status"
+              [suppPlant]="item.sit[0].supplyPlantCode"
+              [suppPlantDesc]="item.sit[0].supplyPlantName"
+              [storageLocation]="item.sit[0].storageLocation"
+              [transName]="item.sit[0].transporterName"
+              [vehicleNo]="item.sit[0].vehicleNo"
+              [status]="item.status"
+              [allData]="item"
+          ></app-sit-ledger-widget>
+        </div>
+        <hr>
+      </div>
     </div>
   </div>
 </ion-content>

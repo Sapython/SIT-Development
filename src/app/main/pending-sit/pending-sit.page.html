@@ -1,27 +1,31 @@
 <app-header></app-header>
-
 <ion-content>
     <p>All Pending SIT</p>
     <div class="container">
-        <app-sit-ledger-widget
-            *ngFor="let item of sitledger"
-            [dispatchDate]="item.dispatchDate"
-            [delivery] = "item.delivery"
-            [expectedDelivery]="item.expectedDelivery"
-            [gateEntryDate]="item.gateEntryDate"
-            [gateEntryNo]="item.gateEntryNo"
-            [mfgLocation]="item.mfgLocation"
-            [productCode]="item.productCode"
-            [productName]="item.productName"
-            [quantity]="item.quantity"
-            [recPlantDesc]="item.recPlantDesc"
-            [remarks]="item.remarks"
-            [suppPlant]="item.suppPlant"
-            [suppPlantDesc]="item.suppPlantDesc"
-            [storageLocation]="item.storageLocation"
-            [transName]="item.transName"
-            [vehicleNo]="item.vehicleNo"
-            [status]="item.status">
-        </app-sit-ledger-widget>
+        <div *ngFor="let item of sitLedgers">
+            <app-sit-ledger-widget *ngIf="item.status==='pending'"
+                [bakery]="item.supplierName"
+                [suppCode]="item.supplierCode"
+                [dueDate]="item.sit[0].expectedDelivery"
+                [dispatchDate]="item.sit[0].dispatchDate"
+                [deliveryCode]="item.sit[0].deliveryCode"
+                [expectedDelivery]="item.sit[0].expectedDelivery"
+                [gateEntryDate]="item.sit[0].gateEntryDate"
+                [gateEntryNo]="item.sit[0].gateEntryNumber"
+                [mfgLocation]="item.sit[0].mfgLocation"
+                [productCode]="item.sit[0].productCode"
+                [productName]="item.sit[0].productName"
+                [quantity]="item.sit[0].quantity"
+                [recPlantDesc]="item.sit[0].recievePlantName"
+                [remarks]="item.status"
+                [suppPlant]="item.sit[0].supplyPlantCode"
+                [suppPlantDesc]="item.sit[0].supplyPlantName"
+                [storageLocation]="item.sit[0].storageLocation"
+                [transName]="item.sit[0].transporterName"
+                [vehicleNo]="item.sit[0].vehicleNo"
+                [status]="item.status"
+                [allData]="item"
+            ></app-sit-ledger-widget>
+          </div>
     </div>
 </ion-content>

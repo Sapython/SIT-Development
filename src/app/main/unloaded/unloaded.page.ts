@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -11,12 +12,14 @@ import { UserData } from 'src/app/structures/user.structure';
   styleUrls: ['./unloaded.page.scss'],
 })
 export class UnloadedPage implements OnInit {
-  @Input() stockId: string = "";
+  sitId:string;
+  workersList:any[] = [];
+  labourChargeForm:FormGroup = new FormGroup({});
   unloadedForm:FormGroup;
   vehicleNumber:FormControl = new FormControl('',[Validators.required]);
   gateNumber:FormControl = new FormControl('',[Validators.required]);
-  safeQuantity:FormControl = new FormControl('',[Validators.required]);
-  unsafeQuantity:FormControl = new FormControl('',[Validators.required]);
+  // safeQuantity:FormControl = new FormControl('',[Validators.required]);
+  // unsafeQuantity:FormControl = new FormControl('',[Validators.required]);
   workingWorkers:FormControl = new FormControl('',[Validators.required]);
   vehicleDamage:FormControl = new FormControl('',[Validators.required]);
   personelDamage:FormControl = new FormControl('',[Validators.required]);
@@ -24,8 +27,30 @@ export class UnloadedPage implements OnInit {
   otherDamage:FormControl = new FormControl('');
   explainDamage:FormControl = new FormControl('');
   validImage:boolean = false;
-  constructor(private databaseService: DatabaseService,private alertify:AlertsAndNotificationsService,private dataProvider:DataProvider) { }
+  products:any[]=[];
   workers:UserData[] = [];
+  constructor(
+    private databaseService: DatabaseService,
+    private alertify:AlertsAndNotificationsService,
+    private dataProvider:DataProvider,
+    private activatedRouteSnapshot:ActivatedRoute,
+  ) {
+    this.unloadedForm = new FormGroup({
+      vehicleNumber:this.vehicleNumber,
+      gateNumber:this.gateNumber,
+      // safeQuantity:this.safeQuantity,
+      // unsafeQuantity:this.unsafeQuantity,
+      workingWorkers:this.workingWorkers,
+      vehicleDamage:this.vehicleDamage,
+      personelDamage:this.personelDamage,
+      legalCharges:this.legalCharges,
+      otherDamage:this.otherDamage,
+      explainDamage:this.explainDamage,
+    });
+    this.activatedRouteSnapshot.queryParams.subscribe((data:any) => {
+      this.sitId = data.id;
+    })
+   }
   ngOnInit() {
     this.databaseService.getWorkers().then((data:any) => {
       // console.log(data);
@@ -33,7 +58,21 @@ export class UnloadedPage implements OnInit {
         // console.log(element.id,element.data());  
         this.workers.push(element.data());
       });
+    });
+    this.databaseService.getSit(this.sitId).then((data:any) => {
+      this.products = data.data().sit;
     })
+    console.log('Stock Id:',this.sitId);
+  }
+  genWorkerList(event:any){
+    this.workersList = []
+    this.labourChargeForm.clearValidators();
+    event.detail.value.forEach((element:any) => {
+      // console.log(element);
+      this.labourChargeForm.addControl(element.id,new FormControl('',[Validators.required,Validators.min(1)]));
+      this.workersList.push(element);
+    });
+    // this.workersList = event.detail.value;
   }
   async takePicture() {
     const image = await Camera.getPhoto({
@@ -41,7 +80,6 @@ export class UnloadedPage implements OnInit {
       allowEditing: false,
       resultType: CameraResultType.Uri,
       source:CameraSource.Camera,
-      
     });
     var imageUrl = image.format;
     console.log(imageUrl);
@@ -52,8 +90,8 @@ export class UnloadedPage implements OnInit {
       let data = {
         vehicleNumber:this.vehicleNumber.value,
         gateNumber:this.gateNumber.value,
-        safeQuantity:this.safeQuantity.value,
-        unsafeQuantity:this.unsafeQuantity.value,
+        // safeQuantity:this.safeQuantity.value,
+        // unsafeQuantity:this.unsafeQuantity.value,
         workingWorkers:this.workingWorkers.value,
         vehicleDamage:this.vehicleDamage.value,
         personelDamage:this.personelDamage.value,
@@ -61,7 +99,7 @@ export class UnloadedPage implements OnInit {
         otherDamage:this.otherDamage.value,
         explainDamage:this.explainDamage.value,
       }
-      this.databaseService.unloadSit(this.stockId,data).then((data:any) => {
+      this.databaseService.unloadSit(this.sitId,data).then((data:any) => {
         this.alertify.presentToast("Sit Unloaded");
         this.dataProvider.pageSetting.blur = false;
       })
@@ -69,6 +107,9 @@ export class UnloadedPage implements OnInit {
       this.dataProvider.pageSetting.blur = false;
       this.alertify.presentToast('Please fill all the required fields','error');
     }
+  }
+  toNumber(val:string){
+    return Number(val);
   }
 
 }

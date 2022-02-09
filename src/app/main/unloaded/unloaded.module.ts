@@ -16,7 +16,7 @@ import { BaseComponentsModule } from 'src/app/base-components/base-components.mo
     ReactiveFormsModule,
     IonicModule,
     UnloadedPageRoutingModule,
-    BaseComponentsModule
+    BaseComponentsModule,
   ],
   declarations: [UnloadedPage]
 })

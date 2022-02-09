@@ -23,8 +23,11 @@ export class RecievedPage implements OnInit, OnDestroy {
   imageCodec:any;
   recVehicleNumber:string="";
   recVehicleType:string="";
+  imageFormat:any;
   sitID: string;
-  recogniserSubscription: Subscription = Subscription.EMPTY;
+  vehicleVerified:boolean = false;
+  recogniserSubscription: Subscription = Subscription.EMPTY; 
+  numberPlateImageUrl:string;
   constructor(
     private http: HttpClient,
     private activatedRouteSnapshot:ActivatedRoute,
@@ -58,24 +61,50 @@ export class RecievedPage implements OnInit, OnDestroy {
       allowEditing: false,
       resultType: CameraResultType.Base64,
       source:CameraSource.Camera,
+      
     });
     this.imageCodec = image.base64String;
+    this.imageFormat = image.format;
+    console.log(image.format);
     this.imageExists = true;
   };
+  b64toBlob(b64Data, contentType:any, sliceSize:number){
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+    const blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
   verifyLicensePlate(){
     this.dataProvider.pageSetting.blur = true;
     this.recogniserSubscription=this.http.post(
       'https://us-central1-sit-manager.cloudfunctions.net/recognisePlate',
-      // 'http://localhost:5001/sit-manager/us-central1/recognisePlate',
       {image:this.imageCodec,uid:this.dataProvider.userData.userId}).subscribe((data:any)=>{
-      this.dataProvider.pageSetting.blur = false;
       console.log(data);
       this.recVehicleNumber = data.plate;
       this.recVehicleType = data.vehicle.type;
-      this.alertify.presentToast(`Successful recognition of numberplate`,'info');
+      if (this.vehicleNumber.value.toLowerCase() == this.recVehicleNumber.toLowerCase()){
+        this.vehicleVerified = true;
+        this.databaseService.upload('vehicleImages/'+this.recVehicleNumber+'/image.'+this.imageFormat,this.b64toBlob(this.imageCodec,'image/'+this.imageFormat,512)).then(data=>{
+          this.numberPlateImageUrl = data;
+          this.dataProvider.pageSetting.blur = false;
+          this.alertify.presentToast(`Vehicle verified succefully`,'info');
+        }).catch((error)=>{this.alertify.presentToast(`Some error occured`,'error');});
+      } else {
+        this.vehicleVerified = false;
+        this.alertify.presentToast(`Wrong number plate. Alerted to admin.`,'info');
+      }
     },(error:any)=>{
       this.dataProvider.pageSetting.blur = false;
-      console.log(error);
+      // console.log(error);
       // this.databaseService.addLog(error)
       this.alertify.presentToast(`Error in recognition of numberplate`,'error');
     })
@@ -89,7 +118,7 @@ export class RecievedPage implements OnInit, OnDestroy {
       vehicleNumber:this.vehicleNumber.value,
       vehicleType:this.recVehicleType,
       gateNumber:this.gateNumber.value,
-      vehicleImage:this.imageCodec,
+      vehicleImage:this.numberPlateImageUrl,
       sitID:this.sitID,
       coordinatorId:this.dataProvider.userData.userId,
       timestamp:new Date().toISOString()

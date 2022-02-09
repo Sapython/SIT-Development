@@ -33,9 +33,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { MainComponent } from './main/main.component';
 import { ComponentModule } from './component/component.module';
+import { BackDirective } from './directives/back.directive';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent],
+    declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent, BackDirective],
     imports: [
         // MainModule,
         ComponentModule,

@@ -36,15 +36,15 @@ export class RecievedLogComponent implements OnInit {
       this.gateNumber = sit.gateNumber;
       this.vehicleType = sit.vehicleType;
       this.sitID = sit.sitID;
-      this.dispatchDate = sit.dispatchDate;
       this.databaseService.getUser(sit.coordinatorId).then((coordinator:any) => {
         this.coordinator = coordinator.data();
       })
       this.databaseService.getSit(this.sitID).then((sit:any) => {
-        this.name = sit.data().name;
-        this.expectedDelivery = sit.data().expectedDelivery;
-        this.Deliverycode = sit.data().Deliverycode;
+        this.name = sit.data().supplierName;
+        this.expectedDelivery = sit.data().sit[0].expectedDelivery;
+        this.Deliverycode = sit.data().sit[0].deliveryCode;
         this.products = sit.data().sit;
+        this.dispatchDate = sit.data().sit[0].dispatchDate;
       })
     });
   }

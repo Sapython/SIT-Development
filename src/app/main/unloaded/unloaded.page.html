@@ -27,31 +27,58 @@
           <h2>Quantity Details</h2>
         </ion-text>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Safe Quantity</ion-label>
-        <ion-input type="number" formControlName="safeQuantity"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Unsafe Quantity</ion-label>
-        <ion-input type="number" formControlName="unsafeQuantity"></ion-input>
-      </ion-item>
+      <ion-card *ngFor="let product of products" class="ion-padding">
+        <ion-label><strong>Name:</strong> {{product.productName}}</ion-label>
+        <br>
+        <ion-label><strong>Product Id:</strong> {{product.productCode}}</ion-label>
+        <ion-row>
+          <ion-range
+            min="0" [max]="toNumber(product.quantity)" pin="true" [name]="product.productCode"
+            snaps="true" step="1" ticks="true" value="0" snaps="true">
+          </ion-range>
+          <ion-chip color="primary" mode="md" outline="true">
+            <ion-label><strong>Total:</strong> {{toNumber(product.quantity)}}</ion-label>
+          </ion-chip>
+        </ion-row>
+      </ion-card>
       <ion-item lines="none" class="ion-margin-top">
         <ion-text>
-          <h2>Select Labours</h2>
+          <h2>Select Workers</h2>
         </ion-text>
       </ion-item>
       <ion-item>
         <ion-label>Select Workers</ion-label>
-        <ion-select multiple="true" cancelText="Cancel" okText="Done">
-          <ion-select-option formControlName="workingWorkers" [value]="worker.userId" *ngFor="let worker of workers">
+        <ion-select multiple="true" cancelText="Cancel" okText="Done" formControlName="workingWorkers" (ionChange)="genWorkerList($event)">
+          <ion-select-option [value]="{id:worker.userId,name:worker.displayName,image:worker.photoURL}" *ngFor="let worker of workers">
             <ion-label>
-              <img [src]="worker.photoURL" style="width:20px;height:20px;border-radius: 50%;" />
+              <ion-avatar>
+                <img [src]="worker.photoURL" style="width:20px;height:20px;border-radius: 50%;" referrerpolicy="no-referrer" />
+              </ion-avatar>
               {{worker.displayName}}
             </ion-label>
           </ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item class="ion-margin-top" lines="none">
+      <ion-item lines="none" *ngIf="workersList.length > 0">
+        <ion-text>
+          <h2>Worker Charges</h2>
+        </ion-text>
+      </ion-item>
+      <form [formGroup]="labourChargeForm" class="workerForm">
+        <ion-card *ngFor="let worker of workersList" class="ion-padding">
+          <ion-row>
+            <ion-avatar style="--border-radius:30px;">
+              <img [src]="worker.image" />
+            </ion-avatar>
+            <ion-col>
+              <ion-label><strong>Name:</strong> {{worker.name}}</ion-label>
+              <ion-input type="number" placeholder="Charges" [formControlName]="worker.id"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </form>
+      <hr>
+      <ion-item lines="none">
         <ion-text>
           <h2>Miscellaneous Expenses</h2>
         </ion-text>
@@ -73,8 +100,8 @@
         <ion-input type="text" formControlName="otherDamage"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" formControlName="explainDamage">Explain</ion-label>
-        <ion-textarea></ion-textarea>
+        <ion-label position="floating">Explain</ion-label>
+        <ion-textarea formControlName="explainDamage"></ion-textarea>
       </ion-item>
     </ion-list>
     <ion-button type="submit" expand="block" fill="solid" mode="ios">

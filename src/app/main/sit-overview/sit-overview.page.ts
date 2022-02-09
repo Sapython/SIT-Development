@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { sitLedgerData } from 'src/app/structures/method.structure';
+import { DatabaseService } from 'src/app/services/database.service';
+import { SIT, sitLedgerData } from 'src/app/structures/method.structure';
 
 @Component({
   selector: 'app-sit-overview',
@@ -8,128 +9,33 @@ import { sitLedgerData } from 'src/app/structures/method.structure';
 })
 export class SitOverviewPage implements OnInit {
   items = [1,2,3]
-  constructor() { }
-
+  recievdCount:number = 0;
+  unloadedCount:number = 0;
+  pendingCount:number = 0;
+  openPending:boolean = true;
+  openUnloaded:boolean = true;
+  openRecieved:boolean = true;
+  sitLedgers: SIT[] = [];
+  constructor(private databaseService: DatabaseService) { }
   ngOnInit() {
+    this.databaseService.getSitLedgers().subscribe((data:any)=>{
+      let sits = [];
+      this.recievdCount = 0;
+      this.unloadedCount = 0;
+      this.pendingCount = 0;
+      data.forEach((element:any) => {
+        let filteredData = element.data();
+        filteredData.id = element.id;
+        sits.push(filteredData);
+        if (filteredData.status == 'recieved') {
+          this.recievdCount++;
+        } else if (filteredData.status == 'unloaded') {
+          this.unloadedCount++;
+        } else if (filteredData.status == 'pending') {
+          this.pendingCount++;
+        }
+      });
+      this.sitLedgers = sits;
+    })
   }
-  sitLedgers: sitLedgerData[] = [
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "pending",
-    },
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "pending",
-    }
-  ];
-  recievedLedgers: sitLedgerData[] = [
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "recieved",
-    },
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "recieved",
-    }
-  ];
-  unloadedLedgers: sitLedgerData[] = [
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "unloaded",
-    },
-    {
-      dispatchDate: "23 July 2021",
-      delivery: "2333441",
-      expectedDelivery: "30 July 2021",
-      gateEntryDate: "25 July 2021",
-      gateEntryNo: "666",
-      mfgLocation: "D69",
-      productCode: "112233",
-      productName: "Biscoot",
-      quantity: 360,
-      recPlantDesc: "145",
-      remarks: "Received",
-      suppPlant: "D69",
-      suppPlantDesc: "Tirupati Bakers",
-      storageLocation: "Prayagraj",
-      transName: "Jain Roadways",
-      vehicleNo: "HR51AB1314",
-      status: "unloaded",
-    }
-  ];
 }
