@@ -27,16 +27,13 @@ export class UserDataService {
       photoURL: user.photoURL ||  this.getRandomImage(),
       phoneNumber: userData.phoneNumber,
       emailVerified:true,
+      status:{access:'active',isOnline:true},
+      attendanceCount:0,
+      attendanceDate:new Date(),
       firstLogin:false,
       access: {
-        access: 'user',
+        access: 'guest',
       },
-      orders:[],
-      totalOrders:0,
-      totalCashback:0,
-      wishlist:[],
-      cart:[],
-      friends:[],
     }
     this.userDoc  = doc(this.firestore,'users/'+user.uid);
     await setDoc(this.userDoc,data).then(()=>{
@@ -56,15 +53,12 @@ export class UserDataService {
       phoneNumber: userData.phoneNumber || '',
       emailVerified:true,
       firstLogin:false,
+      attendanceCount:0,
+      attendanceDate:new Date(),
+      status:{access:'active',isOnline:true},
       access: {
-        access: 'user',
+        access: 'guest',
       },
-      orders:[],
-      totalOrders:0,
-      totalCashback:0,
-      wishlist:[],
-      cart:[],
-      friends:[],
     }
     this.userDoc  = doc(this.firestore,'users/'+user.uid);
     await setDoc(this.userDoc,data).then(()=>{

@@ -9,6 +9,7 @@ import { EmployeeListPageRoutingModule } from './employee-list-routing.module';
 import { EmployeeListPage } from './employee-list.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { EmployeeDataModalComponent } from 'src/app/modals/employee-data-modal/employee-data-modal.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     WidgetsModule,
     BaseComponentsModule
   ],
-  declarations: [EmployeeListPage]
+  declarations: [EmployeeListPage,EmployeeDataModalComponent]
 })
 export class EmployeeListPageModule {}

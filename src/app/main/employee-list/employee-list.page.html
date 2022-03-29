@@ -3,13 +3,21 @@
     <div class="container">
         <p>Employee List</p>
     </div>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-    <app-employee-data-widget></app-employee-data-widget>
-
+    <!-- <app-employee-data-widget *ngFor="let employee of employees" 
+        [presentDay]="round((employee.attendanceCount / totaldate)*100)"
+        [absent]="round(((totaldate-employee.attendanceCount)/totaldate)*100)"
+        [name]="employee.displayName"
+        [phoneNumber]="employee.phoneNumber"
+        [userData]="employee"
+        [userImage]="employee.photoURL"
+    ></app-employee-data-widget> -->
+    <ion-item *ngFor="let employee of employees" (click)="openUser(employee)" button detail="true">
+        <ion-label>{{employee.displayName}}</ion-label>
+        <ion-chip color="success" mode="ios" outline="true" slot="end">
+            <ion-label>Present</ion-label>
+        </ion-chip>
+        <!-- <ion-toggle value="true" slot="end">            
+        </ion-toggle> -->
+    </ion-item>
+    <img src="assets/UI/Images/empty.svg" *ngIf="!employees" alt="Nothing In here" class="noData">
 </ion-content>

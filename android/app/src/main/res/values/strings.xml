@@ -4,4 +4,5 @@
     <string name="title_activity_main">SNG Sons</string>
     <string name="package_name">com.swayambhu.stockintransit</string>
     <string name="custom_url_scheme">com.swayambhu.stockintransit</string>
+    <string name="server_client_id">690627613189-fglnifb9ggsg8qgrb1s17otedqhfm08h.apps.googleusercontent.com</string>
 </resources>

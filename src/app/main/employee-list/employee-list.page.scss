@@ -20,3 +20,43 @@
     margin-bottom: 20px;
     font-size: 15px;
 }
+button[color="primary"]{
+    // border:2px solid var(--ion-color-primary);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color:var(--ion-color-primary);
+    background:transparent;
+    font-size: 25px;
+    margin-right: 20px;
+}
+button[color="success"]{
+    // border:2px solid var(--ion-color-primary);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color:var(--ion-color-success);
+    background:transparent;
+    font-size: 25px;
+    margin-right: 20px;
+}
+button[color="danger"]{
+    // border:2px solid var(--ion-color-primary);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color:var(--ion-color-danger);
+    background:transparent;
+    font-size: 25px;
+    margin-right: 20px;
+}
+button[color="warning"]{
+    // border:2px solid var(--ion-color-primary);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color:var(--ion-color-warning);
+    background:transparent;
+    font-size: 25px;
+    margin-right: 20px;
+}

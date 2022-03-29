@@ -35,8 +35,8 @@
               [allData]="item"
           ></app-sit-ledger-widget>
         </div>
+        <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
       </div>
-      <hr>
     </div>
     <div class="pending-sit" *ngIf="recievdCount > 0">
       <ion-row class="ion-justify-content-between">
@@ -71,8 +71,8 @@
               [allData]="item"
           ></app-sit-ledger-widget>
         </div>
+        <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
       </div>
-      <hr>
     </div>
     <div class="pending-sit" *ngIf="unloadedCount > 0">
       <ion-row class="ion-justify-content-between">
@@ -107,7 +107,7 @@
               [allData]="item"
           ></app-sit-ledger-widget>
         </div>
-        <hr>
+        <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
       </div>
     </div>
   </div>

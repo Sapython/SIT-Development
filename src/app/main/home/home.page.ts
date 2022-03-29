@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { ChartData, ChartOptions, ChartType } from 'chart.js';
 import { dalaLedgerData, SIT, sitLedgerData } from 'src/app/structures/method.structure';
 import { ModalController } from '@ionic/angular';
@@ -13,10 +13,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  pending: number = 12;
-  recieved: number = 5;
-  unloaded: number = 20;
-  public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  // @ViewChild('header', {static: false}) private header: ElementRef<HTMLDivElement>;
+  isTestDivScrolledIntoView: boolean;
+  pending: number = 0;
+  recieved: number = 0;
+  unloaded: number = 0;
+  sitsLoaded:boolean = false;
+  public doughnutChartLabels: string[] = ['Pending', 'Recieved', 'Unloaded'];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
     datasets: [
@@ -50,25 +53,54 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
   ngOnInit() { 
-    let sits= []
     this.databaseService.getSitLedgers().subscribe((data:any)=>{
+      let sits= []
+      this.pending = 0;
+      this.recieved = 0;
+      this.unloaded = 0;
       data.forEach((element:any) => {
         // console.log(element.data(),element.id);
         let filteredData = element.data();
         filteredData.id = element.id;
+        if(filteredData.status=='pending'){
+          this.pending++;
+        } else if(filteredData.status=='recieved'){
+          this.recieved++;
+        } else if(filteredData.status=='unloaded'){
+          this.unloaded++;
+        }
         sits.push(filteredData);
       });
+      this.doughnutChartData = {
+        labels: this.doughnutChartLabels,
+        datasets: [
+          { data: [this.pending, this.recieved, this.unloaded] },
+        ]
+      };
       // console.log('data',sits);
       sits.sort((element:SIT,elementTwo:SIT) => {
         return elementTwo.views - element.views;
       })
       // console.log('sits',sits);
-      this.sitLedgers = [sits[0],sits[1],sits[2]];
+      let counter =0;
+      this.sitLedgers = [];
+      for (const iterator of sits) {
+        this.sitLedgers.push(iterator);
+        counter++;
+        if(counter>=3){
+          break;
+        }
+      }
+      this.sitsLoaded = true;
     })
   }
   navigate(path:string){
     console.log(path);
     this.router.navigateByUrl('/main/app/'+path);
+  }
+  log(data:any){
+    console.log(data,data.offsetWidth > 0 && data.offsetHeight > 0);
+    return true;
   }
   items = [1, 2, 3];
   sitLedgers: SIT[] = [];

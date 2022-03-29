@@ -30,17 +30,19 @@
             <div class="card-step-name">Unloaded</div>
         </div>
     </div>
-    <ion-button expand="block" color="primary" (click)="navigate('recieved')" *ngIf="status === 'pending'">
-        Move To Recieved
-    </ion-button>
-    <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='recieved'">
-        Move To Unloaded
-    </ion-button>
-    <ion-button expand="block" *ngIf="status === 'recieved' || status === 'unloaded'" routerLink="recieved"
-        (click)="recievedlog()">See Recieved Log
-    </ion-button>
-    <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded" (click)="unloadedlog()">See
-        Unloaded Log</ion-button>
+    <div *ngIf="dataProvider.userData?.access.access==='admin' || dataProvider.userData?.access.access==='supervisor' ">
+        <ion-button expand="block" color="primary" (click)="navigate('recieved')" *ngIf="status === 'pending'">
+            Move To Recieved
+        </ion-button>
+        <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='recieved'">
+            Move To Unloaded
+        </ion-button>
+        <ion-button expand="block" *ngIf="status === 'recieved' || status === 'unloaded'" routerLink="recieved"
+            (click)="recievedlog()">See Recieved Log
+        </ion-button>
+        <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded" (click)="unloadedlog()">See
+            Unloaded Log</ion-button>
+    </div>
     <hr *ngIf="this.displayMoreDetails">
     <div id="card-more-details" *ngIf="this.displayMoreDetails">
         <p class="card-more-detail"><span class="more-detail-key">

@@ -13,7 +13,7 @@ ion-content > button > ion-icon {
   color: rgb(189, 189, 189);
 }
 ion-item > ion-text > h2 {
-    margin-top: 50px;
+    margin-top: 10px;
     font-size: 25px;
     color: rgb(117, 117, 117);
 }
@@ -33,13 +33,14 @@ ion-list > ion-row > button > ion-icon {
     font-size: 25px;
     color: var(--ion-color-primary);
 }
-form{
-    margin-bottom: 60px;
-}
+
 .damageRange{
     --bar-background:var(--ion-color-success);
     --bar-background-active:var(--ion-color-danger);
 }
 .workerForm{
     margin:0px;
+}
+h3,h2{
+    margin-top: 10px;
 }

@@ -7,6 +7,7 @@
     padding:10px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    margin:5px;
     margin-bottom: 15px;
 }
 .img-and-name{
@@ -99,7 +100,7 @@
 .code-and-price > .buttons > .damaged > p{
     margin:0px;
     font-size: 13px;
-    color:var(--ion-color-danger);
+    color:var(--ion-color-danger-tint);
 }
 .code-and-price > .buttons > .damaged > div {
     width:50px;
@@ -109,7 +110,7 @@
     text-align: center;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    background:var(--ion-color-danger);
+    background:var(--ion-color-danger-tint);
 }
 
 @keyframes fadeIn {

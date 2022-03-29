@@ -4,43 +4,33 @@
   <ion-text color="tertiary">
     <h1>Move To Unloaded</h1>
   </ion-text>
-  <button (click)="takePicture()">
-    <ion-icon name="aperture-outline"></ion-icon>
-  </button>
-  <form [formGroup]="unloadedForm" (onSubmit)="setAsUnloaded()" >
+  <form [formGroup]="unloadedForm" (ngSubmit)="setAsUnloaded()" >
     <ion-list>
-      <ion-row>
-        <ion-item>
-          <ion-label position="floating">Vehicle Number</ion-label>
-          <ion-input type="text" formControlName="vehicleNumber"></ion-input>
-        </ion-item>
-        <button fill="clear">
-          <ion-icon name="checkmark-done"></ion-icon>
-        </button>
-      </ion-row>
-      <ion-item>
-        <ion-label position="floating">Gate Number</ion-label>
-        <ion-input type="text" formControlName="gateNumber"></ion-input>
+      <ion-item lines="none">
+        <h2>Quantity Details</h2>
       </ion-item>
-      <ion-item class="ion-margin-top" lines="none">
-        <ion-text>
-          <h2>Quantity Details</h2>
-        </ion-text>
-      </ion-item>
-      <ion-card *ngFor="let product of products" class="ion-padding">
-        <ion-label><strong>Name:</strong> {{product.productName}}</ion-label>
-        <br>
-        <ion-label><strong>Product Id:</strong> {{product.productCode}}</ion-label>
-        <ion-row>
-          <ion-range
-            min="0" [max]="toNumber(product.quantity)" pin="true" [name]="product.productCode"
-            snaps="true" step="1" ticks="true" value="0" snaps="true">
-          </ion-range>
-          <ion-chip color="primary" mode="md" outline="true">
-            <ion-label><strong>Total:</strong> {{toNumber(product.quantity)}}</ion-label>
-          </ion-chip>
-        </ion-row>
-      </ion-card>
+      <form [formGroup]="quantityDetailForm">
+        <ion-card *ngFor="let product of products;let i = index" [attr.data-index]="i" class="ion-padding">
+          <div>
+            <ion-label><strong>Name:</strong> {{product.productName}}</ion-label>
+            <br>
+            <ion-label><strong>Product Id:</strong> {{product.productCode}}</ion-label>
+          </div>
+          <ion-col>
+            <ion-item>
+              <ion-label>Total Quantity</ion-label>
+              <ion-label>{{product.quantity}} Pkgs</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Damaged Quantity</ion-label>
+              <ion-input type="number" placeholder="Damaged Quantity" [formControlName]="product.productCode" [max]="toNumber(product.quantity)" [min]="0" required [name]="product.productCode" #damaged></ion-input>
+            </ion-item>
+            <ion-button class="ion-margin-top" *ngIf="damaged.value > 0" (click)="setImage(product.productCode,i)" >Take Image &nbsp;&nbsp;&nbsp;<ion-icon name="camera"></ion-icon></ion-button>
+          </ion-col>
+        </ion-card>
+        <img src="assets/UI/Images/empty.svg" *ngIf="!products" alt="Nothing In here" class="noData">
+      </form>
+      <hr>
       <ion-item lines="none" class="ion-margin-top">
         <ion-text>
           <h2>Select Workers</h2>
@@ -73,9 +63,11 @@
             <ion-col>
               <ion-label><strong>Name:</strong> {{worker.name}}</ion-label>
               <ion-input type="number" placeholder="Charges" [formControlName]="worker.id"></ion-input>
+              <ion-input type="number" placeholder="Time taken in min" [formControlName]="worker.id+'timeTaken'"></ion-input>
             </ion-col>
           </ion-row>
         </ion-card>
+        <img src="assets/UI/Images/empty.svg" *ngIf="!workersList" alt="Nothing In here" class="noData">
       </form>
       <hr>
       <ion-item lines="none">
@@ -85,19 +77,31 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Vehicle Damage</ion-label>
-        <ion-input type="text" formControlName="vehicleDamage"></ion-input>
+        <ion-input type="number" formControlName="vehicleDamage"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Personel Damage</ion-label>
-        <ion-input type="text" formControlName="personelDamage"></ion-input>
+        <ion-label position="floating">Explain Vehicle Damage</ion-label>
+        <ion-textarea type="text" formControlName="explainVehicleDamage"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Personnel Damage</ion-label>
+        <ion-input type="number" formControlName="personnelDamage"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Explain Personnel Damage</ion-label>
+        <ion-textarea type="text" formControlName="explainPersonnelDamage"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Legal Tax/Charge</ion-label>
-        <ion-input type="text" formControlName="legalCharges"></ion-input>
+        <ion-input type="number" formControlName="legalCharges"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Explain Legal Tax/Charge</ion-label>
+        <ion-textarea type="text" formControlName="explainLegalCharges"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Other</ion-label>
-        <ion-input type="text" formControlName="otherDamage"></ion-input>
+        <ion-input type="number" formControlName="otherDamage"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Explain</ion-label>

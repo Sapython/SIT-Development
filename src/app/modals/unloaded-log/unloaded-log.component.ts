@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-unloaded-log',
@@ -6,16 +7,29 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./unloaded-log.component.scss'],
 })
 export class UnloadedLogComponent implements OnInit {
-
-  constructor() { }
-  @Input() name: string = "TIRUPATI BAKERS";
-  @Input() productName: string = "Biscuit";
-  @Input() productCode: string = "123XYZ0";
-  @Input() coordinator: string = "Ramlal Vishwakarma";
-  @Input() coordinatorPhone: string = "9876543210";
-  @Input() dispatchDate: string = "12/12/2019";
-  @Input() expectedDelivery: string = "12/12/2019";
-  @Input() Deliverycode: string = "123XYZ0";
-  ngOnInit() {}
-
+  @Input() sitId: string;
+  totalDamage: number = 0;
+  constructor(private databaseService: DatabaseService) {}
+  sitData: any;
+  ngOnInit() {
+    this.databaseService.getUnloadedSit(this.sitId).then((data: any) => {
+      this.sitData = data.data();
+      console.log(this.sitData);
+      this.totalDamage =
+        this.toNumber(this.sitData.legalCharges) +
+        this.toNumber(this.sitData.otherDamage) +
+        this.toNumber(this.sitData.personelDamage) +
+        this.toNumber(this.sitData.vehicleDamage);
+      // console.log(this.sitData.damagedValue);
+      this.sitData.productDamages.forEach((product) => {
+        this.totalDamage += this.toNumber(product.damagedValue);
+      })
+    });
+  }
+  splitName(fullName){
+    return fullName.split(' ');
+  }
+  toNumber(input: string) {
+    return Number(input);
+  }
 }

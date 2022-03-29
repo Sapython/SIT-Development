@@ -1,3 +1,12 @@
 <ion-content>
-  
+    <ion-list>
+        <ion-item>
+            <ion-label>Upload Data</ion-label>
+            <input type="file" placeholder="Enter the file name" (change)="setFile($event)"
+                accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        </ion-item>
+        <ion-button (click)="uploadData()" expand="block" fill="solid" shape="round" [disabled]="!valid">
+            Verify And Upload
+        </ion-button>
+    </ion-list>
 </ion-content>

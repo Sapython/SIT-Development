@@ -63,6 +63,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'unloaded-sit',
+        children:[
+          {
+            path:'',
+            loadChildren: () => import('./unloaded-sit/unloaded-sit.module').then( m => m.UnloadedSitPageModule)
+          }
+        ]
+      },
+      {
         path:'recieved-sit',
         children:[
           {
@@ -180,20 +189,18 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'guest',
+    loadChildren: () => import('./guest/guest.module').then( m => m.GuestPageModule)
+  },
+  {
     path: '',
     redirectTo: '/app/home',
     pathMatch: 'full',
   },
   {
-    path: 'driver-list',
-    loadChildren: () => import('./driver-list/driver-list.module').then( m => m.DriverListPageModule)
+    path: 'guest',
+    loadChildren: () => import('./guest/guest.module').then( m => m.GuestPageModule)
   },
-  ,
-
-
-
-
-  
 
 ];
 @NgModule({

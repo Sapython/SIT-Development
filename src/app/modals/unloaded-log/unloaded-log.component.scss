@@ -40,3 +40,9 @@
     border: 2px solid var(--ion-color-secondary);
     border-radius:  10px;
 }
+ion-spinner{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

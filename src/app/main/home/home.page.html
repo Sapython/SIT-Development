@@ -1,19 +1,21 @@
 <!-- <app-header title="Home"></app-header> -->
 <ion-content>
-    <aside>
+    <aside #header>
         <div id="topNav">
             <button>
                 <ion-menu-button></ion-menu-button>
             </button>
             <div class="greetings">
-                <p class="greet">Welcome</p>
-                <p class="username">
-                    {{dataProvider?.userData?.displayName}}
-                </p>
+                <div>
+                    <p class="greet">Welcome</p>
+                    <p class="username">
+                        {{dataProvider?.userData?.displayName}}
+                    </p>
+                </div>
                 <app-user-image></app-user-image>
             </div>
         </div>
-        <div id="card">
+        <!-- <div id="card">
             <div>
                 <p class="head">Summary</p>
                 <table>
@@ -38,10 +40,10 @@
                   [type]="doughnutChartType">
                 </canvas>
             </div>
-        </div>
+        </div> -->
     </aside>
     <main>
-        <div class="buttonLinks">
+        <!-- <div class="buttonLinks">
             <button routerLink="../add-employee">
                 <ion-icon name="person-add"></ion-icon>
             </button>
@@ -57,7 +59,7 @@
             <button>
                 <ion-icon name="sync-circle"></ion-icon>
             </button>
-        </div>
+        </div> -->
         <p class="title">Dashboard</p>
         <div class="quickLinks">
             <button class="linkCard" routerLink="../employeeList">
@@ -81,43 +83,36 @@
                 </div>
                 <img src="assets/UI/QuickLinks/recievedLedger.svg" alt="">
             </div>
-            <div class="linkCard" routerLink="../driver-list">
+            <div class="linkCard" routerLink="../unloaded-sit">
                 <div>
-                    <p>Driver</p>
-                    <p>List</p>
+                    <p>Unloaded</p>
+                    <p>SIT List</p>
                 </div>
                 <img src="assets/UI/QuickLinks/driver.svg" alt="">
             </div>
         </div>
         <p class="text-1">Recently Opened</p>
-        <ion-spinner name="crescent" color="primary" *ngIf="!sitLedgers" class="ion-text-center"></ion-spinner>
-        <app-sit-ledger-widget 
-        *ngFor="let item of sitLedgers"
-            [bakery]="item.supplierName"
-            [suppCode]="item.supplierCode"
-            [dueDate]="item.sit[0].expectedDelivery"
-            [dispatchDate]="item.sit[0].dispatchDate"
-            [deliveryCode]="item.sit[0].deliveryCode"
-            [expectedDelivery]="item.sit[0].expectedDelivery"
-            [gateEntryDate]="item.sit[0].gateEntryDate"
-            [gateEntryNo]="item.sit[0].gateEntryNumber"
-            [mfgLocation]="item.sit[0].mfgLocation"
-            [productCode]="item.sit[0].productCode"
-            [productName]="item.sit[0].productName"
-            [quantity]="item.sit[0].quantity"
-            [recPlantDesc]="item.sit[0].recievePlantName"
-            [remarks]="item.status"
-            [suppPlant]="item.sit[0].supplyPlantCode"
-            [suppPlantDesc]="item.sit[0].supplyPlantName"
-            [storageLocation]="item.sit[0].storageLocation"
-            [transName]="item.sit[0].transporterName"
-            [vehicleNo]="item.sit[0].vehicleNo"
-            [status]="item.status"
-            [allData]="item"
-        ></app-sit-ledger-widget>
+        <ion-spinner name="crescent" color="primary" *ngIf="!sitsLoaded" class="ion-text-center"></ion-spinner>
+        <img src="assets/UI/Images/empty.svg" alt="Empty" *ngIf="sitsLoaded && sitLedgers.length==0">
+        <app-sit-ledger-widget *ngFor="let item of sitLedgers" [bakery]="item.supplierName"
+            [suppCode]="item.supplierCode" [dueDate]="item.sit[0].expectedDelivery"
+            [dispatchDate]="item.sit[0].dispatchDate" [deliveryCode]="item.sit[0].deliveryCode"
+            [expectedDelivery]="item.sit[0].expectedDelivery" [gateEntryDate]="item.sit[0].gateEntryDate"
+            [gateEntryNo]="item.sit[0].gateEntryNumber" [mfgLocation]="item.sit[0].mfgLocation"
+            [productCode]="item.sit[0].productCode" [productName]="item.sit[0].productName"
+            [quantity]="item.sit[0].quantity" [recPlantDesc]="item.sit[0].recievePlantName" [remarks]="item.status"
+            [suppPlant]="item.sit[0].supplyPlantCode" [suppPlantDesc]="item.sit[0].supplyPlantName"
+            [storageLocation]="item.sit[0].storageLocation" [transName]="item.sit[0].transporterName"
+            [vehicleNo]="item.sit[0].vehicleNo" [status]="item.status" [allData]="item"></app-sit-ledger-widget>
+        <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
         <ion-button (click)="navigate('sit-overview')" expand="block" fill="outline">
             Show All
             <ion-icon name="arrow-forward-outline"></ion-icon>
         </ion-button>
     </main>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="isTestDivScrolledIntoView">
+        <ion-fab-button>
+            <ion-menu-button></ion-menu-button>
+        </ion-fab-button>
+    </ion-fab> -->
 </ion-content>

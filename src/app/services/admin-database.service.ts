@@ -18,111 +18,230 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { query } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage';
 import { DataProvider } from '../providers/data.provider';
 import { ContactRequest } from '../structures/user.structure';
 import { AuthencationService } from './authencation.service';
 import { AlertsAndNotificationsService } from './uiService/alerts-and-notifications.service';
+import {
+  Analytics,
+  logEvent,
+  setCurrentScreen,
+  setUserProperties,
+  setUserId,
+} from '@angular/fire/analytics';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminDatabaseService {
-
-  constructor(private fs: Firestore, private dataProvider: DataProvider,private authService:AuthencationService,private alertify:AlertsAndNotificationsService) { }
+  constructor(
+    private analytics: Analytics,
+    private fs: Firestore,
+    private dataProvider: DataProvider,
+    private authService: AuthencationService,
+    private alertify: AlertsAndNotificationsService
+  ) {}
   // Secuirty functions starts
-  checkAdmin(){
-    return this.dataProvider.userData.access.access == 'admin';
+  checkAdmin() {
+    if(this.dataProvider.userData?.access.access !== 'admin'){
+      this.alertify.presentToast('You are not an admin', 'error', 2000);
+      return
+    }
   }
   // Secuirty functions ends
   // Notification functions starts
-  confirmChange(){
-    this.alertify.presentToast('Data saved','info',1500);
+  confirmChange() {
+    logEvent(this.analytics, 'admin_change_settings');
+    this.alertify.presentToast('Data saved', 'info', 1500);
   }
   // Notification functions ends
   // Admin data functions starts
-    getSettings(){
+  getSettings() {
+    this.checkAdmin();
+    // this.confirmChange();
+    logEvent(this.analytics, 'admin_get_settings');
+    return getDoc(doc(this.fs, 'adminData/settings'));
+  }
+  persistantData(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_persistant_data');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { persistantData: value },
+      { merge: true }
+    );
+  }
+  enableNewAccounts(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_enable_new_accounts');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { enableNewAccounts: value },
+      { merge: true }
+    );
+  }
+  enableGuestAccess(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_enable_guest_access');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { enableGuestAccess: value },
+      { merge: true }
+    );
+  }
+  summaryCardType(value: 'weekly' | 'monthly' | 'yearly') {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_summary_card_type');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { summaryCardType: value },
+      { merge: true }
+    );
+  }
+  // Tracking settings starts
+  vehicleTracking(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_vehicle_tracking');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { vehicleTracking: value },
+      { merge: true }
+    );
+  }
+  employeeTracking(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_employee_tracking');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { employeeTracking: value },
+      { merge: true }
+    );
+  }
+  formTracking(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_form_tracking');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { formTracking: value },
+      { merge: true }
+    );
+  }
+  attendanceTracking(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_attendance_tracking');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { attendanceTracking: value },
+      { merge: true }
+    );
+  }
+  appUsageTracking(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_app_usage_tracking');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { appUsageTracking: value },
+      { merge: true }
+    );
+  }
+  // Tracking settings ends
+  // Secuirty settings starts
+  canAdminsChangeUsers(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_can_admins_change_users');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { allowAdminsToChangeUsers: value },
+      { merge: true }
+    );
+  }
+  canSupervisorManageUsers(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_can_supervisor_manage_users');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { allowSupervisorToManageUsers: value },
+      { merge: true }
+    );
+  }
+  canGuestSeeData(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_can_guest_see_data');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { allowGuestToSeeData: value },
+      { merge: true }
+    );
+  }
+  defaultAccessLevel(value: 'guest' | 'employee' | 'supervisor' | 'admin') {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_default_access_level');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { defaultAccessLevel: value },
+      { merge: true }
+    );
+  }
+  allowSignout(value: boolean) {
+    this.checkAdmin();
+    this.confirmChange();
+    logEvent(this.analytics, 'admin_allow_signout');
+    return setDoc(
+      doc(this.fs, 'adminData/settings'),
+      { allowSignout: value },
+      { merge: true }
+    );
+  }
+  // Secuirty settings ends
+  // Manage Users starts
+  getUsers() {
+    this.checkAdmin();
+    return getDocs(collection(this.fs, 'users'));
+  }
+  userAction(value: 'remove' | 'block' | 'reset' | 'none', userId: string) {
+    this.checkAdmin();
+    if (value === 'remove') {
       this.confirmChange();
-      return getDoc(doc(this.fs, 'adminData/settings'));
-    }
-    persistantData(value:boolean){
+      logEvent(this.analytics, 'admin_remove_user');
+      return updateDoc(doc(this.fs, 'users/' + userId), {
+        status: { access: 'deleted' },
+      });
+    } else if (value === 'block') {
       this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{persistantData:value},{merge:true});
-    }
-    enableNewAccounts(value:boolean) {
+      logEvent(this.analytics, 'admin_block_user');
+      return updateDoc(doc(this.fs, 'users/' + userId), {
+        status: { access: 'blocked' },
+      });
+    } else if (value === 'reset') {
       this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{enableNewAccounts:value},{merge:true});
+      logEvent(this.analytics, 'admin_reset_user');
+      return updateDoc(doc(this.fs, 'users/' + userId), {
+        attendanceCount: 0,
+        attendanceDate: new Date(),
+      });
+    } else {
+      return;
     }
-    enableGuestAccess(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{enableGuestAccess:value},{merge:true});
-    }
-    summaryCardType(value:'weekly'|'monthly'|'yearly'){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{summaryCardType:value},{merge:true});
-    }
-    // Tracking settings starts
-    vehicleTracking(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{vehicleTracking:value},{merge:true});
-    }
-    employeeTracking(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{employeeTracking:value},{merge:true});
-    }
-    formTracking(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{formTracking:value},{merge:true});
-    }
-    attendanceTracking(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{attendanceTracking:value},{merge:true});
-    }
-    appUsageTracking(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{appUsageTracking:value},{merge:true});
-    }
-    // Tracking settings ends
-    // Secuirty settings starts
-    canAdminsChangeUsers(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{allowAdminsToChangeUsers:value},{merge:true});
-    }
-    canSupervisorManageUsers(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{allowSupervisorToManageUsers:value},{merge:true});
-    }
-    canGuestSeeData(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{allowGuestToSeeData:value},{merge:true});
-    }
-    defaultAccessLevel(value:'guest'|'employee'|'supervisor'|'admin'){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{defaultAccessLevel:value},{merge:true});
-    }
-    allowSignout(value:boolean){
-      this.confirmChange();
-      return setDoc(doc(this.fs, 'adminData/settings'),{allowSignout:value},{merge:true});
-    }
-    // Secuirty settings ends
-    // Manage Users starts
-    getUsers(){
-      return getDocs(collection(this.fs, 'users'));
-    }
-    userAction(value:'remove'|'block'|'reset'|'none',userId:string){
-      if (value==='remove'){
-        this.confirmChange();
-        return deleteDoc(doc(this.fs, 'users/'+userId));
-      } else if (value==='block'){
-        this.confirmChange();
-        return setDoc(doc(this.fs, 'users/'+userId),{blocked:true},{merge:true});
-      } else if (value==='reset'){
-        this.confirmChange();
-        return setDoc(doc(this.fs, 'users/'+userId),{},{merge:true});
-      } else {
-        return;
-      }
-    }
-    // Manage Users ends
+  }
+  // Manage Users ends
   // Admin data functions ends
 }

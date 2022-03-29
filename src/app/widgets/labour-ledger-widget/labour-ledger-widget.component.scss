@@ -1,41 +1,23 @@
-.container{
-    font-family: 'Poppins', sans-serif;
-    background-color: #f3f3f3;
-    display: flex;
-    justify-content: space-between;
-    padding:05px;
-    border-radius: 20px;
-    margin-top: 10px;
-    align-items: center;
+*{
+    margin-top: 0;
+    margin-bottom: 0;
 }
-.container  img{
-    border-radius:50%;
-    height: 50px;
-    width: 50px;
+ion-item div{
+    flex:2;
+    height:70px;
 }
-.heading{
-    font-size: 13px;
-    line-height: 20px;
-    margin-top: 10px;
-    color: var(--ion-color-primary);
-}
-.box{
-    display: flex;
-    justify-content: space-between;
-    margin-left: -100px;
-}
-.button-22{
-    display:block;
-    height:83px;
-    padding: 25px 5px;
-    color: #fff;
+button{
     background-color: var(--ion-color-primary);
-    border-radius:10px;
-    margin-right: -9px;
-    margin-top: -9px;
-    margin-bottom: -9px;
+    margin:0px;
+    padding:15px;
+    border-radius: 15px;
+    color: white;
 }
-.container p{
-    color: black;
+ion-text[color="success"]{
+    font-size: 14px;
+    p{
+        strong{
+            color:darkgrey;
+        }
+    }
 }
-   

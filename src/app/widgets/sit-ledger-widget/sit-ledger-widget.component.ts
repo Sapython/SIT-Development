@@ -37,7 +37,7 @@ export class SitLedgerWidgetComponent implements OnInit {
   constructor(
     private router:Router,
     public modalController: ModalController,
-    private dataProvider:DataProvider) {
+    public dataProvider:DataProvider) {
    }
   async recievedlog() {
     const modal = await this.modalController.create({
@@ -51,12 +51,14 @@ export class SitLedgerWidgetComponent implements OnInit {
   async unloadedlog() {
     const modal = await this.modalController.create({
       component: UnloadedLogComponent,
+      componentProps:{
+        sitId:this.allData.id,
+      }
     });
     return await modal.present();
   }
   ngOnInit() { }
   navigate(path:string){
-    console.log(this.allData);
     this.dataProvider.dataOne = this.allData.id;
     // alert(this.dataProvider.dataOne);
     this.router.navigateByUrl('/main/app/'+path+'?id='+this.allData.id);

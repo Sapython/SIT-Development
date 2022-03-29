@@ -4,6 +4,7 @@ import { AdminDatabaseService } from 'src/app/services/admin-database.service';
 import { BasicUser } from 'src/app/structures/method.structure';
 import { UserData } from 'src/app/structures/user.structure';
 import { UserInfoComponent } from '../../popups/user-info/user-info.component';
+import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
 
 @Component({
   selector: 'app-manage-user',
@@ -12,7 +13,7 @@ import { UserInfoComponent } from '../../popups/user-info/user-info.component';
 })
 export class ManageUserComponent implements OnInit {
 
-  constructor(public modalController: ModalController,private popoverController: PopoverController,public db:AdminDatabaseService) { }
+  constructor(private analytics:Analytics,public modalController: ModalController,private popoverController: PopoverController,public db:AdminDatabaseService) { }
   users:UserData[] = []
   ngOnInit() {
     this.db.getUsers().then(users=>{
@@ -29,6 +30,7 @@ export class ManageUserComponent implements OnInit {
         user:user
       },
     })
+    logEvent(this.analytics,'viewAdminUserInfo');
     await manageUserPopup.present();
   }
 }

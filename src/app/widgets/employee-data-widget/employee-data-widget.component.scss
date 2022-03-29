@@ -20,11 +20,17 @@
     flex-direction: column;
     margin-top: 10px;
     margin-left: 15px;
+    flex:2;
 }
 .data h2{
     font-size: 15px;
-    color: #6260A6;
+    color: #2e2d52;
+    font-weight: bold;
     margin:0;
+}
+.data ion-icon{
+    font-size: 20px;
+    vertical-align: middle;
 }
 .data p{
     font-size: 12px;
@@ -42,4 +48,11 @@
     width:50px;
     margin:5px;
     margin-left: 25px;
+}
+canvas{
+    width:50px !important;
+    height:50px !important;
+}
+ion-button > ion-icon {
+    font-size: 25px !important;
 }

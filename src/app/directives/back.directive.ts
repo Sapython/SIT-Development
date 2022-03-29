@@ -7,6 +7,6 @@ export class BackDirective {
   constructor(private location: Location) { }
     @HostListener('click')
     onClick() {
-        this.location.back();
+        window.history.back();
     }
 }

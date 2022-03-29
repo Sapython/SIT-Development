@@ -16,7 +16,7 @@ import {
   UserTrackingService,
 } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFirestore, getFirestore, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { provideStorage, getStorage } from '@angular/fire/storage';
@@ -31,14 +31,16 @@ import { UserDataService } from './services/user-data.service';
 import { AuthencationService } from './services/authencation.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
-import { MainComponent } from './main/main.component';
 import { ComponentModule } from './component/component.module';
 import { BackDirective } from './directives/back.directive';
-
+import { BaseComponentsModule } from './base-components/base-components.module';
+import { AnalyticsService } from './services/analytics.service';
 @NgModule({
     declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent, BackDirective],
     imports: [
         // MainModule,
+        ComponentModule,
+        BaseComponentsModule,
         ComponentModule,
         ReactiveFormsModule,
         BrowserModule,
@@ -47,7 +49,11 @@ import { BackDirective } from './directives/back.directive';
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAnalytics(() => getAnalytics()),
         provideAuth(() => getAuth()),
-        provideFirestore(() => getFirestore()),
+        provideFirestore(() => {
+            const firestore = getFirestore();
+            enableIndexedDbPersistence(firestore);
+            return firestore;
+        }),
         provideFunctions(() => getFunctions()),
         provideMessaging(() => getMessaging()),
         provideStorage(() => getStorage()),
@@ -62,6 +68,7 @@ import { BackDirective } from './directives/back.directive';
         ScreenTrackingService,
         UserTrackingService,
         AuthGuard,
+        AnalyticsService
     ],
     bootstrap: [AppComponent]
 })

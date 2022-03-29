@@ -8,6 +8,7 @@ import { UnloadedPageRoutingModule } from './unloaded-routing.module';
 
 import { UnloadedPage } from './unloaded.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { BaseComponentsModule } from 'src/app/base-components/base-components.mo
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    HttpClientModule, 
     UnloadedPageRoutingModule,
     BaseComponentsModule,
   ],

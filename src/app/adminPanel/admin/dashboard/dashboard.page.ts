@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { actionsAlert, confirmationAlert, dialogAlert, messageAlert } from 'src/app/structures/method.structure';
 import { ManageUserComponent } from '../../models/manage-user/manage-user.component';
+import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ import { ManageUserComponent } from '../../models/manage-user/manage-user.compon
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  constructor(private analytics:Analytics,private modalController: ModalController) { }
   deleteAlert(item){
 
   }
@@ -35,6 +36,7 @@ export class DashboardPage implements OnInit {
       initialBreakpoint: 0.5,
       breakpoints: [0, 0.5, 1]
     })
+    logEvent(this.analytics,'viewAdminUsers');
     await userModal.present();
   }
 }

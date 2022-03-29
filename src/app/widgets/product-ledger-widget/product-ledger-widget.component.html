@@ -1,7 +1,7 @@
 <div class="container">
   <div class="box">
     <div class="img-and-name">
-      <img src="assets/UI/Images/profile.jpg" alt="">
+      <img [src]="image" alt="">
       <div>
         <p>{{sellerName}}</p>
         <p>{{itemName}}</p>
@@ -16,12 +16,17 @@
     <div class="buttons">
       <div class="safe">
         <p>Safe:</p>
-        <div>{{safe}}</div>
+        <div>{{safe}}Kg</div>
       </div>
       <div class="damaged">
         <p>Damaged:</p>
-        <div>{{damage}}</div>
+        <div>{{damage}}Kg</div>
       </div>
     </div>
   </div>
+  <ion-button (click)="showImage=!showImage" expand="block" *ngIf="damageImage" fill="solid" shape="round">
+    {{showImage ? 'Hide Image' : 'Show Image'}}
+  </ion-button>
+  <img [src]="damageImage" *ngIf="showImage" (load)="imageLoaded=false">
+  <ion-spinner name="crescent" *ngIf="imageLoaded && damageImage && showImage"></ion-spinner>
 </div>

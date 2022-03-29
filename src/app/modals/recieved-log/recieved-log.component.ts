@@ -12,7 +12,7 @@ import { UserData } from 'src/app/structures/user.structure';
 export class RecievedLogComponent implements OnInit {
 
   constructor(
-    private modalController: ModalController,
+    public modalController: ModalController,
     private databaseService:DatabaseService,
     ) { }
   @Input() sitId
@@ -27,7 +27,8 @@ export class RecievedLogComponent implements OnInit {
   vehicleType: string;
   sitID: string;
   timestamp: any;
-  products: any;
+  products: any[] = [];
+  vehicleImage:string;
   ngOnInit() {
     this.databaseService.getRecievedSit(this.sitId).then((sit:any) => {
       sit = sit.data()
@@ -36,21 +37,21 @@ export class RecievedLogComponent implements OnInit {
       this.gateNumber = sit.gateNumber;
       this.vehicleType = sit.vehicleType;
       this.sitID = sit.sitID;
+      this.vehicleImage = sit.vehicleImage;
       this.databaseService.getUser(sit.coordinatorId).then((coordinator:any) => {
         this.coordinator = coordinator.data();
       })
-      this.databaseService.getSit(this.sitID).then((sit:any) => {
-        this.name = sit.data().supplierName;
-        this.expectedDelivery = sit.data().sit[0].expectedDelivery;
-        this.Deliverycode = sit.data().sit[0].deliveryCode;
-        this.products = sit.data().sit;
-        this.dispatchDate = sit.data().sit[0].dispatchDate;
+      this.databaseService.getSit(this.sitID).then((mainSit:any) => {
+        console.log("SIT:",mainSit.data())
+        this.name = mainSit.data().supplierName;
+        this.expectedDelivery = mainSit.data().sit[0].expectedDelivery;
+        this.Deliverycode = mainSit.data().sit[0].deliveryCode;
+        this.products = mainSit.data().sit;
+        this.dispatchDate = mainSit.data().sit[0].dispatchDate;
       })
     });
   }
-  closeModal() {
-    this.modalController.dismiss();
-  }
+  
   toNumber(input:string){
     return Number(input);
   }

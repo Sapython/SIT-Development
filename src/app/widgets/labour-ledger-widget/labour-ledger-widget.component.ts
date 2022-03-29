@@ -8,16 +8,24 @@ import { SeeDueComponent } from 'src/app/modals/see-due/see-due.component';
   styleUrls: ['./labour-ledger-widget.component.scss'],
 })
 export class LabourLedgerWidgetComponent implements OnInit {
-  @Input() Name:string = "RAMLOCHAN";
-  @Input() Lastname:string = "VISHWAKARMA";
-  @Input() Code:string = "123XYZ0";
-  @Input() Paid:number = 2324;
+  @Input() name:string = "RAMLOCHAN";
+  @Input() uid:string = "123XYZ0";
+  @Input() amountPaid:number = 2324;
+  @Input() userImage:string = '';
   constructor(public modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // slice uid to first 10 characters
+    this.name = this.name.slice(0,20);
+  }
   async seedue() {
     const modal = await this.modalController.create({
       component: SeeDueComponent,
+      componentProps:{
+        userId:this.uid,
+        amount: this.amountPaid,
+        sitName: this.name,
+      }
     });
     return await modal.present();
   }

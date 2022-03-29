@@ -1,9 +1,9 @@
 aside {
   position: fixed;
   width: 100vw;
-  height: 45vh;
+  height: 20vh;
   background-color: white;
-  padding: 20px;
+  padding: 15px;
   #topNav {
     display: flex;
     flex-direction: row;
@@ -22,24 +22,28 @@ aside {
     }
     .greetings {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: space-around;
-      align-items: flex-end;
+      align-items: center;
+      flex-wrap: nowrap;
       .greet {
         font-size: 25px;
         font-weight: 600;
         color: rgb(44, 44, 44);
+        text-align: end;
       }
       .username {
         font-size: 20px;
         color: grey;
+        text-align: end;
       }
       p {
         margin: 0px;
       }
       app-user-image {
         border-radius: 50%;
-        margin-top: 10px;
+        margin-left: 10px;
+        vertical-align: middle;
         box-shadow: 0px 0px 10px -5px rgba(50, 50, 50, 0.4);
       }
     }
@@ -86,7 +90,7 @@ aside {
   }
 }
 main {
-  margin-top: 350px;
+  margin-top: 15vh;
   background-color: var(--ion-background-color);
   border-radius: 15px;
   width: 100vw;
@@ -209,7 +213,12 @@ main {
   margin: 0 .5em;
   width: 100%;
 }
-
+ion-spinner{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 // .container{
 //     display: block;
 //     margin-left: 20px;

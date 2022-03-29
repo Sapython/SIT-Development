@@ -11,6 +11,7 @@ import { ExpenseLedgerComponent } from './expense-ledger/expense-ledger.componen
 import { DalaWidgetComponent } from './dala-widget/dala-widget.component';
 import { RecievedLogComponent } from '../modals/recieved-log/recieved-log.component';
 import {UnloadedLogComponent} from '../modals/unloaded-log/unloaded-log.component';
+import { BaseComponentsModule } from '../base-components/base-components.module';
 const widgets = [
   SitLedgerWidgetComponent,
   EmployeeDataWidgetComponent,
@@ -28,6 +29,7 @@ const widgets = [
     CommonModule,
     NgChartsModule,
     IonicModule,
+    BaseComponentsModule,
   ],
   exports: [widgets],
   

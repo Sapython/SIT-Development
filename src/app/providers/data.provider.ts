@@ -12,6 +12,7 @@ export class DataProvider{
         spinner:false,
         messageType:'Error'
     };
+    public sits:any;
     public userData:UserData | undefined;
     public loggedIn:boolean = false;
     public gettingUserData:boolean = false;

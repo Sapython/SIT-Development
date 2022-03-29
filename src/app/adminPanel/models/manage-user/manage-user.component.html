@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Tracking</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/admin/configuration" (click)="modalController.dismiss()"></ion-back-button>
+      <ion-button (click)="modalController.dismiss()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -12,12 +12,15 @@
       <ion-avatar slot="start">
         <img [src]="item.photoURL" />
       </ion-avatar>
-      <ion-label>{{item.displayName}}</ion-label>
-      <ion-label>{{item.email}}</ion-label>
-      <ion-badge *ngIf="item.access.access==='worker'" color="primary" >Employee</ion-badge>
-      <ion-badge *ngIf="item.access.access==='admin'" color="success" >Admin</ion-badge>
-      <ion-badge *ngIf="item.access.access==='supervisor'" color="warning" >Supervisor</ion-badge>
-      <ion-badge *ngIf="item.access.access==='guest'" color="guest" >Guest</ion-badge>
+      <div>
+        <ion-label>{{item.displayName}}</ion-label>
+        <ion-label class="email">{{item.email}}</ion-label>
+      </div>
+      <ion-badge *ngIf="item.access.access==='worker'" color="primary" slot="end">Employee</ion-badge>
+      <ion-badge *ngIf="item.access.access==='admin'" color="success" slot="end">Admin</ion-badge>
+      <ion-badge *ngIf="item.access.access==='supervisor'" color="warning" slot="end">Supervisor</ion-badge>
+      <ion-badge *ngIf="item.access.access==='guest'" color="primary" slot="end">Guest</ion-badge>
     </ion-item>
+    <img src="assets/UI/Images/empty.svg" *ngIf="!users" alt="Nothing In here" class="noData">
   </ion-list>
 </ion-content>

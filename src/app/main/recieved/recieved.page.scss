@@ -26,6 +26,14 @@
     width: 280px;
     margin-top: 15px;
 }
+.box > ion-select{
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--ion-color-primary);
+    width: 280px;
+    margin-top: 15px;
+}
 .box button {
     display: block;
     margin: auto;

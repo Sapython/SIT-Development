@@ -3,19 +3,38 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 10px;
 }
 .container p{
     color: grey;
     font-size: 25px;
     font-weight: 600;
 }
+.pending-sit{
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid lightgray;
+    margin-bottom: 20px;
+}
 .recieved-sit p{
     margin-top: 10px;
+    padding: 10px;
+    border: 2px solid lightgray;
+    margin-bottom: 20px;
 }
 .unloaded-sit p{
     margin-top: 10px;
+    padding: 10px;
+    border: 2px solid lightgray;
+    margin-bottom: 20px;
 }
 ion-row {
     width:90vw;
+}
+hr{
+    border: 2px grey solid;
+    height:0px;
+}
+p{
+    margin:10px;
 }

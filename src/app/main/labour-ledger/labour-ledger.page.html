@@ -4,11 +4,13 @@
     <p>Labour Ledger</p>
     <div class="box">
       <app-labour-ledger-widget
-      *ngFor="let item of labourledger"
-      [Name]="item.Name"
-      [Lastname]="item.Lastname"
-      [Code]="item.Code"
-      [Paid]="item.Paid"></app-labour-ledger-widget>
+        *ngFor="let item of labourledger"
+        [name]="item.name"
+        [uid]="item.id"
+        [amountPaid]="item.charge"
+        [userImage]="item.image"
+      ></app-labour-ledger-widget>
+      <img src="assets/UI/Images/empty.svg" *ngIf="labourledger.length==0" alt="Nothing In here" class="noData">
     </div>
   </div>
 </ion-content>

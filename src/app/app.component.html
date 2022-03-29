@@ -8,22 +8,25 @@
         <div id="options-container">
           <ion-list id="options">
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root"  (click)="navigate('labour-ledger')" detail="false">Labour Ledger</ion-item>
+              <ion-item routerDirection="root" routerLink="main/app/labour-ledger" detail="false" *ngIf="dataProvider.userData?.access.access==='admin' || dataProvider.userData?.access.access==='supervisor' ">Labour Ledger</ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root"  (click)="navigate('sit-overview')" detail="false">SIT Log</ion-item>
+              <ion-item routerDirection="root" routerLink="main/app/sit-overview" detail="false">SIT Log</ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root" (click)="navigate('employeeList')" detail="false">Employee List</ion-item>
+              <ion-item routerDirection="root" routerLink="main/app/employeeList" detail="false" *ngIf="dataProvider.userData?.access.access==='admin' || dataProvider.userData?.access.access==='supervisor' ">Employee List</ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" class="option">
-              <ion-item routerDirection="root"  (click)="navigate('account-page')" detail="false">Account</ion-item>
+              <ion-item routerDirection="root" routerLink="main/app/account-page" detail="false">Account</ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" class="option">
+            <ion-menu-toggle auto-hide="false" class="option" *ngIf="dataProvider.userData?.access.access==='admin'">
               <ion-item routerDirection="root"  routerLink="admin" detail="false">Admin Panel</ion-item>
             </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" class="option" *ngIf="dataProvider.userData?.access.access==='admin'">
+              <ion-item detail="false" button (click)="authService.markAttendance(dataProvider.userData?.userId)">Check Attendance</ion-item>
+            </ion-menu-toggle>
           </ion-list>
-          <ion-button color="primary" id="logout-button">Logout <ion-icon slot="end" name="person"></ion-icon>
+          <ion-button color="primary" id="logout-button" (click)="logOut()">Logout <ion-icon slot="end" name="person"></ion-icon>
           </ion-button>
         </div>
         <div id="footer">
@@ -31,7 +34,7 @@
             <h3 id="developed-by">Developed by</h3>
             <p id="swayambhu-innovations">Shreeva Softech Pvt. Ltd.</p>
           </ion-text>
-          <button id="more-info">More Info <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          <button (click)="openShreeva()" id="more-info">More Info <ion-icon slot="end" name="arrow-forward"></ion-icon>
           </button>
         </div>
       </ion-content>

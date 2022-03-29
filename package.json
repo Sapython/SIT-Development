@@ -6,10 +6,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ionic capacitor build android --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "resources": "capacitor-resources -p android,ios"
   },
   "private": true,
   "dependencies": {
@@ -24,10 +25,12 @@
     "@capacitor/app": "1.0.7",
     "@capacitor/camera": "^1.2.4",
     "@capacitor/core": "3.3.3",
+    "@capacitor/geolocation": "^1.3.1",
     "@capacitor/haptics": "1.1.3",
     "@capacitor/keyboard": "1.2.0",
     "@capacitor/splash-screen": "^1.2.0",
     "@capacitor/storage": "^1.2.3",
+    "@codetrix-studio/capacitor-google-auth": "^3.0.2",
     "@ionic/angular": "^6.0.0",
     "@ionic/pwa-elements": "^3.1.1",
     "chart.js": "^3.6.2",
@@ -36,6 +39,7 @@
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "xlsx": "^0.18.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

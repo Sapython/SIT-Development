@@ -3,19 +3,39 @@ import { AuthencationService } from './services/authencation.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Router } from '@angular/router';
 import { DataProvider } from './providers/data.provider';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { Platform } from '@ionic/angular';
+import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
+import { DatabaseService } from './services/database.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  constructor(private authService:AuthencationService,private router:Router,public dataProvider:DataProvider) {}
+  constructor(private analytics:Analytics,public databaseService:DatabaseService,public authService:AuthencationService,private router:Router,public dataProvider:DataProvider,private platform: Platform,) {
+    if (!platform.is("hybrid")){
+      GoogleAuth.init();
+    }
+  }
   useIncompatible:boolean = false;
+  openShreeva(){
+    window.open('https://shreeva.com/','_blank');
+  }
+  nonUser = ['user','guest']
   async ngOnInit(){
     this.authService.user.subscribe(user=>{
       if (user){
-        SplashScreen.hide();
-        this.router.navigate(['/main/app/home']);
+        this.databaseService.getUser(user.uid).then(user=>{
+          if(this.nonUser.includes(user.data().access.access)){
+            SplashScreen.hide();
+            this.router.navigate(['/main/guest']);
+          } else {
+            SplashScreen.hide();
+            this.router.navigate(['/main/app/home']);
+          }
+        })
         // this.router.navigate(['/admin']);
       } else {
         SplashScreen.hide();
@@ -24,11 +44,17 @@ export class AppComponent implements OnInit{
     })
   }
   navigate(path:string){
-    console.log(path);
+    logEvent(this.analytics,'navigateTo'+path,{path:path});
     this.router.navigateByUrl('/main/app/'+path);
   }
   navigateToAdmin(path:string){
-    console.log(path);
+    logEvent(this.analytics,'navigateToAdmin',{path:path});
     this.router.navigateByUrl('/main/admin/'+path);
+  }
+  logOut(){
+    if(confirm("Are you sure you want to logout?")){
+      logEvent(this.analytics,'logOut');
+      this.authService.logout();
+    }
   }
 }

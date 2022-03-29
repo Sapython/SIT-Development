@@ -6,6 +6,18 @@
     <ion-label>{{user.displayName}}</ion-label>
   </ion-item>
   <hr>
+  <ion-item>
+    <ion-label>Access</ion-label>
+    <ion-select [value]="user.access.access" multiple="false" (ionChange)="changeAccess($event)" placeholder="Access">
+      <ion-select-option value="admin">Admin</ion-select-option>
+      <ion-select-option value="supervisor">Supervisor</ion-select-option>
+      <ion-select-option value="guest">Guest</ion-select-option>
+      <ion-select-option value="worker">Worker</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button (click)="markAttendance()" expand="block" fill="solid">
+    Mark Attendance
+  </ion-button>
   <ion-row class="ion-justify-content-evenly">
     <ion-chip (click)="removeUser()" color="danger">
       Remove

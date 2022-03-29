@@ -7,14 +7,15 @@ export type UserData={
     emailVerified:boolean;
     firstLogin:boolean;
     access:UserAccess;
-    orders:Order[];
-    totalOrders:number;
-    totalCashback:number;
-    wishlist:Product[];
-    cart:CustomizedProduct[];
-    currentOrder?:Order;
-    friends:Friend[];
+    status:UserStatus;
+    attendanceCount:number;
+    attendanceDate:any;
 }
+export type UserStatus = {
+    isOnline:boolean;
+    access:'active' | 'inactive' | 'blocked' | 'deleted';
+}
+
 export type Friend ={
     userID:string;
     displayName:string;
@@ -46,7 +47,7 @@ export type Discount={
 }
 
 export type UserAccess={
-    access:'admin'|'user'|'guest'|'worker'|'supervisor';
+    access:'admin'|'guest'|'worker'|'supervisor';
 }
 export type Order={
     orderId:string;

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Guest Mode</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-text color="secondary">
+    <h1>You are in guest session</h1>
+  </ion-text>
+  <ion-text>
+    <p>
+      You cannot access the app but the admin is alerted for your presence. Whenever they will give access you will be
+      able to use the app.
+    </p>
+  </ion-text>
+  <ion-button (click)="authService.logout()" color="danger">Logout</ion-button>
+</ion-content>

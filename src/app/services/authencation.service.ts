@@ -1,17 +1,22 @@
 import { Injectable, Optional } from '@angular/core';
-import { Firestore, collectionData, collection, DocumentReference, doc,getDoc , docData, DocumentData } from '@angular/fire/firestore';
-import { Auth, 
-  authState, 
-  signInAnonymously, 
-  signOut, 
-  User, 
-  GoogleAuthProvider, 
-  signInWithPopup, 
-  signInWithEmailAndPassword, 
-  signInWithPhoneNumber, 
-  FacebookAuthProvider ,
+import {
+  Firestore,
+  DocumentReference,
+  doc,
+  getDoc,
+  docData,
+} from '@angular/fire/firestore';
+import {
+  Auth,
+  authState,
+  signInAnonymously,
+  signOut,
+  User,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   UserCredential,
+  signInWithCredential,
 } from '@angular/fire/auth';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,38 +25,62 @@ import { UserDataService } from './user-data.service';
 import { DataProvider } from '../providers/data.provider';
 import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
-
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { Platform } from '@ionic/angular';
+import {
+  FieldValue,
+  getDocs,
+  increment,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
+import { UserStatus } from '../structures/user.structure';
+import {
+  Analytics,
+  logEvent,
+  setCurrentScreen,
+  setUserProperties,
+  setUserId,
+} from '@angular/fire/analytics';
+import { Geolocation } from '@capacitor/geolocation';
+import { DatabaseService } from './database.service';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthencationService {
-  userDoc:DocumentReference | undefined;
-  checkerUserDoc:DocumentReference | undefined;
-  private loggedIn:boolean = false;
+  userDoc: DocumentReference | undefined;
+  checkerUserDoc: DocumentReference | undefined;
+  allowedStatuses: string[] = ['active', 'inactive'];
+  private loggedIn: boolean = false;
   constructor(
     private auth: Auth,
-    private userData:UserDataService,
-    private alertify:AlertsAndNotificationsService,
+    private databaseService: DatabaseService,
+    private analytics: Analytics,
+    private userData: UserDataService,
+    private alertify: AlertsAndNotificationsService,
     private firestore: Firestore,
-    private router:Router,
-    private dataProvider: DataProvider) {
+    private router: Router,
+    private platform: Platform,
+    private dataProvider: DataProvider
+  ) {
     if (auth) {
+      // GoogleAuth.signIn();
       this.user = authState(this.auth);
       this.setDataObserver(this.user);
-      this.userDisposable = authState(this.auth).pipe(
-        map(u => !!u)
-      ).subscribe(isLoggedIn => {
-        this.loggedIn = isLoggedIn;
-        this.dataProvider.loggedIn = isLoggedIn;
-      });
+      this.userDisposable = authState(this.auth)
+        .pipe(map((u) => !!u))
+        .subscribe((isLoggedIn) => {
+          this.loggedIn = isLoggedIn;
+          this.dataProvider.loggedIn = isLoggedIn;
+        });
     } else {
       this.loggedIn = false;
     }
   }
-  private userServerSubscription:Subscription | undefined = undefined
-  private readonly userDisposable: Subscription|undefined;
+  private userServerSubscription: Subscription | undefined = undefined;
+  private readonly userDisposable: Subscription | undefined;
   public readonly user: Observable<User | null> = EMPTY;
-  
+
   // Read functions start
   public get isLoggedIn(): boolean {
     return this.loggedIn;
@@ -60,124 +89,331 @@ export class AuthencationService {
   public get getUser(): Observable<User | null> {
     return this.user;
   }
-  // Read functions end
-  // Sign in functions start
-  public async signInWithGoogle(type:'Login'|'Signup'){
+  private async markAttendanceRecord(uid: string) {
+    const position = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true,
+    });
+    console.log(position,25.405786219197363, 82.04665038548019);
+    if (
+      position.coords.latitude > 25.405456518905478 &&
+      position.coords.longitude > 82.04632513743458 &&
+      position.coords.latitude > 25.40537278770115 &&
+      position.coords.longitude > 82.04674295693499 &&
+      position.coords.latitude < 25.406111159423588 &&
+      position.coords.longitude < 82.0467081729854 &&
+      position.coords.latitude < 25.405906929399315 &&
+      position.coords.longitude < 82.04708383964083
+    ) {
+      getDoc(doc(this.firestore, 'users/' + uid)).then((document: any) => {
+        let data = document.data();
+        if (data.attendanceDate) {
+          let userAttendanceDate = data.attendanceDate.toDate();
+          userAttendanceDate.setHours(0, 0, 0, 0);
+          let today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (userAttendanceDate < today) {
+            logEvent(this.analytics, 'Marked_Attendance');
+            updateDoc(doc(this.firestore, 'users/' + uid), {
+              attendanceDate: new Date(),
+              attendanceCount: increment(1),
+            });
+          }
+        } else {
+          logEvent(this.analytics, 'Marked_Attendance');
+          setDoc(
+            doc(this.firestore, 'users/' + uid),
+            {
+              attendanceDate: new Date(),
+              attendanceCount: 1,
+            },
+            { merge: true }
+          );
+        }
+      });
+    } else {
+      logEvent(this.analytics, 'Marked_Attendance_Outside');
+      this.alertify.presentToast(
+        'You are outside the campus. You can ask admin for attendance',
+        'error'
+      );
+    }
+  }
+  async markAttendance(uid: string) {
+    if (this.platform.is('capacitor')) {
+      await Geolocation.checkPermissions().then(async (permissions) => {
+        if (permissions.location == 'prompt') {
+          await Geolocation.requestPermissions()
+            .then((value: any) => {
+              console.log('requested permissions', JSON.stringify(value));
+              this.markAttendanceRecord(uid);
+            })
+            .catch(async (error) => {
+              if (
+                confirm(
+                  'Your attendance will not be recorded. Please provide permission for location.'
+                )
+              ) {
+                await Geolocation.requestPermissions().then((value: any) => {
+                  console.log('errored permissions', JSON.stringify(value));
+                  this.markAttendanceRecord(uid);
+                });
+              } else {
+                this.alertify.presentToast(
+                  'Now your attendance will not be recorded. If you want you have to enable location permission.',
+                  'error'
+                );
+              }
+            });
+        } else if (permissions.location == 'granted') {
+          this.markAttendanceRecord(uid);
+          this.alertify.presentToast('Marking attendance');
+        } else {
+          this.alertify.presentToast(
+            'Provide location permission or no attendance will be recorded',
+            'error'
+          );
+        }
+      });
+    } else {
+      // await Geolocation.requestPermissions()
+      this.markAttendanceRecord(uid);
+      this.alertify.presentToast(
+        'You are not using app. Attendance will not be marked',
+        'error'
+      );
+    }
+  }
+  // markAllAttendance() {
+  //   getDocs(collection(this.firestore, 'users')).then((documents: any) => {
+  //     documents.forEach((user: any) => {
+  //       this.markAttendance(user.id);
+  //     });
+  //   });
+  // }
+  public async signInWithGoogle(type: 'Login' | 'Signup') {
     this.dataProvider.pageSetting.blur = true;
     this.dataProvider.pageSetting.lastRedirect = '';
-    let data = signInWithPopup(this.auth, new GoogleAuthProvider()).then(async (credentials:UserCredential)=>{
-      // console.log(credentials);
-      if (!(await getDoc(doc(this.firestore,'users/'+credentials.user.uid))).exists()){
-        if (credentials.user.phoneNumber == null){
-          await this.userData.setGoogleUserData(credentials.user,{phoneNumber:''});
+    GoogleAuth.signIn()
+      .then(async (googleUser: any) => {
+        const credential = GoogleAuthProvider.credential(
+          googleUser.authentication.idToken,
+          googleUser.authentication.accessToken
+        );
+        const credentials = await signInWithCredential(this.auth, credential);
+        if (
+          !(
+            await getDoc(doc(this.firestore, 'users/' + credentials.user.uid))
+          ).exists()
+        ) {
+          logEvent(this.analytics, 'Marked_Attendance');
+          if (credentials.user.phoneNumber == null) {
+            await this.userData.setGoogleUserData(credentials.user, {
+              phoneNumber: '',
+            });
+          } else {
+            await this.userData.setGoogleUserData(credentials.user, {
+              phoneNumber: credentials.user.phoneNumber || '',
+            });
+          }
         } else {
-          await this.userData.setGoogleUserData(credentials.user,{phoneNumber:credentials.user.phoneNumber});
+          this.dataProvider.pageSetting.blur = false;
+          this.alertify.presentToast('Logged In.', 'info', 5000, [], true, '');
+          this.router.navigate(['']);
         }
-      } else {
+      })
+      .catch((error) => {
         this.dataProvider.pageSetting.blur = false;
-        this.alertify.presentToast('Logging you in.','info',5000,[],true,'');
-        this.router.navigate(['']);
-      }
-    }).catch((error)=>{
-      this.dataProvider.pageSetting.blur = false;
-      if (error.code === 'auth/popup-closed-by-user'){
-        this.alertify.presentToast('Login cancelled.','error',5000,[],true,'');
-      } else {
-        this.alertify.presentToast(error.message,'error',5000,[],true,'');
-      }
-    });
-    
+        this.alertify.presentToast(error.message, 'error', 5000, [], true, '');
+      });
   }
-
   public async loginAnonymously() {
-    let data = signInAnonymously(this.auth).then((credentials:UserCredential)=>{
-    });
+    let data = signInAnonymously(this.auth).then(
+      (credentials: UserCredential) => {}
+    );
     this.router.navigate(['']);
   }
 
-  public async loginEmailPassword(email: string, password: string){
+  public async loginEmailPassword(email: string, password: string) {
     this.dataProvider.pageSetting.blur = true;
     this.dataProvider.pageSetting.lastRedirect = '';
-    let data = await signInWithEmailAndPassword(this.auth, email, password).then((credentials:UserCredential)=>{
+    let data = await signInWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    ).then((credentials: UserCredential) => {
+      logEvent(this.analytics, 'Logged_In');
       this.router.navigate(['']);
+    }).catch((error) => {
+      this.dataProvider.pageSetting.blur = false;
+      this.alertify.presentToast(error.message, 'error', 5000);
     });
     this.dataProvider.pageSetting.blur = false;
   }
-  public signUpWithEmailAndPassword(email: string, password: string,username:string){
-    console.log("Signing Up")
+  public signUpWithEmailAndPassword(
+    email: string,
+    password: string,
+    username: string
+  ) {
+    console.log('Signing Up');
     this.dataProvider.pageSetting.blur = true;
     this.dataProvider.pageSetting.lastRedirect = '';
-    let data = createUserWithEmailAndPassword(this.auth, email, password).then(async (credentials:UserCredential)=>{
-      await this.userData.setEmailUserData(credentials.user, {displayName:username,phoneNumber:'',photoURL:''});
-    }).catch((error)=>{
-      this.dataProvider.pageSetting.blur = false;
-      if (error.code === 'auth/weak-password') {
-        this.alertify.presentToast('Password is weak.','error',5000,[],true,'');
-      } else if (error.code === 'auth/email-already-in-use') {
-        this.alertify.presentToast('Email already in use.','error',5000,[],true,'');
-      } else {
-        this.alertify.presentToast(error.message,'error',5000,[],true,'');
-      }
-    });
+    let data = createUserWithEmailAndPassword(this.auth, email, password)
+      .then(async (credentials: UserCredential) => {
+        logEvent(this.analytics, 'Signed_Up');
+        await this.userData.setEmailUserData(credentials.user, {
+          displayName: username,
+          phoneNumber: '',
+          photoURL: '',
+        });
+      })
+      .catch((error) => {
+        this.dataProvider.pageSetting.blur = false;
+        if (error.code === 'auth/weak-password') {
+          this.alertify.presentToast(
+            'Password is weak.',
+            'error',
+            5000,
+            [],
+            true,
+            ''
+          );
+        } else if (error.code === 'auth/email-already-in-use') {
+          this.alertify.presentToast(
+            'Email already in use.',
+            'error',
+            5000,
+            [],
+            true,
+            ''
+          );
+        } else {
+          this.alertify.presentToast(
+            error.message,
+            'error',
+            5000,
+            [],
+            true,
+            ''
+          );
+        }
+      });
   }
   // Sign in functions end
   // Sign out functions start
   public async logout() {
-    await Storage.remove({key:'auth'});
-    await Storage.remove({key:'userData'});
+    await Storage.remove({ key: 'auth' });
+    await Storage.remove({ key: 'userData' });
     await signOut(this.auth);
+    logEvent(this.analytics, 'Logged_Out');
     this.router.navigate(['../login']);
   }
   // Sign out functions end
-  async openNameDialog(){
+  async openNameDialog() {
     return await this.alertify.openEmailBasedDialog();
   }
-  private async getMethod(credentials:UserCredential){
-    if (credentials.user.providerId == "firebase" && credentials.user.isAnonymous == false) {
+  private async getMethod(credentials: UserCredential) {
+    if (
+      credentials.user.providerId == 'firebase' &&
+      credentials.user.isAnonymous == false
+    ) {
       // TODO: register user as an email based system
       let name = await this.openNameDialog();
-      this.userData.setEmailUserData(credentials.user, {displayName:name,phoneNumber:'',photoURL:''});
-    } else if (credentials.user.providerId == "google.com"){
+      this.userData.setEmailUserData(credentials.user, {
+        displayName: name,
+        phoneNumber: '',
+        photoURL: '',
+      });
+    } else if (credentials.user.providerId == 'google.com') {
       // TODO: register user as a google based system
-    } else if (credentials.user.providerId == "firebase" && credentials.user.isAnonymous == true) {
-      // TODO: register user as an anonymous based system 
+    } else if (
+      credentials.user.providerId == 'firebase' &&
+      credentials.user.isAnonymous == true
+    ) {
+      // TODO: register user as an anonymous based system
     }
   }
   private async setDataObserver(user: Observable<User | null>) {
     // console.log('Starting data observer')
     if (user) {
       // console.log('Setting data observer')
-      user.subscribe(async (u:User) => {
+      user.subscribe(async (u: User) => {
         if (u) {
           this.dataProvider.loggedIn = true;
-          this.dataProvider.gettingUserData= true;
-          // console.log('User is logged in')
-          this.userDoc = doc(this.firestore,'users/'+u.uid);
+          this.dataProvider.gettingUserData = true;
+          // console.log('User is Logged In')
+          // this.markAttendance(u.uid);
+          this.userDoc = doc(this.firestore, 'users/' + u.uid);
           await Storage.set({
             key: 'auth',
-            value: JSON.stringify(u)
-          })
+            value: JSON.stringify(u),
+          });
           // console.log("User data from auth",u);
-          if (this.userServerSubscription!=undefined){
+          if (this.userServerSubscription != undefined) {
             this.userServerSubscription.unsubscribe();
           }
-          this.userServerSubscription = docData(this.userDoc).subscribe(async (data:any) => {
-            // console.log("Recieved new data",data)
-            this.dataProvider.userData = data;
-            this.dataProvider.gettingUserData= false;
-            await Storage.set({
-              key: 'userData',
-              value: JSON.stringify(data),
-            });
-          })
+          this.userServerSubscription = docData(this.userDoc).subscribe(
+            async (data: any) => {
+              // console.log("Recieved new data",data)
+              if (data.status) {
+                if (!this.allowedStatuses.includes(data.status.access)) {
+                  this.logout();
+                }
+              } else {
+                updateDoc(doc(this.firestore, 'users/' + u.uid), {
+                  status: { access: 'active', isOnline: true },
+                });
+              }
+              this.dataProvider.userData = data;
+              this.dataProvider.gettingUserData = false;
+              await Storage.set({
+                key: 'userData',
+                value: JSON.stringify(data),
+              });
+            }
+          );
         }
       });
     } else {
-      if (this.userServerSubscription!=undefined){
+      if (this.userServerSubscription != undefined) {
         this.userServerSubscription.unsubscribe();
       }
     }
   }
-
 }
 
+const geoFenceData = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              82.04677820205688,
+              25.406187098992433
+            ],
+            [
+              82.04637050628662,
+              25.405552321150648
+            ],
+            [
+              82.04677820205688,
+              25.405341535403377
+            ],
+            [
+              82.04722344875334,
+              25.405956931840397
+            ],
+            [
+              82.04677820205688,
+              25.406187098992433
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
