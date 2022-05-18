@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
+import { ReceivedLogComponent } from 'src/app/modals/received-log/received-log.component';
 import { UnloadedLogComponent } from 'src/app/modals/unloaded-log/unloaded-log.component';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { SIT, Stock } from 'src/app/structures/method.structure';
@@ -31,7 +31,7 @@ export class SitLedgerWidgetComponent implements OnInit {
   @Input() storageLocation: string;
   @Input() transName: string;
   @Input() vehicleNo: string;
-  @Input() status:"uploaded"|"pending"|"recieved"|"unloaded";
+  @Input() status:"uploaded"|"pending"|"received"|"unloaded";
   @Input() allData:SIT;
   displayMoreDetails: boolean = false;
   constructor(
@@ -39,16 +39,16 @@ export class SitLedgerWidgetComponent implements OnInit {
     public modalController: ModalController,
     public dataProvider:DataProvider) {
    }
-  async recievedlog() {
+  async receivedLog() {
     const modal = await this.modalController.create({
-      component: RecievedLogComponent,
+      component: ReceivedLogComponent,
       componentProps:{
         sitId:this.allData.id,
       }
     });
     return await modal.present();
   }
-  async unloadedlog() {
+  async unloadedLog() {
     const modal = await this.modalController.create({
       component: UnloadedLogComponent,
       componentProps:{

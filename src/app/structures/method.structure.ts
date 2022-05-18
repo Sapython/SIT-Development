@@ -51,11 +51,11 @@ export type sitLedgerData = {
     storageLocation: string;
     transName: string;
     vehicleNo: string;
-    status:"uploaded"|"pending"|"recieved"|"unloaded";
+    status:"uploaded"|"pending"|"received"|"unloaded";
 }
 export type SIT = {
     id:string;
-    status:'uploaded'|'pending'|'recieved'|'unloaded';
+    status:'uploaded'|'pending'|'received'|'unloaded';
     supplierCode:string;
     supplierName: string;
     sit:Stock[];

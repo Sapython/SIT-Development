@@ -137,12 +137,16 @@ export class DatabaseService {
     logEvent(this.analytics,'Get_all_employees');
     return getDocs(query(collection(this.fs, 'users'),where('access.access', 'in', ['worker','supervisor'])));
   }
-  getSupervisior() {
+  getEmployeesSubscription() {
+    logEvent(this.analytics,'Get_all_employees');
+    return collectionSnapshots(query(collection(this.fs, 'users'),where('access.access', 'in', ['worker','supervisor'])));
+  }
+  getSupervisor() {
     logEvent(this.analytics,'Get_all_supervisor');
     return getDocs(query(collection(this.fs, 'users'),where('access.access', '==', 'supervisor')));
   }
   async unloadSit(sitId,data) {
-    if (this.NON_ADMINS.includes(this.dataProvider.userData.access.access)) {
+    if (this.NON_ADMINS.includes(this.dataProvider.userData?.access.access)) {
       this.alertify.presentToast('You are not an admin', 'error', 2000);
       return
     }
@@ -151,22 +155,22 @@ export class DatabaseService {
     return setDoc(doc(this.fs, 'stocks/'+sitId+'/unloaded/unloaded'), data);
   }
   async recieveSit(sitId,data) {
-    if (this.NON_ADMINS.includes(this.dataProvider.userData.access.access)) {
+    if (this.NON_ADMINS.includes(this.dataProvider.userData?.access.access)) {
       this.alertify.presentToast('You are not an admin', 'error', 2000);
       return
     }
-    logEvent(this.analytics,'Recieved_Sit',{sitId:sitId});
-    await updateDoc(doc(this.fs, 'stocks/'+sitId),{status:'recieved',views:increment(2)})
-    return setDoc(doc(this.fs, 'stocks/'+sitId+'/recieved/recieved'), data);
+    logEvent(this.analytics,'Received_Sit',{sitId:sitId});
+    await updateDoc(doc(this.fs, 'stocks/'+sitId),{status:'received',views:increment(2)})
+    return setDoc(doc(this.fs, 'stocks/'+sitId+'/received/received'), data);
   }
   getSit(id:string){
     logEvent(this.analytics,'Get_STOCK',{sitId:id});
     return getDoc(doc(this.fs, 'stocks/'+id));
   }
-  getRecievedSit(id: string){
+  getReceivedSit(id: string){
     logEvent(this.analytics,'Get_STOCK',{sitId:id});
     updateDoc(doc(this.fs, 'stocks/'+id),{views:increment(1)})
-    return getDoc(doc(this.fs, 'stocks/'+id+'/recieved/recieved'));
+    return getDoc(doc(this.fs, 'stocks/'+id+'/received/received'));
   }
   getUnloadedSit(id:string){
     logEvent(this.analytics,'Get_STOCK',{sitId:id});
@@ -211,5 +215,11 @@ export class DatabaseService {
   // Testing services starts
   uploadVehicle(data) {
     return addDoc(collection(this.fs, 'plateData'), data);
+  }
+  setUserData(field:string,value:any){
+    return updateDoc(doc(this.fs, 'users/'+this.dataProvider.userData?.userId),{[field]:value})
+  }
+  setSpecificUserData(field:string,value:any,uid:string){
+    return updateDoc(doc(this.fs, 'users/'+uid),{[field]:value})
   }
 }

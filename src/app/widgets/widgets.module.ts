@@ -9,7 +9,7 @@ import { ProductLedgerWidgetComponent } from './product-ledger-widget/product-le
 import { NgChartsModule } from 'ng2-charts';
 import { ExpenseLedgerComponent } from './expense-ledger/expense-ledger.component';
 import { DalaWidgetComponent } from './dala-widget/dala-widget.component';
-import { RecievedLogComponent } from '../modals/recieved-log/recieved-log.component';
+import { ReceivedLogComponent } from '../modals/received-log/received-log.component';
 import {UnloadedLogComponent} from '../modals/unloaded-log/unloaded-log.component';
 import { BaseComponentsModule } from '../base-components/base-components.module';
 const widgets = [
@@ -24,7 +24,7 @@ const widgets = [
 
 
 @NgModule({
-  declarations: [widgets,RecievedLogComponent,UnloadedLogComponent,SeeDueComponent],
+  declarations: [widgets,ReceivedLogComponent,UnloadedLogComponent,SeeDueComponent],
   imports: [
     CommonModule,
     NgChartsModule,

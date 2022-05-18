@@ -3,7 +3,7 @@ import { ChartData, ChartOptions, ChartType } from 'chart.js';
 import { dalaLedgerData, SIT, sitLedgerData } from 'src/app/structures/method.structure';
 import { ModalController } from '@ionic/angular';
 import { BugReportComponent} from 'src/app/modals/bug-report/bug-report.component';
-import { RecievedLogComponent } from 'src/app/modals/recieved-log/recieved-log.component';
+import { ReceivedLogComponent } from 'src/app/modals/received-log/received-log.component';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Router } from '@angular/router';
@@ -16,14 +16,14 @@ export class HomePage implements OnInit {
   // @ViewChild('header', {static: false}) private header: ElementRef<HTMLDivElement>;
   isTestDivScrolledIntoView: boolean;
   pending: number = 0;
-  recieved: number = 0;
+  received: number = 0;
   unloaded: number = 0;
   sitsLoaded:boolean = false;
-  public doughnutChartLabels: string[] = ['Pending', 'Recieved', 'Unloaded'];
+  public doughnutChartLabels: string[] = ['Pending', 'Received', 'Unloaded'];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
     datasets: [
-      { data: [this.pending, this.recieved, this.unloaded] },
+      { data: [this.pending, this.received, this.unloaded] },
     ]
   };
   public doughnutChartType: ChartType = 'doughnut';
@@ -46,9 +46,9 @@ export class HomePage implements OnInit {
     });
     return await modal.present();
   }
-  async recievedlog() {
+  async receivedlog() {
     const modal = await this.modalController.create({
-      component: RecievedLogComponent,
+      component: ReceivedLogComponent,
     });
     return await modal.present();
   }
@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
     this.databaseService.getSitLedgers().subscribe((data:any)=>{
       let sits= []
       this.pending = 0;
-      this.recieved = 0;
+      this.received = 0;
       this.unloaded = 0;
       data.forEach((element:any) => {
         // console.log(element.data(),element.id);
@@ -64,8 +64,8 @@ export class HomePage implements OnInit {
         filteredData.id = element.id;
         if(filteredData.status=='pending'){
           this.pending++;
-        } else if(filteredData.status=='recieved'){
-          this.recieved++;
+        } else if(filteredData.status=='received'){
+          this.received++;
         } else if(filteredData.status=='unloaded'){
           this.unloaded++;
         }
@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
       this.doughnutChartData = {
         labels: this.doughnutChartLabels,
         datasets: [
-          { data: [this.pending, this.recieved, this.unloaded] },
+          { data: [this.pending, this.received, this.unloaded] },
         ]
       };
       // console.log('data',sits);

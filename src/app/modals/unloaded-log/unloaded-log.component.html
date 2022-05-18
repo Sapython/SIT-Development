@@ -1,27 +1,128 @@
 <app-header [backModal]="true"></app-header>
 <ion-content class="ion-padding">
-    <ion-list *ngIf="sitData">
-       <!-- <ion-item>
-         <ion-label>Vehicle Number</ion-label>
-         <ion-label>{{sitData.vehicleNumber}}</ion-label>
-       </ion-item> -->
-       <ion-item>
-        <ion-label>Total Damage</ion-label>
-        <ion-label>&#8377;{{totalDamage}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Legal Charges</ion-label>
-        <ion-label>&#8377;{{sitData.legalCharges}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Personal Damage</ion-label>
-        <ion-label>&#8377;{{sitData.personelDamage}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Vehicle Damage</ion-label>
-        <ion-label>&#8377;{{sitData.vehicleDamage}}</ion-label>
-      </ion-item>
-      <!-- <app-expense-ledger
+  <h2>Stock Detail</h2>
+  <ion-list *ngIf="mainSitData">
+    <ion-item>
+      <ion-label>Vehicle No.</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.vehicleNo}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Delivery Code</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.deliveryCode}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Dispatch Date</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.dispatchDate}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Expected Delivery</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.expectedDelivery}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mfg. Plant Code</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.mfgLocation}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Product Code</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.productCode}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Supply Plant Code </ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.supplyPlantCode}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Supply Plant Name</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.supplyPlantName}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Transport Code</ion-label>
+      <ion-label color="tertiary">{{mainSitData.sit[0]?.transporterName}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <h2>Unloaded Detail</h2>
+  <hr>
+  <ion-list *ngIf="sitData">
+    <ion-item>
+      <ion-label>Total Damage Cost</ion-label>
+      <ion-label color="tertiary">&#8377;{{totalDamage}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Goods Damage quantity</ion-label>
+      <ion-label color="tertiary">{{goodsDamage}} Units</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Legal Charges</ion-label>
+      <ion-label color="tertiary">&#8377;{{sitData.legalCharges}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Legal Charges Explanation</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.explainLegalCharges}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Legal Charges Kept By</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.keptByLegalDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-label>Personnel Damage</ion-label>
+      <ion-label color="tertiary">&#8377;{{sitData.personnelDamage}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Personnel Charges Explanation</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.explainPersonnelDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Personnel Charges Kept By</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.keptByPersonnelDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vehicle Damage</ion-label>
+      <ion-label>&#8377;{{sitData.vehicleDamage}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Vehicle Charges Explanation</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.explainVehicleDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Vehicle Charges Kept By</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.keptByVehicleDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-label>Other Damage</ion-label>
+      <ion-label color="tertiary">&#8377;{{sitData.otherDamage}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Other Charges Explanation</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.explainDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-col>
+        <ion-label>Other Charges Kept By</ion-label>
+        <br>
+        <ion-text color="tertiary">{{sitData.keptByOtherDamage}}</ion-text>
+      </ion-col>
+    </ion-item>
+    <!-- <app-expense-ledger
             *ngFor="let item of expenseledger"
             [ledgerNo]="item.ledgerNo"
             [charge]="item.charge"
@@ -32,31 +133,20 @@
             [date]="item.date"
             [starred]="item.starred">
       </app-expense-ledger> -->
-      <ion-text color="primary">
-        <h3>Product Details</h3>
-      </ion-text>
-      <app-product-ledger-widget 
-        *ngFor="let product of sitData.productDamages"
-        [sellerName]="product.supplyPlantName"
-        [itemName]="product.productName"
-        [safe]="toNumber(product.quantity)-toNumber(product.damagedValue)"
-        [damage]="toNumber(product.damagedValue)"
-        [ledgerNo]="sitId"
-        [damageImage]="product.damagedImage"
-        [productCode]="product.productCode"
-      ></app-product-ledger-widget>
-      <img src="assets/UI/Images/empty.svg" *ngIf="!sitData.productDamages" alt="Nothing In here" class="noData">
-      <ion-text color="primary">
-        <h3>Labour Details</h3>
-      </ion-text>
-      <app-labour-ledger-widget 
-        *ngFor="let product of sitData.labourCharges"
-        [name]="product.name"
-        [uid]="product.id"
-        [amountPaid]="product.value"
-        [userImage]="product.image"
-      ></app-labour-ledger-widget>
-      <img src="assets/UI/Images/empty.svg" *ngIf="!sitData.labourCharges" alt="Nothing In here" class="noData">
-    </ion-list>
-    <ion-spinner name="crescent" *ngIf="!sitData"></ion-spinner>
+    <ion-text color="primary">
+      <h3>Product Details</h3>
+    </ion-text>
+    <app-product-ledger-widget *ngFor="let product of sitData.productDamages" [sellerName]="product.supplyPlantName"
+      [itemName]="product.productName" [safe]="toNumber(product.quantity)-toNumber(product.damagedValue)"
+      [damage]="toNumber(product.damagedValue)" [ledgerNo]="sitId" [damageImage]="product.damagedImage"
+      [productCode]="product.productCode"></app-product-ledger-widget>
+    <img src="assets/UI/Images/empty.svg" *ngIf="!sitData.productDamages" alt="Nothing In here" class="noData">
+    <ion-text color="primary">
+      <h3>Labour Details</h3>
+    </ion-text>
+    <app-labour-ledger-widget *ngFor="let product of sitData.labourCharges" [name]="product.name" [uid]="product.id"
+      [amountPaid]="product.value" [userImage]="product.image"></app-labour-ledger-widget>
+    <img src="assets/UI/Images/empty.svg" *ngIf="!sitData.labourCharges" alt="Nothing In here" class="noData">
+  </ion-list>
+  <ion-spinner name="crescent" *ngIf="!sitData"></ion-spinner>
 </ion-content>

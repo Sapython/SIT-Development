@@ -13,11 +13,11 @@
     ></app-employee-data-widget> -->
     <ion-item *ngFor="let employee of employees" (click)="openUser(employee)" button detail="true">
         <ion-label>{{employee.displayName}}</ion-label>
-        <ion-chip color="success" mode="ios" outline="true" slot="end">
-            <ion-label>Present</ion-label>
+        <ion-chip [color]="isPresent(employee.attendanceDate) ? 'success' : 'danger'" mode="ios" outline="true" slot="end">
+            <ion-label>{{isPresent(employee.attendanceDate) ? 'Present' : 'Absent'}}</ion-label>
         </ion-chip>
         <!-- <ion-toggle value="true" slot="end">            
         </ion-toggle> -->
     </ion-item>
-    <img src="assets/UI/Images/empty.svg" *ngIf="!employees" alt="Nothing In here" class="noData">
+    <img src="assets/UI/Images/empty.svg" referrerpolicy="no-referrer"  *ngIf="!employees" alt="Nothing In here" class="noData">
 </ion-content>

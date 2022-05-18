@@ -9,11 +9,11 @@ allSits = []
 
 def clarifyStatus(status):
     print(status)
-    recievedStatus = ['recived','recved','recivd','recevid']
+    receivedStatus = ['recived','recved','recivd','recevid']
     pendingStatus = ['pendeng','pending','pinding','pindeng','pindng','not recived','not recevid','not receved','not recivid','not recived']
     unloadedStatus = ['unloaded','unloadd','unload','unloaed','unloaed']
-    if (recievedStatus.count(status.strip().lower()) > 0):
-        return 'recieved'
+    if (receivedStatus.count(status.strip().lower()) > 0):
+        return 'received'
     elif (pendingStatus.count(status.strip().lower()) > 0):
         return 'pending'
     elif (unloadedStatus.count(status.strip().lower()) > 0):

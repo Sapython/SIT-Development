@@ -6,9 +6,9 @@
   </ion-text>
   <form [formGroup]="unloadedForm" (ngSubmit)="setAsUnloaded()" >
     <ion-list>
-      <ion-item lines="none">
+      <ion-text color="primary">
         <h2>Quantity Details</h2>
-      </ion-item>
+      </ion-text>
       <form [formGroup]="quantityDetailForm">
         <ion-card *ngFor="let product of products;let i = index" [attr.data-index]="i" class="ion-padding">
           <div>
@@ -31,14 +31,12 @@
         <img src="assets/UI/Images/empty.svg" *ngIf="!products" alt="Nothing In here" class="noData">
       </form>
       <hr>
-      <ion-item lines="none" class="ion-margin-top">
-        <ion-text>
-          <h2>Select Workers</h2>
-        </ion-text>
-      </ion-item>
+      <ion-text color="primary">
+        <h2>Select Workers</h2>
+      </ion-text>
       <ion-item>
         <ion-label>Select Workers</ion-label>
-        <ion-select multiple="true" cancelText="Cancel" okText="Done" formControlName="workingWorkers" (ionChange)="genWorkerList($event)">
+        <ion-select multiple="true" interface="action-sheet" cancelText="Cancel" okText="Done" formControlName="workingWorkers" (ionChange)="genWorkerList($event)">
           <ion-select-option [value]="{id:worker.userId,name:worker.displayName,image:worker.photoURL}" *ngFor="let worker of workers">
             <ion-label>
               <ion-avatar>
@@ -49,65 +47,110 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item lines="none" *ngIf="workersList.length > 0">
-        <ion-text>
-          <h2>Worker Charges</h2>
-        </ion-text>
-      </ion-item>
+      <ion-text color="primary" *ngIf="workersList.length > 0">
+        <h2>Worker Charges</h2>
+      </ion-text>
       <form [formGroup]="labourChargeForm" class="workerForm">
         <ion-card *ngFor="let worker of workersList" class="ion-padding">
           <ion-row>
             <ion-avatar style="--border-radius:30px;">
-              <img [src]="worker.image" />
+              <img [src]="worker.image" referrerpolicy="no-referrer"  />
             </ion-avatar>
             <ion-col>
               <ion-label><strong>Name:</strong> {{worker.name}}</ion-label>
-              <ion-input type="number" placeholder="Charges" [formControlName]="worker.id"></ion-input>
-              <ion-input type="number" placeholder="Time taken in min" [formControlName]="worker.id+'timeTaken'"></ion-input>
+              <ion-input type="number" min="0" placeholder="Charges" [formControlName]="worker.id"></ion-input>
+              <ion-input type="number" min="0" placeholder="Time taken in min" [formControlName]="worker.id+'timeTaken'"></ion-input>
             </ion-col>
           </ion-row>
         </ion-card>
         <img src="assets/UI/Images/empty.svg" *ngIf="!workersList" alt="Nothing In here" class="noData">
       </form>
       <hr>
-      <ion-item lines="none">
-        <ion-text>
-          <h2>Miscellaneous Expenses</h2>
-        </ion-text>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Vehicle Damage</ion-label>
-        <ion-input type="number" formControlName="vehicleDamage"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Explain Vehicle Damage</ion-label>
-        <ion-textarea type="text" formControlName="explainVehicleDamage"></ion-textarea>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Personnel Damage</ion-label>
-        <ion-input type="number" formControlName="personnelDamage"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Explain Personnel Damage</ion-label>
-        <ion-textarea type="text" formControlName="explainPersonnelDamage"></ion-textarea>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Legal Tax/Charge</ion-label>
-        <ion-input type="number" formControlName="legalCharges"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Explain Legal Tax/Charge</ion-label>
-        <ion-textarea type="text" formControlName="explainLegalCharges"></ion-textarea>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Other</ion-label>
-        <ion-input type="number" formControlName="otherDamage"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Explain</ion-label>
-        <ion-textarea formControlName="explainDamage"></ion-textarea>
-      </ion-item>
+      <ion-text color="primary">
+        <h2>Damages & Expenses</h2>
+      </ion-text>
+      <hr>
+      <ion-card>
+        <ion-item>
+          <ion-label position="floating">Vehicle Damage</ion-label>
+          <ion-input [value]="0" min="0" type="number" formControlName="vehicleDamage" #vehicleDamage></ion-input>
+        </ion-item>
+        <div *ngIf="vehicleDamage.value > 0">
+          <ion-item>
+            <ion-label position="floating">Explain Vehicle Damage</ion-label>
+            <ion-textarea type="text" formControlName="explainVehicleDamage"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Vehicle Damage Kept By</ion-label>
+            <ion-input type="text" formControlName="keptByVehicleDamage"></ion-input>
+          </ion-item>
+        </div>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-label position="floating">Personnel Damage</ion-label>
+          <ion-input [value]="0" min="0" type="number" formControlName="personnelDamage" #personnelDamage></ion-input>
+        </ion-item>
+        <div *ngIf="personnelDamage.value > 0">
+          <ion-item>
+            <ion-label position="floating">Explain Personnel Damage</ion-label>
+            <ion-textarea type="text" formControlName="explainPersonnelDamage"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Personnel Damage Kept By</ion-label>
+            <ion-input type="text" formControlName="keptByPersonnelDamage"></ion-input>
+          </ion-item>
+        </div>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-label position="floating">Legal Tax/Charge</ion-label>
+          <ion-input [value]="0" min="0" type="number" formControlName="legalCharges" #legalCharges></ion-input>
+        </ion-item>
+        <div *ngIf="legalCharges.value > 0">
+          <ion-item>
+            <ion-label position="floating">Explain Legal Tax/Charge</ion-label>
+            <ion-textarea type="text" formControlName="explainLegalCharges"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Legal Damage Kept By</ion-label>
+            <ion-input type="text" formControlName="keptByLegalDamage"></ion-input>
+          </ion-item>
+        </div>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-label position="floating">Other</ion-label>
+          <ion-input [value]="0" min="0" type="number" formControlName="otherDamage" #otherDamage></ion-input>
+        </ion-item>
+        <div *ngIf="otherDamage.value > 0">
+          <ion-item>
+            <ion-label position="floating">Explain</ion-label>
+            <ion-textarea formControlName="explainDamage"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Other Damage Kept By</ion-label>
+            <ion-input type="text" formControlName="keptByOtherDamage"></ion-input>
+          </ion-item>
+        </div>
+      </ion-card>
     </ion-list>
+    <ion-text color="primary">
+      <h2>SIT Unloaded by</h2>
+    </ion-text>
+    <ion-item>
+      <ion-label>Supervisor</ion-label>
+      <ion-select interface="action-sheet" placeholder="Select Supervisor" formControlName="superVisorControl">
+        <ion-select-option [value]="user.userId" *ngFor="let user of superVisors">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img [src]="user.photoURL" referrerpolicy="no-referrer"  />
+            </ion-avatar>
+            <ion-label>{{user.displayName}}</ion-label>
+          </ion-item>
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-button type="submit" expand="block" fill="solid" mode="ios">
       Submit
     </ion-button>

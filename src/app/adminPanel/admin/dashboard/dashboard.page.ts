@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { actionsAlert, confirmationAlert, dialogAlert, messageAlert } from 'src/app/structures/method.structure';
 import { ManageUserComponent } from '../../models/manage-user/manage-user.component';
 import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
+import { AddUserModalComponent } from '../../models/add-user-modal/add-user-modal.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,7 @@ import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } fr
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private analytics:Analytics,private modalController: ModalController) { }
+  constructor(private analytics:Analytics,private modalController: ModalController,) { }
   deleteAlert(item){
 
   }
@@ -38,5 +40,14 @@ export class DashboardPage implements OnInit {
     })
     logEvent(this.analytics,'viewAdminUsers');
     await userModal.present();
+  }
+  async addUserModal(){
+    const addUserModal = await this.modalController.create({
+      component:AddUserModalComponent,
+      initialBreakpoint: 0.5,
+      breakpoints: [0, 0.5, 1]
+    })
+    logEvent(this.analytics,'viewAddUser');
+    await addUserModal.present();
   }
 }

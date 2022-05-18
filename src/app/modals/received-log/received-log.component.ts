@@ -5,11 +5,11 @@ import { UserData } from 'src/app/structures/user.structure';
 
 
 @Component({
-  selector: 'app-recieved-log',
-  templateUrl: './recieved-log.component.html',
-  styleUrls: ['./recieved-log.component.scss'],
+  selector: 'app-received-log',
+  templateUrl: './received-log.component.html',
+  styleUrls: ['./received-log.component.scss'],
 })
-export class RecievedLogComponent implements OnInit {
+export class ReceivedLogComponent implements OnInit {
 
   constructor(
     public modalController: ModalController,
@@ -30,7 +30,7 @@ export class RecievedLogComponent implements OnInit {
   products: any[] = [];
   vehicleImage:string;
   ngOnInit() {
-    this.databaseService.getRecievedSit(this.sitId).then((sit:any) => {
+    this.databaseService.getReceivedSit(this.sitId).then((sit:any) => {
       sit = sit.data()
       this.recviedVehicleNumber = sit.recVehicleNumber;
       this.vehicleNumber = sit.vehicleNumber;
@@ -38,6 +38,7 @@ export class RecievedLogComponent implements OnInit {
       this.vehicleType = sit.vehicleType;
       this.sitID = sit.sitID;
       this.vehicleImage = sit.vehicleImage;
+      console.log(sit.coordinatorId)
       this.databaseService.getUser(sit.coordinatorId).then((coordinator:any) => {
         this.coordinator = coordinator.data();
       })

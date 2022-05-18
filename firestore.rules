@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users{
+    	allow create: if isSignedIn();
+      allow read, write: if isAdmin();
+    }
+    match /users/{user}{
+      allow read, write: if isUser(user);
+      allow update, read: if isAdmin();
+    }
+    match /stocks/{stock} {
+      allow list, read: if isNotGuest();
+      allow write: if isAdmin() || isSupervisor();
+    }
+    match /stocks/{stock}/received/received {
+      allow read, write: if isAdmin() || isSupervisor();
+    }
+    match /stocks/{stock}/unloaded/unloaded {
+      allow read, write: if isAdmin() || isSupervisor();
+    }
+    match /adminData/settings {
+      allow read;
+      allow write: if isAdmin();
+    }
+    function isNotGuest(){
+      return (getUserData().access.access=='admin' || getUserData().access.access=='supervisor' || getUserData().access.access=='worker');
+    }
+    function isAdmin(){
+    	return getUserData().access.access=='admin'
+    }
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isSupervisor() {
+      return getUserData().access.access=='supervisor'
+    }
+    // Does the logged-in user match the requested userId?
+    function isUser(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Fetch a user from Firestore
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data
+    }
+  }
+}

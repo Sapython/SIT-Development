@@ -44,6 +44,8 @@ import {
 } from '@angular/fire/analytics';
 import { Geolocation } from '@capacitor/geolocation';
 import { DatabaseService } from './database.service';
+import { httpsCallable, Functions, } from '@angular/fire/functions';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -61,7 +63,9 @@ export class AuthencationService {
     private firestore: Firestore,
     private router: Router,
     private platform: Platform,
-    private dataProvider: DataProvider
+    private dataProvider: DataProvider,
+    private functions: Functions,
+
   ) {
     if (auth) {
       // GoogleAuth.signIn();
@@ -77,6 +81,7 @@ export class AuthencationService {
       this.loggedIn = false;
     }
   }
+  public createNewUser = httpsCallable(this.functions, 'createUser')
   private userServerSubscription: Subscription | undefined = undefined;
   private readonly userDisposable: Subscription | undefined;
   public readonly user: Observable<User | null> = EMPTY;
@@ -104,32 +109,7 @@ export class AuthencationService {
       position.coords.latitude < 25.405906929399315 &&
       position.coords.longitude < 82.04708383964083
     ) {
-      getDoc(doc(this.firestore, 'users/' + uid)).then((document: any) => {
-        let data = document.data();
-        if (data.attendanceDate) {
-          let userAttendanceDate = data.attendanceDate.toDate();
-          userAttendanceDate.setHours(0, 0, 0, 0);
-          let today = new Date();
-          today.setHours(0, 0, 0, 0);
-          if (userAttendanceDate < today) {
-            logEvent(this.analytics, 'Marked_Attendance');
-            updateDoc(doc(this.firestore, 'users/' + uid), {
-              attendanceDate: new Date(),
-              attendanceCount: increment(1),
-            });
-          }
-        } else {
-          logEvent(this.analytics, 'Marked_Attendance');
-          setDoc(
-            doc(this.firestore, 'users/' + uid),
-            {
-              attendanceDate: new Date(),
-              attendanceCount: 1,
-            },
-            { merge: true }
-          );
-        }
-      });
+      this.setTodayAttendance(uid)
     } else {
       logEvent(this.analytics, 'Marked_Attendance_Outside');
       this.alertify.presentToast(
@@ -137,6 +117,34 @@ export class AuthencationService {
         'error'
       );
     }
+  }
+  setTodayAttendance(uid:string) {
+    getDoc(doc(this.firestore, 'users/' + uid)).then((document: any) => {
+      let data = document.data();
+      if (data.attendanceDate) {
+        let userAttendanceDate = data.attendanceDate.toDate();
+        userAttendanceDate.setHours(0, 0, 0, 0);
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (userAttendanceDate < today) {
+          logEvent(this.analytics, 'Marked_Attendance');
+          updateDoc(doc(this.firestore, 'users/' + uid), {
+            attendanceDate: new Date(),
+            attendanceCount: increment(1),
+          });
+        }
+      } else {
+        logEvent(this.analytics, 'Marked_Attendance');
+        setDoc(
+          doc(this.firestore, 'users/' + uid),
+          {
+            attendanceDate: new Date(),
+            attendanceCount: 1,
+          },
+          { merge: true }
+        );
+      }
+    });
   }
   async markAttendance(uid: string) {
     if (this.platform.is('capacitor')) {
@@ -190,38 +198,52 @@ export class AuthencationService {
   //     });
   //   });
   // }
-  public async signInWithGoogle(type: 'Login' | 'Signup') {
+  public async signInWithGoogle() {
     this.dataProvider.pageSetting.blur = true;
     this.dataProvider.pageSetting.lastRedirect = '';
     GoogleAuth.signIn()
-      .then(async (googleUser: any) => {
+      .then((googleUser: any) => {
         const credential = GoogleAuthProvider.credential(
           googleUser.authentication.idToken,
           googleUser.authentication.accessToken
         );
-        const credentials = await signInWithCredential(this.auth, credential);
-        if (
-          !(
-            await getDoc(doc(this.firestore, 'users/' + credentials.user.uid))
-          ).exists()
-        ) {
-          logEvent(this.analytics, 'Marked_Attendance');
-          if (credentials.user.phoneNumber == null) {
-            await this.userData.setGoogleUserData(credentials.user, {
-              phoneNumber: '',
-            });
-          } else {
-            await this.userData.setGoogleUserData(credentials.user, {
-              phoneNumber: credentials.user.phoneNumber || '',
-            });
-          }
-        } else {
+        signInWithCredential(this.auth, credential).then((credentials:UserCredential)=>{
+          console.log("Credentials ",credentials);
+          getDoc(doc(this.firestore, 'users/' + credentials.user.uid)).then((userDocument:any)=>{
+            if (!userDocument.exists()) {
+              logEvent(this.analytics, 'Marked_Attendance');
+              if (credentials.user.phoneNumber == null) {
+                this.userData.setGoogleUserData(credentials.user, {
+                  phoneNumber: '',
+                }).then(()=>{
+                  this.router.navigate(['']);
+                });;
+              } else {
+                this.userData.setGoogleUserData(credentials.user, {
+                  phoneNumber: credentials.user.phoneNumber || '',
+                }).then(()=>{
+                  this.router.navigate(['']);
+                });
+              }
+            } else {
+              this.dataProvider.pageSetting.blur = false;
+              this.alertify.presentToast('Logged In.', 'info', 5000, [], true, '');
+              this.router.navigate(['']);
+            }
+          }).catch((error)=>{
+            console.log('ErrorCatched getting data',error);
+            this.dataProvider.pageSetting.blur = false;
+            this.alertify.presentToast(error.message, 'error', 5000, [], true, '');  ;
+          })
+        })
+        .catch((error)=>{
+          console.log('ErrorCatched authorizing',error);
           this.dataProvider.pageSetting.blur = false;
-          this.alertify.presentToast('Logged In.', 'info', 5000, [], true, '');
-          this.router.navigate(['']);
-        }
+          this.alertify.presentToast(error.message, 'error', 5000, [], true, '');  
+        });
       })
       .catch((error) => {
+        console.log('ErrorCatched',error);
         this.dataProvider.pageSetting.blur = false;
         this.alertify.presentToast(error.message, 'error', 5000, [], true, '');
       });
@@ -307,31 +329,7 @@ export class AuthencationService {
     logEvent(this.analytics, 'Logged_Out');
     this.router.navigate(['../login']);
   }
-  // Sign out functions end
-  async openNameDialog() {
-    return await this.alertify.openEmailBasedDialog();
-  }
-  private async getMethod(credentials: UserCredential) {
-    if (
-      credentials.user.providerId == 'firebase' &&
-      credentials.user.isAnonymous == false
-    ) {
-      // TODO: register user as an email based system
-      let name = await this.openNameDialog();
-      this.userData.setEmailUserData(credentials.user, {
-        displayName: name,
-        phoneNumber: '',
-        photoURL: '',
-      });
-    } else if (credentials.user.providerId == 'google.com') {
-      // TODO: register user as a google based system
-    } else if (
-      credentials.user.providerId == 'firebase' &&
-      credentials.user.isAnonymous == true
-    ) {
-      // TODO: register user as an anonymous based system
-    }
-  }
+  
   private async setDataObserver(user: Observable<User | null>) {
     // console.log('Starting data observer')
     if (user) {
@@ -353,7 +351,7 @@ export class AuthencationService {
           }
           this.userServerSubscription = docData(this.userDoc).subscribe(
             async (data: any) => {
-              // console.log("Recieved new data",data)
+              // console.log("Received new data",data)
               if (data.status) {
                 if (!this.allowedStatuses.includes(data.status.access)) {
                   this.logout();
@@ -364,6 +362,7 @@ export class AuthencationService {
                 });
               }
               this.dataProvider.userData = data;
+              // this.setMissingFields();
               this.dataProvider.gettingUserData = false;
               await Storage.set({
                 key: 'userData',
@@ -379,8 +378,22 @@ export class AuthencationService {
       }
     }
   }
+  setMissingFields(){
+    if (!this.dataProvider.userData?.phoneNumber) {
+      const res = prompt('Enter your phone number');
+      if (res.length === 10){
+        setDoc(doc(this.firestore,'users/'+this.dataProvider.userID), {
+          phoneNumber: '+91'+res,
+        });
+      } else {
+        this.alertify.presentToast('Invalid Phone Number', 'error', 5000);
+      }
+    }
+  }
+  // createNewUser(newUser:any){
+  //   return (newUser)
+  // }
 }
-
 const geoFenceData = {
   "type": "FeatureCollection",
   "features": [

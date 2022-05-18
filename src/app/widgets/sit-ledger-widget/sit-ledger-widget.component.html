@@ -1,7 +1,7 @@
 <div id="card">
     <div id="card-photo-and-details">
-        <img src="https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-            alt="NAME" id="card-photo">
+        <!-- <img src="https://images.pexels.com/photos/2955816/pexels-photo-2955816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            alt="NAME" id="card-photo"> -->
         <div id="card-details">
             <h3 id="card-heading">{{ this.bakery }}</h3>
             <p class="card-paragraph"><span class="card-paragraph-highlight">Supplier Code:</span> {{ this.suppCode }}
@@ -10,19 +10,19 @@
     </div>
     <div id="card-stepper-wrapper">
         <div
-            [class]="(status === 'uploaded'||status === 'unloaded' || status === 'recieved' ||status === 'pending' )? 'card-stepper-item completed':'card-stepper-item'">
+            [class]="(status === 'uploaded'||status === 'unloaded' || status === 'received' ||status === 'pending' )? 'card-stepper-item completed':'card-stepper-item'">
             <div class="card-step-counter"></div>
             <div class="card-step-name">Uploaded</div>
         </div>
         <div
-            [class]="(status === 'pending'||status === 'unloaded' || status === 'recieved') ? 'card-stepper-item completed':'card-stepper-item'">
+            [class]="(status === 'pending'||status === 'unloaded' || status === 'received') ? 'card-stepper-item completed':'card-stepper-item'">
             <div class="card-step-counter"></div>
             <div class="card-step-name">Pending</div>
         </div>
         <div
-            [class]="(status === 'recieved'||status === 'unloaded') ? 'card-stepper-item completed':'card-stepper-item'">
+            [class]="(status === 'received'||status === 'unloaded') ? 'card-stepper-item completed':'card-stepper-item'">
             <div class="card-step-counter"></div>
-            <div class="card-step-name">Recieved</div>
+            <div class="card-step-name">Received</div>
         </div>
         <div [class]="status === 'unloaded' ? 'card-stepper-item completed':'card-stepper-item'">
             <div class="card-step-counter"></div>
@@ -31,16 +31,16 @@
         </div>
     </div>
     <div *ngIf="dataProvider.userData?.access.access==='admin' || dataProvider.userData?.access.access==='supervisor' ">
-        <ion-button expand="block" color="primary" (click)="navigate('recieved')" *ngIf="status === 'pending'">
-            Move To Recieved
+        <ion-button expand="block" color="primary" (click)="navigate('received')" *ngIf="status === 'pending'">
+            Move To Received
         </ion-button>
-        <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='recieved'">
+        <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status==='received'">
             Move To Unloaded
         </ion-button>
-        <ion-button expand="block" *ngIf="status === 'recieved' || status === 'unloaded'" routerLink="recieved"
-            (click)="recievedlog()">See Recieved Log
+        <ion-button expand="block" *ngIf="status === 'received' || status === 'unloaded'" routerLink="received"
+            (click)="receivedLog()">See Received Log
         </ion-button>
-        <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded" (click)="unloadedlog()">See
+        <ion-button expand="block" *ngIf="status === 'unloaded'" routerLink="../unloaded" (click)="unloadedLog()">See
             Unloaded Log</ion-button>
     </div>
     <hr *ngIf="this.displayMoreDetails">

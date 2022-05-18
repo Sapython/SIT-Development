@@ -40,14 +40,14 @@
     </div>
     <div class="pending-sit" *ngIf="recievdCount > 0">
       <ion-row class="ion-justify-content-between">
-        <p>Recieved SIT</p>
-        <ion-button expand="block" fill="clear" (click)="openRecieved = !openRecieved">
-          <ion-icon [name]="openRecieved ? 'arrow-up-outline' : 'arrow-down-outline'"></ion-icon>
+        <p>Received SIT</p>
+        <ion-button expand="block" fill="clear" (click)="openReceived = !openReceived">
+          <ion-icon [name]="openReceived ? 'arrow-up-outline' : 'arrow-down-outline'"></ion-icon>
         </ion-button>
       </ion-row>
-      <div [ngStyle]="{'display': openRecieved ? 'block' : 'none'}">
+      <div [ngStyle]="{'display': openReceived ? 'block' : 'none'}">
         <div *ngFor="let item of sitLedgers">
-          <app-sit-ledger-widget *ngIf="item.status==='recieved'"
+          <app-sit-ledger-widget *ngIf="item.status==='received'"
               [bakery]="item.supplierName"
               [suppCode]="item.supplierCode"
               [dueDate]="item.sit[0].expectedDelivery"

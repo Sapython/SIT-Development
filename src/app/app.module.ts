@@ -15,11 +15,11 @@ import {
   ScreenTrackingService,
   UserTrackingService,
 } from '@angular/fire/analytics';
-import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
 import { provideFirestore, getFirestore, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-import { provideStorage, getStorage } from '@angular/fire/storage';
+import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fire/storage';
 import { HeaderComponent } from './base-components/header/header.component';
 import { MainModule } from './main/main.module';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +35,8 @@ import { ComponentModule } from './component/component.module';
 import { BackDirective } from './directives/back.directive';
 import { BaseComponentsModule } from './base-components/base-components.module';
 import { AnalyticsService } from './services/analytics.service';
+import { connectFunctionsEmulator } from 'firebase/functions';
+import { connectFirestoreEmulator } from 'firebase/firestore';
 @NgModule({
     declarations: [AppComponent, LoginComponent, SignupComponent, VerifyemailComponent, BackDirective],
     imports: [
@@ -48,15 +50,28 @@ import { AnalyticsService } from './services/analytics.service';
         AppRoutingModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAnalytics(() => getAnalytics()),
-        provideAuth(() => getAuth()),
+        provideAuth(() => {
+            const auth = getAuth();
+            // connectAuthEmulator(auth,'http://localhost:9099');
+            return auth;
+        }),
         provideFirestore(() => {
             const firestore = getFirestore();
+            // connectFirestoreEmulator(firestore,'localhost',8080);
             enableIndexedDbPersistence(firestore);
             return firestore;
         }),
-        provideFunctions(() => getFunctions()),
+        provideFunctions(() => {
+            const functions = getFunctions();
+            // connectFunctionsEmulator(functions,'localhost',5001);
+            return functions;
+        }),
         provideMessaging(() => getMessaging()),
-        provideStorage(() => getStorage()),
+        provideStorage(() => {
+            const storage = getStorage();
+            // connectStorageEmulator(storage,'localhost',9199);
+            return storage;
+        }),
      ],
     providers: [
         AlertsAndNotificationsService,

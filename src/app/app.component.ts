@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { DataProvider } from './providers/data.provider';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Platform } from '@ionic/angular';
-import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
+import { Analytics, logEvent } from '@angular/fire/analytics';
 import { DatabaseService } from './services/database.service';
 
 @Component({
@@ -16,7 +16,10 @@ import { DatabaseService } from './services/database.service';
 export class AppComponent implements OnInit{
   constructor(private analytics:Analytics,public databaseService:DatabaseService,public authService:AuthencationService,private router:Router,public dataProvider:DataProvider,private platform: Platform,) {
     if (!platform.is("hybrid")){
-      GoogleAuth.init();
+      GoogleAuth.initialize({
+        clientId:'690627613189-fglnifb9ggsg8qgrb1s17otedqhfm08h.apps.googleusercontent.com',
+        scopes: ['profile', 'email'],
+      });
     }
   }
   useIncompatible:boolean = false;

@@ -1,9 +1,9 @@
 <app-header></app-header>
 <ion-content>
-    <p>All Recieved SIT</p>
+    <p>All Received SIT</p>
     <div class="container">
         <div *ngFor="let item of sitLedgers">
-            <app-sit-ledger-widget *ngIf="item.status==='recieved'"
+            <app-sit-ledger-widget *ngIf="item.status==='received'"
                 [bakery]="item.supplierName"
                 [suppCode]="item.supplierCode"
                 [dueDate]="item.sit[0].expectedDelivery"
@@ -28,7 +28,7 @@
             ></app-sit-ledger-widget>
         </div>
         <div *ngIf="sitLedgers.length == 0">
-            <h5>No Recieved SIT Found</h5>
+            <h5>No Received SIT Found</h5>
             <img src="assets/UI/Images/empty.svg" alt="Empty" style="width:100vw; height:auto;">
         </div>
     </div>

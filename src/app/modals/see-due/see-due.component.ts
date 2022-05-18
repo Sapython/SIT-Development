@@ -22,6 +22,7 @@ export class SeeDueComponent implements OnInit {
             unloaded.data().labourCharges.forEach((labourCharge:any)=>{
               if(labourCharge.id===this.userId){
                 this.foundWorking = true;
+                console.log(sit.data())
                 labourCharge.supplierCode = sit.data().supplierCode;
                 labourCharge.supplierName = sit.data().supplierName;
                 labourCharge.sitId = sit.id;

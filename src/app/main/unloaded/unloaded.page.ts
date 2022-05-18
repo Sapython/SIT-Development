@@ -1,14 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Subscription } from 'rxjs';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AlertsAndNotificationsService } from 'src/app/services/uiService/alerts-and-notifications.service';
 import { UserData } from 'src/app/structures/user.structure';
-import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
+import {
+  Analytics,
+  logEvent,
+  setCurrentScreen,
+  setUserProperties,
+  setUserId,
+} from '@angular/fire/analytics';
 
 @Component({
   selector: 'app-unloaded',
@@ -19,24 +25,46 @@ export class UnloadedPage implements OnInit {
   sitId: string;
   workersList: any[] = [];
   workersControls: any[] = [];
-  workersTimeControls:any[] = [];
+  workersTimeControls: any[] = [];
   quantityControls: any[] = [];
+  superVisors: UserData[] = [];
   labourChargeForm: FormGroup = new FormGroup({});
   quantityDetailForm: FormGroup = new FormGroup({});
   unloadedForm: FormGroup;
   vehicleNumber: FormControl = new FormControl('', [Validators.required]);
   gateNumber: FormControl = new FormControl('', [Validators.required]);
-  // safeQuantity:FormControl = new FormControl('',[Validators.required]);
-  // unsafeQuantity:FormControl = new FormControl('',[Validators.required]);
   workingWorkers: FormControl = new FormControl('', [Validators.required]);
-  vehicleDamage: FormControl = new FormControl('', [Validators.required]);
-  explainVehicleDamage: FormControl = new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(1000)]);
-  personnelDamage: FormControl = new FormControl('', [Validators.required]);
-  explainPersonnelDamage: FormControl = new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(1000)]);
-  legalCharges: FormControl = new FormControl('', [Validators.required]);
-  explainLegalCharges: FormControl = new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(1000)]);
-  otherDamage: FormControl = new FormControl('');
+  vehicleDamage: FormControl = new FormControl('0', [
+    Validators.required,
+    Validators.min(0),
+  ]);
+  explainVehicleDamage: FormControl = new FormControl('', [
+    Validators.minLength(10),
+    Validators.maxLength(1000),
+  ]);
+  keptByVehicleDamage: FormControl = new FormControl('');
+  personnelDamage: FormControl = new FormControl('0', [
+    Validators.required,
+    Validators.min(0),
+  ]);
+  explainPersonnelDamage: FormControl = new FormControl('', [
+    Validators.minLength(10),
+    Validators.maxLength(1000),
+  ]);
+  keptByPersonnelDamage: FormControl = new FormControl('');
+  legalCharges: FormControl = new FormControl('0', [
+    Validators.required,
+    Validators.min(0),
+  ]);
+  explainLegalCharges: FormControl = new FormControl('', [
+    Validators.minLength(10),
+    Validators.maxLength(1000),
+  ]);
+  keptByLegalDamage: FormControl = new FormControl('');
+  otherDamage: FormControl = new FormControl('0', [Validators.min(0)]);
   explainDamage: FormControl = new FormControl('');
+  keptByOtherDamage: FormControl = new FormControl('');
+  superVisorControl: FormControl = new FormControl('');
   products: any[] = [];
   workers: UserData[] = [];
   imageFormat: any;
@@ -44,46 +72,57 @@ export class UnloadedPage implements OnInit {
   imageFile: File;
   imageCodec: any;
   vehicleVerified: boolean = false;
-  recogniserSubscription: Subscription = Subscription.EMPTY;
+  recognizerSubscription: Subscription = Subscription.EMPTY;
   numberPlateImageUrl: string;
   recVehicleNumber: string = '';
   recVehicleType: string = '';
-  sitData:any;
-  recievedSitData:any;
-  images:any = {};
+  sitData: any;
+  receivedSitData: any;
+  images: any = {};
   constructor(
     private http: HttpClient,
-    private analytics:Analytics,
+    private analytics: Analytics,
     private databaseService: DatabaseService,
     private alertify: AlertsAndNotificationsService,
     private dataProvider: DataProvider,
+    private router: Router,
     private activatedRouteSnapshot: ActivatedRoute
   ) {
     this.unloadedForm = new FormGroup({
       workingWorkers: this.workingWorkers,
       vehicleDamage: this.vehicleDamage,
       explainVehicleDamage: this.explainVehicleDamage,
+      keptByVehicleDamage: this.keptByVehicleDamage,
       personnelDamage: this.personnelDamage,
       explainPersonnelDamage: this.explainPersonnelDamage,
+      keptByPersonnelDamage: this.keptByPersonnelDamage,
       legalCharges: this.legalCharges,
       explainLegalCharges: this.explainLegalCharges,
+      keptByLegalDamage: this.keptByLegalDamage,
       otherDamage: this.otherDamage,
       explainDamage: this.explainDamage,
+      keptByOtherDamage: this.keptByOtherDamage,
+      superVisorControl: this.superVisorControl,
     });
     this.activatedRouteSnapshot.queryParams.subscribe((data: any) => {
       this.sitId = data.id;
     });
   }
   ngOnInit() {
-    logEvent(this.analytics,'unloaded_page_viewed');
+    logEvent(this.analytics, 'unloaded_page_viewed');
     this.databaseService.getWorkers().then((data: any) => {
       data.forEach((element: any) => {
         this.workers.push(element.data());
       });
     });
-    this.databaseService.getRecievedSit(this.sitId).then((data: any) => {
-      this.recievedSitData = data.data();
-    })
+    this.databaseService.getReceivedSit(this.sitId).then((data: any) => {
+      this.receivedSitData = data.data();
+    });
+    this.databaseService.getSupervisor().then((data: any) => {
+      data.forEach((user: any) => {
+        this.superVisors.push(user.data());
+      });
+    });
     this.databaseService.getSit(this.sitId).then((data: any) => {
       this.products = [];
       this.quantityControls.forEach((control: any) => {
@@ -103,7 +142,6 @@ export class UnloadedPage implements OnInit {
         this.quantityControls.push(control);
       });
     });
-    console.log('Stock Id:', this.sitId);
   }
   genWorkerList(event: any) {
     this.workersList = [];
@@ -117,27 +155,14 @@ export class UnloadedPage implements OnInit {
         new FormControl('', [Validators.required, Validators.min(0)])
       );
       let timeControl = this.labourChargeForm.addControl(
-        element.id+'timeTaken',
+        element.id + 'timeTaken',
         new FormControl('', [Validators.required, Validators.min(0)])
       );
       this.workersList.push(element);
       this.workersTimeControls.push(timeControl);
       this.workersControls.push(control);
     });
-    // this.workersList = event.detail.value;
   }
-  // async takePicture() {
-  //   const image = await Camera.getPhoto({
-  //     quality: 90,
-  //     allowEditing: false,
-  //     resultType: CameraResultType.Base64,
-  //     source: CameraSource.Camera,
-  //   });
-  //   this.imageCodec = image.base64String;
-  //   this.imageFormat = image.format;
-  //   console.log(image.format);
-  //   this.imageExists = true;
-  // }
   b64toBlob(b64Data, contentType: any, sliceSize: number) {
     const byteCharacters = atob(b64Data);
     const byteArrays = [];
@@ -153,50 +178,21 @@ export class UnloadedPage implements OnInit {
     const blob = new Blob(byteArrays, { type: contentType });
     return blob;
   }
-  async setImage(name,index){
+  async setImage(name, index) {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Base64,
       source: CameraSource.Prompt,
     });
-    this.images[name+index.toString()] = image.base64String;
-    // console.log(this.images);
+    this.images[name + index.toString()] = image.base64String;
   }
-  // verifyLicensePlate(){
-  //   this.dataProvider.pageSetting.blur = true;
-  //   if(this.imageExists){
-  //     this.recogniserSubscription=this.http.post(
-  //       'https://us-central1-sit-manager.cloudfunctions.net/recognisePlate',
-  //       {image:this.imageCodec,uid:this.dataProvider.userData?.userId}).subscribe((data:any)=>{
-  //       this.recVehicleNumber = data.plate;
-  //       this.recVehicleType = data.vehicle.type;
-  //       if (this.vehicleNumber.value.toLowerCase() == this.recVehicleNumber.toLowerCase()){
-  //         this.vehicleVerified = true;
-  //         this.databaseService.upload('vehicleImages/'+this.recVehicleNumber+'/image.'+this.imageFormat,this.b64toBlob(this.imageCodec,'image/'+this.imageFormat,512)).then(data=>{
-  //           this.numberPlateImageUrl = data;
-  //           this.dataProvider.pageSetting.blur = false;
-  //           this.alertify.presentToast(`Vehicle verified succefully`,'info');
-  //         }).catch((error)=>{this.alertify.presentToast(`Some error occured`,'error');});
-  //       } else {
-  //         this.vehicleVerified = false;
-  //         this.alertify.presentToast(`Wrong number plate. Alerted to admin.`,'info');
-  //       }
-  //     },(error:any)=>{
-  //       this.dataProvider.pageSetting.blur = false;
-  //       // console.log(error);
-  //       // this.databaseService.addLog(error)
-  //       this.alertify.presentToast(`Error in recognition of numberplate`,'error');
-  //     })
-  //   } else {
-  //     this.alertify.presentToast(`Please take a picture of the number plate`,'error');
-  //   }
-  // }
   ngOnDestroy(): void {
-    this.recogniserSubscription.unsubscribe();
+    this.recognizerSubscription.unsubscribe();
   }
   async setAsUnloaded() {
-    console.log(this.unloadedForm.valid,this.labourChargeForm.valid,this.quantityDetailForm.valid,this.workersList.length)
+    console.log(this.unloadedForm.value);
+    // console.log(this.unloadedForm.valid,this.labourChargeForm.valid,this.quantityDetailForm.valid,this.workersList.length)
     if (
       this.unloadedForm.valid &&
       this.labourChargeForm.valid &&
@@ -207,48 +203,63 @@ export class UnloadedPage implements OnInit {
       let staleWorkersData = [];
       this.workingWorkers.value.forEach((element: any) => {
         element.value = this.labourChargeForm.value[element.id];
-        element.timeTaken = this.labourChargeForm.value[element.id+'timeTaken'];
-        logEvent(this.analytics,'chargeLabour',{charge:element.value,worker:element.id});
+        element.timeTaken =
+          this.labourChargeForm.value[element.id + 'timeTaken'];
+        logEvent(this.analytics, 'chargeLabour', {
+          charge: element.value,
+          worker: element.id,
+        });
         staleWorkersData.push(element);
       });
       let productDamages = [];
       let count = 0;
-      // this.products.forEach(async (element: any) => {
-        
-      // });
-      for (const element of this.products) {
-        element.damagedValue = this.quantityDetailForm.value[element.productCode];
-        console.log('Data:', this.images[element.productCode + (count).toString()]);
-        if (this.images[element.productCode + (count).toString()]) {
-          element.damagedImage = await this.databaseService.upload(
-            'damagedImages/' + element.productCode + count + '-' + (new Date()).getTime() + '.jpeg', 
-            this.b64toBlob(this.images[element.productCode + (count).toString()], 'image/jpeg', 512)
+      for (const product of this.products) {
+        product.damagedValue = this.quantityDetailForm.value[product.productCode];
+        console.log('----',this.quantityDetailForm.value,product.damagedValue)
+        if (product.damagedValue > 0 && this.images[product.productCode + count.toString()]) {
+          console.log(
+            'Data:',
+            this.images[product.productCode + count.toString()]
           );
-        }
-        await Promise.all(element.damagedImage).then(data => {
-          console.log("Ran await");
-          productDamages.push(element);
+          if (this.images[product.productCode + count.toString()]) {
+            product.damagedImage = await this.databaseService.upload(
+              'damagedImages/' +
+                product.productCode +
+                count +
+                '-' +
+                new Date().getTime() +
+                '.jpeg',
+              this.b64toBlob(
+                this.images[product.productCode + count.toString()],
+                'image/jpeg',
+                512
+              )
+            );
+          }
+          await Promise.all(product.damagedImage).then((data) => {
+            console.log('Ran await');
+            productDamages.push(product);
+            count++;
+          });
+          console.log('inline', productDamages);
+        } else {
+          product.damagedValue = 0;
+          product.damagedImage = "";
+          productDamages.push(product);
           count++;
-        })
-        console.log("inline",productDamages);
+        }
       }
       console.log(productDamages);
-      let data = {
-        vehicleDamage: this.vehicleDamage.value,
-        explainVehicleDamage: this.explainVehicleDamage,
-        personnelDamage: this.personnelDamage.value,
-        explainPersonnelDamage: this.explainPersonnelDamage,
-        legalCharges: this.legalCharges.value,
-        explainLegalCharges: this.explainLegalCharges,
-        otherDamage: this.otherDamage.value,
-        explainDamage: this.explainDamage.value,
-        labourCharges: staleWorkersData,
-        productDamages: productDamages,
-      };
-      // console.log(data);
+      this.unloadedForm.value.labourCharges = staleWorkersData;
+      this.unloadedForm.value.productDamages = productDamages;
+      console.log(this.sitId, this.unloadedForm.value);
       logEvent(this.analytics,'unloaded_SIT');
-      this.databaseService.unloadSit(this.sitId,data).then((data:any) => {
+      this.databaseService.unloadSit(this.sitId,this.unloadedForm.value).then((data:any) => {
         this.alertify.presentToast("Sit Unloaded");
+        this.dataProvider.pageSetting.blur = false;
+        window.history.back();
+      }).catch((err) => {
+        this.alertify.presentToast("Some Error Occurred, please check fields or contact Shreeva.",'error',6000);
         this.dataProvider.pageSetting.blur = false;
       })
     } else {

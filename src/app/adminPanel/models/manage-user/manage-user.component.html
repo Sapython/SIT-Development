@@ -10,7 +10,7 @@
   <ion-list>
     <ion-item *ngFor="let item of users" button (click)="manageUser(item)">
       <ion-avatar slot="start">
-        <img [src]="item.photoURL" />
+        <img [src]="item.photoURL"  referrerpolicy="no-referrer"/>
       </ion-avatar>
       <div>
         <ion-label>{{item.displayName}}</ion-label>
@@ -21,6 +21,6 @@
       <ion-badge *ngIf="item.access.access==='supervisor'" color="warning" slot="end">Supervisor</ion-badge>
       <ion-badge *ngIf="item.access.access==='guest'" color="primary" slot="end">Guest</ion-badge>
     </ion-item>
-    <img src="assets/UI/Images/empty.svg" *ngIf="!users" alt="Nothing In here" class="noData">
+    <img src="assets/UI/Images/empty.svg" *ngIf="!users" alt="Nothing In here" class="noData" referrerpolicy="no-referrer">
   </ion-list>
 </ion-content>

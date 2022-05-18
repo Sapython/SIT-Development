@@ -3,11 +3,11 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { SIT, sitLedgerData } from 'src/app/structures/method.structure';
 
 @Component({
-  selector: 'app-recieved-sit',
-  templateUrl: './recieved-sit.page.html',
-  styleUrls: ['./recieved-sit.page.scss'],
+  selector: 'app-received-sit',
+  templateUrl: './received-sit.page.html',
+  styleUrls: ['./received-sit.page.scss'],
 })
-export class RecievedSitPage implements OnInit {
+export class ReceivedSitPage implements OnInit {
   items = [1, 2, 3];
   constructor(private databaseService: DatabaseService) { }
   sitLedgers: SIT[] = [];
@@ -17,7 +17,7 @@ export class RecievedSitPage implements OnInit {
       data.forEach((element:any) => {
         let filteredData = element.data();
         filteredData.id = element.id;
-        if (filteredData.status == 'recieved') {
+        if (filteredData.status == 'received') {
           sits.push(filteredData);
         }
       });

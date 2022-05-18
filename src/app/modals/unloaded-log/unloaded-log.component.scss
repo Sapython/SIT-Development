@@ -46,3 +46,7 @@ ion-spinner{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+hr{
+    height:0px;
+    border:2px solid var(--ion-color-light-shade);
+}

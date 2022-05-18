@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-admin',

@@ -2,8 +2,8 @@
 
 <ion-content>
   <div class="container">
-    <p class="heading">Move to Recieved</p>
-    <form class="box" [formGroup]="receivedForm" (ngSubmit)="recievedSit()">
+    <p class="heading">Move to Received</p>
+    <form class="box" [formGroup]="receivedForm" (ngSubmit)="receivedSit()">
       <button (click)="takePicture()" class="camera">
         <ion-icon name="aperture-outline"></ion-icon>
       </button>
@@ -26,6 +26,10 @@
           </tr>
         </table>
       </div> -->
+      <hr>
+      <ion-text color="primary">
+        <h2>SIT Received by</h2>
+      </ion-text>
       <ion-select multiple="true" placeholder="Select Supervisor" formControlName="supervisor">
         <ion-select-option *ngFor="let user of supervisors" value="user.id">
           {{user.name}}
@@ -35,7 +39,7 @@
         Submit
         <ion-icon name="arrow-forward-outline"></ion-icon>
       </ion-button>
-      <img src="assets/UI/Images/recieved1.png" alt="">
+      <img src="assets/UI/Images/received1.png" alt="">
     </form>
   </div>
 </ion-content>

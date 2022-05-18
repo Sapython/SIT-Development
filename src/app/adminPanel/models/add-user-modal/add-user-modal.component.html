@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add User</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="modalController.dismiss()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="addUserModal" (ngSubmit)="addUser()">
+    <ion-item>
+      <ion-label position="floating">Name <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nickname </ion-label>
+      <ion-input formControlName="nickName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Phone <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="phone" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Confirm Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="confirmPassword" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Role <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="role" placeholder="Select Role">
+        <ion-select-option value="guest">Guest</ion-select-option>
+        <ion-select-option value="worker">Worker</ion-select-option>
+        <ion-select-option value="supervisor">Supervisor</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Current Address </ion-label>
+      <ion-textarea formControlName="currentAddress"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Permanent Address <ion-text color="danger">*</ion-text></ion-label>
+      <ion-textarea formControlName="permanentAddress" required></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Department <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select placeholder="Select Department" formControlName="department">
+        <ion-select-option value="godown">Godown</ion-select-option>
+        <ion-select-option value="office">Office</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Designation <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="designation" placeholder="Select Designation">
+        <ion-select-option value="godownInCharge">Guest</ion-select-option>
+        <ion-select-option value="transportManager">Worker</ion-select-option>
+        <ion-select-option value="unloadingSupervisor">Supervisor</ion-select-option>
+        <ion-select-option value="loadingSupervisor">Loading Supervisor</ion-select-option>
+        <ion-select-option value="sapSeniorOperator">SAP senior operator</ion-select-option>
+        <ion-select-option value="sapOperator">SAP Operator</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Blood Group <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select placeholder="Select Blood Group" formControlName="bloodGroup">
+        <ion-select-option value="A+">A+</ion-select-option>
+        <ion-select-option value="A-">A-</ion-select-option>
+        <ion-select-option value="B+">B+</ion-select-option>
+        <ion-select-option value="B-">B-</ion-select-option>
+        <ion-select-option value="AB+">AB+</ion-select-option>
+        <ion-select-option value="AB-">AB-</ion-select-option>
+        <ion-select-option value="O+">O+</ion-select-option>
+        <ion-select-option value="O-">O-</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button type="submit" expand="block" fill="outline" shape="round">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>

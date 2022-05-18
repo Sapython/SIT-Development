@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RecievedPageRoutingModule } from './recieved-routing.module';
+import { ReceivedPageRoutingModule } from './received-routing.module';
 
-import { RecievedPage } from './recieved.page';
+import { ReceivedPage } from './received.page';
 import { BaseComponentsModule } from 'src/app/base-components/base-components.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,9 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     IonicModule,
-    RecievedPageRoutingModule,
+    ReceivedPageRoutingModule,
     BaseComponentsModule
   ],
-  declarations: [RecievedPage]
+  declarations: [ReceivedPage]
 })
-export class RecievedPageModule {}
+export class ReceivedPageModule {}

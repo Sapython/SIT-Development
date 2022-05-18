@@ -18,11 +18,11 @@ import {
 import { UserData } from 'src/app/structures/user.structure';
 
 @Component({
-  selector: 'app-recieved',
-  templateUrl: './recieved.page.html',
-  styleUrls: ['./recieved.page.scss'],
+  selector: 'app-received',
+  templateUrl: './received.page.html',
+  styleUrls: ['./received.page.scss'],
 })
-export class RecievedPage implements OnInit, OnDestroy {
+export class ReceivedPage implements OnInit, OnDestroy {
   receivedForm: FormGroup;
   vehicleNumber: FormControl = new FormControl('', [Validators.required]);
   vehicleType: FormControl = new FormControl('', [Validators.required]);
@@ -51,22 +51,27 @@ export class RecievedPage implements OnInit, OnDestroy {
     private router:Router
   ) {
     this.activatedRouteSnapshot.queryParams.subscribe((params) => {
-      this.sitID = params.id;
+      // this.sitID = params.id;
     });
     this.receivedForm = new FormGroup({
       vehicleNumber: this.vehicleNumber,
       vehicleType: this.vehicleType,
+      supervisor: this.supervisor,
     });
   }
   ngOnInit() {
     this.supervisors = [];
     this.sitID = this.dataProvider.dataOne;
+    if (!this.sitID) {
+      this.modalController.dismiss();
+      this.alertify.presentToast('Some error occurred please try again.')
+    }
     this.databaseService.getSit(this.sitID).then((data) => {
       console.log(data.data())
       this.sitData = data.data()
     }).catch((err) => {console.error(err.message)});
-    console.log('Sit Id recieved: ', this.sitID);
-    this.databaseService.getSupervisior().then((data) => {
+    console.log('Sit Id received: ', this.sitID);
+    this.databaseService.getSupervisor().then((data) => {
       this.supervisors = [];
       data.forEach((user) => {
         let data = user.data() as UserData;
@@ -212,17 +217,17 @@ export class RecievedPage implements OnInit, OnDestroy {
       })
       .then((data) => {
         // this.navCtrl.navigateBack('/main/app');
-        // window.history.back();
         this.alertify.presentToast(`Received successfully`, 'info');
+        this.modalController.dismiss();
+        window.history.back();
+        this.router.navigate(['../home'])
+        this.dataProvider.pageSetting.blur = false;
       })
       .catch((err) => {
         console.log(err);
         this.alertify.presentToast(`Error in receiving vehicle`, 'error');
-      }).finally(()=>{
-        this.modalController.dismiss();
-        this.router.navigate(['home'])
-        this.dataProvider.pageSetting.blur = false;
-      });
+
+      })
     // console.log("Uploaded Data",{
     //   vehicleNumber: this.vehicleNumber.value || '',
     //   vehicleType: this.vehicleType.value || '',
@@ -232,7 +237,7 @@ export class RecievedPage implements OnInit, OnDestroy {
     //   timestamp: new Date().toISOString(),
     // })
   }
-  recievedSit(){
+  receivedSit(){
     if(this.receivedForm.valid){
       if(this.vehicleVerified){
         this.alertify.presentToast("Verified please wait uploading.","info",1000);

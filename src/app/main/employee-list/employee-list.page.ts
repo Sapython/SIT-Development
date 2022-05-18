@@ -25,7 +25,8 @@ export class EmployeeListPage implements OnInit {
       );
     }
     this.totaldate = daysIntoYear(new Date());
-    this.databaseService.getEmployees().then((data: any) => {
+    this.databaseService.getEmployeesSubscription().subscribe((data: any) => {
+      this.employees = [];
       data.forEach((worker: any) => {
         const data = worker.data() as UserData;
         this.employees.push(data);
@@ -35,14 +36,19 @@ export class EmployeeListPage implements OnInit {
   round(value:number){
     return Math.round(value);
   }
-  openUser(userId:string){
+  openUser(user:string){
     this.modalController.create({
       component:EmployeeDataModalComponent,
       componentProps:{
-        userId:userId
+        user:user
       }
     }).then(modal=>{
       modal.present();
     })
+  }
+  isPresent(date:any){
+    const dayA = date.toDate();
+    const dayB = new Date();
+    return (dayA.toDateString() === dayB.toDateString())
   }
 }

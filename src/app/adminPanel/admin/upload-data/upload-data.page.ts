@@ -16,7 +16,7 @@ export class UploadDataPage implements OnInit {
   allSits:any[] = [];
   constructor(private databaseService:DatabaseService) {}
   clarifyStatus(status: string) {
-    const recievedStatus = ['recived', 'recved', 'recivd', 'recevid'];
+    const receivedStatus = ['recived', 'recved', 'recivd', 'recevid'];
     const pendingStatus = [
       'pendeng',
       'pending',
@@ -36,8 +36,8 @@ export class UploadDataPage implements OnInit {
       'unloaed',
       'unloaed',
     ];
-    if (recievedStatus.includes(status.toLowerCase())) {
-      return 'recieved';
+    if (receivedStatus.includes(status.toLowerCase())) {
+      return 'received';
     } else if (pendingStatus.includes(status.toLowerCase())) {
       return 'pending';
     } else if (unloadedStatus.includes(status.toLowerCase())) {
@@ -67,16 +67,16 @@ export class UploadDataPage implements OnInit {
       if (this.datalist.length > 0) {
         let sits = [];
         let status = '';
-        let supplyPlantCode = '';
-        let supplyPlantName = '';
+        var supplyPlantCode = '';
+        var supplyPlantName = '';
         console.log(this.datalist);
         this.datalist.forEach((element: any) => {
           if (element['SUPP.PLANT']) {
-            if (element['Remarkes']) {
+            if (element['Remarks']) {
               status = this.clarifyStatus(element['Remarkes']);
               supplyPlantCode = element['SUPP.PLANT'];
               supplyPlantName = element['SUPP.PLANT DESC'];
-              console.log('Set Status', status);
+              console.log('Got Status', status, supplyPlantCode, supplyPlantName);
             }
             sits.push({
               recievePlantName: element['REC.PLANT DESC'] || '',

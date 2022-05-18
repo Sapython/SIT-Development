@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { RecievedSitPage } from './recieved-sit.page';
+import { ReceivedLogComponent } from './received-log.component';
 
-describe('RecievedSitPage', () => {
-  let component: RecievedSitPage;
-  let fixture: ComponentFixture<RecievedSitPage>;
+describe('ReceivedLogComponent', () => {
+  let component: ReceivedLogComponent;
+  let fixture: ComponentFixture<ReceivedLogComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecievedSitPage ],
+      declarations: [ ReceivedLogComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RecievedSitPage);
+    fixture = TestBed.createComponent(ReceivedLogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -14,7 +14,7 @@ export class SitOverviewPage implements OnInit {
   pendingCount:number = 0;
   openPending:boolean = true;
   openUnloaded:boolean = true;
-  openRecieved:boolean = true;
+  openReceived:boolean = true;
   sitLedgers: SIT[] = [];
   constructor(private databaseService: DatabaseService) { }
   ngOnInit() {
@@ -27,7 +27,7 @@ export class SitOverviewPage implements OnInit {
         let filteredData = element.data();
         filteredData.id = element.id;
         sits.push(filteredData);
-        if (filteredData.status == 'recieved') {
+        if (filteredData.status == 'received') {
           this.recievdCount++;
         } else if (filteredData.status == 'unloaded') {
           this.unloadedCount++;

@@ -3,9 +3,60 @@
     <ion-buttons slot="start">
       <ion-button (click)="modalController.dismiss()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Recieved Log Data</ion-title>
+    <ion-title>Employee Info</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  
+  <img [src]="user?.photoURL"  referrerpolicy="no-referrer" >
+  <ion-button *ngIf="!isPresent(user?.attendanceDate)" (click)="markAttendance(user?.userId)" expand="block" fill="solid">Mark Attendance</ion-button>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">Name</ion-label>
+      <ion-label>{{user?.displayName}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Nick Name</ion-label>
+      <ion-label>{{user?.nickName}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Email</ion-label>
+      <ion-label>{{user?.email}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Phone</ion-label>
+      <ion-label>{{user?.phoneNumber}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Status</ion-label>
+      <ion-label>{{user?.status?.access}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Current Address</ion-label>
+      <ion-label>{{user?.currentAddress}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Permanent Address</ion-label>
+      <ion-label>{{user?.permanentAddress}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Department</ion-label>
+      <ion-label>{{user?.department?.department}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Designation</ion-label>
+      <ion-label>{{user?.designation?.designation}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Blood Group</ion-label>
+      <ion-label>{{user?.bloodGroup?.bloodGroup}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Attendance</ion-label>
+      <ion-label>{{user?.attendanceCount}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Present Today</ion-label>
+      <ion-label>{{isPresent(user?.attendanceDate) ? 'Present' : 'Absent'}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

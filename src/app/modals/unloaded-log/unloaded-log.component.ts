@@ -9,6 +9,8 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class UnloadedLogComponent implements OnInit {
   @Input() sitId: string;
   totalDamage: number = 0;
+  goodsDamage:number = 0;
+  mainSitData:any;
   constructor(private databaseService: DatabaseService) {}
   sitData: any;
   ngOnInit() {
@@ -18,13 +20,17 @@ export class UnloadedLogComponent implements OnInit {
       this.totalDamage =
         this.toNumber(this.sitData.legalCharges) +
         this.toNumber(this.sitData.otherDamage) +
-        this.toNumber(this.sitData.personelDamage) +
+        this.toNumber(this.sitData.personnelDamage) +
         this.toNumber(this.sitData.vehicleDamage);
       // console.log(this.sitData.damagedValue);
       this.sitData.productDamages.forEach((product) => {
-        this.totalDamage += this.toNumber(product.damagedValue);
+        this.goodsDamage += this.toNumber(product.damagedValue);
       })
     });
+    this.databaseService.getSit(this.sitId).then((data: any) => {
+      this.mainSitData = data.data();
+      console.log(this.mainSitData);
+    })
   }
   splitName(fullName){
     return fullName.split(' ');

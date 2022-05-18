@@ -72,11 +72,11 @@ const routes: Routes = [
         ]
       },
       {
-        path:'recieved-sit',
+        path:'received-sit',
         children:[
           {
             path: '',
-            loadChildren: () => import('./recieved-sit/recieved-sit.module').then( m => m.RecievedSitPageModule)
+            loadChildren: () => import('./received-sit/received-sit.module').then( m => m.ReceivedSitPageModule)
           }
         ]
       },
@@ -99,11 +99,11 @@ const routes: Routes = [
         ]
       },
       {
-        path:'recieved',
+        path:'received',
         children:[
           {
             path: '',
-            loadChildren: () => import('./recieved/recieved.module').then ( m => m.RecievedPageModule)
+            loadChildren: () => import('./received/received.module').then ( m => m.ReceivedPageModule)
           }
         ]
       },
@@ -151,8 +151,8 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'recieved',
-        loadChildren: () => import('./recieved/recieved.module').then ( m => m.RecievedPageModule)
+        path: 'received',
+        loadChildren: () => import('./received/received.module').then ( m => m.ReceivedPageModule)
       },
       {
         path: 'product-ledger',

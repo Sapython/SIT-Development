@@ -1,4 +1,4 @@
-export type UserData={
+export type UserData = {
     userId:string;
     displayName:string;
     email:string;
@@ -10,6 +10,21 @@ export type UserData={
     status:UserStatus;
     attendanceCount:number;
     attendanceDate:any;
+    nickName?:string;
+    currentAddress:string;
+    permanentAddress:string;
+    department:department;
+    designation:designation;
+    bloodGroup:bloodGroup;
+}
+export type bloodGroup={
+    bloodGroup:'A+'|'A-'|'B+'|'B-'|'AB+'|'AB-'|'O+'|'O-'|'Unknown';
+}
+export type department ={
+    department:'godown'|'office'
+}
+export type designation = {
+    designation:'godownInCharge'|'transportManager'|'unloadingSupervisor'|'loadingSupervisor'|'sapSeniorOperator'|'sapOperator'
 }
 export type UserStatus = {
     isOnline:boolean;
