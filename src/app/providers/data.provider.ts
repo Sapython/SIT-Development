@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { PageSetting } from '../structures/method.structure';
 import { UserData } from '../structures/user.structure';
 
@@ -15,7 +16,7 @@ export class DataProvider{
     public sits:any;
     public userData:UserData | undefined;
     public loggedIn:boolean = false;
-    public gettingUserData:boolean = false;
+    public gettingUserData = new Subject();;
     public userID:string | undefined;
     public verifyEmail:boolean | undefined;
     public reloadPage:boolean = false;

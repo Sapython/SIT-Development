@@ -115,6 +115,6 @@ export class UserDataService {
     return setDoc(this.userDoc,data);
   }
   getRandomImage():string{
-    return 'https://avatars.dicebear.com/api/gridy/' + (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)) + '.svg';
+    return "https://firebasestorage.googleapis.com/v0/b/sit-manager.appspot.com/o/users%2Fdefault%2Fuser.png?alt=media&token=f7502ba7-275f-40a8-92bd-7df725bc7786";
   }
 }

@@ -41,6 +41,9 @@ export class ReceivedLogComponent implements OnInit {
       console.log(sit.coordinatorId)
       this.databaseService.getUser(sit.coordinatorId).then((coordinator:any) => {
         this.coordinator = coordinator.data();
+        console.log(coordinator.data())
+      }).catch(err => {
+        console.log(err)
       })
       this.databaseService.getSit(this.sitID).then((mainSit:any) => {
         console.log("SIT:",mainSit.data())

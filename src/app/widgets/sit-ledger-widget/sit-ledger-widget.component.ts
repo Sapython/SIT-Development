@@ -57,7 +57,9 @@ export class SitLedgerWidgetComponent implements OnInit {
     });
     return await modal.present();
   }
-  ngOnInit() { }
+  ngOnInit() {
+    // console.log(this.allData);
+   }
   navigate(path:string){
     this.dataProvider.dataOne = this.allData.id;
     // alert(this.dataProvider.dataOne);

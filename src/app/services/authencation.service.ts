@@ -18,7 +18,7 @@ import {
   UserCredential,
   signInWithCredential,
 } from '@angular/fire/auth';
-import { EMPTY, Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AlertsAndNotificationsService } from './uiService/alerts-and-notifications.service';
 import { UserDataService } from './user-data.service';
@@ -45,6 +45,7 @@ import {
 import { Geolocation } from '@capacitor/geolocation';
 import { DatabaseService } from './database.service';
 import { httpsCallable, Functions, } from '@angular/fire/functions';
+import { signInWithRedirect } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -201,7 +202,8 @@ export class AuthencationService {
   public async signInWithGoogle() {
     this.dataProvider.pageSetting.blur = true;
     this.dataProvider.pageSetting.lastRedirect = '';
-    GoogleAuth.signIn()
+    if (this.platform.is('capacitor')){
+      GoogleAuth.signIn()
       .then((googleUser: any) => {
         const credential = GoogleAuthProvider.credential(
           googleUser.authentication.idToken,
@@ -247,6 +249,38 @@ export class AuthencationService {
         this.dataProvider.pageSetting.blur = false;
         this.alertify.presentToast(error.message, 'error', 5000, [], true, '');
       });
+    } else {
+      const gauth = new GoogleAuthProvider()
+      signInWithRedirect(this.auth,gauth).then((credentials:UserCredential)=>{
+        console.log("Credentials ",credentials);
+        getDoc(doc(this.firestore, 'users/' + credentials.user.uid)).then((userDocument:any)=>{
+          if (!userDocument.exists()) {
+            logEvent(this.analytics, 'Marked_Attendance');
+            if (credentials.user.phoneNumber == null) {
+              this.userData.setGoogleUserData(credentials.user, {
+                phoneNumber: '',
+              }).then(()=>{
+                this.router.navigate(['']);
+              });;
+            } else {
+              this.userData.setGoogleUserData(credentials.user, {
+                phoneNumber: credentials.user.phoneNumber || '',
+              }).then(()=>{
+                this.router.navigate(['']);
+              });
+            }
+          } else {
+            this.dataProvider.pageSetting.blur = false;
+            this.alertify.presentToast('Logged In.', 'info', 5000, [], true, '');
+            this.router.navigate(['']);
+          }
+        }).catch((error)=>{
+          console.log('ErrorCatched getting data',error);
+          this.dataProvider.pageSetting.blur = false;
+          this.alertify.presentToast(error.message, 'error', 5000, [], true, '');  ;
+        })
+      })
+    }
   }
   public async loginAnonymously() {
     let data = signInAnonymously(this.auth).then(
@@ -337,7 +371,6 @@ export class AuthencationService {
       user.subscribe(async (u: User) => {
         if (u) {
           this.dataProvider.loggedIn = true;
-          this.dataProvider.gettingUserData = true;
           // console.log('User is Logged In')
           // this.markAttendance(u.uid);
           this.userDoc = doc(this.firestore, 'users/' + u.uid);
@@ -354,6 +387,7 @@ export class AuthencationService {
               // console.log("Received new data",data)
               if (data.status) {
                 if (!this.allowedStatuses.includes(data.status.access)) {
+                  alert('You ('+data.userId+') have been '+data.status.access+' and will be signed out.');
                   this.logout();
                 }
               } else {
@@ -362,14 +396,16 @@ export class AuthencationService {
                 });
               }
               this.dataProvider.userData = data;
+              this.dataProvider.gettingUserData.next('completed')
               // this.setMissingFields();
-              this.dataProvider.gettingUserData = false;
               await Storage.set({
                 key: 'userData',
                 value: JSON.stringify(data),
               });
             }
           );
+        } else {
+          console.log('User is Logged Out')
         }
       });
     } else {

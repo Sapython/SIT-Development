@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminGuardGuard } from './guards/admin-guard.guard';
-import { AuthGuard } from './guards/auth.guard';
+import { LoggedInGuard } from './guards/loggedIn.guard';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { SignupComponent } from './signup/signup.component';
@@ -14,11 +14,13 @@ const routes: Routes = [
   },
   {
     path:'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate:[LoggedInGuard]
   },
   {
     path:'signup',
-    component: SignupComponent
+    component: SignupComponent,
+    canActivate:[LoggedInGuard]
   },
   {
     path:'verifyemail',

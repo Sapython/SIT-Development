@@ -1,6 +1,9 @@
 <app-header></app-header>
-
-<ion-content>
+<ion-item>
+  <ion-label>Table View</ion-label>
+  <ion-toggle color="primary" (ionChange)="setView($event)"></ion-toggle>
+</ion-item>
+<ion-content *ngIf="!tableView">
   <div class="container">
     <div class="pending-sit" *ngIf="pendingCount > 0">
       <ion-row class="ion-justify-content-between">
@@ -11,34 +14,21 @@
       </ion-row>
       <div [ngStyle]="{'display': openPending ? 'block' : 'none'}">
         <div *ngFor="let item of sitLedgers">
-          <app-sit-ledger-widget *ngIf="item.status==='pending'"
-              [bakery]="item.supplierName"
-              [suppCode]="item.supplierCode"
-              [dueDate]="item.sit[0].expectedDelivery"
-              [dispatchDate]="item.sit[0].dispatchDate"
-              [deliveryCode]="item.sit[0].deliveryCode"
-              [expectedDelivery]="item.sit[0].expectedDelivery"
-              [gateEntryDate]="item.sit[0].gateEntryDate"
-              [gateEntryNo]="item.sit[0].gateEntryNumber"
-              [mfgLocation]="item.sit[0].mfgLocation"
-              [productCode]="item.sit[0].productCode"
-              [productName]="item.sit[0].productName"
-              [quantity]="item.sit[0].quantity"
-              [recPlantDesc]="item.sit[0].recievePlantName"
-              [remarks]="item.status"
-              [suppPlant]="item.sit[0].supplyPlantCode"
-              [suppPlantDesc]="item.sit[0].supplyPlantName"
-              [storageLocation]="item.sit[0].storageLocation"
-              [transName]="item.sit[0].transporterName"
-              [vehicleNo]="item.sit[0].vehicleNo"
-              [status]="item.status"
-              [allData]="item"
-          ></app-sit-ledger-widget>
+          <app-sit-ledger-widget *ngIf="item.status==='pending'" [bakery]="item.supplierName"
+            [suppCode]="item.supplierCode" [dueDate]="item.sit[0].expectedDelivery"
+            [dispatchDate]="item.sit[0].dispatchDate" [deliveryCode]="item.sit[0].deliveryCode"
+            [expectedDelivery]="item.sit[0].expectedDelivery" [gateEntryDate]="item.sit[0].gateEntryDate"
+            [gateEntryNo]="item.sit[0].gateEntryNumber" [mfgLocation]="item.sit[0].mfgLocation"
+            [productCode]="item.sit[0].productCode" [productName]="item.sit[0].productName"
+            [quantity]="item.sit[0].quantity" [recPlantDesc]="item.sit[0].recievePlantName" [remarks]="item.status"
+            [suppPlant]="item.sit[0].supplyPlantCode" [suppPlantDesc]="item.sit[0].supplyPlantName"
+            [storageLocation]="item.sit[0].storageLocation" [transName]="item.sit[0].transporterName"
+            [vehicleNo]="item.sit[0].vehicleNo" [status]="item.status" [allData]="item"></app-sit-ledger-widget>
         </div>
         <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
       </div>
     </div>
-    <div class="pending-sit" *ngIf="recievdCount > 0">
+    <div class="pending-sit" *ngIf="receivedCount > 0">
       <ion-row class="ion-justify-content-between">
         <p>Received SIT</p>
         <ion-button expand="block" fill="clear" (click)="openReceived = !openReceived">
@@ -47,29 +37,16 @@
       </ion-row>
       <div [ngStyle]="{'display': openReceived ? 'block' : 'none'}">
         <div *ngFor="let item of sitLedgers">
-          <app-sit-ledger-widget *ngIf="item.status==='received'"
-              [bakery]="item.supplierName"
-              [suppCode]="item.supplierCode"
-              [dueDate]="item.sit[0].expectedDelivery"
-              [dispatchDate]="item.sit[0].dispatchDate"
-              [deliveryCode]="item.sit[0].deliveryCode"
-              [expectedDelivery]="item.sit[0].expectedDelivery"
-              [gateEntryDate]="item.sit[0].gateEntryDate"
-              [gateEntryNo]="item.sit[0].gateEntryNumber"
-              [mfgLocation]="item.sit[0].mfgLocation"
-              [productCode]="item.sit[0].productCode"
-              [productName]="item.sit[0].productName"
-              [quantity]="item.sit[0].quantity"
-              [recPlantDesc]="item.sit[0].recievePlantName"
-              [remarks]="item.status"
-              [suppPlant]="item.sit[0].supplyPlantCode"
-              [suppPlantDesc]="item.sit[0].supplyPlantName"
-              [storageLocation]="item.sit[0].storageLocation"
-              [transName]="item.sit[0].transporterName"
-              [vehicleNo]="item.sit[0].vehicleNo"
-              [status]="item.status"
-              [allData]="item"
-          ></app-sit-ledger-widget>
+          <app-sit-ledger-widget *ngIf="item.status==='received'" [bakery]="item.supplierName"
+            [suppCode]="item.supplierCode" [dueDate]="item.sit[0].expectedDelivery"
+            [dispatchDate]="item.sit[0].dispatchDate" [deliveryCode]="item.sit[0].deliveryCode"
+            [expectedDelivery]="item.sit[0].expectedDelivery" [gateEntryDate]="item.sit[0].gateEntryDate"
+            [gateEntryNo]="item.sit[0].gateEntryNumber" [mfgLocation]="item.sit[0].mfgLocation"
+            [productCode]="item.sit[0].productCode" [productName]="item.sit[0].productName"
+            [quantity]="item.sit[0].quantity" [recPlantDesc]="item.sit[0].recievePlantName" [remarks]="item.status"
+            [suppPlant]="item.sit[0].supplyPlantCode" [suppPlantDesc]="item.sit[0].supplyPlantName"
+            [storageLocation]="item.sit[0].storageLocation" [transName]="item.sit[0].transporterName"
+            [vehicleNo]="item.sit[0].vehicleNo" [status]="item.status" [allData]="item"></app-sit-ledger-widget>
         </div>
         <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
       </div>
@@ -83,32 +60,50 @@
       </ion-row>
       <div [ngStyle]="{'display': openUnloaded ? 'block' : 'none'}">
         <div *ngFor="let item of sitLedgers">
-          <app-sit-ledger-widget *ngIf="item.status==='unloaded'"
-              [bakery]="item.supplierName"
-              [suppCode]="item.supplierCode"
-              [dueDate]="item.sit[0].expectedDelivery"
-              [dispatchDate]="item.sit[0].dispatchDate"
-              [deliveryCode]="item.sit[0].deliveryCode"
-              [expectedDelivery]="item.sit[0].expectedDelivery"
-              [gateEntryDate]="item.sit[0].gateEntryDate"
-              [gateEntryNo]="item.sit[0].gateEntryNumber"
-              [mfgLocation]="item.sit[0].mfgLocation"
-              [productCode]="item.sit[0].productCode"
-              [productName]="item.sit[0].productName"
-              [quantity]="item.sit[0].quantity"
-              [recPlantDesc]="item.sit[0].recievePlantName"
-              [remarks]="item.status"
-              [suppPlant]="item.sit[0].supplyPlantCode"
-              [suppPlantDesc]="item.sit[0].supplyPlantName"
-              [storageLocation]="item.sit[0].storageLocation"
-              [transName]="item.sit[0].transporterName"
-              [vehicleNo]="item.sit[0].vehicleNo"
-              [status]="item.status"
-              [allData]="item"
-          ></app-sit-ledger-widget>
+          <app-sit-ledger-widget *ngIf="item.status==='unloaded'" [bakery]="item.supplierName"
+            [suppCode]="item.supplierCode" [dueDate]="item.sit[0].expectedDelivery"
+            [dispatchDate]="item.sit[0].dispatchDate" [deliveryCode]="item.sit[0].deliveryCode"
+            [expectedDelivery]="item.sit[0].expectedDelivery" [gateEntryDate]="item.sit[0].gateEntryDate"
+            [gateEntryNo]="item.sit[0].gateEntryNumber" [mfgLocation]="item.sit[0].mfgLocation"
+            [productCode]="item.sit[0].productCode" [productName]="item.sit[0].productName"
+            [quantity]="item.sit[0].quantity" [recPlantDesc]="item.sit[0].recievePlantName" [remarks]="item.status"
+            [suppPlant]="item.sit[0].supplyPlantCode" [suppPlantDesc]="item.sit[0].supplyPlantName"
+            [storageLocation]="item.sit[0].storageLocation" [transName]="item.sit[0].transporterName"
+            [vehicleNo]="item.sit[0].vehicleNo" [status]="item.status" [allData]="item"></app-sit-ledger-widget>
         </div>
         <img src="assets/UI/Images/empty.svg" *ngIf="!sitLedgers" alt="Nothing In here" class="noData">
       </div>
     </div>
   </div>
+</ion-content>
+<ion-item *ngIf="tableView">
+  <ion-searchbar placeholder="Search SIT" inputmode="search" type="text" (ionChange)="filterSit($event)" [debounce]="250" showCancelButton="focus" #searchBar></ion-searchbar>
+  <ion-icon name="ellipsis-vertical" (click)="openFilters()"></ion-icon>
+</ion-item>
+<ion-content *ngIf="tableView">
+  <ion-list>
+    <ion-item *ngIf="searchTerm!=''">
+      <ion-label color="success">Filtered Results</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let sit of searchTerm!='' ? filteredSitLedgers :sitLedgers" button detail (click)="openButtonDialog(sit,$event)">
+      <ion-col size="12">
+        <ion-row>
+          <ion-label class="title">{{trimText(sit.supplierName)}}</ion-label>
+          <ion-chip color="danger" mode="ios" outline="true" *ngIf="sit.status==='pending'">
+            <ion-label>Pending</ion-label>
+          </ion-chip>
+          <ion-chip color="primary" mode="ios" outline="true" *ngIf="sit.status==='received'">
+            <ion-label>Received</ion-label>
+          </ion-chip>
+          <ion-chip color="success" mode="ios" outline="true" *ngIf="sit.status==='unloaded'">
+            <ion-label>Unloaded</ion-label>
+          </ion-chip>
+        </ion-row>
+        <ion-row>
+          <ion-label><ion-icon color="primary" name="calendar"></ion-icon>&nbsp;&nbsp;<ion-text color="tertiary">{{getDate(sit.uploadTime) | date}}</ion-text></ion-label>
+          <ion-label><ion-icon color="primary" name="car"></ion-icon>&nbsp;&nbsp;<ion-text color="tertiary">{{sit.sit[0].vehicleNo}}</ion-text></ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-item>
+  </ion-list>
 </ion-content>

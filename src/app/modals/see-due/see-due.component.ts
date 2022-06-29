@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { LabourWork } from 'src/app/main/labour-ledger/labour-ledger.page';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -11,30 +12,13 @@ export class SeeDueComponent implements OnInit {
   @Input() userId:string;
   @Input() amount: number;
   @Input() sitName: string;
+  @Input() workings:LabourWork[] = [];
   constructor(private modalController: ModalController,private databaseService:DatabaseService) { }
-  workings:any[] = [];
-  foundWorking:boolean = false;
-  ngOnInit() {
-    this.databaseService.getAllSit().then((data:any)=>{
-      data.forEach((sit:any) => {
-        this.databaseService.getUnloadedSit(sit.id).then((unloaded:any)=>{
-          if(unloaded.data()){
-            unloaded.data().labourCharges.forEach((labourCharge:any)=>{
-              if(labourCharge.id===this.userId){
-                this.foundWorking = true;
-                console.log(sit.data())
-                labourCharge.supplierCode = sit.data().supplierCode;
-                labourCharge.supplierName = sit.data().supplierName;
-                labourCharge.sitId = sit.id;
-                this.workings.push(labourCharge)
-              }
-            })
-          }
-        })
-      })
-    })
-  }
+  foundWorking:boolean = true;
   closeModal() {
     this.modalController.dismiss();
+  }
+  ngOnInit(): void {
+      console.log("WORKINGS",this.workings);
   }
 }

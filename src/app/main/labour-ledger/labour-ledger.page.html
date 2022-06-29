@@ -2,15 +2,25 @@
 <ion-content>
   <div class="container">
     <p>Labour Ledger</p>
+    <ion-button (click)="calculate()" expand="block" fill="solid">
+      Calculate
+    </ion-button>
+    <ng-container *ngIf="labourLedger.length > 0">
+      <div class="calcBanner" *ngIf="getBanner.date" >
+        <h6><ion-icon name="warning"></ion-icon>&nbsp;&nbsp;&nbsp; Please re-calculate data the last date of calculation was {{getBanner.date | date}}</h6>
+      </div>
+    </ng-container>
     <div class="box">
       <app-labour-ledger-widget
-        *ngFor="let item of labourledger"
+        *ngFor="let item of labourLedger"
         [name]="item.name"
         [uid]="item.id"
-        [amountPaid]="item.charge"
+        [amountPaid]="item.value" 
+        [timeTaken]="item.timeTaken"
         [userImage]="item.image"
+        [workings]="item.workings"
       ></app-labour-ledger-widget>
-      <img src="assets/UI/Images/empty.svg" *ngIf="labourledger.length==0" alt="Nothing In here" class="noData">
+      <img src="assets/UI/Images/empty.svg" *ngIf="labourLedger.length==0" alt="Nothing In here" class="noData">
     </div>
   </div>
 </ion-content>

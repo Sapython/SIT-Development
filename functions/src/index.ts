@@ -5,6 +5,8 @@ admin.initializeApp();
 const nodeFetch = require('node-fetch');
 const cors = require('cors');
 const allowedOrigins = [
+  'https://sit-manager.web.app',
+  'https://sit-manager.firebaseapp.com',
   'capacitor://localhost',
   'ionic://localhost',
   'http://localhost',
@@ -105,6 +107,9 @@ exports.createUser = functions.https.onRequest(
     });
   }
 );
+export const removeUser = functions.firestore.document("/users/{uid}").onDelete((snapshot:any, context:any) => {
+  return admin.auth().deleteUser(context.params.uid);
+});
 // exports.createUser = functions.https.onCall((data:any,context:any)=>{
 //   if (!data.email) {
 //     // Throwing an HttpsError so that the client gets the error details.

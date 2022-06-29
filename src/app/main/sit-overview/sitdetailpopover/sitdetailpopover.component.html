@@ -1,0 +1,13 @@
+<ion-content class="ion-padding">
+  <h2>{{allData.supplierName}}</h2>
+  <ion-button expand="block" color="primary" (click)="navigate('received')" *ngIf="status === 'pending'">
+    Move To Received
+  </ion-button>
+  <ion-button expand="block" color="primary" (click)="navigate('unloaded')" *ngIf="status === 'received'">
+    Move To Unloaded
+  </ion-button>
+  <ion-button expand="block" *ngIf="status === 'received' || status === 'unloaded'" (click)="receivedLog()">See Received
+    Log
+  </ion-button>
+  <ion-button expand="block" *ngIf="status === 'unloaded'" (click)="unloadedLog()">See Unloaded Log</ion-button>
+</ion-content>

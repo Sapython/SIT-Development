@@ -40,7 +40,7 @@
           <ion-select-option [value]="{id:worker.userId,name:worker.displayName,image:worker.photoURL}" *ngFor="let worker of workers">
             <ion-label>
               <ion-avatar>
-                <img [src]="worker.photoURL" style="width:20px;height:20px;border-radius: 50%;" referrerpolicy="no-referrer" />
+                <img [src]="worker.photoURL" style="width:20px;height:20px;border-radius: 50%;" referrerPolicy="no-referrer" />
               </ion-avatar>
               {{worker.displayName}}
             </ion-label>
@@ -54,7 +54,7 @@
         <ion-card *ngFor="let worker of workersList" class="ion-padding">
           <ion-row>
             <ion-avatar style="--border-radius:30px;">
-              <img [src]="worker.image" referrerpolicy="no-referrer"  />
+              <img [src]="worker.image" referrerPolicy="no-referrer"  />
             </ion-avatar>
             <ion-col>
               <ion-label><strong>Name:</strong> {{worker.name}}</ion-label>
@@ -65,6 +65,14 @@
         </ion-card>
         <img src="assets/UI/Images/empty.svg" *ngIf="!workersList" alt="Nothing In here" class="noData">
       </form>
+      <hr>
+      <ion-text color="primary">
+        <h2>Charges</h2>
+      </ion-text>
+      <ion-item>
+        <ion-label>Dala Charge (INR)</ion-label>
+        <ion-input [value]="0" min="0" type="number" formControlName="dalaCharge" ></ion-input>
+      </ion-item>
       <hr>
       <ion-text color="primary">
         <h2>Damages & Expenses</h2>
@@ -144,7 +152,7 @@
         <ion-select-option [value]="user.userId" *ngFor="let user of superVisors">
           <ion-item>
             <ion-avatar slot="start">
-              <img [src]="user.photoURL" referrerpolicy="no-referrer"  />
+              <img [src]="user.photoURL" referrerPolicy="no-referrer"  />
             </ion-avatar>
             <ion-label>{{user.displayName}}</ion-label>
           </ion-item>

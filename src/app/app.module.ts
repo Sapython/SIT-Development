@@ -30,7 +30,7 @@ import { DatabaseService } from './services/database.service';
 import { UserDataService } from './services/user-data.service';
 import { AuthencationService } from './services/authencation.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from './guards/auth.guard';
+import { LoggedInGuard } from './guards/loggedIn.guard';
 import { ComponentModule } from './component/component.module';
 import { BackDirective } from './directives/back.directive';
 import { BaseComponentsModule } from './base-components/base-components.module';
@@ -82,7 +82,7 @@ import { connectFirestoreEmulator } from 'firebase/firestore';
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         ScreenTrackingService,
         UserTrackingService,
-        AuthGuard,
+        LoggedInGuard,
         AnalyticsService
     ],
     bootstrap: [AppComponent]

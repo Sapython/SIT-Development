@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { LabourWork } from 'src/app/main/labour-ledger/labour-ledger.page';
 import { SeeDueComponent } from 'src/app/modals/see-due/see-due.component';
 
 @Component({
@@ -12,6 +13,8 @@ export class LabourLedgerWidgetComponent implements OnInit {
   @Input() uid:string = "123XYZ0";
   @Input() amountPaid:number = 2324;
   @Input() userImage:string = '';
+  @Input() timeTaken:number = 0;
+  @Input() workings:LabourWork[] = [];
   constructor(public modalController: ModalController) { }
 
   ngOnInit() {
@@ -25,6 +28,7 @@ export class LabourLedgerWidgetComponent implements OnInit {
         userId:this.uid,
         amount: this.amountPaid,
         sitName: this.name,
+        workings: this.workings
       }
     });
     return await modal.present();

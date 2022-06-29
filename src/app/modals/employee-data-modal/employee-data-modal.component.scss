@@ -1,0 +1,11 @@
+ion-content{
+    img{
+        width:100px;
+        height:100px;
+        border-radius:50%;
+        object-fit: cover;
+        position: relative;
+        left:50%;
+        transform: translateX(-50%);
+    }
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SIT } from 'src/app/structures/method.structure';
 
@@ -7,11 +8,12 @@ import { SIT } from 'src/app/structures/method.structure';
   templateUrl: './unloaded-sit.page.html',
   styleUrls: ['./unloaded-sit.page.scss'],
 })
-export class UnloadedSitPage implements OnInit {
+export class UnloadedSitPage implements OnInit, OnDestroy {
   sitLedgers: SIT[] = [];
   constructor(private databaseService: DatabaseService) { }
+  sitsSubscription:Subscription = Subscription.EMPTY;
   ngOnInit() {
-    this.databaseService.getSitLedgers().subscribe((data:any)=>{
+    this.sitsSubscription = this.databaseService.getSitLedgers().subscribe((data:any)=>{
       let sits = [];
       data.forEach((element:any) => {
         let filteredData = element.data();
@@ -20,5 +22,8 @@ export class UnloadedSitPage implements OnInit {
       });
       this.sitLedgers = sits;
     })
+  }
+  ngOnDestroy(): void {
+    this.sitsSubscription.unsubscribe();
   }
 }

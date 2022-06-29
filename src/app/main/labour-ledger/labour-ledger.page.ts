@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataProvider } from 'src/app/providers/data.provider';
 import { DatabaseService } from 'src/app/services/database.service';
+import { AlertsAndNotificationsService } from 'src/app/services/uiService/alerts-and-notifications.service';
 import { LabourLedgerData } from 'src/app/structures/method.structure';
 
 @Component({
@@ -8,65 +10,125 @@ import { LabourLedgerData } from 'src/app/structures/method.structure';
   styleUrls: ['./labour-ledger.page.scss'],
 })
 export class LabourLedgerPage implements OnInit {
-  labourledger: any[] = []
+  labourLedger: LabourLedger[] = []
   data:any = {};
-  constructor(private databaseService:DatabaseService) { }
+  calculated:boolean = false;
+  constructor(private databaseService:DatabaseService,private dataProvider:DataProvider,private alertify:AlertsAndNotificationsService) { }
   ngOnInit() {
-    this.databaseService.getAllSit().then((ledger:any) => {
-      this.labourledger = [];
-      ledger.forEach((ledgerData:any) => {
-        // console.log(ledgerData.data())
-        this.databaseService.getUnloadedSit(ledgerData.id).then((unloaded:any) => {
-          if(unloaded.data()){
-            unloaded.data().labourCharges.forEach((labour:any) => {
-              if(this.labourledger.length>0){
-                this.labourledger.forEach((ledgerData:any) => {
-                  
-                  if(ledgerData.id===labour.id){
-                    console.log(labour.id, ledgerData.id, labour.id == ledgerData.id)
-                    this.labourledger[this.labourledger.indexOf(ledgerData)].charge+=labour.charge;
-                    // ledgerData.labourCharges.push(labour);
-                  } else {
-                    console.log(labour.id, ledgerData.id, labour.id == ledgerData.id)
-                    this.labourledger.push({
-                      charge: labour.value,
+    this.databaseService.getLabourLedger().then((labourLedger:any) => {
+      this.labourLedger = [];
+      labourLedger.forEach((element:any) => {
+        this.labourLedger.push(element.data());
+      });
+    })
+  }
+  async calculate(){
+    this.dataProvider.pageSetting.blur = true;
+    await this.databaseService.getAllSit().then((ledger:any) => {
+      this.labourLedger = [];
+      var doneCounter = 0;
+      var totalUnloaded = 0;
+      ledger.forEach(async (ledgerData:any) => {
+        // console.log(ledgerData.data().status)
+        if(ledgerData.data().status==='unloaded'){
+          totalUnloaded++;
+          await this.databaseService.getUnloadedSit(ledgerData.id).then((unloaded:any) => {
+            if(unloaded.data()){
+              // console.log(unloaded.data().labourCharges)
+              unloaded.data().labourCharges.forEach((labour:any) => {
+                // console.log(labour)
+                if (this.labourLedger.length>0){
+                  let found:boolean = false;
+                  this.labourLedger.forEach((labourData:any,index:number) => {
+                    if(labourData.id===labour.id){
+                      this.labourLedger[index].value+=labour.value;
+                      this.labourLedger[index].timeTaken+=labour.timeTaken;
+                      labour.supplierCode = ledgerData.data().supplierCode;
+                      labour.supplierName = ledgerData.data().supplierName;
+                      labour.sitId = ledgerData.id;
+                      console.log(labourData)
+                      this.labourLedger[index].workings.push(labour)
+                      found = true;
+                    }
+                    // console.log(this.labourLedger,index)
+                  })
+                  if(!found){
+                    this.labourLedger.push({
+                      value: labour.value,
                       id: labour.id,
                       name: labour.name,
                       image: labour.image,
+                      timeTaken: labour.timeTaken,
+                      workings:[]
                     });
                   }
-                })
-              } else {
-                this.labourledger.push({
-                  charge: labour.value,
-                  id: labour.id,
-                  name: labour.name,
-                  image: labour.image,
+                } else {
+                  this.labourLedger.push({
+                    value: labour.value,
+                    id: labour.id,
+                    name: labour.name,
+                    image: labour.image,
+                    timeTaken: labour.timeTaken,
+                    workings:[]
+                  });
+                }
+              })
+            }
+          }).finally(()=>{
+            doneCounter++;
+            console.log(doneCounter,totalUnloaded,doneCounter===totalUnloaded)
+            if(doneCounter===totalUnloaded){
+              this.calculated = true;
+              alert('Calculated')
+              console.log(this.labourLedger)
+              this.labourLedger.forEach((labourData:LabourLedger) => {
+                this.databaseService.cacheLabourLedger(labourData).then(()=>{
+                  this.alertify.presentToast('Labour Ledger Calculated');
+                }).catch((error:any)=>{
+                  this.alertify.presentToast(error.message,'error');
+                }).finally(()=>{
+                  this.dataProvider.pageSetting.blur = false;
                 });
-              }
-              // if(this.data[labour.id]){
-              //   this.data[labour.id]={
-              //     charge: labour.value+this.data[labour.id].charge,
-              //     id: labour.id,
-              //     name: labour.name,
-              //     image: labour.image,
-              //   };
-              // } else {
-              //   this.data[labour.id] = {
-              //     charge: labour.value,
-              //     id: labour.id,
-              //     name: labour.name,
-              //     image: labour.image,
-              //   }
-              // }
-            })
-          }
-        })
+              })
+            }
+          })
+        }
       });
-      // this.labourledger = Object.keys(this.data).map((key) => {
-      //   return this.data[key];
-      // });
-      console.log(this.labourledger)
     })
   }
+  get getBanner():any{
+    let date = this.labourLedger[0].lastCalculation.toDate()
+    date.setHours(0,0,0)
+    let todayDate = new Date()
+    todayDate.setHours(0,0,0)
+    // console.log(date,todayDate,date < todayDate)
+    if (date < todayDate){
+      return {
+        date:this.labourLedger[0].lastCalculation.toDate()
+      }
+    } else {
+      return {
+        date:false
+      }
+    }
+  }
+}
+export type LabourLedger={
+  id:string,
+  image:string,
+  name:string,
+  timeTaken:number,
+  value:number,
+  lastCalculation?:any,
+  workings:LabourWork[]
+}
+export type LabourWork = {
+  id:string;
+  image:string;
+  name:string;
+  sitId:string;
+  supplierCode:string;
+  supplierName:string;
+  timeTaken:number;
+  value:number;
 }

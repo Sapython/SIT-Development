@@ -24,3 +24,17 @@
     border: 2px solid var(--ion-color-primary);
     padding: 10px;
 }
+div.calcBanner{
+    display: flex;
+    background: rgb(255, 133, 126);
+    border-radius: 10px;
+    border: red;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 3px 0px 30px rgba(0,0,0,0.2);
+    color:black;
+    ion-icon{
+        font-size: 30px;
+        color: white;
+    }
+}

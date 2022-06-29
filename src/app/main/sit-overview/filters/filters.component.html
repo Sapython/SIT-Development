@@ -1,0 +1,42 @@
+<ion-content class="ion-padding">
+  <form [formGroup]="filtersSettingsForm" (ngSubmit)="emit()">
+    <ion-list>
+      <ion-text>
+          <h2>Sort</h2>
+      </ion-text>
+      <ion-item>
+        <ion-label>Sort By</ion-label>
+        <ion-select [(ngModel)]="filtersSettings.sortBy" formControlName="sortBy" multiple="false" placeholder="Select Sorting Method">
+          <ion-select-option value="date">Date</ion-select-option>
+          <ion-select-option value="vehicleNo">Vehicle No</ion-select-option>
+          <ion-select-option value="supplier">Supplier</ion-select-option>
+          <ion-select-option value="status">Status</ion-select-option>
+          <ion-select-option value="plant">Plant</ion-select-option>
+          <ion-select-option value="transporter">Transporter</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="primary">
+        <h2>Search Settings</h2>
+      </ion-text>
+      <ion-item>
+        <ion-label>Intensity</ion-label>
+        <ion-range formControlName="intensity" [min]="0.0" [max]="1.0" [step]="0.1"  [(ngModel)]="filtersSettings.intensity" [pin]="true" [pinFormatter]="pinFormatter"></ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label>Case Insensitive</ion-label>
+        <ion-toggle formControlName="caseSensitive" [(ngModel)]="filtersSettings.caseSensitive"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Match Char Length</ion-label>
+        <ion-range [ticks]="true" [snaps]="true" max="6" [min]="0" [pin]="true" formControlName="matchCharLength" [(ngModel)]="filtersSettings.matchCharLength"></ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sort</ion-label>
+        <ion-toggle formControlName="sort" [(ngModel)]="filtersSettings.sort"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" expand="block">
+      Save
+    </ion-button>
+  </form>
+</ion-content>

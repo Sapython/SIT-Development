@@ -16,6 +16,7 @@ import {
   getDoc,
   getDocs,
   where,
+  collectionChanges,
 } from '@angular/fire/firestore';
 import { query } from 'firebase/firestore';
 import {
@@ -25,7 +26,7 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { DataProvider } from '../providers/data.provider';
-import { ContactRequest } from '../structures/user.structure';
+import { ContactRequest, UserData } from '../structures/user.structure';
 import { AuthencationService } from './authencation.service';
 import { AlertsAndNotificationsService } from './uiService/alerts-and-notifications.service';
 import {
@@ -217,14 +218,20 @@ export class AdminDatabaseService {
     this.checkAdmin();
     return getDocs(collection(this.fs, 'users'));
   }
+  getUsersSubscription(){
+    this.checkAdmin();
+    return collectionData(collection(this.fs,'users'))
+  }
   userAction(value: 'remove' | 'block' | 'reset' | 'none', userId: string) {
     this.checkAdmin();
     if (value === 'remove') {
       this.confirmChange();
       logEvent(this.analytics, 'admin_remove_user');
-      return updateDoc(doc(this.fs, 'users/' + userId), {
-        status: { access: 'deleted' },
-      });
+      if (userId !== this.dataProvider.userData?.userId) {
+        return deleteDoc(doc(this.fs, 'users/' + userId));
+      } else {
+        return Promise.reject('You cannot remove yourself');
+      }
     } else if (value === 'block') {
       this.confirmChange();
       logEvent(this.analytics, 'admin_block_user');
@@ -234,12 +241,21 @@ export class AdminDatabaseService {
     } else if (value === 'reset') {
       this.confirmChange();
       logEvent(this.analytics, 'admin_reset_user');
-      return updateDoc(doc(this.fs, 'users/' + userId), {
+      const resetUserData:UserData | any = {
         attendanceCount: 0,
-        attendanceDate: new Date(),
-      });
+        attendanceDate: '',
+        bloodGroup:{bloodGroup:'Unknown'},
+        currentAddress: '',
+        department:{department:'godown'},
+        designation:{designation:'unloadingSupervisor'},
+        permanentAddress:'',
+        photoURL:'',
+        status:{access:'inactive',isOnline:false},
+        access:{access:'guest'},
+      }
+      return updateDoc(doc(this.fs, 'users/' + userId), resetUserData);
     } else {
-      return;
+      return Promise.reject('Invalid action');
     }
   }
   // Manage Users ends

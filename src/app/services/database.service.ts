@@ -24,6 +24,8 @@ import { ContactRequest } from '../structures/user.structure';
 import { AuthencationService } from './authencation.service';
 import { Analytics, logEvent,setCurrentScreen, setUserProperties, setUserId } from '@angular/fire/analytics';
 import { AlertsAndNotificationsService } from './uiService/alerts-and-notifications.service';
+import { editableFields } from '../main/account-page/account-page.page';
+import { LabourLedger } from '../main/labour-ledger/labour-ledger.page';
 
 @Injectable({
   providedIn: 'root',
@@ -121,6 +123,12 @@ export class DatabaseService {
     return addDoc(collection(this.fs, 'logs'), data);
   }
   // SIt services starts
+  cacheLabourLedger(labourLedger:LabourLedger){
+    return setDoc(doc(this.fs,'labourLedger/'+labourLedger.id),{...labourLedger,lastCalculation:new Date()},{merge:true});
+  }
+  getLabourLedger(){
+    return getDocs(collection(this.fs, 'labourLedger'));
+  }
   getSitLedgers() {
     logEvent(this.analytics,'Get_all_data');
     return collectionSnapshots(collection(this.fs, 'stocks'));
@@ -139,7 +147,7 @@ export class DatabaseService {
   }
   getEmployeesSubscription() {
     logEvent(this.analytics,'Get_all_employees');
-    return collectionSnapshots(query(collection(this.fs, 'users'),where('access.access', 'in', ['worker','supervisor'])));
+    return collectionSnapshots(query(collection(this.fs, 'users'),where('access.access', 'in', ['worker','supervisor','admin'])));
   }
   getSupervisor() {
     logEvent(this.analytics,'Get_all_supervisor');
@@ -184,6 +192,22 @@ export class DatabaseService {
   saveUserData(name:string,email:string,phoneNumber:string,uid){
     logEvent(this.analytics,'Saved_New_User_Data',{userId:uid});
     updateDoc(doc(this.fs, 'users/'+uid),{name:name,email:email,phoneNumber:phoneNumber})
+  }
+  updateUserImage(url:string,uid:string){
+    logEvent(this.analytics,'Updated_User_Image',{userId:uid});
+    return updateDoc(doc(this.fs, 'users/'+uid),{photoURL:url})
+  }
+  updateUserData(data:editableFields,uid){
+    logEvent(this.analytics,'Updated_User_Data',{userId:uid});
+    // for (const key in data) {
+    //   if (Object.prototype.hasOwnProperty.call(data, key)) {
+    //     const element = data[key];
+    //     this.setSpecificUserData(key,element,uid).then(()=>{
+    //       console.log('updated',key,element);
+    //     });
+    //   }
+    // }
+    return updateDoc(doc(this.fs, 'users/'+uid),data);
   }
   // SIT services ends
   // User services starts

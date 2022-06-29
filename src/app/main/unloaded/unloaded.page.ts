@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ import {
   templateUrl: './unloaded.page.html',
   styleUrls: ['./unloaded.page.scss'],
 })
-export class UnloadedPage implements OnInit {
+export class UnloadedPage implements OnInit, OnDestroy {
   sitId: string;
   workersList: any[] = [];
   workersControls: any[] = [];
@@ -34,6 +34,7 @@ export class UnloadedPage implements OnInit {
   vehicleNumber: FormControl = new FormControl('', [Validators.required]);
   gateNumber: FormControl = new FormControl('', [Validators.required]);
   workingWorkers: FormControl = new FormControl('', [Validators.required]);
+  dalaCharge:FormControl = new FormControl('', [Validators.min(0)]);
   vehicleDamage: FormControl = new FormControl('0', [
     Validators.required,
     Validators.min(0),
@@ -79,6 +80,7 @@ export class UnloadedPage implements OnInit {
   sitData: any;
   receivedSitData: any;
   images: any = {};
+  paramsSubscription:Subscription = Subscription.EMPTY;
   constructor(
     private http: HttpClient,
     private analytics: Analytics,
@@ -104,7 +106,7 @@ export class UnloadedPage implements OnInit {
       keptByOtherDamage: this.keptByOtherDamage,
       superVisorControl: this.superVisorControl,
     });
-    this.activatedRouteSnapshot.queryParams.subscribe((data: any) => {
+    this.paramsSubscription = this.activatedRouteSnapshot.queryParams.subscribe((data: any) => {
       this.sitId = data.id;
     });
   }
@@ -189,6 +191,7 @@ export class UnloadedPage implements OnInit {
   }
   ngOnDestroy(): void {
     this.recognizerSubscription.unsubscribe();
+    this.paramsSubscription.unsubscribe();
   }
   async setAsUnloaded() {
     console.log(this.unloadedForm.value);

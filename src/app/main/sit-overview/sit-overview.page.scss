@@ -28,13 +28,25 @@
     border: 2px solid lightgray;
     margin-bottom: 20px;
 }
-ion-row {
-    width:90vw;
-}
 hr{
     border: 2px grey solid;
     height:0px;
 }
 p{
     margin:10px;
+}
+ion-col[size="12"]{
+    ion-row{
+        justify-content: space-between;
+        align-items: center;
+        ion-label.title{
+            font-weight: 700;
+            color:grey;
+        }
+    }
+
+}
+
+ion-text[color="tertiary"]{
+    font-size: 15px;
 }

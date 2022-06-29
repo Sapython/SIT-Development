@@ -22,9 +22,9 @@
             <ion-menu-toggle auto-hide="false" class="option" *ngIf="dataProvider.userData?.access.access==='admin'">
               <ion-item routerDirection="root"  routerLink="admin" detail="false">Admin Panel</ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" class="option" *ngIf="dataProvider.userData?.access.access==='admin'">
+            <!-- <ion-menu-toggle auto-hide="false" class="option" *ngIf="dataProvider.userData?.access.access==='admin'">
               <ion-item detail="false" button (click)="authService.markAttendance(dataProvider.userData?.userId)">Check Attendance</ion-item>
-            </ion-menu-toggle>
+            </ion-menu-toggle> -->
           </ion-list>
           <ion-button color="primary" id="logout-button" (click)="logOut()">Logout <ion-icon slot="end" name="person"></ion-icon>
           </ion-button>

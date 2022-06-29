@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SIT, sitLedgerData } from 'src/app/structures/method.structure';
 
@@ -7,10 +8,14 @@ import { SIT, sitLedgerData } from 'src/app/structures/method.structure';
   templateUrl: './received-sit.page.html',
   styleUrls: ['./received-sit.page.scss'],
 })
-export class ReceivedSitPage implements OnInit {
+export class ReceivedSitPage implements OnInit, OnDestroy {
   items = [1, 2, 3];
   constructor(private databaseService: DatabaseService) { }
   sitLedgers: SIT[] = [];
+  employeesSubscription:Subscription = Subscription.EMPTY;
+  ngOnDestroy(){
+    this.employeesSubscription.unsubscribe();
+  }
   ngOnInit() {
     this.databaseService.getSitLedgers().subscribe((data:any)=>{
       let sits = [];

@@ -28,17 +28,29 @@ export class UserInfoComponent implements OnInit {
   }
   removeUser(){
     if(confirm('Are you sure you want to remove this user?')){
-      this.db.userAction('remove',this.user.userId);
+      this.db.userAction('remove',this.user.userId).then(()=>{
+        this.alertify.presentToast('User removed','info',2000);
+      }).catch((error)=>{
+        this.alertify.presentToast(error.error.message || error.message || error,'error',2000);
+      });
     }
   }
   blockUser(){
     if(confirm('Are you sure you want to block this user?')){
-      this.db.userAction('block',this.user.userId);
+      this.db.userAction('block',this.user.userId).then(()=>{
+        this.alertify.presentToast('User blocked','info',2000);
+      }).catch((error)=>{
+        this.alertify.presentToast(error.error.message || error.message || error,'error',2000);
+      });
     }
   }
   resetUser(){
     if(confirm('Are you sure you want to reset this user?')){
-      this.db.userAction('reset',this.user.userId);
+      this.db.userAction('reset',this.user.userId).then(()=>{
+        this.alertify.presentToast('User is reset','info',2000);
+      }).catch((error)=>{
+        this.alertify.presentToast(error.error.message || error.message || error,'error',2000);
+      });
     }
   }
 

@@ -7,8 +7,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <img [src]="user?.photoURL"  referrerpolicy="no-referrer" >
-  <ion-button *ngIf="!isPresent(user?.attendanceDate)" (click)="markAttendance(user?.userId)" expand="block" fill="solid">Mark Attendance</ion-button>
+  <img [src]="user?.photoURL"  referrerPolicy="no-referrer" >
+  <ion-button *ngIf="!isPresent(user?.attendanceDate) && !markedAttendance && !marking" (click)="markAttendance(user?.userId)" expand="block" fill="solid">Mark Attendance</ion-button>
   <ion-list>
     <ion-item>
       <ion-label color="primary">Name</ion-label>

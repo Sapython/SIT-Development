@@ -1,12 +1,14 @@
-<ion-item>
+<ion-item detail (click)="seedue()">
   <ion-avatar slot="start">
-    <img [src]="userImage"  referrerpolicy="no-referrer" />
+    <img [src]="userImage"  referrerPolicy="no-referrer" />
   </ion-avatar>
   <div>
     <p class="heading">{{name}}</p>
+    <ion-text>
+      <p><strong>Time Taken:</strong>&nbsp;{{timeTaken}} Mins</p>
+    </ion-text>
     <ion-text color="success">
       <p><strong>Paid:</strong>&#8377;{{amountPaid}}</p>
     </ion-text>
   </div>
-  <button (click)="seedue()">See Due</button>
 </ion-item>

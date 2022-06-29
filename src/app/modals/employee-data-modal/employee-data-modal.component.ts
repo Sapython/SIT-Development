@@ -10,15 +10,27 @@ import { UserAccess, UserData } from 'src/app/structures/user.structure';
   styleUrls: ['./employee-data-modal.component.scss'],
 })
 export class EmployeeDataModalComponent implements OnInit {
-
+  markedAttendance:boolean = false;
+  marking:boolean = false;
   @Input() user:UserData;
   constructor(public modalController:ModalController,private alertify:AlertsAndNotificationsService,private dbService:DatabaseService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.markedAttendance = this.isPresent(this.user?.attendanceDate)
+  }
   markAttendance(userId:string){
     console.log(userId)
-    this.dbService.setSpecificUserData('attendanceDate',new Date(),userId).then(()=>{
+    this.marking = true;
+    this.dbService.markAttendance(userId).then(()=>{
+      this.markedAttendance = true;
+      this.user.attendanceCount++;
+      this.user.attendanceDate = new Date();
       this.alertify.presentToast('Attendance Marked');
+    }).catch((err)=>
+    {
+      this.alertify.presentToast(err)
+    }).finally(()=>{
+      this.marking = false;
     })
   }
   deleteUser(userId:string){
@@ -28,7 +40,11 @@ export class EmployeeDataModalComponent implements OnInit {
     console.log(userId)
   }
   isPresent(date:any){
-    const dayA = date.toDate();
+    if (!(date instanceof Date)){
+      var dayA:any = date.toDate();
+    } else {
+      var dayA:any = date;
+    }
     const dayB = new Date();
     return (dayA.toDateString() === dayB.toDateString())
   }

@@ -4,14 +4,14 @@
   <div class="container">
     <p class="heading">Move to Received</p>
     <form class="box" [formGroup]="receivedForm" (ngSubmit)="receivedSit()">
-      <button (click)="takePicture()" class="camera">
+      <button type="button" (click)="takePicture()" class="camera">
         <ion-icon name="aperture-outline"></ion-icon>
       </button>
       <div>
         <input type="text" placeholder="Vehicle Number" formControlName="vehicleNumber">
-        <ion-button (click)="verifyLicensePlate()" fill="clear" type="button">
+        <!-- <ion-button (click)="verifyLicensePlate()" fill="clear" type="button">
           <ion-icon name="checkmark-done-outline"></ion-icon>
-        </ion-button>
+        </ion-button> -->
       </div>
       <input type="text" placeholder="Vehicle type" formControlName="vehicleType">
       <!-- <div class="recognition" *ngIf="recVehicleNumber!='' && recVehicleType!=''">
@@ -30,8 +30,8 @@
       <ion-text color="primary">
         <h2>SIT Received by</h2>
       </ion-text>
-      <ion-select multiple="true" placeholder="Select Supervisor" formControlName="supervisor">
-        <ion-select-option *ngFor="let user of supervisors" value="user.id">
+      <ion-select multiple="false" placeholder="Select Supervisor" formControlName="supervisor">
+        <ion-select-option *ngFor="let user of supervisors" [value]="user.id">
           {{user.name}}
         </ion-select-option>
       </ion-select>

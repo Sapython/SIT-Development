@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoggedInGuard } from '../guards/loggedIn.guard';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
@@ -190,16 +191,16 @@ const routes: Routes = [
   },
   {
     path: 'guest',
-    loadChildren: () => import('./guest/guest.module').then( m => m.GuestPageModule)
+    loadChildren: () => import('./guest/guest.module').then( m => m.GuestPageModule),
+    canActivate:[LoggedInGuard]
   },
   {
     path: '',
     redirectTo: '/app/home',
     pathMatch: 'full',
-  },
-  {
-    path: 'guest',
-    loadChildren: () => import('./guest/guest.module').then( m => m.GuestPageModule)
+  },  {
+    path: 'sitdetail',
+    loadChildren: () => import('./sitdetail/sitdetail.module').then( m => m.SitdetailPageModule)
   },
 
 ];

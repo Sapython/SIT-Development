@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthencationService } from './services/authencation.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Router } from '@angular/router';
@@ -7,14 +7,30 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Platform } from '@ionic/angular';
 import { Analytics, logEvent } from '@angular/fire/analytics';
 import { DatabaseService } from './services/database.service';
-
+import { App } from '@capacitor/app';
+import { AlertsAndNotificationsService } from './services/uiService/alerts-and-notifications.service';
+var backCount = 0;
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit{
-  constructor(private analytics:Analytics,public databaseService:DatabaseService,public authService:AuthencationService,private router:Router,public dataProvider:DataProvider,private platform: Platform,) {
+export class AppComponent implements OnInit, OnDestroy{
+  backEmitterSub:any;
+  constructor(private analytics:Analytics,private alertify:AlertsAndNotificationsService,public databaseService:DatabaseService,public authService:AuthencationService,private router:Router,public dataProvider:DataProvider,private platform: Platform) {
+    this.backEmitterSub = this.platform.backButton.subscribeWithPriority(10, () => {                                             
+      window.history.back();
+      if (window.location.pathname == "/main/app/home") {
+        if (backCount == 0) {
+          this.alertify.presentToast('Press back again to exit','info',2000);
+          backCount++;
+        } else if(backCount >= 1) {
+          App.exitApp();
+        }
+      }
+      // alert(window.history);
+      // alert('Pressed back '+window.location)
+    });
     if (!platform.is("hybrid")){
       GoogleAuth.initialize({
         clientId:'690627613189-fglnifb9ggsg8qgrb1s17otedqhfm08h.apps.googleusercontent.com',
@@ -27,7 +43,13 @@ export class AppComponent implements OnInit{
     window.open('https://shreeva.com/','_blank');
   }
   nonUser = ['user','guest']
+  ngOnDestroy(): void {
+    this.backEmitterSub.unsubscribe();
+  }
   async ngOnInit(){
+    setInterval(()=>{
+      backCount = 0;
+    },5000)
     this.authService.user.subscribe(user=>{
       if (user){
         this.databaseService.getUser(user.uid).then(user=>{

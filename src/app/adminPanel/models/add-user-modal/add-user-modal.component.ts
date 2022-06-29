@@ -72,11 +72,14 @@ export class AddUserModalComponent implements OnInit, OnDestroy {
     this.fileObject = file.target.files[0];
   }
   async addUser() {
-    console.log(this.addUserModal.value,this.fileObject);
+    // console.log(this.addUserModal.value,this.fileObject);
     if (this.addUserModal.valid) {
       this.dataProvider.pageSetting.blur = true;
-      this.userAddSubscription = this.http.post('https://us-central1-sit-manager.cloudfunctions.net/createUser',this.addUserModal.value).subscribe((result:any) => {
-        console.log(result);
+      const productionUrl = "https://us-central1-sit-manager.cloudfunctions.net/createUser"
+      const debugUrl = "http://localhost:5001/sit-manager/us-central1/createUser"
+
+      this.userAddSubscription = this.http.post(productionUrl,this.addUserModal.value).subscribe((result:any) => {
+        // console.log(result);
         this.userDataService.setCompleteUserData(
           result,
           {access:this.addUserModal.value.role},
@@ -98,7 +101,7 @@ export class AddUserModalComponent implements OnInit, OnDestroy {
             this.alertify.presentToast(error);
           });
       },(error)=>{
-        console.log(error);
+        // console.log(error,error.error,error.error.message,JSON.stringify(error));
         this.dataProvider.pageSetting.blur = false;
         this.alertify.presentToast(error.error.message,'error',6000);
       },()=>{

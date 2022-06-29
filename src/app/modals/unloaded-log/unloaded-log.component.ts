@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
+import { UserData } from 'src/app/structures/user.structure';
 
 @Component({
   selector: 'app-unloaded-log',
@@ -11,12 +12,25 @@ export class UnloadedLogComponent implements OnInit {
   totalDamage: number = 0;
   goodsDamage:number = 0;
   mainSitData:any;
+  coordinator:UserData;
   constructor(private databaseService: DatabaseService) {}
   sitData: any;
   ngOnInit() {
+    this.databaseService.getSit(this.sitId).then((data: any) => {
+      this.mainSitData = data.data();
+      console.log('mainSitData',this.mainSitData);
+    }).catch((err) => {
+      console.log(err);
+    });
     this.databaseService.getUnloadedSit(this.sitId).then((data: any) => {
       this.sitData = data.data();
-      console.log(this.sitData);
+      this.databaseService.getUser(this.sitData.superVisorControl).then((coordinator:any) => {
+        this.coordinator = coordinator.data();
+        // console.log(coordinator.data())
+      }).catch(err => {
+        console.log(err)
+      })
+      // console.log(this.sitData);
       this.totalDamage =
         this.toNumber(this.sitData.legalCharges) +
         this.toNumber(this.sitData.otherDamage) +
@@ -26,11 +40,10 @@ export class UnloadedLogComponent implements OnInit {
       this.sitData.productDamages.forEach((product) => {
         this.goodsDamage += this.toNumber(product.damagedValue);
       })
+    }).catch((err) => {
+      console.log(err);
     });
-    this.databaseService.getSit(this.sitId).then((data: any) => {
-      this.mainSitData = data.data();
-      console.log(this.mainSitData);
-    })
+    console.log(this.sitData.superVisorControl)
   }
   splitName(fullName){
     return fullName.split(' ');

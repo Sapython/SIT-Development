@@ -39,6 +39,14 @@
       <ion-label color="tertiary">{{mainSitData.sit[0]?.transporterName}}</ion-label>
     </ion-item>
   </ion-list>
+  <ng-container *ngIf="sitData.dalaCharge">
+    <h2>Unloaded Detail</h2>
+    <hr>
+    <ion-item>
+      <ion-label>Dala Charge</ion-label>
+      <ion-label color="tertiary">{{sitData.dalaCharge}}</ion-label>
+    </ion-item>
+  </ng-container>
   <h2>Unloaded Detail</h2>
   <hr>
   <ion-list *ngIf="sitData">
@@ -122,17 +130,18 @@
         <ion-text color="tertiary">{{sitData.keptByOtherDamage}}</ion-text>
       </ion-col>
     </ion-item>
-    <!-- <app-expense-ledger
-            *ngFor="let item of expenseledger"
-            [ledgerNo]="item.ledgerNo"
-            [charge]="item.charge"
-            [expenseName]="item.expenseName"
-            [condition]="item.condition"
-            [servicable]="item.servicable"
-            [reason]="item.reason"
-            [date]="item.date"
-            [starred]="item.starred">
-      </app-expense-ledger> -->
+    <hr>
+    <ion-text color="primary">
+      <h3>Coordinator</h3>
+    </ion-text>
+    <ion-item *ngIf="coordinator">
+      <ion-avatar slot="start">
+        <img [src]="coordinator.photoURL">
+      </ion-avatar>
+      <ion-label>{{coordinator.displayName}}</ion-label>
+    </ion-item>
+    <ion-spinner name="crescent" *ngIf="!coordinator"></ion-spinner>
+    <hr>
     <ion-text color="primary">
       <h3>Product Details</h3>
     </ion-text>
@@ -145,7 +154,8 @@
       <h3>Labour Details</h3>
     </ion-text>
     <app-labour-ledger-widget *ngFor="let product of sitData.labourCharges" [name]="product.name" [uid]="product.id"
-      [amountPaid]="product.value" [userImage]="product.image"></app-labour-ledger-widget>
+      [amountPaid]="product.value" [timeTaken]="product.timeTaken" [userImage]="product.image">
+    </app-labour-ledger-widget>
     <img src="assets/UI/Images/empty.svg" *ngIf="!sitData.labourCharges" alt="Nothing In here" class="noData">
   </ion-list>
   <ion-spinner name="crescent" *ngIf="!sitData"></ion-spinner>

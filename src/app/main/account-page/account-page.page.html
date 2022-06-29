@@ -3,24 +3,36 @@
 <ion-content>
   <p class="heading">Account Info</p>
   <form class="container" [formGroup]="userDataForm">
-    <img [src]="userImage" referrerpolicy="no-referrer">
+    <img [src]="this.dataProvider.userData?.photoURL" (click)="image.click()" referrerPolicy="no-referrer">
     <p *ngIf="!editable" class="text-center">{{name}}</p>
     <ion-item>
       <ion-label color="primary" slot="start">Edit</ion-label>
       <ion-toggle [value]="editable" (ionChange)="editable=!editable" [checked]="editable" color="primary">
       </ion-toggle>
     </ion-item>
+    <input type="file" hidden #image>
     <table>
       <tbody>
+        <tr>
+          <td>
+            <ion-label color="primary" slot="start">Full Name</ion-label>
+          </td>
+          <td>
+            <ion-input *ngIf="editable" type="text" formControlName="name"
+              [value]="dataProvider.userData?.displayName" [debounce]="1000">
+            </ion-input>
+            <ion-label *ngIf="!editable">{{dataProvider.userData?.displayName || 'N/A'}}</ion-label>
+          </td>
+        </tr>
         <tr>
           <td>
             <ion-label color="primary" slot="start">Nick Name</ion-label>
           </td>
           <td>
             <ion-input *ngIf="editable" type="text" formControlName="nickName"
-              [value]="dataProvider.userData?.nickName" [debounce]="1000" (ionChange)="setValue('nickName',$event)">
+              [value]="dataProvider.userData?.nickName" [debounce]="1000">
             </ion-input>
-            <ion-label *ngIf="!editable">{{dataProvider.userData?.nickName}}</ion-label>
+            <ion-label *ngIf="!editable">{{dataProvider.userData?.nickName || 'N/A'}}</ion-label>
           </td>
         </tr>
         <tr>
@@ -29,8 +41,8 @@
           </td>
           <td>
             <ion-input *ngIf="editable" [value]="dataProvider.userData?.email" formControlName="email" type="email"
-              [debounce]="1000" (ionChange)="setValue('email',$event)" #emailInput></ion-input>
-            <ion-label *ngIf="!editable">{{dataProvider.userData?.email}}</ion-label>
+              [debounce]="1000" #emailInput></ion-input>
+            <ion-label *ngIf="!editable">{{dataProvider.userData?.email || 'N/A'}}</ion-label>
           </td>
         </tr>
         <tr>
@@ -39,8 +51,8 @@
           </td>
           <td>
             <ion-input *ngIf="editable" type="text" formControlName="phoneNumber" [value]="dataProvider.userData?.phoneNumber"
-              [debounce]="1000" (ionChange)="setValue('phoneNumber',$event)"></ion-input>
-            <ion-label *ngIf="!editable" >{{dataProvider.userData?.phoneNumber}}</ion-label>
+              [debounce]="1000"></ion-input>
+            <ion-label *ngIf="!editable" >{{dataProvider.userData?.phoneNumber || 'N/A'}}</ion-label>
           </td>
         </tr>
         <tr>
@@ -48,7 +60,7 @@
             <ion-label color="primary" slot="start">Access</ion-label>
           </td>
           <td>
-            <ion-chip color="primary">{{dataProvider.userData?.access.access}}</ion-chip>
+            <ion-chip color="primary">{{dataProvider.userData?.access.access || 'N/A'}}</ion-chip>
           </td>
         </tr>
         <tr>
@@ -56,7 +68,7 @@
             <ion-label color="primary" slot="start">Attendance</ion-label>
           </td>
           <td>
-            <ion-label>{{dataProvider.userData?.attendanceCount}}</ion-label>
+            <ion-label>{{dataProvider.userData?.attendanceCount || 'N/A'}}</ion-label>
           </td>
         </tr>
         <tr>
@@ -64,9 +76,9 @@
             <ion-label color="primary" slot="start">Status</ion-label>
           </td>
           <td>
-            <ion-label *ngIf="!editable">{{dataProvider.userData?.status.access}}</ion-label>
+            <ion-chip color="success" *ngIf="!editable">{{dataProvider.userData?.status.access}}</ion-chip>
             <ion-select placeholder="Select Status" *ngIf="editable" [value]="dataProvider.userData?.status.access"
-              formControlName="status" (ionChange)="setValue('status.access',$event)">
+              formControlName="status">
               <ion-select-option value="active">Active</ion-select-option>
               <ion-select-option value="inactive">Inactive</ion-select-option>
             </ion-select>
@@ -77,9 +89,9 @@
             <ion-label color="primary" slot="start">Current Address</ion-label>
           </td>
           <td>
-            <ion-textarea *ngIf="!editable" type="text" formControlName="currentAddress"
-              [value]="dataProvider.userData?.currentAddress" [debounce]="1000"
-              (ionChange)="setValue('currentAddress',$event)"></ion-textarea>
+            <ion-textarea *ngIf="editable" type="text" formControlName="currentAddress"
+              [value]="dataProvider.userData?.currentAddress || 'N/A'" [debounce]="1000"></ion-textarea>
+              <ion-label *ngIf="!editable">{{dataProvider.userData?.currentAddress}}</ion-label>
           </td>
         </tr>
         <tr>
@@ -87,9 +99,9 @@
             <ion-label color="primary" slot="start">Permanent Address</ion-label>
           </td>
           <td>
-            <ion-textarea *ngIf="!editable" type="text" formControlName="permanentAddress"
-              [value]="dataProvider.userData?.permanentAddress" [debounce]="1000"
-              (ionChange)="setValue('permanentAddress',$event)"></ion-textarea>
+            <ion-textarea *ngIf="editable" type="text" formControlName="permanentAddress"
+              [value]="dataProvider.userData?.permanentAddress || 'N/A'" [debounce]="1000"></ion-textarea>
+              <ion-label *ngIf="!editable">{{dataProvider.userData?.permanentAddress}}</ion-label>
           </td>
         </tr>
         <tr>
@@ -98,7 +110,7 @@
           </td>
           <td>
             <ion-chip color="primary" mode="ios" outline="true" *ngIf="!editable">
-              <ion-label>{{dataProvider.userData?.department.department}}</ion-label>
+              <ion-label>{{dataProvider.userData?.department.department || 'N/A'}}</ion-label>
             </ion-chip>
             <ion-select placeholder="Select Department" *ngIf="editable"
               [value]="dataProvider.userData?.department.department" formControlName="department">
@@ -113,7 +125,7 @@
           </td>
           <td>
             <ion-chip color="primary" mode="ios" outline="true" *ngIf="!editable">
-              <ion-label>{{dataProvider.userData?.designation.designation}}</ion-label>
+              <ion-label>{{dataProvider.userData?.designation.designation || 'N/A'}}</ion-label>
             </ion-chip>
             <ion-select formControlName="designation" *ngIf="editable"
               [value]="dataProvider.userData?.designation.designation" placeholder="Select Designation">
@@ -132,7 +144,7 @@
           </td>
           <td>
             <ion-chip color="primary" mode="ios" outline="true" *ngIf="!editable">
-              <ion-label>{{dataProvider.userData?.bloodGroup.bloodGroup}}</ion-label>
+              <ion-label>{{dataProvider.userData?.bloodGroup.bloodGroup || 'N/A'}}</ion-label>
             </ion-chip>
             <ion-select placeholder="Select Blood Group" *ngIf="editable"
               [value]="dataProvider.userData?.bloodGroup.bloodGroup" formControlName="bloodGroup">
@@ -152,13 +164,13 @@
             <ion-label color="primary" slot="start">User Id</ion-label>
           </td>
           <td>
-            <ion-label>{{userId}}</ion-label>
+            <ion-label>{{dataProvider.userData?.userId}}</ion-label>
           </td>
         </tr>
       </tbody>
     </table>
   </form>
-  <ion-button expand="block" fill="solid" shape="round">
-    Auto saved
+  <ion-button expand="block" fill="solid" (click)="save()" shape="round">
+    Save
   </ion-button>
 </ion-content>

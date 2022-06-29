@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataProvider } from 'src/app/providers/data.provider';
 import { DatabaseService } from 'src/app/services/database.service';
 import * as XLSX from 'xlsx';
 @Component({
@@ -14,7 +15,7 @@ export class UploadDataPage implements OnInit {
   arrayBuffer: any;
   file: any;
   allSits:any[] = [];
-  constructor(private databaseService:DatabaseService) {}
+  constructor(private databaseService:DatabaseService,private dataProvider:DataProvider) {}
   clarifyStatus(status: string) {
     const receivedStatus = ['recived', 'recved', 'recivd', 'recevid'];
     const pendingStatus = [
@@ -117,19 +118,25 @@ export class UploadDataPage implements OnInit {
   ngOnInit() {}
   uploadData() {
     // console.log(this.uploadForm);
+    // console.log(this.allSits)
     let count = 1;
-    if(confirm('Are you sure you want to upload data?') && false){
+    if(confirm('Are you sure you want to upload data?') && this.valid){
+      this.dataProvider.pageSetting.blur = true;
       this.allSits.forEach((element:any)=>{
         console.log(element);
         this.databaseService.addSit(element).then(()=>{
           count++;
         }).catch((err)=>{
           console.log(err);
+        }).finally(()=>{
+          if (count === this.allSits.length) {
+            alert('Uploaded Successfully');
+            this.dataProvider.pageSetting.blur = false;
+          }
         })
-        if (count === this.allSits.length) {
-          alert('Uploaded Successfully');
-        }
       })
+    } else {
+      alert('Either request cancelled or wrong data fields');
     }
   }
 }

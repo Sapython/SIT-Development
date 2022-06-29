@@ -39,6 +39,7 @@ export class ReceivedPage implements OnInit, OnDestroy {
   vehicleVerified: boolean = false;
   recognizerSubscription: Subscription = Subscription.EMPTY;
   numberPlateImageUrl: string;
+  paramsSubscription:Subscription = Subscription.EMPTY;
   constructor(
     private analytics: Analytics,
     private http: HttpClient,
@@ -50,7 +51,7 @@ export class ReceivedPage implements OnInit, OnDestroy {
     private modalController: ModalController,
     private router:Router
   ) {
-    this.activatedRouteSnapshot.queryParams.subscribe((params) => {
+    this.paramsSubscription = this.activatedRouteSnapshot.queryParams.subscribe((params) => {
       // this.sitID = params.id;
     });
     this.receivedForm = new FormGroup({
@@ -60,7 +61,6 @@ export class ReceivedPage implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
-    this.supervisors = [];
     this.sitID = this.dataProvider.dataOne;
     if (!this.sitID) {
       this.modalController.dismiss();
@@ -120,11 +120,12 @@ export class ReceivedPage implements OnInit, OnDestroy {
     const blob = new Blob(byteArrays, { type: contentType });
     return blob;
   }
-  verifyLicensePlate() {
+  async verifyLicensePlate() {
     logEvent(this.analytics, 'verifyLicensePlate');
     this.dataProvider.pageSetting.blur = true;
     if (this.imageCodec) {
-      this.databaseService
+      try{
+        let data = await this.databaseService
         .upload(
           'vehicleImages/' + this.sitID + 
             this.sitData.sit[0].vehicleNo +
@@ -132,81 +133,22 @@ export class ReceivedPage implements OnInit, OnDestroy {
             this.imageFormat,
           this.b64toBlob(this.imageCodec, 'image/' + this.imageFormat, 512)
         )
-        .then((data) => {
-          this.numberPlateImageUrl = data;
-          this.dataProvider.pageSetting.blur = false;
-          this.vehicleVerified = true;
-          console.log(this.numberPlateImageUrl)
-          this.alertify.presentToast(`Vehicle verified successfully`, 'info');
-        })
-        .catch((error) => {
-          this.vehicleVerified = false;
+        this.numberPlateImageUrl = data;
+        // this.dataProvider.pageSetting.blur = false;
+        this.vehicleVerified = true;
+        console.log(this.numberPlateImageUrl)
+        this.alertify.presentToast(`Vehicle verified successfully`, 'info');
+        return true;
+      } catch(e) {
+        this.vehicleVerified = false;
           this.alertify.presentToast(`Some error occurred`, 'error');
-        });
+          return false
+      }
+    } else {
+      return false;
     }
-    // this.recogniserSubscription = this.http
-    //   .post(
-    //     'https://us-central1-sit-manager.cloudfunctions.net/recognisePlate',
-    //     // 'http://localhost:5001/sit-manager/us-central1/recognisePlate',
-    //     { image: this.imageCodec, uid: this.dataProvider.userData?.userId }
-    //   )
-    //   .subscribe(
-    //     (data: any) => {
-    //       console.log(data);
-    //       this.recVehicleNumber = data.plate;
-    //       this.recVehicleType = data.vehicle.type;
-    //       if (
-    //         this.vehicleNumber.value.toLowerCase() ==
-    //         this.recVehicleNumber.toLowerCase()
-    //       ) {
-    //         this.vehicleVerified = true;
-    //         this.databaseService
-    //           .upload(
-    //             'vehicleImages/' +
-    //               this.recVehicleNumber +
-    //               '/image.' +
-    //               this.imageFormat,
-    //             this.b64toBlob(
-    //               this.imageCodec,
-    //               'image/' + this.imageFormat,
-    //               512
-    //             )
-    //           )
-    //           .then((data) => {
-    //             this.numberPlateImageUrl = data;
-    //             this.dataProvider.pageSetting.blur = false;
-    //             this.alertify.presentToast(
-    //               `Vehicle verified succefully`,
-    //               'info'
-    //             );
-    //           })
-    //           .catch((error) => {
-    //             this.alertify.presentToast(`Some error occured`, 'error');
-    //           });
-    //       } else {
-    //         this.vehicleVerified = false;
-    //         this.alertify.presentToast(
-    //           `Wrong number plate. Alerted to admin.`,
-    //           'info'
-    //         );
-    //       }
-    //     },
-    //     (error: any) => {
-    //       this.dataProvider.pageSetting.blur = false;
-    //       // console.log(error);
-    //       // this.databaseService.addLog(error)
-    //       this.alertify.presentToast(
-    //         `Error in recognition of numberplate`,
-    //         'error'
-    //       );
-    //     }
-    //   );
-  }
-  ngOnDestroy(): void {
-    // this.recogniserSubscription.unsubscribe();
   }
   uploadData() {
-    this.dataProvider.pageSetting.blur = true;
     this.databaseService.recieveSit(this.sitID, {
         vehicleNumber: this.vehicleNumber.value || '',
         vehicleType: this.vehicleType.value || '',
@@ -226,7 +168,6 @@ export class ReceivedPage implements OnInit, OnDestroy {
       .catch((err) => {
         console.log(err);
         this.alertify.presentToast(`Error in receiving vehicle`, 'error');
-
       })
     // console.log("Uploaded Data",{
     //   vehicleNumber: this.vehicleNumber.value || '',
@@ -237,16 +178,22 @@ export class ReceivedPage implements OnInit, OnDestroy {
     //   timestamp: new Date().toISOString(),
     // })
   }
-  receivedSit(){
-    if(this.receivedForm.valid){
+  async receivedSit(){
+    if(this.receivedForm.valid && (await this.verifyLicensePlate())){
+      this.dataProvider.pageSetting.blur = true;
       if(this.vehicleVerified){
         this.alertify.presentToast("Verified please wait uploading.","info",1000);
         this.uploadData()
       } else {
         this.alertify.presentToast("Please upload vehicle image.","error",2000);
+        this.dataProvider.pageSetting.blur = false;
       }
     } else {
       this.alertify.presentToast(`Please fill all the required fields`,'error');
+      this.dataProvider.pageSetting.blur = false;
     }
+  }
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
   }
 }

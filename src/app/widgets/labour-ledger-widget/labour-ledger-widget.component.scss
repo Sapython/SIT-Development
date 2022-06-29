@@ -9,12 +9,16 @@ ion-item div{
 button{
     background-color: var(--ion-color-primary);
     margin:0px;
-    padding:15px;
+    padding:10px;
+    font-weight: 600;
     border-radius: 15px;
     color: white;
 }
+ion-text{
+    font-size: 14px !important;
+}
 ion-text[color="success"]{
-    font-size: 14px;
+    font-size: 13px;
     p{
         strong{
             color:darkgrey;

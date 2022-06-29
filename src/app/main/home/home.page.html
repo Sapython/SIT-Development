@@ -91,7 +91,7 @@
                 <img src="assets/UI/QuickLinks/driver.svg" alt="">
             </div>
         </div>
-        <p class="text-1">Recently Opened</p>
+        <div class="sitRefreshBar"><p class="text-1">Recently Opened</p> <ion-icon color="primary" (click)="ngOnInit()" name="refresh"></ion-icon></div>
         <ion-spinner name="crescent" color="primary" *ngIf="!sitsLoaded" class="ion-text-center"></ion-spinner>
         <img src="assets/UI/Images/empty.svg" alt="Empty" *ngIf="sitsLoaded && sitLedgers.length==0">
         <app-sit-ledger-widget *ngFor="let item of sitLedgers" [bakery]="item.supplierName"

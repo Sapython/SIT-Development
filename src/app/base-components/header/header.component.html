@@ -3,7 +3,7 @@
   <ion-button *ngIf="backModal" fill="clear" (click)="modalController.dismiss()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   <ion-chip slot="end" (click)="navigateToAccount()">
     <ion-avatar>
-      <img [src]="dataProvider?.userData?.photoURL" referrerpolicy="no-referrer" >
+      <img [src]="dataProvider?.userData?.photoURL" referrerPolicy="no-referrer" >
     </ion-avatar>
     <ion-label color="primary">{{dataProvider?.userData?.displayName}}</ion-label>
   </ion-chip>

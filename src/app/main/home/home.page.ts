@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener, AfterViewInit, OnDestroy } from '@angular/core';
 import { ChartData, ChartOptions, ChartType } from 'chart.js';
 import { dalaLedgerData, SIT, sitLedgerData } from 'src/app/structures/method.structure';
 import { ModalController } from '@ionic/angular';
@@ -12,13 +12,14 @@ import { Router } from '@angular/router';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit, OnDestroy {
   // @ViewChild('header', {static: false}) private header: ElementRef<HTMLDivElement>;
   isTestDivScrolledIntoView: boolean;
   pending: number = 0;
   received: number = 0;
   unloaded: number = 0;
   sitsLoaded:boolean = false;
+  autoRefreshTimeout:any;
   public doughnutChartLabels: string[] = ['Pending', 'Received', 'Unloaded'];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
@@ -52,8 +53,11 @@ export class HomePage implements OnInit {
     });
     return await modal.present();
   }
+  ngOnDestroy(): void {
+    clearInterval(this.autoRefreshTimeout);
+  }
   ngOnInit() { 
-    this.databaseService.getSitLedgers().subscribe((data:any)=>{
+    this.databaseService.getAllSit().then((data:any)=>{
       let sits= []
       this.pending = 0;
       this.received = 0;
@@ -93,6 +97,11 @@ export class HomePage implements OnInit {
       }
       this.sitsLoaded = true;
     })
+  }
+  ngAfterViewInit(): void {
+    this.autoRefreshTimeout = setInterval(()=>{
+      this.ngOnInit();
+    },10000)
   }
   navigate(path:string){
     console.log(path);
