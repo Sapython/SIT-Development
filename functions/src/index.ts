@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
+const Razorpay = require('razorpay');
 // const FormData = require('form-data');
 const nodeFetch = require('node-fetch');
 const cors = require('cors');
@@ -22,8 +23,35 @@ const corsOptions = {
     }
   },
 };
-const corsHandler = cors(corsOptions);
+const corsHandler = cors({origin: true});
 
+// var corsOptionSomani = {
+//   origin: function (origin: any, callback: any) {
+//     callback(null, true);
+//   },
+// };
+
+const corsSomani = require('cors')(corsOptions);
+let key_id = 'rzp_test_qv29k7WExrrxBW';
+let  key_secret = 'luD8M3dv2ujxsDhhs6uW578y';
+
+let instance = new Razorpay({
+  key_id: key_id,
+  key_secret: key_secret,
+});
+
+exports.createOrder = functions.https.onRequest((req: any, res: any) => {
+  return corsSomani(req, res, () => {
+    let options = {
+      amount: req.body.amount,
+      currency: 'INR',
+      receipt: req.body.receipt,
+    };
+    instance.orders.create(options, (err: any, order: any) => {
+      order ? res.status(200).send(order) : res.status(500).send(err);
+    });
+  });
+});
 
 exports.recognisePlate = functions.https.onRequest(
   (request: any, response: any) => {
