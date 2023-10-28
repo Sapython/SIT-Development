@@ -5,24 +5,25 @@ const Razorpay = require('razorpay');
 // const FormData = require('form-data');
 const nodeFetch = require('node-fetch');
 const cors = require('cors');
-const allowedOrigins = [
-  'https://sit-manager.web.app',
-  'https://sit-manager.firebaseapp.com',
-  'capacitor://localhost',
-  'ionic://localhost',
-  'http://localhost',
-  'http://localhost:8080',
-  'http://localhost:8100',
-];
-const corsOptions = {
-  origin: (origin: any, callback: any) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origin not allowed by CORS'));
-    }
-  },
-};
+// const allowedOrigins = [
+//   'https://sit-manager.web.app',
+//   'https://sit-manager.firebaseapp.com',
+//   'capacitor://localhost',
+//   'ionic://localhost',
+//   'http://localhost',
+//   'http://localhost:8080',
+//   'http://localhost:8080',
+//   'http://localhost:8100',
+// ];
+// const corsOptions = {
+//   origin: (origin: any, callback: any) => {
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Origin not allowed by CORS'));
+//     }
+//   },
+// };
 const corsHandler = cors({origin: true});
 
 // var corsOptionSomani = {
@@ -31,7 +32,7 @@ const corsHandler = cors({origin: true});
 //   },
 // };
 
-const corsSomani = require('cors')(corsOptions);
+// const corsSomani = require('cors')(corsOptions);
 let key_id = 'rzp_test_qv29k7WExrrxBW';
 let  key_secret = 'luD8M3dv2ujxsDhhs6uW578y';
 
@@ -41,7 +42,7 @@ let instance = new Razorpay({
 });
 
 exports.createOrder = functions.https.onRequest((req: any, res: any) => {
-  return corsSomani(req, res, () => {
+  return corsHandler(req, res, () => {
     let options = {
       amount: req.body.amount,
       currency: 'INR',
